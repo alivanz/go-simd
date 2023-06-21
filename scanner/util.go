@@ -7,3 +7,11 @@ func transform[A, B any](arr []A, fn func(i int, e A) B) []B {
 	}
 	return out
 }
+
+func joinAll[T any](lists ...[]T) []T {
+	var out []T
+	for _, l := range lists {
+		out = append(out, l...)
+	}
+	return out
+}

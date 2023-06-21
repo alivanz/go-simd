@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	regTypedef       = regexp.MustCompile(`typedef .+? ([a-z]\w+_t);`)
+	regTypedef       = regexp.MustCompile(`typedef [\w\s\(\){}]+? ([0-9a-z]\w+?_t);`)
 	regTypedefStruct = regexp.MustCompile(`typedef struct \w+ {.+?(\w+);`)
 	regTypedefAttr   = regexp.MustCompile(`typedef __attribute__.+? (\w+);`)
 	regFunction      = regexp.MustCompile(`(\w+) (\w+)\(([\w\s,_]*?)\) {.*?}`)
@@ -26,36 +26,47 @@ func Scan(raw []byte) (*ScanResult, error) {
 			buf.WriteString(line)
 		}
 	}
-	var (
-		result   ScanResult
-		submatch [][]string
-	)
+	var result ScanResult
 	// types
-	submatch = regTypedef.FindAllStringSubmatch(buf.String(), -1)
-	result.Types = transform(submatch, func(i int, e []string) Type {
-		return Type{
-			Name: e[1],
-			Full: e[0],
-		}
-	})
-	// functions
-	submatch = regFunction.FindAllStringSubmatch(buf.String(), -1)
-	result.Functions = make([]Function, len(submatch))
-	for i, match := range submatch {
-		sargs := regArg.FindAllStringSubmatch(match[3], -1)
-		result.Functions[i] = Function{
-			Name: match[2],
-			Return: Type{
-				Name: match[1],
-				Full: match[0],
-			},
-			Args: transform(sargs, func(i int, e []string) Type {
+	result.Types = joinAll(
+		transform(
+			regTypedef.FindAllStringSubmatch(buf.String(), -1),
+			func(i int, e []string) Type {
 				return Type{
 					Name: e[1],
 					Full: e[0],
 				}
-			}),
-		}
-	}
+			},
+		),
+		transform(
+			regTypedefStruct.FindAllStringSubmatch(buf.String(), -1),
+			func(i int, e []string) Type {
+				return Type{
+					Name: e[1],
+					Full: e[0],
+				}
+			},
+		),
+	)
+	// functions
+	result.Functions = transform(
+		regFunction.FindAllStringSubmatch(buf.String(), -1),
+		func(i int, match []string) Function {
+			sargs := regArg.FindAllStringSubmatch(match[3], -1)
+			return Function{
+				Name: match[2],
+				Return: Type{
+					Name: match[1],
+					Full: match[0],
+				},
+				Args: transform(sargs, func(i int, e []string) Type {
+					return Type{
+						Name: e[1],
+						Full: e[0],
+					}
+				}),
+			}
+		},
+	)
 	return &result, nil
 }
