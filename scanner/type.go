@@ -8,6 +8,10 @@ import (
 
 type Type string
 
+func (t Type) C() string {
+	return string(t)
+}
+
 func (t Type) GoString() string {
 	switch t {
 	default:
