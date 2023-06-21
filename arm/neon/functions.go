@@ -9048,4 +9048,3 @@ func VabalHighS32(v0 Int64X2, v1 Int32X4, v2 Int32X4) Int64X2 {
 func VabalHighS16(v0 Int32X4, v1 Int16X8, v2 Int16X8) Int32X4 {
 	return Int32X4(C.vabal_high_s16(C.int32x4_t(v0), C.int16x8_t(v1), C.int16x8_t(v2)))
 }
-

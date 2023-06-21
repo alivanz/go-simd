@@ -20,7 +20,8 @@ type Arg struct {
 
 const funcTemplate = `func %s(%s) %s {
 	return %s(C.%s(%s))
-}`
+}
+`
 
 func (f *Function) String() string {
 	return fmt.Sprintf(

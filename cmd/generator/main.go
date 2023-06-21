@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"io"
 	"log"
 	"os"
 	"os/exec"
@@ -14,6 +15,11 @@ func main() {
 	app := cli.App{
 		Name: "go-simd-generator",
 		Flags: []cli.Flag{
+			&cli.StringFlag{
+				Name:     "package",
+				Usage:    "Go package name",
+				Required: true,
+			},
 			&cli.BoolFlag{
 				Name:  "types",
 				Usage: "skip types",
@@ -21,6 +27,11 @@ func main() {
 			&cli.BoolFlag{
 				Name:  "funcs",
 				Usage: "skip functions",
+			},
+			&cli.StringFlag{
+				Name:    "output",
+				Aliases: []string{"o"},
+				Usage:   "output file",
 			},
 		},
 		Action: action,
@@ -40,7 +51,7 @@ func action(cli *cli.Context) error {
 		return err
 	}
 	pkg := &scanner.Package{
-		Name: "neon",
+		Name: cli.String("package"),
 		C: []string{
 			"#include <arm_neon.h>",
 		},
@@ -53,7 +64,18 @@ func action(cli *cli.Context) error {
 	if !cli.Bool("funcs") {
 		pkg.Functions = nil
 	}
-	pkg.WriteTo(os.Stdout)
+	var w io.Writer
+	if output := cli.String("output"); len(output) > 0 {
+		f, err := os.OpenFile(output, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, os.ModePerm)
+		if err != nil {
+			return err
+		}
+		defer f.Close()
+		w = f
+	} else {
+		w = os.Stdout
+	}
+	pkg.WriteTo(w)
 	return nil
 }
 

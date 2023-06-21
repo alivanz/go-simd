@@ -14,11 +14,11 @@ type Package struct {
 }
 
 func (pkg *Package) WriteTo(w io.Writer) error {
-	if _, err := fmt.Fprintf(w, "package %s\n\n", pkg.Name); err != nil {
+	if _, err := fmt.Fprintf(w, "package %s\n", pkg.Name); err != nil {
 		return err
 	}
 	if len(pkg.C) > 0 {
-		if _, err := fmt.Fprintf(w, "/*\n%s\n*/\nimport \"C\"\n\n", strings.Join(pkg.C, "\n")); err != nil {
+		if _, err := fmt.Fprintf(w, "\n/*\n%s\n*/\nimport \"C\"\n", strings.Join(pkg.C, "\n")); err != nil {
 			return err
 		}
 	}
@@ -26,7 +26,7 @@ func (pkg *Package) WriteTo(w io.Writer) error {
 		if strings.Contains(string(t), "float16") {
 			continue
 		}
-		if _, err := fmt.Fprintf(w, "type %s C.%s\n\n", t.GoString(), t); err != nil {
+		if _, err := fmt.Fprintf(w, "\ntype %s C.%s\n", t.GoString(), t); err != nil {
 			return err
 		}
 	}
@@ -40,7 +40,7 @@ funcs:
 				continue funcs
 			}
 		}
-		if _, err := fmt.Fprintf(w, "%s\n\n", fn.String()); err != nil {
+		if _, err := fmt.Fprintf(w, "\n%s", fn.String()); err != nil {
 			return err
 		}
 	}
