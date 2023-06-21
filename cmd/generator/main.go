@@ -39,6 +39,11 @@ func main() {
 				Name:  "raw",
 				Usage: "raw unprocessed",
 			},
+			&cli.StringSliceFlag{
+				Name:    "header",
+				Aliases: []string{"head"},
+				Usage:   "C header file",
+			},
 		},
 		Action: action,
 	}
@@ -52,27 +57,8 @@ func action(cli *cli.Context) error {
 		flags   []string
 		headers []string
 	)
-	switch pkg := cli.String("package"); pkg {
-	default:
-		return fmt.Errorf("unknown package %s", pkg)
-	case "neon":
-		flags = []string{
-			"-arch", "arm64",
-		}
-		headers = []string{
-			"arm_neon.h",
-		}
-	case "x86":
-		flags = []string{
-			"-arch", "x86_64",
-			// "-mavx",
-			// "-mavx2",
-			// "-mfma",
-		}
-		headers = []string{
-			"immintrin.h",
-		}
-	}
+	flags = cli.Args().Slice()
+	headers = cli.StringSlice("header")
 	src, err := Source(flags, headers)
 	if err != nil {
 		return err
@@ -129,7 +115,9 @@ func action(cli *cli.Context) error {
 }
 
 func Source(flags, headers []string) ([]byte, error) {
-	cmd := exec.Command("clang", append(flags, "-E", "-")...)
+	args := append(flags, "-E", "-")
+	log.Printf("args: %s", strings.Join(args, " "))
+	cmd := exec.Command("clang", args...)
 	cmd.Stdin = bytes.NewBufferString(strings.Join(includes(headers), "\n"))
 	return cmd.Output()
 }
