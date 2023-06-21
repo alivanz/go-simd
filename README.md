@@ -1,6 +1,6 @@
 # SIMD Implementation for ARM NEON in Golang
 
-This repository provides a collection of SIMD (Single Instruction, Multiple Data) implementations specifically designed for ARM NEON architecture in Golang. SIMD allows parallel processing of data using the same instruction applied to multiple data elements, resulting in significant performance improvements for certain types of algorithms.
+This repository contains an implementation of SIMD (Single Instruction, Multiple Data) operations in Go, specifically targeting ARM NEON architecture. The goal is to provide optimized parallel processing capabilities for certain computational tasks.
 
 ## Future Plans
 
@@ -8,9 +8,20 @@ We are actively working on expanding the SIMD implementation to support x86 arch
 
 ## Features
 
-- ARM NEON SIMD implementation for various data processing operations.
-- Optimized code to take advantage of the parallel processing capabilities of the ARM NEON architecture.
-- Examples and usage instructions for each SIMD operation.
+- SIMD operations for ARM NEON architecture.
+- High-performance parallel processing for specific tasks.
+- Utilizes the power of SIMD instructions to process multiple data elements simultaneously.
+- Supports a range of data types, including integers and floating-point numbers.
+- Modular design for easy integration into existing projects.
+- Well-documented code for understanding and extending the implementation.
+
+## Roadmap
+
+- [x] Implement SIMD operations for ARM NEON architecture.
+- [ ] Add support for x86 architecture.
+- [ ] Expand SIMD operations for additional data types.
+- [ ] Optimize performance for specific use cases.
+- [ ] Develop comprehensive test suite for validation.
 
 ## Usage
 
@@ -72,4 +83,4 @@ Please ensure that your code follows the existing code style and includes approp
 
 ## Contact
 
-For any questions or feedback regarding this repository, please feel free to contact me at alivan1627@gmai.com
+For any questions or feedback regarding this repository, please feel free to contact me at [alivan1627@gmail.com](mailto:alivan1627@gmail.com)
