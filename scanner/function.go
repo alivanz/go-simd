@@ -8,9 +8,10 @@ import (
 )
 
 type Function struct {
-	Name   string
-	Args   []Type
-	Return Type
+	Name    string
+	Args    []Type
+	Return  Type
+	Comment string
 }
 
 type Arg struct {
@@ -26,9 +27,15 @@ func %s(%s) %s {
 `
 
 func (f *Function) Declare() string {
+	var comment string
+	if len(f.Comment) > 0 {
+		comment = f.Comment
+	} else {
+		comment = f.Name
+	}
 	return fmt.Sprintf(
 		funcTemplate,
-		f.Name,
+		comment,
 		strcase.ToCamel(f.Name),
 		strings.Join(transform(f.Args, func(i int, t Type) string {
 			return fmt.Sprintf("v%d %s", i, t.Go())

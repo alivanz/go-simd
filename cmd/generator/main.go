@@ -63,6 +63,16 @@ func action(cli *cli.Context) error {
 	}
 	if !cli.Bool("funcs") {
 		pkg.Functions = nil
+	} else {
+		intrins, err := GetIntrinsics()
+		if err != nil {
+			return err
+		}
+		for i, fn := range pkg.Functions {
+			if info := intrins.Find(fn.Name); info != nil {
+				pkg.Functions[i].Comment = info.Description
+			}
+		}
 	}
 	var w io.Writer
 	if output := cli.String("output"); len(output) > 0 {
