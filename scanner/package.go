@@ -40,7 +40,7 @@ funcs:
 				continue funcs
 			}
 		}
-		if _, err := fmt.Fprintf(w, "\n%s", fn.String()); err != nil {
+		if _, err := io.WriteString(w, fn.Declare()); err != nil {
 			return err
 		}
 	}

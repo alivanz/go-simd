@@ -18,14 +18,17 @@ type Arg struct {
 	Type string
 }
 
-const funcTemplate = `func %s(%s) %s {
+const funcTemplate = `
+// %s
+func %s(%s) %s {
 	return C.%s(%s)
 }
 `
 
-func (f *Function) String() string {
+func (f *Function) Declare() string {
 	return fmt.Sprintf(
 		funcTemplate,
+		f.Name,
 		strcase.ToCamel(f.Name),
 		strings.Join(transform(f.Args, func(i int, t Type) string {
 			return fmt.Sprintf("v%d %s", i, t.Go())
