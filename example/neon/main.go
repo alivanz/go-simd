@@ -15,6 +15,6 @@ func main() {
 	// add
 	log.Printf("a = %+v", b)
 	log.Printf("b = %+v", a)
-	log.Printf("add = %+v", neon.VaddS8(a, b))
-	log.Printf("mul = %+v", neon.VmulS8(a, b))
+	log.Printf("add = %+v", neon.VaddlS8(a, b))
+	log.Printf("mul = %+v", neon.VmullS8(a, b))
 }
