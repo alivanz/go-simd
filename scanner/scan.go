@@ -7,6 +7,7 @@ import (
 )
 
 var (
+	regTypedef       = regexp.MustCompile(`typedef .+? ([a-z]\w+_t);`)
 	regTypedefStruct = regexp.MustCompile(`typedef struct \w+ {.+?(\w+);`)
 	regTypedefAttr   = regexp.MustCompile(`typedef __attribute__.+? (\w+);`)
 	regFunction      = regexp.MustCompile(`(\w+) (\w+)\(([\w\s,_]*?)\) {.*?}`)
@@ -30,24 +31,29 @@ func Scan(raw []byte) (*ScanResult, error) {
 		submatch [][]string
 	)
 	// types
-	submatch = regTypedefStruct.FindAllStringSubmatch(buf.String(), -1)
+	submatch = regTypedef.FindAllStringSubmatch(buf.String(), -1)
 	result.Types = transform(submatch, func(i int, e []string) Type {
-		return Type(e[1])
+		return Type{
+			Name: e[1],
+			Full: e[0],
+		}
 	})
-	submatch = regTypedefAttr.FindAllStringSubmatch(buf.String(), -1)
-	result.Types = append(result.Types, transform(submatch, func(i int, e []string) Type {
-		return Type(e[1])
-	})...)
 	// functions
 	submatch = regFunction.FindAllStringSubmatch(buf.String(), -1)
 	result.Functions = make([]Function, len(submatch))
 	for i, match := range submatch {
 		sargs := regArg.FindAllStringSubmatch(match[3], -1)
 		result.Functions[i] = Function{
-			Name:   match[2],
-			Return: Type(match[1]),
+			Name: match[2],
+			Return: Type{
+				Name: match[1],
+				Full: match[0],
+			},
 			Args: transform(sargs, func(i int, e []string) Type {
-				return Type(e[1])
+				return Type{
+					Name: e[1],
+					Full: e[0],
+				}
 			}),
 		}
 	}

@@ -19,7 +19,7 @@ type Arg struct {
 }
 
 const funcTemplate = `func %s(%s) %s {
-	return %s(C.%s(%s))
+	return C.%s(%s)
 }
 `
 
@@ -28,13 +28,12 @@ func (f *Function) String() string {
 		funcTemplate,
 		strcase.ToCamel(f.Name),
 		strings.Join(transform(f.Args, func(i int, t Type) string {
-			return fmt.Sprintf("v%d %s", i, t.GoString())
+			return fmt.Sprintf("v%d %s", i, t.Go())
 		}), ", "),
-		f.Return.GoString(),
-		f.Return.GoString(),
+		f.Return.Go(),
 		f.Name,
 		strings.Join(transform(f.Args, func(i int, t Type) string {
-			return fmt.Sprintf("C.%s(v%d)", string(t), i)
+			return fmt.Sprintf("v%d", i)
 		}), ", "),
 	)
 }

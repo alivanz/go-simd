@@ -23,10 +23,10 @@ func (pkg *Package) WriteTo(w io.Writer) error {
 		}
 	}
 	for _, t := range pkg.Types {
-		if strings.Contains(string(t), "float16") {
+		if strings.Contains(t.C(), "float16") {
 			continue
 		}
-		if _, err := fmt.Fprintf(w, "\ntype %s C.%s\n", t.GoString(), t); err != nil {
+		if _, err := io.WriteString(w, t.Declare()); err != nil {
 			return err
 		}
 	}
