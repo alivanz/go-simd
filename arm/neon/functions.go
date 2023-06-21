@@ -1,6 +1,7 @@
 package neon
 
 /*
+#cgo CFLAGS: -arch arm64
 #include <arm_neon.h>
 */
 import "C"

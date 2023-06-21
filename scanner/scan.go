@@ -7,7 +7,7 @@ import (
 
 var (
 	regTypedef       = regexp.MustCompile(`typedef [\w\s\(\){}]+? ([0-9a-z]\w+?_t);`)
-	regTypedefStruct = regexp.MustCompile(`typedef struct \w+? {.+?(\w+?);`)
+	regTypedefStruct = regexp.MustCompile(`typedef struct \w+? {.+?}\s*?(\w+?);`)
 	regTypedefAttr   = regexp.MustCompile(`typedef __attribute__.+? (\w+);`)
 	regFunction      = regexp.MustCompile(`(\w+) (\w+)\(([\w\s,_]*?)\) {.*?}`)
 	regArg           = regexp.MustCompile(`(\w+)(\s+\w+)?`)
