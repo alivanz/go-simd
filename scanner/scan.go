@@ -8,7 +8,7 @@ import (
 var (
 	name             = `(\w+?)`
 	attr             = `(?:__attribute__\(\([\w\s,\(\)]+?\)\))`
-	regTypedefSimple = regexp.MustCompile(`typedef [\w\s\(\){}]+? ` + name + `;`)
+	regTypedefSimple = regexp.MustCompile(`typedef\s+` + attr + `?[\w\s]+? ` + name + `\s*` + attr + `?;`)
 	regTypedefStruct = regexp.MustCompile(`typedef struct \w+? {.+?}\s*?` + name + `;`)
 	regFunction      = regexp.MustCompile(`(\w+) (\w+)\(([\w\s,_]*?)\) {.*?}`)
 	regArg           = regexp.MustCompile(`(\w+)(\s+\w+)?`)

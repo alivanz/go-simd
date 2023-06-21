@@ -24,7 +24,9 @@ func (pkg *Package) WriteTo(w io.Writer) error {
 	}
 	for _, t := range pkg.Types {
 		if strings.HasPrefix(t.C(), "__") {
-			continue
+			if !strings.HasPrefix(t.C(), "__m") {
+				continue
+			}
 		}
 		if strings.Contains(t.C(), "float16") {
 			continue

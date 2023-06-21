@@ -27,6 +27,7 @@ func TestScan(t *testing.T) {
 	result, err := Scan([]byte(`
 		typedef char int8_t;
 		typedef __attribute__((neon_vector_type(8))) int8_t int8x8_t;
+		typedef double __m256d __attribute__((__vector_size__(32), __aligned__(32)));
 		typedef struct int32x4x3_t {
 			int32x4_t val[3];
 		} int32x4x3_t;
@@ -44,6 +45,10 @@ func TestScan(t *testing.T) {
 			{
 				Name: "int8x8_t",
 				Full: "typedef __attribute__((neon_vector_type(8))) int8_t int8x8_t;",
+			},
+			{
+				Name: "__m256d",
+				Full: "typedef double __m256d __attribute__((__vector_size__(32), __aligned__(32)));",
 			},
 			{
 				Name: "int32x4x3_t",

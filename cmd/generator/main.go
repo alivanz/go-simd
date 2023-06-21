@@ -35,6 +35,10 @@ func main() {
 				Aliases: []string{"o"},
 				Usage:   "output file",
 			},
+			&cli.BoolFlag{
+				Name:  "raw",
+				Usage: "raw unprocessed",
+			},
 		},
 		Action: action,
 	}
@@ -73,6 +77,21 @@ func action(cli *cli.Context) error {
 	if err != nil {
 		return err
 	}
+	var w io.Writer
+	if output := cli.String("output"); len(output) > 0 {
+		f, err := os.OpenFile(output, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, os.ModePerm)
+		if err != nil {
+			return err
+		}
+		defer f.Close()
+		w = f
+	} else {
+		w = os.Stdout
+	}
+	if cli.Bool("raw") {
+		w.Write(src)
+		return nil
+	}
 	result, err := scanner.Scan(src)
 	if err != nil {
 		return err
@@ -104,17 +123,6 @@ func action(cli *cli.Context) error {
 				}
 			}
 		}
-	}
-	var w io.Writer
-	if output := cli.String("output"); len(output) > 0 {
-		f, err := os.OpenFile(output, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, os.ModePerm)
-		if err != nil {
-			return err
-		}
-		defer f.Close()
-		w = f
-	} else {
-		w = os.Stdout
 	}
 	pkg.WriteTo(w)
 	return nil
