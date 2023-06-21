@@ -1,4 +1,4 @@
-# SIMD Implementation for ARM NEON in Golang
+# SIMD Implementation in Golang
 
 This repository contains an implementation of SIMD (Single Instruction, Multiple Data) operations in Go, specifically targeting ARM NEON architecture. The goal is to provide optimized parallel processing capabilities for certain computational tasks.
 

@@ -6,9 +6,10 @@ import (
 )
 
 var (
-	regTypedef       = regexp.MustCompile(`typedef [\w\s\(\){}]+? ([0-9a-z]\w+?_t);`)
-	regTypedefStruct = regexp.MustCompile(`typedef struct \w+? {.+?}\s*?(\w+?);`)
-	regTypedefAttr   = regexp.MustCompile(`typedef __attribute__.+? (\w+);`)
+	name             = `(\w+?)`
+	attr             = `(?:__attribute__\(\([\w\s,\(\)]+?\)\))`
+	regTypedefSimple = regexp.MustCompile(`typedef [\w\s\(\){}]+? ` + name + `;`)
+	regTypedefStruct = regexp.MustCompile(`typedef struct \w+? {.+?}\s*?` + name + `;`)
 	regFunction      = regexp.MustCompile(`(\w+) (\w+)\(([\w\s,_]*?)\) {.*?}`)
 	regArg           = regexp.MustCompile(`(\w+)(\s+\w+)?`)
 	regWhitespace    = regexp.MustCompile(`\s+`)
@@ -34,7 +35,7 @@ func Scan(raw []byte) (*ScanResult, error) {
 	// types
 	result.Types = joinAll(
 		transform(
-			regTypedef.FindAllStringSubmatch(s, -1),
+			regTypedefSimple.FindAllStringSubmatch(s, -1),
 			func(i int, e []string) Type {
 				return Type{
 					Name: e[1],

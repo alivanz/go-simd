@@ -2,10 +2,12 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 	"io"
 	"log"
 	"os"
 	"os/exec"
+	"strings"
 
 	"github.com/alivanz/go-simd/scanner"
 	"github.com/urfave/cli/v2"
@@ -42,7 +44,32 @@ func main() {
 }
 
 func action(cli *cli.Context) error {
-	src, err := Source()
+	var (
+		flags   []string
+		headers []string
+	)
+	switch pkg := cli.String("package"); pkg {
+	default:
+		return fmt.Errorf("unknown package %s", pkg)
+	case "neon":
+		flags = []string{
+			"-arch", "arm64",
+		}
+		headers = []string{
+			"arm_neon.h",
+		}
+	case "x86":
+		flags = []string{
+			"-arch", "x86_64",
+			// "-mavx",
+			// "-mavx2",
+			// "-mfma",
+		}
+		headers = []string{
+			"immintrin.h",
+		}
+	}
+	src, err := Source(flags, headers)
 	if err != nil {
 		return err
 	}
@@ -52,9 +79,10 @@ func action(cli *cli.Context) error {
 	}
 	pkg := &scanner.Package{
 		Name: cli.String("package"),
-		C: []string{
-			"#include <arm_neon.h>",
-		},
+		C: append(
+			[]string{cflags(flags)},
+			includes(headers)...,
+		),
 		Types:     result.Types,
 		Functions: result.Functions,
 	}
@@ -64,13 +92,16 @@ func action(cli *cli.Context) error {
 	if !cli.Bool("funcs") {
 		pkg.Functions = nil
 	} else {
-		intrins, err := GetIntrinsics()
-		if err != nil {
-			return err
-		}
-		for i, fn := range pkg.Functions {
-			if info := intrins.Find(fn.Name); info != nil {
-				pkg.Functions[i].Comment = info.Description
+		switch cli.String("package") {
+		case "neon":
+			intrins, err := GetIntrinsics()
+			if err != nil {
+				return err
+			}
+			for i, fn := range pkg.Functions {
+				if info := intrins.Find(fn.Name); info != nil {
+					pkg.Functions[i].Comment = info.Description
+				}
 			}
 		}
 	}
@@ -89,8 +120,20 @@ func action(cli *cli.Context) error {
 	return nil
 }
 
-func Source() ([]byte, error) {
-	cmd := exec.Command("clang", "-E", "-")
-	cmd.Stdin = bytes.NewBufferString("#include <arm_neon.h>")
+func Source(flags, headers []string) ([]byte, error) {
+	cmd := exec.Command("clang", append(flags, "-E", "-")...)
+	cmd.Stdin = bytes.NewBufferString(strings.Join(includes(headers), "\n"))
 	return cmd.Output()
+}
+
+func cflags(flags []string) string {
+	return fmt.Sprintf("#cgo CFLAGS: %s", strings.Join(flags, " "))
+}
+
+func includes(headers []string) []string {
+	out := make([]string, len(headers))
+	for i, h := range headers {
+		out[i] = fmt.Sprintf("#include <%s>", h)
+	}
+	return out
 }

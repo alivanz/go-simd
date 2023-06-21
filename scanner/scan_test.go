@@ -2,12 +2,31 @@ package scanner
 
 import (
 	"reflect"
+	"regexp"
 	"testing"
 )
 
-func TestTypes(t *testing.T) {
+func TestAttribute(t *testing.T) {
+	reg := regexp.MustCompile(attr + ";")
+	result := reg.FindAllString(`
+		__attribute__((__vector_size__(32), __aligned__(32)));
+		__attribute__((neon_vector_type(8)));
+	`, -1)
+	ref := []string{
+		"__attribute__((__vector_size__(32), __aligned__(32)));",
+		"__attribute__((neon_vector_type(8)));",
+	}
+	t.Log(result)
+	t.Log(ref)
+	if !reflect.DeepEqual(result, ref) {
+		t.Fail()
+	}
+}
+
+func TestScan(t *testing.T) {
 	result, err := Scan([]byte(`
 		typedef char int8_t;
+		typedef __attribute__((neon_vector_type(8))) int8_t int8x8_t;
 		typedef struct int32x4x3_t {
 			int32x4_t val[3];
 		} int32x4x3_t;
@@ -16,12 +35,15 @@ func TestTypes(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	t.Logf("%+v", result)
-	if !reflect.DeepEqual(result, &ScanResult{
+	ref := &ScanResult{
 		Types: []Type{
 			{
 				Name: "int8_t",
 				Full: "typedef char int8_t;",
+			},
+			{
+				Name: "int8x8_t",
+				Full: "typedef __attribute__((neon_vector_type(8))) int8_t int8x8_t;",
 			},
 			{
 				Name: "int32x4x3_t",
@@ -49,7 +71,15 @@ func TestTypes(t *testing.T) {
 				},
 			},
 		},
-	}) {
-		t.Fail()
+	}
+	if !reflect.DeepEqual(result.Types, ref.Types) {
+		t.Logf("%+v", result.Types)
+		t.Logf("%+v", ref.Types)
+		t.Fatal()
+	}
+	if !reflect.DeepEqual(result, ref) {
+		t.Logf("%+v", result.Functions)
+		t.Logf("%+v", ref.Functions)
+		t.Fatal()
 	}
 }
