@@ -3,15 +3,15 @@ package scanner
 import (
 	"bytes"
 	"regexp"
-	"strings"
 )
 
 var (
 	regTypedef       = regexp.MustCompile(`typedef [\w\s\(\){}]+? ([0-9a-z]\w+?_t);`)
-	regTypedefStruct = regexp.MustCompile(`typedef struct \w+ {.+?(\w+);`)
+	regTypedefStruct = regexp.MustCompile(`typedef struct \w+? {.+?(\w+?);`)
 	regTypedefAttr   = regexp.MustCompile(`typedef __attribute__.+? (\w+);`)
 	regFunction      = regexp.MustCompile(`(\w+) (\w+)\(([\w\s,_]*?)\) {.*?}`)
 	regArg           = regexp.MustCompile(`(\w+)(\s+\w+)?`)
+	regWhitespace    = regexp.MustCompile(`\s+`)
 )
 
 type ScanResult struct {
@@ -21,16 +21,20 @@ type ScanResult struct {
 
 func Scan(raw []byte) (*ScanResult, error) {
 	var buf bytes.Buffer
-	for _, line := range strings.Split(string(raw), "\n") {
-		if !strings.HasPrefix(line, "#") {
-			buf.WriteString(line)
+	// filter #
+	for _, line := range bytes.Split(raw, []byte("\n")) {
+		if !bytes.HasPrefix(line, []byte("#")) {
+			buf.Write(line)
 		}
 	}
+	// remove duplicates whitespace
+	raw = regWhitespace.ReplaceAll(buf.Bytes(), []byte(" "))
+	s := string(raw)
 	var result ScanResult
 	// types
 	result.Types = joinAll(
 		transform(
-			regTypedef.FindAllStringSubmatch(buf.String(), -1),
+			regTypedef.FindAllStringSubmatch(s, -1),
 			func(i int, e []string) Type {
 				return Type{
 					Name: e[1],
@@ -39,7 +43,7 @@ func Scan(raw []byte) (*ScanResult, error) {
 			},
 		),
 		transform(
-			regTypedefStruct.FindAllStringSubmatch(buf.String(), -1),
+			regTypedefStruct.FindAllStringSubmatch(s, -1),
 			func(i int, e []string) Type {
 				return Type{
 					Name: e[1],
@@ -50,14 +54,14 @@ func Scan(raw []byte) (*ScanResult, error) {
 	)
 	// functions
 	result.Functions = transform(
-		regFunction.FindAllStringSubmatch(buf.String(), -1),
+		regFunction.FindAllStringSubmatch(s, -1),
 		func(i int, match []string) Function {
 			sargs := regArg.FindAllStringSubmatch(match[3], -1)
 			return Function{
 				Name: match[2],
 				Return: Type{
 					Name: match[1],
-					Full: match[0],
+					Full: match[1],
 				},
 				Args: transform(sargs, func(i int, e []string) Type {
 					return Type{

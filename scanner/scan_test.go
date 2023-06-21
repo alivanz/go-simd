@@ -33,13 +33,13 @@ func TestTypes(t *testing.T) {
 				Args: []Type{
 					{
 						Name: "int",
-						Full: "int",
+						Full: "int a",
 					}, {
 						Name: "int",
-						Full: "int",
+						Full: "int b",
 					}, {
 						Name: "int",
-						Full: "int",
+						Full: "int c",
 					},
 				},
 			},
