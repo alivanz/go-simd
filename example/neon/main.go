@@ -12,7 +12,6 @@ func main() {
 		a[i] = neon.Int8(i)
 		b[i] = neon.Int8(i * i)
 	}
-	// add
 	log.Printf("a = %+v", b)
 	log.Printf("b = %+v", a)
 	log.Printf("add = %+v", neon.VaddlS8(a, b))
