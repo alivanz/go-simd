@@ -11,7 +11,7 @@ var (
 	attr             = `(?:__attribute__\(\(` + `([\w\s,\(\)"]+?)` + `\)\))`
 	regTypedefSimple = regexp.MustCompile(`typedef\s+` + attr + `?[\w\s]+? ` + name + `\s*` + attr + `?;`)
 	regTypedefStruct = regexp.MustCompile(`typedef struct \w+? {.+?}\s*?` + name + `;`)
-	regFunction      = regexp.MustCompile(name + `\s+` + attr + `?\s*` + name + `\s*\(` + args + `\) {.*?}`)
+	regFunction      = regexp.MustCompile(name + `\s+` + attr + `?\s*` + name + `\s*\(` + args + `\)` + `\s*` + `{.*?}`)
 	regArg           = regexp.MustCompile(`(\w+)(\s+\w+)?`)
 	regWhitespace    = regexp.MustCompile(`\s+`)
 	regComma         = regexp.MustCompile(`\s*,\s*`)
