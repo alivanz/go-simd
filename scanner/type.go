@@ -15,7 +15,12 @@ type Type struct {
 }
 
 func (t *Type) C() string {
-	return t.Name
+	if !strings.Contains(t.Name, " ") {
+		return t.Name
+	}
+	s := strings.Replace(t.Name, "unsigned", "u", -1)
+	s = strings.Replace(s, " ", "", -1)
+	return s
 }
 
 func (t *Type) Go() string {

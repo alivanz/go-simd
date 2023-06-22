@@ -12,7 +12,7 @@ import (
 type Function struct {
 	Name      string
 	Args      []Type
-	Return    Type
+	Return    *Type
 	Attribute string
 	Comment   string
 }
@@ -24,7 +24,7 @@ type Arg struct {
 
 const funcTemplate = `
 // %s
-func %s(%s) %s {
+func %s(%s) %s{
 	return C.%s(%s)
 }
 `
@@ -42,28 +42,33 @@ func (f *Function) Target() string {
 }
 
 func (f *Function) Declare(w io.Writer) error {
-	var comment string
+	fmt.Fprintf(w, "\n")
 	if len(f.Comment) > 0 {
-		comment = f.Comment
+		fmt.Fprintf(w, "// %s\n", f.Comment)
 	} else {
-		comment = f.Name
+		fmt.Fprintf(w, "// %s\n", f.Name)
 	}
 	if len(f.Attribute) > 0 {
-		comment += fmt.Sprintf("\n// %s", f.Attribute)
+		fmt.Fprintf(w, "// %s\n", f.Attribute)
 	}
-	_, err := fmt.Fprintf(
-		w,
-		funcTemplate,
-		comment,
-		strcase.ToCamel(f.Name),
-		strings.Join(transform(f.Args, func(i int, t Type) string {
-			return fmt.Sprintf("v%d %s", i, t.Go())
-		}), ", "),
-		f.Return.Go(),
-		f.Name,
-		strings.Join(transform(f.Args, func(i int, t Type) string {
+	fmt.Fprintf(w, "func %s(", strcase.ToCamel(f.Name))
+	fmt.Fprintf(w, "%s", strings.Join(transform(f.Args, func(i int, t Type) string {
+		return fmt.Sprintf("v%d %s", i, t.Go())
+	}), ", "))
+	if f.Return == nil {
+		fmt.Fprintf(w, ") {\n")
+	} else {
+		fmt.Fprintf(w, ") %s {\n", strcase.ToCamel(f.Return.Go()))
+	}
+	if f.Return == nil {
+		fmt.Fprintf(w, "\tC.%s(%s)\n", f.Name, strings.Join(transform(f.Args, func(i int, t Type) string {
 			return fmt.Sprintf("v%d", i)
-		}), ", "),
-	)
-	return err
+		}), ", "))
+	} else {
+		fmt.Fprintf(w, "\treturn C.%s(%s)\n", f.Name, strings.Join(transform(f.Args, func(i int, t Type) string {
+			return fmt.Sprintf("v%d", i)
+		}), ", "))
+	}
+	fmt.Fprintf(w, "}\n")
+	return nil
 }

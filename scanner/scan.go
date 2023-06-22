@@ -12,9 +12,15 @@ var (
 	regTypedefSimple = regexp.MustCompile(`typedef\s+` + attr + `?[\w\s]+? ` + name + `\s*` + attr + `?;`)
 	regTypedefStruct = regexp.MustCompile(`typedef struct \w+? {.+?}\s*?` + name + `;`)
 	regFunction      = regexp.MustCompile(name + `\s+` + attr + `?\s*` + name + `\s*\(` + args + `\)` + `\s*` + `{.*?}`)
-	regArg           = regexp.MustCompile(`(\w+)(\s+\w+)?`)
+	regArg           = regexp.MustCompile(`\s*(([\w\s]+)\s(?:\w+))`)
 	regWhitespace    = regexp.MustCompile(`\s+`)
 	regComma         = regexp.MustCompile(`\s*,\s*`)
+	regLongLong      = regexp.MustCompile(`long\s+long`)
+	regULongLong     = regexp.MustCompile(`unsigned\s+long\s+long`)
+	regUlong         = regexp.MustCompile(`unsigned\s+long`)
+	regUint          = regexp.MustCompile(`unsigned\s+int`)
+	regUshort        = regexp.MustCompile(`unsigned\s+short`)
+	regUchar         = regexp.MustCompile(`unsigned\s+char`)
 )
 
 type ScanResult struct {
@@ -32,6 +38,13 @@ func Scan(raw []byte) (*ScanResult, error) {
 	}
 	// remove duplicates whitespace
 	raw = regWhitespace.ReplaceAll(buf.Bytes(), []byte(" "))
+	// replace known types
+	raw = regLongLong.ReplaceAll(raw, []byte("longlong"))
+	raw = regULongLong.ReplaceAll(raw, []byte("ulonglong"))
+	raw = regUlong.ReplaceAll(raw, []byte("ulong"))
+	raw = regUint.ReplaceAll(raw, []byte("uint"))
+	raw = regUshort.ReplaceAll(raw, []byte("ushort"))
+	raw = regUchar.ReplaceAll(raw, []byte("uchar"))
 	s := string(raw)
 	var result ScanResult
 	// types
@@ -60,20 +73,28 @@ func Scan(raw []byte) (*ScanResult, error) {
 	result.Functions = transform(
 		regFunction.FindAllStringSubmatch(s, -1),
 		func(i int, match []string) Function {
-			sargs := regArg.FindAllStringSubmatch(match[4], -1)
+			var args []Type
+			for _, arg := range regArg.FindAllStringSubmatch(match[4], -1) {
+				if arg[2] == "void" {
+					continue
+				}
+				args = append(args, Type{
+					Name: arg[2],
+					Full: arg[1],
+				})
+			}
+			var ret *Type
+			if match[1] != "void" {
+				ret = &Type{
+					Name: match[1],
+					Full: match[1],
+				}
+			}
 			return Function{
 				Name:      match[3],
 				Attribute: match[2],
-				Return: Type{
-					Name: match[1],
-					Full: match[1],
-				},
-				Args: transform(sargs, func(i int, e []string) Type {
-					return Type{
-						Name: e[1],
-						Full: e[0],
-					}
-				}),
+				Return:    ret,
+				Args:      args,
 			}
 		},
 	)

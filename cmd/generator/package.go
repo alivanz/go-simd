@@ -36,7 +36,17 @@ types:
 			"__mm_storeh",
 			"_tile",
 			"_aligned",
+			// float16
 			"float16",
+			"f16",
+			"v8bf",
+			"v8hf",
+			"m128h",
+			"m128bh",
+			// windows?
+			"crt",
+			"_pi_",
+			"mbstate_t",
 		} {
 			if strings.Contains(t.Name, blacklist) {
 				continue types

@@ -33,6 +33,9 @@ func TestScan(t *testing.T) {
 		} int32x4x3_t;
 		int func(int a, int b, int c) { return a+b+c; }
 		static __inline__ __m128 __attribute__((__always_inline__, __nodebug__, __target__("mmx, sse"), __min_vector_width__(128))) _mm_move_ss(__m128 __a, __m128 __b) { __a[0] = __b[0]; return __a; }
+		static __inline__ long long __attribute__((__always_inline__, __nodebug__, __target__("mmx"), __min_vector_width__(64))) _mm_cvtm64_si64(__m64 __m) { return 1; }
+		void lolo(int a, long long b) { }
+		void vovo(void) { }
 	`))
 	if err != nil {
 		t.Fatal(err)
@@ -61,7 +64,7 @@ func TestScan(t *testing.T) {
 		Functions: []Function{
 			{
 				Name: "func",
-				Return: Type{
+				Return: &Type{
 					Name: "int",
 					Full: "int",
 				},
@@ -81,7 +84,7 @@ func TestScan(t *testing.T) {
 			{
 				Name:      "_mm_move_ss",
 				Attribute: `__always_inline__, __nodebug__, __target__("mmx, sse"), __min_vector_width__(128)`,
-				Return: Type{
+				Return: &Type{
 					Name: "__m128",
 					Full: "__m128",
 				},
@@ -96,8 +99,37 @@ func TestScan(t *testing.T) {
 					},
 				},
 			},
+			{
+				Name:      "_mm_cvtm64_si64",
+				Attribute: `__always_inline__, __nodebug__, __target__("mmx"), __min_vector_width__(64)`,
+				Return: &Type{
+					Name: "longlong",
+					Full: "longlong",
+				},
+				Args: []Type{
+					{
+						Name: "__m64",
+						Full: "__m64 __m",
+					},
+				},
+			},
+			{
+				Name: "lolo",
+				Args: []Type{
+					{
+						Name: "int",
+						Full: "int a",
+					}, {
+						Name: "longlong",
+						Full: "longlong b",
+					},
+				},
+			}, {
+				Name: "vovo",
+			},
 		},
 	}
+	t.Logf("%+v", result.Functions[4].Return)
 	if !reflect.DeepEqual(result.Types, ref.Types) {
 		t.Logf("%+v", result.Types)
 		t.Logf("%+v", ref.Types)
