@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"os/exec"
@@ -57,48 +58,43 @@ func action(cli *cli.Context) error {
 	if err != nil {
 		return err
 	}
-	if fname := cli.String("raw"); len(fname) > 0 {
-		f, err := os.OpenFile(fname, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, os.ModePerm)
-		if err != nil {
-			return err
-		}
-		defer f.Close()
-		f.Write(src)
+	// raw
+	if err := writeToFile(cli.String("raw"), func(w io.Writer) error {
+		_, err := w.Write(src)
+		return err
+	}); err != nil {
+		return err
 	}
+	// scan
 	result, err := scanner.Scan(src)
 	if err != nil {
 		return err
 	}
 	pkg := cli.String("package")
-	if fname := cli.String("types"); len(fname) > 0 {
-		f, err := os.OpenFile(fname, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, os.ModePerm)
-		if err != nil {
+	// types
+	if err := writeToFile(cli.String("types"), func(w io.Writer) error {
+		if err := Package(w, pkg); err != nil {
 			return err
 		}
-		defer f.Close()
-		if err := Package(f, pkg); err != nil {
-			return err
-		}
-		if err := ImportC(f, strings.Join(append(
+		if err := ImportC(w, strings.Join(append(
 			[]string{cflags(flags)},
 			includes(headers)...,
 		), "\n")); err != nil {
 			return err
 		}
-		if err := Types(f, result.Types); err != nil {
+		if err := Types(w, result.Types); err != nil {
 			return err
 		}
+		return nil
+	}); err != nil {
+		return err
 	}
-	if fname := cli.String("funcs"); len(fname) > 0 {
-		f, err := os.OpenFile(fname, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, os.ModePerm)
-		if err != nil {
+	// funcs
+	if err := writeToFile(cli.String("funcs"), func(w io.Writer) error {
+		if err := Package(w, pkg); err != nil {
 			return err
 		}
-		defer f.Close()
-		if err := Package(f, pkg); err != nil {
-			return err
-		}
-		if err := ImportC(f, strings.Join(append(
+		if err := ImportC(w, strings.Join(append(
 			[]string{cflags(flags)},
 			includes(headers)...,
 		), "\n")); err != nil {
@@ -116,9 +112,9 @@ func action(cli *cli.Context) error {
 				}
 			}
 		}
-		if err := Funcs(f, result.Functions); err != nil {
-			return err
-		}
+		return Funcs(w, result.Functions)
+	}); err != nil {
+		return err
 	}
 	return nil
 }
