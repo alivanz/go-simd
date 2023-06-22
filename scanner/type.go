@@ -2,6 +2,7 @@ package scanner
 
 import (
 	"fmt"
+	"io"
 	"strings"
 
 	"github.com/iancoleman/strcase"
@@ -22,9 +23,12 @@ func (t *Type) Go() string {
 	return strcase.ToCamel(s)
 }
 
-func (t *Type) Declare() string {
+func (t *Type) Declare(w io.Writer) error {
+	var err error
 	if len(t.Full) > 0 {
-		return fmt.Sprintf("\n// %s\ntype %s = C.%s\n", t.Full, t.Go(), t.C())
+		_, err = fmt.Fprintf(w, "\n// %s\ntype %s = C.%s\n", t.Full, t.Go(), t.C())
+	} else {
+		_, err = fmt.Fprintf(w, "\ntype %s = C.%s\n", t.Go(), t.C())
 	}
-	return fmt.Sprintf("\ntype %s = C.%s\n", t.Go(), t.C())
+	return err
 }

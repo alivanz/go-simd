@@ -69,22 +69,37 @@ func action(cli *cli.Context) error {
 	if err != nil {
 		return err
 	}
-	pkg := &scanner.Package{
-		Name: cli.String("package"),
-		C: append(
-			[]string{cflags(flags)},
-			includes(headers)...,
-		),
-	}
+	pkg := cli.String("package")
 	if fname := cli.String("types"); len(fname) > 0 {
 		f, err := os.OpenFile(fname, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, os.ModePerm)
 		if err != nil {
 			return err
 		}
 		defer f.Close()
-		pkg.Types = result.Types
-		pkg.WriteTo(f)
-		pkg.Types = nil
+		Package(f, pkg)
+		ImportC(f, strings.Join(append(
+			[]string{cflags(flags)},
+			includes(headers)...,
+		), "\n"))
+	types:
+		for _, t := range result.Types {
+			for _, blacklist := range []string{
+				"__darwin",
+				"__int",
+				"__uint",
+				"__mm_storeh",
+				"_tile",
+				"_aligned",
+				"float16",
+			} {
+				if strings.Contains(t.Name, blacklist) {
+					continue types
+				}
+			}
+			if err := t.Declare(f); err != nil {
+				return err
+			}
+		}
 	}
 	if fname := cli.String("funcs"); len(fname) > 0 {
 		f, err := os.OpenFile(fname, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, os.ModePerm)
@@ -92,21 +107,38 @@ func action(cli *cli.Context) error {
 			return err
 		}
 		defer f.Close()
-		pkg.Functions = result.Functions
+		Package(f, pkg)
+		ImportC(f, strings.Join(append(
+			[]string{cflags(flags)},
+			includes(headers)...,
+		), "\n"))
 		switch cli.String("package") {
 		case "neon":
 			intrins, err := GetIntrinsics()
 			if err != nil {
 				return err
 			}
-			for i, fn := range pkg.Functions {
+			for i, fn := range result.Functions {
 				if info := intrins.Find(fn.Name); info != nil {
-					pkg.Functions[i].Comment = info.Description
+					result.Functions[i].Comment = info.Description
 				}
 			}
 		}
-		pkg.WriteTo(f)
-		pkg.Functions = nil
+	funcs:
+		for _, fn := range result.Functions {
+			for _, blacklist := range []string{
+				"f16",
+				"vcmla",
+				"__extension__",
+			} {
+				if strings.Contains(fn.Name, blacklist) {
+					continue funcs
+				}
+			}
+			if err := fn.Declare(f); err != nil {
+				return err
+			}
+		}
 	}
 	return nil
 }

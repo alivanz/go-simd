@@ -2,6 +2,7 @@ package scanner
 
 import (
 	"fmt"
+	"io"
 	"strings"
 
 	"github.com/iancoleman/strcase"
@@ -27,7 +28,7 @@ func %s(%s) %s {
 }
 `
 
-func (f *Function) Declare() string {
+func (f *Function) Declare(w io.Writer) error {
 	var comment string
 	if len(f.Comment) > 0 {
 		comment = f.Comment
@@ -37,7 +38,8 @@ func (f *Function) Declare() string {
 	if len(f.Attributes) > 0 {
 		comment += fmt.Sprintf("\n// %s", strings.Join(f.Attributes, ", "))
 	}
-	return fmt.Sprintf(
+	_, err := fmt.Fprintf(
+		w,
 		funcTemplate,
 		comment,
 		strcase.ToCamel(f.Name),
@@ -50,4 +52,5 @@ func (f *Function) Declare() string {
 			return fmt.Sprintf("v%d", i)
 		}), ", "),
 	)
+	return err
 }
