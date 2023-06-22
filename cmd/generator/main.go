@@ -80,6 +80,27 @@ func action(cli *cli.Context) error {
 		return err
 	}
 	pkg := cli.String("package")
+	// filter types
+	mtype := make(map[string]bool)
+	for _, fn := range result.Functions {
+		if fn.Return != nil {
+			mtype[fn.Return.Name] = true
+			// append type
+			result.Types = append(result.Types, *fn.Return)
+		}
+		for _, arg := range fn.Args {
+			mtype[arg.Name] = true
+			result.Types = append(result.Types, arg)
+		}
+	}
+	result.Types = filter(result.Types, func(t scanner.Type) bool {
+		if !mtype[t.Name] {
+			return false
+		}
+		// remove dup
+		delete(mtype, t.Name)
+		return true
+	})
 	// types
 	if err := writeToFile(cli.String("types"), func(w io.Writer) error {
 		if err := Package(w, pkg); err != nil {
@@ -132,6 +153,17 @@ func includes(headers []string) []string {
 	out := make([]string, len(headers))
 	for i, h := range headers {
 		out[i] = fmt.Sprintf("#include <%s>", h)
+	}
+	return out
+}
+
+func filter[T any](arr []T, fn func(e T) bool) []T {
+	out := make([]T, 0, len(arr))
+	for _, e := range arr {
+		if !fn(e) {
+			continue
+		}
+		out = append(out, e)
 	}
 	return out
 }
