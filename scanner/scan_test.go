@@ -32,6 +32,7 @@ func TestScan(t *testing.T) {
 			int32x4_t val[3];
 		} int32x4x3_t;
 		int func(int a, int b, int c) { return a+b+c; }
+		static __inline__ __m128 __attribute__((__always_inline__, __nodebug__, __target__("sse"), __min_vector_width__(128))) _mm_move_ss(__m128 __a, __m128 __b) { __a[0] = __b[0]; return __a; }
 	`))
 	if err != nil {
 		t.Fatal(err)
@@ -43,12 +44,14 @@ func TestScan(t *testing.T) {
 				Full: "typedef char int8_t;",
 			},
 			{
-				Name: "int8x8_t",
-				Full: "typedef __attribute__((neon_vector_type(8))) int8_t int8x8_t;",
+				Name:       "int8x8_t",
+				Full:       "typedef __attribute__((neon_vector_type(8))) int8_t int8x8_t;",
+				Attributes: []string{"neon_vector_type(8)"},
 			},
 			{
-				Name: "__m256d",
-				Full: "typedef double __m256d __attribute__((__vector_size__(32), __aligned__(32)));",
+				Name:       "__m256d",
+				Full:       "typedef double __m256d __attribute__((__vector_size__(32), __aligned__(32)));",
+				Attributes: []string{"__vector_size__(32)", "__aligned__(32)"},
 			},
 			{
 				Name: "int32x4x3_t",
@@ -72,6 +75,29 @@ func TestScan(t *testing.T) {
 					}, {
 						Name: "int",
 						Full: "int c",
+					},
+				},
+			},
+			{
+				Name: "_mm_move_ss",
+				Attributes: []string{
+					`__always_inline__`,
+					`__nodebug__`,
+					`__target__("sse")`,
+					`__min_vector_width__(128)`,
+				},
+				Return: Type{
+					Name: "__m128",
+					Full: "__m128",
+				},
+				Args: []Type{
+					{
+						Name: "__m128",
+						Full: "__m128 __a",
+					},
+					{
+						Name: "__m128",
+						Full: "__m128 __b",
 					},
 				},
 			},

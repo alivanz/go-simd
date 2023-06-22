@@ -8,10 +8,11 @@ import (
 )
 
 type Function struct {
-	Name    string
-	Args    []Type
-	Return  Type
-	Comment string
+	Name       string
+	Args       []Type
+	Return     Type
+	Attributes []string
+	Comment    string
 }
 
 type Arg struct {

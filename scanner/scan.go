@@ -7,12 +7,14 @@ import (
 
 var (
 	name             = `(\w+?)`
-	attr             = `(?:__attribute__\(\([\w\s,\(\)]+?\)\))`
+	args             = `([\w\s,_]*?)`
+	attr             = `(?:__attribute__\(\(` + `([\w\s,\(\)"]+?)` + `\)\))`
 	regTypedefSimple = regexp.MustCompile(`typedef\s+` + attr + `?[\w\s]+? ` + name + `\s*` + attr + `?;`)
 	regTypedefStruct = regexp.MustCompile(`typedef struct \w+? {.+?}\s*?` + name + `;`)
-	regFunction      = regexp.MustCompile(`(\w+) (\w+)\(([\w\s,_]*?)\) {.*?}`)
+	regFunction      = regexp.MustCompile(name + `\s+` + attr + `?\s*` + name + `\s*\(` + args + `\) {.*?}`)
 	regArg           = regexp.MustCompile(`(\w+)(\s+\w+)?`)
 	regWhitespace    = regexp.MustCompile(`\s+`)
+	regComma         = regexp.MustCompile(`\s*,\s*`)
 )
 
 type ScanResult struct {
@@ -38,8 +40,9 @@ func Scan(raw []byte) (*ScanResult, error) {
 			regTypedefSimple.FindAllStringSubmatch(s, -1),
 			func(i int, e []string) Type {
 				return Type{
-					Name: e[1],
-					Full: e[0],
+					Name:       e[2],
+					Full:       e[0],
+					Attributes: commaSplit(e[1], e[3]),
 				}
 			},
 		),
@@ -57,9 +60,10 @@ func Scan(raw []byte) (*ScanResult, error) {
 	result.Functions = transform(
 		regFunction.FindAllStringSubmatch(s, -1),
 		func(i int, match []string) Function {
-			sargs := regArg.FindAllStringSubmatch(match[3], -1)
+			sargs := regArg.FindAllStringSubmatch(match[4], -1)
 			return Function{
-				Name: match[2],
+				Name:       match[3],
+				Attributes: commaSplit(match[2]),
 				Return: Type{
 					Name: match[1],
 					Full: match[1],
@@ -74,4 +78,19 @@ func Scan(raw []byte) (*ScanResult, error) {
 		},
 	)
 	return &result, nil
+}
+
+func commaSplit(ss ...string) []string {
+	switch len(ss) {
+	case 0:
+		return nil
+	case 1:
+		s := regWhitespace.ReplaceAllString(ss[0], " ")
+		if len(s) == 0 {
+			return nil
+		}
+		return regComma.Split(s, -1)
+	default:
+		return append(commaSplit(ss[0]), commaSplit(ss[1:]...)...)
+	}
 }

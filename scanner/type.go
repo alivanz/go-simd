@@ -8,8 +8,9 @@ import (
 )
 
 type Type struct {
-	Name string
-	Full string
+	Name       string
+	Full       string
+	Attributes []string
 }
 
 func (t *Type) C() string {
