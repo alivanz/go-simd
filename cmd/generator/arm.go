@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"net/http"
+	"os"
 )
 
 type ArmIntrinsics []ArmIntrinsic
@@ -13,13 +13,19 @@ type ArmIntrinsic struct {
 }
 
 func GetIntrinsics() (ArmIntrinsics, error) {
-	resp, err := http.Get("https://developer.arm.com/architectures/instruction-sets/intrinsics/data/intrinsics.json")
+	if err := download(
+		"intrinsics.json",
+		"https://developer.arm.com/architectures/instruction-sets/intrinsics/data/intrinsics.json",
+	); err != nil {
+		return nil, err
+	}
+	f, err := os.Open("intrinsics.json")
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer f.Close()
 	var intrins ArmIntrinsics
-	if err := json.NewDecoder(resp.Body).Decode(&intrins); err != nil {
+	if err := json.NewDecoder(f).Decode(&intrins); err != nil {
 		return nil, err
 	}
 	return intrins, nil

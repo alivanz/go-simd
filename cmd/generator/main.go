@@ -76,29 +76,17 @@ func action(cli *cli.Context) error {
 			return err
 		}
 		defer f.Close()
-		Package(f, pkg)
-		ImportC(f, strings.Join(append(
+		if err := Package(f, pkg); err != nil {
+			return err
+		}
+		if err := ImportC(f, strings.Join(append(
 			[]string{cflags(flags)},
 			includes(headers)...,
-		), "\n"))
-	types:
-		for _, t := range result.Types {
-			for _, blacklist := range []string{
-				"__darwin",
-				"__int",
-				"__uint",
-				"__mm_storeh",
-				"_tile",
-				"_aligned",
-				"float16",
-			} {
-				if strings.Contains(t.Name, blacklist) {
-					continue types
-				}
-			}
-			if err := t.Declare(f); err != nil {
-				return err
-			}
+		), "\n")); err != nil {
+			return err
+		}
+		if err := Types(f, result.Types); err != nil {
+			return err
 		}
 	}
 	if fname := cli.String("funcs"); len(fname) > 0 {
@@ -107,11 +95,15 @@ func action(cli *cli.Context) error {
 			return err
 		}
 		defer f.Close()
-		Package(f, pkg)
-		ImportC(f, strings.Join(append(
+		if err := Package(f, pkg); err != nil {
+			return err
+		}
+		if err := ImportC(f, strings.Join(append(
 			[]string{cflags(flags)},
 			includes(headers)...,
-		), "\n"))
+		), "\n")); err != nil {
+			return err
+		}
 		switch cli.String("package") {
 		case "neon":
 			intrins, err := GetIntrinsics()
@@ -124,20 +116,8 @@ func action(cli *cli.Context) error {
 				}
 			}
 		}
-	funcs:
-		for _, fn := range result.Functions {
-			for _, blacklist := range []string{
-				"f16",
-				"vcmla",
-				"__extension__",
-			} {
-				if strings.Contains(fn.Name, blacklist) {
-					continue funcs
-				}
-			}
-			if err := fn.Declare(f); err != nil {
-				return err
-			}
+		if err := Funcs(f, result.Functions); err != nil {
+			return err
 		}
 	}
 	return nil
