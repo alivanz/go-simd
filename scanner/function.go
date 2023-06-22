@@ -34,6 +34,9 @@ func (f *Function) Declare() string {
 	} else {
 		comment = f.Name
 	}
+	if len(f.Attributes) > 0 {
+		comment += fmt.Sprintf("\n// %s", strings.Join(f.Attributes, ", "))
+	}
 	return fmt.Sprintf(
 		funcTemplate,
 		comment,
