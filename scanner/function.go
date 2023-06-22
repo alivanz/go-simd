@@ -3,17 +3,18 @@ package scanner
 import (
 	"fmt"
 	"io"
+	"regexp"
 	"strings"
 
 	"github.com/iancoleman/strcase"
 )
 
 type Function struct {
-	Name       string
-	Args       []Type
-	Return     Type
-	Attributes []string
-	Comment    string
+	Name      string
+	Args      []Type
+	Return    Type
+	Attribute string
+	Comment   string
 }
 
 type Arg struct {
@@ -28,6 +29,18 @@ func %s(%s) %s {
 }
 `
 
+var (
+	regTarget = regexp.MustCompile(`__target__\("([a-z0-9\s,]+)"\)`)
+)
+
+func (f *Function) Target() string {
+	match := regTarget.FindStringSubmatch(f.Attribute)
+	if match == nil {
+		return ""
+	}
+	return match[1]
+}
+
 func (f *Function) Declare(w io.Writer) error {
 	var comment string
 	if len(f.Comment) > 0 {
@@ -35,8 +48,8 @@ func (f *Function) Declare(w io.Writer) error {
 	} else {
 		comment = f.Name
 	}
-	if len(f.Attributes) > 0 {
-		comment += fmt.Sprintf("\n// %s", strings.Join(f.Attributes, ", "))
+	if len(f.Attribute) > 0 {
+		comment += fmt.Sprintf("\n// %s", f.Attribute)
 	}
 	_, err := fmt.Fprintf(
 		w,

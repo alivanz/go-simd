@@ -67,3 +67,30 @@ funcs:
 	}
 	return nil
 }
+
+func wrapFuncs(pkg string, flags, headers []string, funcs []scanner.Function) func(w io.Writer) error {
+	return func(w io.Writer) error {
+		if err := Package(w, pkg); err != nil {
+			return err
+		}
+		if err := ImportC(w, strings.Join(append(
+			[]string{cflags(flags)},
+			includes(headers)...,
+		), "\n")); err != nil {
+			return err
+		}
+		switch pkg {
+		case "neon":
+			intrins, err := GetIntrinsics()
+			if err != nil {
+				return err
+			}
+			for i, fn := range funcs {
+				if info := intrins.Find(fn.Name); info != nil {
+					funcs[i].Comment = info.Description
+				}
+			}
+		}
+		return Funcs(w, funcs)
+	}
+}

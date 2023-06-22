@@ -32,7 +32,7 @@ func TestScan(t *testing.T) {
 			int32x4_t val[3];
 		} int32x4x3_t;
 		int func(int a, int b, int c) { return a+b+c; }
-		static __inline__ __m128 __attribute__((__always_inline__, __nodebug__, __target__("sse"), __min_vector_width__(128))) _mm_move_ss(__m128 __a, __m128 __b) { __a[0] = __b[0]; return __a; }
+		static __inline__ __m128 __attribute__((__always_inline__, __nodebug__, __target__("mmx, sse"), __min_vector_width__(128))) _mm_move_ss(__m128 __a, __m128 __b) { __a[0] = __b[0]; return __a; }
 	`))
 	if err != nil {
 		t.Fatal(err)
@@ -79,13 +79,8 @@ func TestScan(t *testing.T) {
 				},
 			},
 			{
-				Name: "_mm_move_ss",
-				Attributes: []string{
-					`__always_inline__`,
-					`__nodebug__`,
-					`__target__("sse")`,
-					`__min_vector_width__(128)`,
-				},
+				Name:      "_mm_move_ss",
+				Attribute: `__always_inline__, __nodebug__, __target__("mmx, sse"), __min_vector_width__(128)`,
 				Return: Type{
 					Name: "__m128",
 					Full: "__m128",

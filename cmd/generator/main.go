@@ -7,10 +7,15 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"regexp"
 	"strings"
 
 	"github.com/alivanz/go-simd/scanner"
 	"github.com/urfave/cli/v2"
+)
+
+var (
+	regComma = regexp.MustCompile(`\s*,\s*`)
 )
 
 func main() {
@@ -29,6 +34,10 @@ func main() {
 			&cli.StringFlag{
 				Name:  "funcs",
 				Usage: "functions output file",
+			},
+			&cli.BoolFlag{
+				Name:  "split-target",
+				Usage: "split by target",
 			},
 			&cli.StringFlag{
 				Name:  "raw",
@@ -90,31 +99,19 @@ func action(cli *cli.Context) error {
 		return err
 	}
 	// funcs
-	if err := writeToFile(cli.String("funcs"), func(w io.Writer) error {
-		if err := Package(w, pkg); err != nil {
+	if !cli.Bool("split-target") {
+		if err := writeToFile(cli.String("funcs"), wrapFuncs(pkg, flags, headers, result.Functions)); err != nil {
 			return err
 		}
-		if err := ImportC(w, strings.Join(append(
-			[]string{cflags(flags)},
-			includes(headers)...,
-		), "\n")); err != nil {
-			return err
-		}
-		switch cli.String("package") {
-		case "neon":
-			intrins, err := GetIntrinsics()
-			if err != nil {
+	} else {
+		mf := splitTarget(result.Functions)
+		fname := cli.String("funcs")
+		for target, funcs := range mf {
+			target = regComma.ReplaceAllString(target, "_")
+			if err := writeToFile(strings.ReplaceAll(fname, "*", target), wrapFuncs(pkg, flags, headers, funcs)); err != nil {
 				return err
 			}
-			for i, fn := range result.Functions {
-				if info := intrins.Find(fn.Name); info != nil {
-					result.Functions[i].Comment = info.Description
-				}
-			}
 		}
-		return Funcs(w, result.Functions)
-	}); err != nil {
-		return err
 	}
 	return nil
 }

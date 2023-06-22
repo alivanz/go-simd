@@ -62,8 +62,8 @@ func Scan(raw []byte) (*ScanResult, error) {
 		func(i int, match []string) Function {
 			sargs := regArg.FindAllStringSubmatch(match[4], -1)
 			return Function{
-				Name:       match[3],
-				Attributes: commaSplit(match[2]),
+				Name:      match[3],
+				Attribute: match[2],
 				Return: Type{
 					Name: match[1],
 					Full: match[1],
@@ -78,19 +78,4 @@ func Scan(raw []byte) (*ScanResult, error) {
 		},
 	)
 	return &result, nil
-}
-
-func commaSplit(ss ...string) []string {
-	switch len(ss) {
-	case 0:
-		return nil
-	case 1:
-		s := regWhitespace.ReplaceAllString(ss[0], " ")
-		if len(s) == 0 {
-			return nil
-		}
-		return regComma.Split(s, -1)
-	default:
-		return append(commaSplit(ss[0]), commaSplit(ss[1:]...)...)
-	}
 }
