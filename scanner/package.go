@@ -22,10 +22,18 @@ func (pkg *Package) WriteTo(w io.Writer) error {
 			return err
 		}
 	}
+types:
 	for _, t := range pkg.Types {
-		if strings.HasPrefix(t.C(), "__") {
-			if !strings.HasPrefix(t.C(), "__m") {
-				continue
+		for _, blacklist := range []string{
+			"__darwin",
+			"__int",
+			"__uint",
+			"__mm_storeh",
+			"_tile",
+			"_aligned",
+		} {
+			if strings.Contains(t.Name, blacklist) {
+				continue types
 			}
 		}
 		if strings.Contains(t.C(), "float16") {
@@ -40,6 +48,7 @@ funcs:
 		for _, blacklist := range []string{
 			"f16",
 			"vcmla",
+			"__extension__",
 		} {
 			if strings.Contains(fn.Name, blacklist) {
 				continue funcs

@@ -64,7 +64,6 @@ func action(cli *cli.Context) error {
 		}
 		defer f.Close()
 		f.Write(src)
-		return nil
 	}
 	result, err := scanner.Scan(src)
 	if err != nil {
