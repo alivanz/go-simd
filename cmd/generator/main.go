@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"io"
 	"log"
 	"os"
 	"os/exec"
@@ -22,22 +21,17 @@ func main() {
 				Usage:    "Go package name",
 				Required: true,
 			},
-			&cli.BoolFlag{
+			&cli.StringFlag{
 				Name:  "types",
-				Usage: "skip types",
-			},
-			&cli.BoolFlag{
-				Name:  "funcs",
-				Usage: "skip functions",
+				Usage: "types output file",
 			},
 			&cli.StringFlag{
-				Name:    "output",
-				Aliases: []string{"o"},
-				Usage:   "output file",
+				Name:  "funcs",
+				Usage: "functions output file",
 			},
-			&cli.BoolFlag{
+			&cli.StringFlag{
 				Name:  "raw",
-				Usage: "raw unprocessed",
+				Usage: "raw unprocessed output file",
 			},
 			&cli.StringSliceFlag{
 				Name:    "header",
@@ -63,19 +57,13 @@ func action(cli *cli.Context) error {
 	if err != nil {
 		return err
 	}
-	var w io.Writer
-	if output := cli.String("output"); len(output) > 0 {
-		f, err := os.OpenFile(output, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, os.ModePerm)
+	if fname := cli.String("raw"); len(fname) > 0 {
+		f, err := os.OpenFile(fname, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, os.ModePerm)
 		if err != nil {
 			return err
 		}
 		defer f.Close()
-		w = f
-	} else {
-		w = os.Stdout
-	}
-	if cli.Bool("raw") {
-		w.Write(src)
+		f.Write(src)
 		return nil
 	}
 	result, err := scanner.Scan(src)
@@ -88,15 +76,24 @@ func action(cli *cli.Context) error {
 			[]string{cflags(flags)},
 			includes(headers)...,
 		),
-		Types:     result.Types,
-		Functions: result.Functions,
 	}
-	if !cli.Bool("types") {
+	if fname := cli.String("types"); len(fname) > 0 {
+		f, err := os.OpenFile(fname, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, os.ModePerm)
+		if err != nil {
+			return err
+		}
+		defer f.Close()
+		pkg.Types = result.Types
+		pkg.WriteTo(f)
 		pkg.Types = nil
 	}
-	if !cli.Bool("funcs") {
-		pkg.Functions = nil
-	} else {
+	if fname := cli.String("funcs"); len(fname) > 0 {
+		f, err := os.OpenFile(fname, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, os.ModePerm)
+		if err != nil {
+			return err
+		}
+		defer f.Close()
+		pkg.Functions = result.Functions
 		switch cli.String("package") {
 		case "neon":
 			intrins, err := GetIntrinsics()
@@ -109,8 +106,9 @@ func action(cli *cli.Context) error {
 				}
 			}
 		}
+		pkg.WriteTo(f)
+		pkg.Functions = nil
 	}
-	pkg.WriteTo(w)
 	return nil
 }
 
