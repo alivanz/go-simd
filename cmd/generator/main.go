@@ -80,6 +80,15 @@ func action(cli *cli.Context) error {
 		return err
 	}
 	pkg := cli.String("package")
+	// filter functions
+	if cli.Bool("split-target") {
+		result.Functions = filter(result.Functions, func(fn scanner.Function) bool {
+			if len(fn.Target()) == 0 {
+				return false
+			}
+			return true
+		})
+	}
 	// filter types
 	mtype := make(map[string]bool)
 	for _, fn := range result.Functions {
