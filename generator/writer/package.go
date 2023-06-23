@@ -5,7 +5,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/alivanz/go-simd/scanner"
+	"github.com/alivanz/go-simd/generator/scanner"
 )
 
 func Package(w io.Writer, pkg string) error {

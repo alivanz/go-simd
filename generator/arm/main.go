@@ -8,9 +8,9 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/alivanz/go-simd/cmd/utils"
-	"github.com/alivanz/go-simd/cmd/writer"
-	"github.com/alivanz/go-simd/scanner"
+	"github.com/alivanz/go-simd/generator/scanner"
+	"github.com/alivanz/go-simd/generator/utils"
+	"github.com/alivanz/go-simd/generator/writer"
 )
 
 func Source() ([]byte, error) {

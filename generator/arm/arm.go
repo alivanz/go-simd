@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/alivanz/go-simd/cmd/utils"
+	"github.com/alivanz/go-simd/generator/utils"
 )
 
 type ArmIntrinsics []ArmIntrinsic

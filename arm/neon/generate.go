@@ -1,3 +1,3 @@
 package neon
 
-//go:generate go run ../../cmd/arm
+//go:generate go run ../../generator/arm
