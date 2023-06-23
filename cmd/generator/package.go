@@ -17,7 +17,7 @@ func Import(w io.Writer, pkgs []string) error {
 	if len(pkgs) == 0 {
 		return nil
 	}
-	_, err := fmt.Fprintf(w, "\nimport (\n\t%s\n)\n", strings.Join(pkgs, "\n\t"))
+	_, err := fmt.Fprintf(w, "\nimport (\n\t\"%s\"\n)\n", strings.Join(pkgs, "\"\n\t\""))
 	return err
 }
 
@@ -59,7 +59,7 @@ types:
 	return nil
 }
 
-func Funcs(w io.Writer, funcs []scanner.Function) error {
+func Funcs(w io.Writer, funcs []scanner.Function, typePkg string) error {
 funcs:
 	for _, fn := range funcs {
 		for _, blacklist := range []string{
@@ -71,14 +71,14 @@ funcs:
 				continue funcs
 			}
 		}
-		if err := fn.Declare(w); err != nil {
+		if err := fn.Declare(w, typePkg); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func wrapFuncs(pkg string, flags, headers []string, funcs []scanner.Function) func(w io.Writer) error {
+func wrapFuncs(pkg, typePkg string, flags, headers []string, funcs []scanner.Function) func(w io.Writer) error {
 	return func(w io.Writer) error {
 		if err := Package(w, pkg); err != nil {
 			return err
@@ -89,6 +89,11 @@ func wrapFuncs(pkg string, flags, headers []string, funcs []scanner.Function) fu
 		), "\n")); err != nil {
 			return err
 		}
+		// if err := Import(w, []string{
+		// 	"github.com/alivanz/go-simd/x86",
+		// }); err != nil {
+		// 	return err
+		// }
 		switch pkg {
 		case "neon":
 			intrins, err := GetIntrinsics()
@@ -101,6 +106,6 @@ func wrapFuncs(pkg string, flags, headers []string, funcs []scanner.Function) fu
 				}
 			}
 		}
-		return Funcs(w, funcs)
+		return Funcs(w, funcs, typePkg)
 	}
 }

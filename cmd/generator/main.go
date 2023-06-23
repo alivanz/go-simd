@@ -81,14 +81,17 @@ func action(cli *cli.Context) error {
 	}
 	pkg := cli.String("package")
 	// filter functions
-	if cli.Bool("split-target") {
-		result.Functions = filter(result.Functions, func(fn scanner.Function) bool {
-			if len(fn.Target()) == 0 {
-				return false
-			}
-			return true
-		})
-	}
+	mfunc := make(map[string]bool)
+	result.Functions = filter(result.Functions, func(fn scanner.Function) bool {
+		if mfunc[fn.Name] {
+			return false
+		}
+		if cli.Bool("split-target") && len(fn.Target()) == 0 {
+			return false
+		}
+		mfunc[fn.Name] = true
+		return true
+	})
 	// filter types
 	mtype := make(map[string]bool)
 	for _, fn := range result.Functions {
@@ -130,7 +133,7 @@ func action(cli *cli.Context) error {
 	}
 	// funcs
 	if !cli.Bool("split-target") {
-		if err := writeToFile(cli.String("funcs"), wrapFuncs(pkg, flags, headers, result.Functions)); err != nil {
+		if err := writeToFile(cli.String("funcs"), wrapFuncs(pkg, "", flags, headers, result.Functions)); err != nil {
 			return err
 		}
 	} else {
@@ -138,7 +141,8 @@ func action(cli *cli.Context) error {
 		fname := cli.String("funcs")
 		for target, funcs := range mf {
 			target = regComma.ReplaceAllString(target, "_")
-			if err := writeToFile(strings.ReplaceAll(fname, "*", target), wrapFuncs(pkg, flags, headers, funcs)); err != nil {
+			fname := strings.ReplaceAll(fname, "*", target)
+			if err := writeToFile(strings.ReplaceAll(fname, "*", target), wrapFuncs(pkg, "", flags, headers, funcs)); err != nil {
 				return err
 			}
 		}

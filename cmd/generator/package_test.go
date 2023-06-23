@@ -23,9 +23,9 @@ func TestImport(t *testing.T) {
 	})
 	if buf.String() != `
 import (
-	pkg1
-	pkg2
-	pkg3
+	"pkg1"
+	"pkg2"
+	"pkg3"
 )
 ` {
 		t.Fatal(buf.String())
