@@ -9,6 +9,7 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/alivanz/go-simd/cmd/utils"
 	"github.com/alivanz/go-simd/cmd/writer"
 	"github.com/alivanz/go-simd/scanner"
 	"github.com/urfave/cli/v2"
@@ -82,7 +83,7 @@ func action(cli *cli.Context) error {
 	pkg := cli.String("package")
 	// filter functions
 	mfunc := make(map[string]bool)
-	result.Functions = filter(result.Functions, func(fn scanner.Function) bool {
+	result.Functions = utils.Filter(result.Functions, func(fn scanner.Function) bool {
 		if mfunc[fn.Name] {
 			return false
 		}
@@ -105,7 +106,7 @@ func action(cli *cli.Context) error {
 			result.Types = append(result.Types, arg)
 		}
 	}
-	result.Types = filter(result.Types, func(t scanner.Type) bool {
+	result.Types = utils.Filter(result.Types, func(t scanner.Type) bool {
 		if !mtype[t.Name] {
 			return false
 		}
@@ -156,17 +157,6 @@ func Source(flags, headers []string) ([]byte, error) {
 	cmd := exec.Command("clang", args...)
 	cmd.Stdin = bytes.NewBufferString(strings.Join(writer.Includes(headers), "\n"))
 	return cmd.Output()
-}
-
-func filter[T any](arr []T, fn func(e T) bool) []T {
-	out := make([]T, 0, len(arr))
-	for _, e := range arr {
-		if !fn(e) {
-			continue
-		}
-		out = append(out, e)
-	}
-	return out
 }
 
 func wrapFuncs(pkg, typePkg string, flags, headers []string, funcs []scanner.Function) func(w io.Writer) error {
