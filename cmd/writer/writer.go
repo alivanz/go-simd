@@ -1,4 +1,4 @@
-package main
+package writer
 
 import (
 	"io"
@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 )
 
-func writeToFile(dst string, fn func(w io.Writer) error) error {
+func WriteToFile(dst string, fn func(w io.Writer) error) error {
 	if len(dst) == 0 {
 		return nil
 	}

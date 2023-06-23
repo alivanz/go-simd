@@ -1,4 +1,4 @@
-package main
+package utils
 
 import (
 	"io"
@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func download(dst, url string) error {
+func Download(dst, url string) error {
 	if _, err := os.Stat(dst); !os.IsNotExist(err) {
 		return nil
 	}

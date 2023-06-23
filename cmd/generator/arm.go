@@ -3,6 +3,8 @@ package main
 import (
 	"encoding/json"
 	"os"
+
+	"github.com/alivanz/go-simd/cmd/utils"
 )
 
 type ArmIntrinsics []ArmIntrinsic
@@ -13,7 +15,7 @@ type ArmIntrinsic struct {
 }
 
 func GetIntrinsics() (ArmIntrinsics, error) {
-	if err := download(
+	if err := utils.Download(
 		"intrinsics.json",
 		"https://developer.arm.com/architectures/instruction-sets/intrinsics/data/intrinsics.json",
 	); err != nil {

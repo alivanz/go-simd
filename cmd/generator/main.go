@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"fmt"
 	"io"
 	"log"
 	"os"
@@ -10,6 +9,7 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/alivanz/go-simd/cmd/writer"
 	"github.com/alivanz/go-simd/scanner"
 	"github.com/urfave/cli/v2"
 )
@@ -68,7 +68,7 @@ func action(cli *cli.Context) error {
 		return err
 	}
 	// raw
-	if err := writeToFile(cli.String("raw"), func(w io.Writer) error {
+	if err := writer.WriteToFile(cli.String("raw"), func(w io.Writer) error {
 		_, err := w.Write(src)
 		return err
 	}); err != nil {
@@ -114,17 +114,17 @@ func action(cli *cli.Context) error {
 		return true
 	})
 	// types
-	if err := writeToFile(cli.String("types"), func(w io.Writer) error {
-		if err := Package(w, pkg); err != nil {
+	if err := writer.WriteToFile(cli.String("types"), func(w io.Writer) error {
+		if err := writer.Package(w, pkg); err != nil {
 			return err
 		}
-		if err := ImportC(w, strings.Join(append(
-			[]string{cflags(flags)},
-			includes(headers)...,
+		if err := writer.ImportC(w, strings.Join(append(
+			[]string{writer.Cflags(flags)},
+			writer.Includes(headers)...,
 		), "\n")); err != nil {
 			return err
 		}
-		if err := Types(w, result.Types); err != nil {
+		if err := writer.Types(w, result.Types); err != nil {
 			return err
 		}
 		return nil
@@ -133,7 +133,7 @@ func action(cli *cli.Context) error {
 	}
 	// funcs
 	if !cli.Bool("split-target") {
-		if err := writeToFile(cli.String("funcs"), wrapFuncs(pkg, "", flags, headers, result.Functions)); err != nil {
+		if err := writer.WriteToFile(cli.String("funcs"), wrapFuncs(pkg, "", flags, headers, result.Functions)); err != nil {
 			return err
 		}
 	} else {
@@ -142,7 +142,7 @@ func action(cli *cli.Context) error {
 		for target, funcs := range mf {
 			target = regComma.ReplaceAllString(target, "_")
 			fname := strings.ReplaceAll(fname, "*", target)
-			if err := writeToFile(strings.ReplaceAll(fname, "*", target), wrapFuncs(pkg, "", flags, headers, funcs)); err != nil {
+			if err := writer.WriteToFile(strings.ReplaceAll(fname, "*", target), wrapFuncs(pkg, "", flags, headers, funcs)); err != nil {
 				return err
 			}
 		}
@@ -154,20 +154,8 @@ func Source(flags, headers []string) ([]byte, error) {
 	args := append(flags, "-E", "-")
 	log.Printf("args: %s", strings.Join(args, " "))
 	cmd := exec.Command("clang", args...)
-	cmd.Stdin = bytes.NewBufferString(strings.Join(includes(headers), "\n"))
+	cmd.Stdin = bytes.NewBufferString(strings.Join(writer.Includes(headers), "\n"))
 	return cmd.Output()
-}
-
-func cflags(flags []string) string {
-	return fmt.Sprintf("#cgo CFLAGS: %s", strings.Join(flags, " "))
-}
-
-func includes(headers []string) []string {
-	out := make([]string, len(headers))
-	for i, h := range headers {
-		out[i] = fmt.Sprintf("#include <%s>", h)
-	}
-	return out
 }
 
 func filter[T any](arr []T, fn func(e T) bool) []T {
@@ -179,4 +167,36 @@ func filter[T any](arr []T, fn func(e T) bool) []T {
 		out = append(out, e)
 	}
 	return out
+}
+
+func wrapFuncs(pkg, typePkg string, flags, headers []string, funcs []scanner.Function) func(w io.Writer) error {
+	return func(w io.Writer) error {
+		if err := writer.Package(w, pkg); err != nil {
+			return err
+		}
+		if err := writer.ImportC(w, strings.Join(append(
+			[]string{writer.Cflags(flags)},
+			writer.Includes(headers)...,
+		), "\n")); err != nil {
+			return err
+		}
+		// if err := Import(w, []string{
+		// 	"github.com/alivanz/go-simd/x86",
+		// }); err != nil {
+		// 	return err
+		// }
+		switch pkg {
+		case "neon":
+			intrins, err := GetIntrinsics()
+			if err != nil {
+				return err
+			}
+			for i, fn := range funcs {
+				if info := intrins.Find(fn.Name); info != nil {
+					funcs[i].Comment = info.Description
+				}
+			}
+		}
+		return writer.Funcs(w, funcs, typePkg)
+	}
 }
