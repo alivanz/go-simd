@@ -1,0 +1,121 @@
+package main
+
+import (
+	"bytes"
+	"fmt"
+	"io"
+	"log"
+	"os"
+	"os/exec"
+	"regexp"
+	"strings"
+
+	"github.com/alivanz/go-simd/cmd/utils"
+	"github.com/alivanz/go-simd/cmd/writer"
+	"github.com/alivanz/go-simd/scanner"
+)
+
+var (
+	regComma = regexp.MustCompile(`\s*,\s*`)
+)
+
+func main() {
+	// generate
+	cmd := exec.Command("clang", "-march=native", "-E", "-")
+	cmd.Stdin = bytes.NewBufferString(strings.Join([]string{
+		"#include <immintrin.h>",
+	}, "\n"))
+	cmd.Stderr = os.Stderr
+	src, err := cmd.Output()
+	if err != nil {
+		log.Fatal(err)
+	}
+	// raw
+	if err := writer.WriteToFile("raw.h", func(w io.Writer) error {
+		_, err := w.Write(src)
+		return err
+	}); err != nil {
+		log.Fatal(err)
+	}
+	// scan
+	result, err := scanner.Scan(src)
+	if err != nil {
+		log.Fatal(err)
+	}
+	// filter functions
+	mfunc := make(map[string]bool)
+	result.Functions = utils.Filter(result.Functions, func(fn scanner.Function) bool {
+		if mfunc[fn.Name] {
+			return false
+		}
+		if len(fn.Target()) == 0 {
+			return false
+		}
+		mfunc[fn.Name] = true
+		return true
+	})
+	// filter types
+	mtype := make(map[string]bool)
+	for _, fn := range result.Functions {
+		if fn.Return != nil {
+			mtype[fn.Return.Name] = true
+			// append type
+			result.Types = append(result.Types, *fn.Return)
+		}
+		for _, arg := range fn.Args {
+			mtype[arg.Name] = true
+			result.Types = append(result.Types, arg)
+		}
+	}
+	result.Types = utils.Filter(result.Types, func(t scanner.Type) bool {
+		if !mtype[t.Name] {
+			return false
+		}
+		// remove dup
+		delete(mtype, t.Name)
+		return true
+	})
+	// types
+	if err := writer.WriteToFile("types.go", func(w io.Writer) error {
+		if err := writer.Package(w, "x86"); err != nil {
+			return err
+		}
+		if err := writer.ImportC(w, strings.Join([]string{
+			"#cgo CFLAGS: -march=native",
+			"#include <immintrin.h>",
+		}, "\n")); err != nil {
+			return err
+		}
+		if err := writer.Types(w, result.Types); err != nil {
+			return err
+		}
+		return nil
+	}); err != nil {
+		log.Fatal(err)
+	}
+	// group funcs by target
+	mf := make(map[string][]scanner.Function)
+	for _, fn := range result.Functions {
+		target := fn.Target()
+		mf[target] = append(mf[target], fn)
+	}
+	// funcs
+	for target, funcs := range mf {
+		target = regComma.ReplaceAllString(target, "_")
+		fname := fmt.Sprintf("%s.go", target)
+		if err := writer.WriteToFile(fname, func(w io.Writer) error {
+			if err := writer.Package(w, "x86"); err != nil {
+				return err
+			}
+			if err := writer.ImportC(w, strings.Join([]string{
+				"#cgo CFLAGS: -march=native",
+				"#include <immintrin.h>",
+			}, "\n")); err != nil {
+				return err
+			}
+			return writer.Funcs(w, funcs, "")
+		}); err != nil {
+			log.Fatal(err)
+		}
+	}
+}
