@@ -7,19 +7,16 @@ package x86
 import "C"
 
 // __lzcnt32
-// __always_inline__, __nodebug__, __target__("lzcnt")
 func Lzcnt32(v0 Uint) Uint {
 	return C.__lzcnt32(v0)
 }
 
-// _lzcnt_u32
-// __always_inline__, __nodebug__, __target__("lzcnt")
+// Count the number of leading zero bits in unsigned 32-bit integer "a", and return that count in "dst".
 func LzcntU32(v0 Uint) Uint {
 	return C._lzcnt_u32(v0)
 }
 
-// _lzcnt_u64
-// __always_inline__, __nodebug__, __target__("lzcnt")
+// Count the number of leading zero bits in unsigned 64-bit integer "a", and return that count in "dst".
 func LzcntU64(v0 Ulonglong) Ulonglong {
 	return C._lzcnt_u64(v0)
 }

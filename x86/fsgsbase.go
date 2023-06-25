@@ -6,50 +6,42 @@ package x86
 */
 import "C"
 
-// _readfsbase_u32
-// __always_inline__, __nodebug__, __target__("fsgsbase")
+// Read the FS segment base register and store the 32-bit result in "dst".
 func ReadfsbaseU32() Uint {
 	return C._readfsbase_u32()
 }
 
-// _readfsbase_u64
-// __always_inline__, __nodebug__, __target__("fsgsbase")
+// Read the FS segment base register and store the 64-bit result in "dst".
 func ReadfsbaseU64() Ulonglong {
 	return C._readfsbase_u64()
 }
 
-// _readgsbase_u32
-// __always_inline__, __nodebug__, __target__("fsgsbase")
+// Read the GS segment base register and store the 32-bit result in "dst".
 func ReadgsbaseU32() Uint {
 	return C._readgsbase_u32()
 }
 
-// _readgsbase_u64
-// __always_inline__, __nodebug__, __target__("fsgsbase")
+// Read the GS segment base register and store the 64-bit result in "dst".
 func ReadgsbaseU64() Ulonglong {
 	return C._readgsbase_u64()
 }
 
-// _writefsbase_u32
-// __always_inline__, __nodebug__, __target__("fsgsbase")
+// Write the unsigned 32-bit integer "a" to the FS segment base register.
 func WritefsbaseU32(v0 Uint) {
 	C._writefsbase_u32(v0)
 }
 
-// _writefsbase_u64
-// __always_inline__, __nodebug__, __target__("fsgsbase")
+// Write the unsigned 64-bit integer "a" to the FS segment base register.
 func WritefsbaseU64(v0 Ulonglong) {
 	C._writefsbase_u64(v0)
 }
 
-// _writegsbase_u32
-// __always_inline__, __nodebug__, __target__("fsgsbase")
+// Write the unsigned 32-bit integer "a" to the GS segment base register.
 func WritegsbaseU32(v0 Uint) {
 	C._writegsbase_u32(v0)
 }
 
-// _writegsbase_u64
-// __always_inline__, __nodebug__, __target__("fsgsbase")
+// Write the unsigned 64-bit integer "a" to the GS segment base register.
 func WritegsbaseU64(v0 Ulonglong) {
 	C._writegsbase_u64(v0)
 }
