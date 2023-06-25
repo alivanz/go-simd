@@ -93,6 +93,22 @@ func main() {
 	}); err != nil {
 		log.Fatal(err)
 	}
+	// patch funcs
+	intrins, err := GetIntrinsic()
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Printf("%+v", intrins[0])
+	mintrin := make(map[string]*Intrinsic)
+	for _, intrin := range intrins {
+		mintrin[intrin.Name] = intrin
+	}
+	log.Printf("%+v", mintrin["_mm_fmsubadd_pd"])
+	for i, fn := range result.Functions {
+		if intrin, found := mintrin[fn.Name]; found {
+			result.Functions[i].Comment = intrin.Description
+		}
+	}
 	// group funcs by target
 	mf := make(map[string][]scanner.Function)
 	for _, fn := range result.Functions {

@@ -48,9 +48,9 @@ func (f *Function) Declare(w io.Writer, typePkg string) error {
 	} else {
 		fmt.Fprintf(w, "// %s\n", f.Name)
 	}
-	if len(f.Attribute) > 0 {
-		fmt.Fprintf(w, "// %s\n", f.Attribute)
-	}
+	// if len(f.Attribute) > 0 {
+	// 	fmt.Fprintf(w, "// %s\n", f.Attribute)
+	// }
 	fmt.Fprintf(w, "func %s(", strcase.ToCamel(f.Name))
 	fmt.Fprintf(w, "%s", strings.Join(transform(f.Args, func(i int, t Type) string {
 		return fmt.Sprintf("v%d %s", i, t.Go(typePkg))
