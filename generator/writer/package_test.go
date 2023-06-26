@@ -2,6 +2,7 @@ package writer
 
 import (
 	"bytes"
+	"io"
 	"strings"
 	"testing"
 )
@@ -34,10 +35,13 @@ import (
 
 func TestImportC(t *testing.T) {
 	var buf bytes.Buffer
-	ImportC(&buf, strings.Join([]string{
-		`#include <abc.h>`,
-		`#include <def.h>`,
-	}, "\n"))
+	ImportC(&buf, func(w io.Writer) error {
+		io.WriteString(w, strings.Join([]string{
+			`#include <abc.h>`,
+			`#include <def.h>`,
+		}, "\n"))
+		return nil
+	})
 	ref := `
 /*
 #include <abc.h>

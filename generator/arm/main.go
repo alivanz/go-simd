@@ -58,9 +58,12 @@ func main() {
 		if err := writer.Package(w, "neon"); err != nil {
 			return err
 		}
-		if err := writer.ImportC(w, strings.Join(writer.Includes([]string{
-			"arm_neon.h",
-		}), "\n")); err != nil {
+		if err := writer.ImportC(w, func(w io.Writer) error {
+			_, err := io.WriteString(w, strings.Join(writer.Includes([]string{
+				"arm_neon.h",
+			}), "\n"))
+			return err
+		}); err != nil {
 			return err
 		}
 		if err := writer.Types(w, result.Types); err != nil {
@@ -85,9 +88,12 @@ func main() {
 		if err := writer.Package(w, "neon"); err != nil {
 			return err
 		}
-		if err := writer.ImportC(w, strings.Join(writer.Includes([]string{
-			"arm_neon.h",
-		}), "\n")); err != nil {
+		if err := writer.ImportC(w, func(w io.Writer) error {
+			_, err := io.WriteString(w, strings.Join(writer.Includes([]string{
+				"arm_neon.h",
+			}), "\n"))
+			return err
+		}); err != nil {
 			return err
 		}
 		return writer.Funcs(w, result.Functions, "")

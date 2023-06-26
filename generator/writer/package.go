@@ -21,9 +21,17 @@ func Import(w io.Writer, pkgs []string) error {
 	return err
 }
 
-func ImportC(w io.Writer, s string) error {
-	_, err := fmt.Fprintf(w, "\n/*\n%s\n*/\nimport \"C\"\n", s)
-	return err
+func ImportC(w io.Writer, fn func(w io.Writer) error) error {
+	if _, err := fmt.Fprintf(w, "\n/*\n"); err != nil {
+		return err
+	}
+	if err := fn(w); err != nil {
+		return err
+	}
+	if _, err := fmt.Fprintf(w, "\n*/\nimport \"C\"\n"); err != nil {
+		return err
+	}
+	return nil
 }
 
 func Types(w io.Writer, types []types.Type) error {

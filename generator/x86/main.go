@@ -81,10 +81,11 @@ func main() {
 		if err := writer.Package(w, "x86"); err != nil {
 			return err
 		}
-		if err := writer.ImportC(w, strings.Join([]string{
-			"#cgo CFLAGS: -march=native",
-			"#include <immintrin.h>",
-		}, "\n")); err != nil {
+		if err := writer.ImportC(w, func(w io.Writer) error {
+			fmt.Fprintf(w, "#cgo CFLAGS: -march=native\n")
+			fmt.Fprintf(w, "#include <immintrin.h>\n")
+			return err
+		}); err != nil {
 			return err
 		}
 		if err := writer.Types(w, result.Types); err != nil {
@@ -124,10 +125,11 @@ func main() {
 			if err := writer.Package(w, "x86"); err != nil {
 				return err
 			}
-			if err := writer.ImportC(w, strings.Join([]string{
-				"#cgo CFLAGS: -march=native",
-				"#include <immintrin.h>",
-			}, "\n")); err != nil {
+			if err := writer.ImportC(w, func(w io.Writer) error {
+				fmt.Fprintf(w, "#cgo CFLAGS: -march=native\n")
+				fmt.Fprintf(w, "#include <immintrin.h>\n")
+				return err
+			}); err != nil {
 				return err
 			}
 			return writer.Funcs(w, funcs, "")
