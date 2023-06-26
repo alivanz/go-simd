@@ -1,8 +1,6 @@
 package types
 
 import (
-	"fmt"
-	"io"
 	"strings"
 
 	"github.com/iancoleman/strcase"
@@ -30,14 +28,4 @@ func (t *Type) Go(pkg string) string {
 		return pkg + "." + s
 	}
 	return s
-}
-
-func (t *Type) Declare(w io.Writer) error {
-	var err error
-	if len(t.Full) > 0 {
-		_, err = fmt.Fprintf(w, "\n// %s\ntype %s = C.%s\n", t.Full, t.Go(""), t.C())
-	} else {
-		_, err = fmt.Fprintf(w, "\ntype %s = C.%s\n", t.Go(""), t.C())
-	}
-	return err
 }

@@ -52,7 +52,7 @@ types:
 				continue types
 			}
 		}
-		if err := t.Declare(w); err != nil {
+		if err := DeclareType(w, t); err != nil {
 			return err
 		}
 	}
@@ -71,7 +71,7 @@ funcs:
 				continue funcs
 			}
 		}
-		if err := fn.Declare(w, typePkg); err != nil {
+		if err := DeclareFunc(w, fn, typePkg); err != nil {
 			return err
 		}
 	}
