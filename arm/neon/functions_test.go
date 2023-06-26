@@ -13,7 +13,7 @@ func TestMult(t *testing.T) {
 		r      = Int8X8{0, 6, 10, 12, 12, 10, 6, 0}
 		result Int8X8
 	)
-	result = VmulS8(a, b)
+	VmulS8(&result, &a, &b)
 	if !reflect.DeepEqual(result, r) {
 		t.Fatal(result)
 	}
@@ -29,6 +29,24 @@ func BenchmarkMultRef(t *testing.B) {
 	for i := 0; i < t.N; i++ {
 		for j := 0; j < N; j++ {
 			result[j] = a[j] * b[j]
+		}
+	}
+}
+
+func BenchmarkMultSimd(t *testing.B) {
+	const N = 1024 * 16
+	var (
+		a      [N]int8
+		b      [N]int8
+		result [N]int8
+	)
+	for i := 0; i < t.N; i++ {
+		for j := 0; j < N; j += 8 {
+			VmulS8(
+				(*Int8X8)(unsafe.Pointer(&result[j])),
+				(*Int8X8)(unsafe.Pointer(&a[j])),
+				(*Int8X8)(unsafe.Pointer(&b[j])),
+			)
 		}
 	}
 }

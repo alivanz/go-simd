@@ -89,14 +89,38 @@ func main() {
 			return err
 		}
 		if err := writer.ImportC(w, func(w io.Writer) error {
-			_, err := io.WriteString(w, strings.Join(writer.Includes([]string{
-				"arm_neon.h",
-			}), "\n"))
-			return err
+			io.WriteString(w, "#include <arm_neon.h>\n\n")
+		funcs:
+			for _, fn := range result.Functions {
+				for _, blacklist := range []string{
+					"f16",
+					"vcmla",
+					"__extension__",
+				} {
+					if strings.Contains(fn.Name, blacklist) {
+						continue funcs
+					}
+				}
+				writer.RewriteC(w, fn)
+			}
+			return nil
 		}); err != nil {
 			return err
 		}
-		return writer.Funcs(w, result.Functions, "")
+	funcs:
+		for _, fn := range result.Functions {
+			for _, blacklist := range []string{
+				"f16",
+				"vcmla",
+				"__extension__",
+			} {
+				if strings.Contains(fn.Name, blacklist) {
+					continue funcs
+				}
+			}
+			writer.DeclareFuncBypass(w, fn, "")
+		}
+		return nil
 	}); err != nil {
 		log.Fatal(err)
 	}
