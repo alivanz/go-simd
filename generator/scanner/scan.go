@@ -3,6 +3,8 @@ package scanner
 import (
 	"bytes"
 	"regexp"
+
+	"github.com/alivanz/go-simd/generator/utils"
 )
 
 var (
@@ -48,8 +50,8 @@ func Scan(raw []byte) (*ScanResult, error) {
 	s := string(raw)
 	var result ScanResult
 	// types
-	result.Types = joinAll(
-		transform(
+	result.Types = utils.Merge(
+		utils.Transform(
 			regTypedefSimple.FindAllStringSubmatch(s, -1),
 			func(i int, e []string) Type {
 				return Type{
@@ -59,7 +61,7 @@ func Scan(raw []byte) (*ScanResult, error) {
 				}
 			},
 		),
-		transform(
+		utils.Transform(
 			regTypedefStruct.FindAllStringSubmatch(s, -1),
 			func(i int, e []string) Type {
 				return Type{
@@ -70,7 +72,7 @@ func Scan(raw []byte) (*ScanResult, error) {
 		),
 	)
 	// functions
-	result.Functions = transform(
+	result.Functions = utils.Transform(
 		regFunction.FindAllStringSubmatch(s, -1),
 		func(i int, match []string) Function {
 			var args []Type

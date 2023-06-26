@@ -6,6 +6,7 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/alivanz/go-simd/generator/utils"
 	"github.com/iancoleman/strcase"
 )
 
@@ -21,13 +22,6 @@ type Arg struct {
 	Name string
 	Type string
 }
-
-const funcTemplate = `
-// %s
-func %s(%s) %s{
-	return C.%s(%s)
-}
-`
 
 var (
 	regTarget = regexp.MustCompile(`__target__\("([a-z0-9\s,]+)"\)`)
@@ -52,7 +46,7 @@ func (f *Function) Declare(w io.Writer, typePkg string) error {
 	// 	fmt.Fprintf(w, "// %s\n", f.Attribute)
 	// }
 	fmt.Fprintf(w, "func %s(", strcase.ToCamel(f.Name))
-	fmt.Fprintf(w, "%s", strings.Join(transform(f.Args, func(i int, t Type) string {
+	fmt.Fprintf(w, "%s", strings.Join(utils.Transform(f.Args, func(i int, t Type) string {
 		return fmt.Sprintf("v%d %s", i, t.Go(typePkg))
 	}), ", "))
 	if f.Return == nil {
@@ -61,11 +55,11 @@ func (f *Function) Declare(w io.Writer, typePkg string) error {
 		fmt.Fprintf(w, ") %s {\n", f.Return.Go(typePkg))
 	}
 	if f.Return == nil {
-		fmt.Fprintf(w, "\tC.%s(%s)\n", f.Name, strings.Join(transform(f.Args, func(i int, t Type) string {
+		fmt.Fprintf(w, "\tC.%s(%s)\n", f.Name, strings.Join(utils.Transform(f.Args, func(i int, t Type) string {
 			return fmt.Sprintf("v%d", i)
 		}), ", "))
 	} else {
-		fmt.Fprintf(w, "\treturn C.%s(%s)\n", f.Name, strings.Join(transform(f.Args, func(i int, t Type) string {
+		fmt.Fprintf(w, "\treturn C.%s(%s)\n", f.Name, strings.Join(utils.Transform(f.Args, func(i int, t Type) string {
 			return fmt.Sprintf("v%d", i)
 		}), ", "))
 	}
