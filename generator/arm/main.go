@@ -83,18 +83,31 @@ func main() {
 			result.Functions[i].Comment = info.Description
 		}
 	}
+	// write C
+	if err := writer.WriteToFile("functions.c", func(w io.Writer) error {
+		if _, err := io.WriteString(w, "#include <arm_neon.h>\n\n"); err != nil {
+			return err
+		}
+		for _, fn := range result.Functions {
+			if fn.Blacklisted() {
+				continue
+			}
+			if err := writer.RewriteC(w, fn); err != nil {
+				return err
+			}
+		}
+		return nil
+	}); err != nil {
+		log.Fatal(err)
+	}
 	// write functions
 	if err := writer.WriteToFile("functions.go", func(w io.Writer) error {
 		if err := writer.Package(w, "neon"); err != nil {
 			return err
 		}
 		if err := writer.ImportC(w, func(w io.Writer) error {
-			io.WriteString(w, "#include <arm_neon.h>\n\n")
-			for _, fn := range result.Functions {
-				if fn.Blacklisted() {
-					continue
-				}
-				writer.RewriteC(w, fn)
+			if _, err := io.WriteString(w, "#include <arm_neon.h>"); err != nil {
+				return err
 			}
 			return nil
 		}); err != nil {
