@@ -6,6 +6,22 @@ This repository contains an implementation of SIMD (Single Instruction, Multiple
 
 We are actively working on expanding the SIMD implementation to support x86 architecture as well. The upcoming x86 implementation will provide similar SIMD functionalities for parallel processing on x86-based systems.
 
+## Hacks
+
+When we call a C function through CGO, there are some overheads due to Go design.
+In general, avoiding CGO would be a good idea.
+But I found a hack, instead of relying on CGO, we can utilize `linkname` directive to call C code, bypass CGO, and get better performance.
+
+```
+goos: darwin
+goarch: arm64
+pkg: github.com/alivanz/go-simd/arm/neon
+BenchmarkMultRef-8          	  227906	      5289 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMultSimd-8         	  608292	      1979 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMultSimdBypass-8   	  588996	      1980 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMultSimdCgo-8      	   12406	     96161 ns/op	       0 B/op	       0 allocs/op
+```
+
 ## Features
 
 - SIMD operations for ARM NEON architecture.
