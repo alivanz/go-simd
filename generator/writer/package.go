@@ -5,7 +5,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/alivanz/go-simd/generator/scanner"
+	"github.com/alivanz/go-simd/generator/types"
 )
 
 func Package(w io.Writer, pkg string) error {
@@ -26,7 +26,7 @@ func ImportC(w io.Writer, s string) error {
 	return err
 }
 
-func Types(w io.Writer, types []scanner.Type) error {
+func Types(w io.Writer, types []types.Type) error {
 types:
 	for _, t := range types {
 		for _, blacklist := range []string{
@@ -59,7 +59,7 @@ types:
 	return nil
 }
 
-func Funcs(w io.Writer, funcs []scanner.Function, typePkg string) error {
+func Funcs(w io.Writer, funcs []types.Function, typePkg string) error {
 funcs:
 	for _, fn := range funcs {
 		for _, blacklist := range []string{

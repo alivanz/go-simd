@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/alivanz/go-simd/generator/scanner"
+	"github.com/alivanz/go-simd/generator/types"
 	"github.com/alivanz/go-simd/generator/utils"
 	"github.com/alivanz/go-simd/generator/writer"
 )
@@ -44,7 +45,7 @@ func main() {
 	}
 	// filter functions
 	mfunc := make(map[string]bool)
-	result.Functions = utils.Filter(result.Functions, func(fn scanner.Function) bool {
+	result.Functions = utils.Filter(result.Functions, func(fn types.Function) bool {
 		if mfunc[fn.Name] {
 			return false
 		}
@@ -67,7 +68,7 @@ func main() {
 			result.Types = append(result.Types, arg)
 		}
 	}
-	result.Types = utils.Filter(result.Types, func(t scanner.Type) bool {
+	result.Types = utils.Filter(result.Types, func(t types.Type) bool {
 		if !mtype[t.Name] {
 			return false
 		}
@@ -110,7 +111,7 @@ func main() {
 		}
 	}
 	// group funcs by target
-	mf := make(map[string][]scanner.Function)
+	mf := make(map[string][]types.Function)
 	for _, fn := range result.Functions {
 		target := fn.Target()
 		mf[target] = append(mf[target], fn)

@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/alivanz/go-simd/generator/scanner"
+	"github.com/alivanz/go-simd/generator/types"
 	"github.com/alivanz/go-simd/generator/utils"
 	"github.com/alivanz/go-simd/generator/writer"
 )
@@ -49,7 +50,7 @@ func main() {
 			mtype[arg.Name] = true
 		}
 	}
-	result.Types = utils.Filter(result.Types, func(t scanner.Type) bool {
+	result.Types = utils.Filter(result.Types, func(t types.Type) bool {
 		return mtype[t.Name]
 	})
 	// write types

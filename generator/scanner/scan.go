@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"regexp"
 
+	"github.com/alivanz/go-simd/generator/types"
 	"github.com/alivanz/go-simd/generator/utils"
 )
 
@@ -26,8 +27,8 @@ var (
 )
 
 type ScanResult struct {
-	Types     []Type
-	Functions []Function
+	Types     []types.Type
+	Functions []types.Function
 }
 
 func Scan(raw []byte) (*ScanResult, error) {
@@ -53,8 +54,8 @@ func Scan(raw []byte) (*ScanResult, error) {
 	result.Types = utils.Merge(
 		utils.Transform(
 			regTypedefSimple.FindAllStringSubmatch(s, -1),
-			func(i int, e []string) Type {
-				return Type{
+			func(i int, e []string) types.Type {
+				return types.Type{
 					Name:       e[2],
 					Full:       e[0],
 					Attributes: commaSplit(e[1], e[3]),
@@ -63,8 +64,8 @@ func Scan(raw []byte) (*ScanResult, error) {
 		),
 		utils.Transform(
 			regTypedefStruct.FindAllStringSubmatch(s, -1),
-			func(i int, e []string) Type {
-				return Type{
+			func(i int, e []string) types.Type {
+				return types.Type{
 					Name: e[1],
 					Full: e[0],
 				}
@@ -74,25 +75,25 @@ func Scan(raw []byte) (*ScanResult, error) {
 	// functions
 	result.Functions = utils.Transform(
 		regFunction.FindAllStringSubmatch(s, -1),
-		func(i int, match []string) Function {
-			var args []Type
+		func(i int, match []string) types.Function {
+			var args []types.Type
 			for _, arg := range regArg.FindAllStringSubmatch(match[4], -1) {
 				if arg[2] == "void" {
 					continue
 				}
-				args = append(args, Type{
+				args = append(args, types.Type{
 					Name: arg[2],
 					Full: arg[1],
 				})
 			}
-			var ret *Type
+			var ret *types.Type
 			if match[1] != "void" {
-				ret = &Type{
+				ret = &types.Type{
 					Name: match[1],
 					Full: match[1],
 				}
 			}
-			return Function{
+			return types.Function{
 				Name:      match[3],
 				Attribute: match[2],
 				Return:    ret,

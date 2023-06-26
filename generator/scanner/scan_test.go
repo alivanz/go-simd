@@ -4,6 +4,8 @@ import (
 	"reflect"
 	"regexp"
 	"testing"
+
+	"github.com/alivanz/go-simd/generator/types"
 )
 
 func TestAttribute(t *testing.T) {
@@ -41,7 +43,7 @@ func TestScan(t *testing.T) {
 		t.Fatal(err)
 	}
 	ref := &ScanResult{
-		Types: []Type{
+		Types: []types.Type{
 			{
 				Name: "int8_t",
 				Full: "typedef char int8_t;",
@@ -61,14 +63,14 @@ func TestScan(t *testing.T) {
 				Full: "typedef struct int32x4x3_t { int32x4_t val[3]; } int32x4x3_t;",
 			},
 		},
-		Functions: []Function{
+		Functions: []types.Function{
 			{
 				Name: "func",
-				Return: &Type{
+				Return: &types.Type{
 					Name: "int",
 					Full: "int",
 				},
-				Args: []Type{
+				Args: []types.Type{
 					{
 						Name: "int",
 						Full: "int a",
@@ -84,11 +86,11 @@ func TestScan(t *testing.T) {
 			{
 				Name:      "_mm_move_ss",
 				Attribute: `__always_inline__, __nodebug__, __target__("mmx, sse"), __min_vector_width__(128)`,
-				Return: &Type{
+				Return: &types.Type{
 					Name: "__m128",
 					Full: "__m128",
 				},
-				Args: []Type{
+				Args: []types.Type{
 					{
 						Name: "__m128",
 						Full: "__m128 __a",
@@ -102,11 +104,11 @@ func TestScan(t *testing.T) {
 			{
 				Name:      "_mm_cvtm64_si64",
 				Attribute: `__always_inline__, __nodebug__, __target__("mmx"), __min_vector_width__(64)`,
-				Return: &Type{
+				Return: &types.Type{
 					Name: "longlong",
 					Full: "longlong",
 				},
-				Args: []Type{
+				Args: []types.Type{
 					{
 						Name: "__m64",
 						Full: "__m64 __m",
@@ -115,7 +117,7 @@ func TestScan(t *testing.T) {
 			},
 			{
 				Name: "lolo",
-				Args: []Type{
+				Args: []types.Type{
 					{
 						Name: "int",
 						Full: "int a",
