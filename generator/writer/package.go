@@ -35,30 +35,9 @@ func ImportC(w io.Writer, fn func(w io.Writer) error) error {
 }
 
 func Types(w io.Writer, types []types.Type) error {
-types:
 	for _, t := range types {
-		for _, blacklist := range []string{
-			"__darwin",
-			"__int",
-			"__uint",
-			"__mm_storeh",
-			"_tile",
-			"_aligned",
-			// float16
-			"float16",
-			"f16",
-			"v8bf",
-			"v8hf",
-			"m128h",
-			"m128bh",
-			// windows?
-			"crt",
-			"_pi_",
-			"mbstate_t",
-		} {
-			if strings.Contains(t.Name, blacklist) {
-				continue types
-			}
+		if t.Blacklisted() {
+			continue
 		}
 		if err := DeclareType(w, t); err != nil {
 			return err
@@ -68,16 +47,9 @@ types:
 }
 
 func Funcs(w io.Writer, funcs []types.Function, typePkg string) error {
-funcs:
 	for _, fn := range funcs {
-		for _, blacklist := range []string{
-			"f16",
-			"vcmla",
-			"__extension__",
-		} {
-			if strings.Contains(fn.Name, blacklist) {
-				continue funcs
-			}
+		if fn.Blacklisted() {
+			continue
 		}
 		if err := DeclareFunc(w, fn, typePkg); err != nil {
 			return err

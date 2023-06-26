@@ -2,6 +2,7 @@ package types
 
 import (
 	"regexp"
+	"strings"
 )
 
 type Function struct {
@@ -27,4 +28,17 @@ func (f *Function) Target() string {
 		return ""
 	}
 	return match[1]
+}
+
+func (fn *Function) Blacklisted() bool {
+	for _, blacklist := range []string{
+		"f16",
+		"vcmla",
+		"__extension__",
+	} {
+		if strings.Contains(fn.Name, blacklist) {
+			return true
+		}
+	}
+	return false
 }

@@ -90,16 +90,9 @@ func main() {
 		}
 		if err := writer.ImportC(w, func(w io.Writer) error {
 			io.WriteString(w, "#include <arm_neon.h>\n\n")
-		funcs:
 			for _, fn := range result.Functions {
-				for _, blacklist := range []string{
-					"f16",
-					"vcmla",
-					"__extension__",
-				} {
-					if strings.Contains(fn.Name, blacklist) {
-						continue funcs
-					}
+				if fn.Blacklisted() {
+					continue
 				}
 				writer.RewriteC(w, fn)
 			}
@@ -107,16 +100,9 @@ func main() {
 		}); err != nil {
 			return err
 		}
-	funcs:
 		for _, fn := range result.Functions {
-			for _, blacklist := range []string{
-				"f16",
-				"vcmla",
-				"__extension__",
-			} {
-				if strings.Contains(fn.Name, blacklist) {
-					continue funcs
-				}
+			if fn.Blacklisted() {
+				continue
 			}
 			writer.DeclareFuncBypass(w, fn, "")
 		}

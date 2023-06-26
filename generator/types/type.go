@@ -29,3 +29,30 @@ func (t *Type) Go(pkg string) string {
 	}
 	return s
 }
+
+func (t *Type) Blacklisted() bool {
+	for _, blacklist := range []string{
+		"__darwin",
+		"__int",
+		"__uint",
+		"__mm_storeh",
+		"_tile",
+		"_aligned",
+		// float16
+		"float16",
+		"f16",
+		"v8bf",
+		"v8hf",
+		"m128h",
+		"m128bh",
+		// windows?
+		"crt",
+		"_pi_",
+		"mbstate_t",
+	} {
+		if strings.Contains(t.Name, blacklist) {
+			return true
+		}
+	}
+	return false
+}
