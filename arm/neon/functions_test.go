@@ -1,6 +1,7 @@
 package neon
 
 import (
+	"math/rand"
 	"reflect"
 	"testing"
 	"unsafe"
@@ -16,6 +17,25 @@ func TestMult(t *testing.T) {
 	VmulS8(&result, &a, &b)
 	if !reflect.DeepEqual(result, r) {
 		t.Fatal(result)
+	}
+}
+
+func TestMultFull(t *testing.T) {
+	const N = 1024 * 16
+	var (
+		a      [N]int8
+		b      [N]int8
+		ref    [N]int8
+		result [N]int8
+	)
+	for i := 0; i < N; i++ {
+		a[i] = int8(rand.Int())
+		b[i] = int8(rand.Int())
+		ref[i] = a[i] * b[i]
+	}
+	vmulS8_full(&result[0], &a[0], &b[0], N)
+	if !reflect.DeepEqual(result, ref) {
+		t.Fail()
 	}
 }
 
@@ -66,6 +86,23 @@ func BenchmarkMultSimdBypass(t *testing.B) {
 				(*Int8X8)(unsafe.Pointer(&b[j])),
 			)
 		}
+	}
+}
+
+func BenchmarkMultSimdFull(t *testing.B) {
+	const N = 1024 * 16
+	var (
+		a      [N]int8
+		b      [N]int8
+		result [N]int8
+	)
+	for i := 0; i < t.N; i++ {
+		vmulS8_full(
+			&result[0],
+			&a[0],
+			&b[0],
+			N,
+		)
 	}
 }
 
