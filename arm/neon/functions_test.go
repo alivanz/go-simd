@@ -3,6 +3,7 @@ package neon
 import (
 	"math/rand"
 	"reflect"
+	"runtime"
 	"testing"
 	"unsafe"
 
@@ -48,11 +49,17 @@ func BenchmarkMultRef(t *testing.B) {
 		b      [N]int8
 		result [N]int8
 	)
+	for j := range a[:] {
+		a[j] = int8(rand.Int())
+		b[j] = int8(rand.Int())
+	}
+	t.ResetTimer()
 	for i := 0; i < t.N; i++ {
 		for j := 0; j < N; j++ {
 			result[j] = a[j] * b[j]
 		}
 	}
+	runtime.KeepAlive(&result)
 }
 
 func BenchmarkMultSimd(t *testing.B) {
