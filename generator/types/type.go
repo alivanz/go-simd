@@ -13,6 +13,25 @@ type Type struct {
 }
 
 func (t *Type) C() string {
+	switch t.Name {
+	case "longlong":
+		return "long long"
+	case "ulonglong":
+		return "unsigned long long"
+	case "ulong":
+		return "unsigned long"
+	case "uint":
+		return "unsigned int"
+	case "ushort":
+		return "unsigned short"
+	case "uchar":
+		return "unsigned char"
+	default:
+		return t.Name
+	}
+}
+
+func (t *Type) CGO() string {
 	if !strings.Contains(t.Name, " ") {
 		return t.Name
 	}

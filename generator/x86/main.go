@@ -82,8 +82,7 @@ func main() {
 			return err
 		}
 		if err := writer.ImportC(w, func(w io.Writer) error {
-			fmt.Fprintf(w, "#cgo CFLAGS: -march=native\n")
-			fmt.Fprintf(w, "#include <immintrin.h>\n")
+			fmt.Fprintf(w, "#include <immintrin.h>")
 			return err
 		}); err != nil {
 			return err
@@ -120,19 +119,56 @@ func main() {
 	// funcs
 	for target, funcs := range mf {
 		target = regComma.ReplaceAllString(target, "_")
-		fname := fmt.Sprintf("%s.go", target)
+		cname := fmt.Sprintf("%s/functions.c", target)
+		fname := fmt.Sprintf("%s/functions.go", target)
+		// write C
+		if err := writer.WriteToFile(cname, func(w io.Writer) error {
+			if _, err := io.WriteString(w, "#include <immintrin.h>\n\n"); err != nil {
+				return err
+			}
+			for _, fn := range funcs {
+				if fn.Blacklisted() {
+					continue
+				}
+				if err := writer.RewriteC(w, fn); err != nil {
+					return err
+				}
+			}
+			return nil
+		}); err != nil {
+			log.Fatal(err)
+		}
+		// write Go
 		if err := writer.WriteToFile(fname, func(w io.Writer) error {
-			if err := writer.Package(w, "x86"); err != nil {
+			if err := writer.Package(w, target); err != nil {
+				return err
+			}
+			if err := writer.Import(w, []string{
+				"github.com/alivanz/go-simd/x86",
+			}); err != nil {
 				return err
 			}
 			if err := writer.ImportC(w, func(w io.Writer) error {
-				fmt.Fprintf(w, "#cgo CFLAGS: -march=native\n")
-				fmt.Fprintf(w, "#include <immintrin.h>\n")
+				feats := strings.Split(target, "_")
+				if len(feats) > 0 {
+					fmt.Fprintf(w, "#cgo CFLAGS: %s\n", strings.Join(utils.Transform(feats, func(i int, feat string) string {
+						return "-m" + feat
+					}), " "))
+				}
+				fmt.Fprintf(w, "#include <immintrin.h>")
 				return err
 			}); err != nil {
 				return err
 			}
-			return writer.Funcs(w, funcs, "")
+			for _, fn := range funcs {
+				if fn.Blacklisted() {
+					continue
+				}
+				if err := writer.DeclareFuncBypass(w, fn, "x86"); err != nil {
+					return err
+				}
+			}
+			return nil
 		}); err != nil {
 			log.Fatal(err)
 		}

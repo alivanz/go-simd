@@ -3,15 +3,16 @@ package main
 import (
 	"log"
 
+	"github.com/alivanz/go-simd/arm"
 	"github.com/alivanz/go-simd/arm/neon"
 )
 
 func main() {
-	var a, b neon.Int8X8
-	var add, mul neon.Int16X8
+	var a, b arm.Int8X8
+	var add, mul arm.Int16X8
 	for i := 0; i < 8; i++ {
-		a[i] = neon.Int8(i)
-		b[i] = neon.Int8(i * i)
+		a[i] = arm.Int8(i)
+		b[i] = arm.Int8(i * i)
 	}
 	log.Printf("a = %+v", b)
 	log.Printf("b = %+v", a)

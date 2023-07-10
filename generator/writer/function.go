@@ -63,13 +63,17 @@ func DeclareFuncBypass(w io.Writer, f types.Function, typePkg string) error {
 }
 
 func RewriteC(w io.Writer, f types.Function) error {
-	fmt.Fprintf(w, "void %s(", strcase.ToCamel(f.Name))
+	var cargs []string
 	if f.Return != nil {
-		fmt.Fprintf(w, "%s* r, ", f.Return.Name)
+		cargs = append(cargs, fmt.Sprintf("%s* r", f.Return.C()))
 	}
-	fmt.Fprintf(w, "%s) { ", strings.Join(utils.Transform(f.Args, func(i int, t types.Type) string {
-		return fmt.Sprintf("%s* v%d", t.Name, i)
-	}), ", "))
+	for i, t := range f.Args {
+		cargs = append(cargs, fmt.Sprintf("%s* v%d", t.C(), i))
+	}
+	fmt.Fprintf(w, "void %s(%s) { ",
+		strcase.ToCamel(f.Name),
+		strings.Join(cargs, ", "),
+	)
 	if f.Return != nil {
 		fmt.Fprintf(w, "*r = ")
 	}
