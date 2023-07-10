@@ -1,4 +1,4 @@
-package neon
+package arm
 
 /*
 #include <arm_neon.h>

@@ -5,14 +5,16 @@ import (
 	"reflect"
 	"testing"
 	"unsafe"
+
+	"github.com/alivanz/go-simd/arm"
 )
 
 func TestMult(t *testing.T) {
 	var (
-		a      = Int8X8{0, 1, 2, 3, 4, 5, 6, 7}
-		b      = Int8X8{7, 6, 5, 4, 3, 2, 1, 0}
-		r      = Int8X8{0, 6, 10, 12, 12, 10, 6, 0}
-		result Int8X8
+		a      = arm.Int8X8{0, 1, 2, 3, 4, 5, 6, 7}
+		b      = arm.Int8X8{7, 6, 5, 4, 3, 2, 1, 0}
+		r      = arm.Int8X8{0, 6, 10, 12, 12, 10, 6, 0}
+		result arm.Int8X8
 	)
 	VmulS8(&result, &a, &b)
 	if !reflect.DeepEqual(result, r) {
@@ -63,9 +65,9 @@ func BenchmarkMultSimd(t *testing.B) {
 	for i := 0; i < t.N; i++ {
 		for j := 0; j < N; j += 8 {
 			VmulS8(
-				(*Int8X8)(unsafe.Pointer(&result[j])),
-				(*Int8X8)(unsafe.Pointer(&a[j])),
-				(*Int8X8)(unsafe.Pointer(&b[j])),
+				(*arm.Int8X8)(unsafe.Pointer(&result[j])),
+				(*arm.Int8X8)(unsafe.Pointer(&a[j])),
+				(*arm.Int8X8)(unsafe.Pointer(&b[j])),
 			)
 		}
 	}
@@ -81,9 +83,9 @@ func BenchmarkMultSimdBypass(t *testing.B) {
 	for i := 0; i < t.N; i++ {
 		for j := 0; j < N; j += 8 {
 			vmulS8_bypass(
-				(*Int8X8)(unsafe.Pointer(&result[j])),
-				(*Int8X8)(unsafe.Pointer(&a[j])),
-				(*Int8X8)(unsafe.Pointer(&b[j])),
+				(*arm.Int8X8)(unsafe.Pointer(&result[j])),
+				(*arm.Int8X8)(unsafe.Pointer(&a[j])),
+				(*arm.Int8X8)(unsafe.Pointer(&b[j])),
 			)
 		}
 	}
@@ -116,9 +118,9 @@ func BenchmarkMultSimdCgo(t *testing.B) {
 	for i := 0; i < t.N; i++ {
 		for j := 0; j < N; j += 8 {
 			vmulS8_cgo(
-				(*Int8X8)(unsafe.Pointer(&result[j])),
-				(*Int8X8)(unsafe.Pointer(&a[j])),
-				(*Int8X8)(unsafe.Pointer(&b[j])),
+				(*int8x8)(unsafe.Pointer(&result[j])),
+				(*int8x8)(unsafe.Pointer(&a[j])),
+				(*int8x8)(unsafe.Pointer(&b[j])),
 			)
 		}
 	}

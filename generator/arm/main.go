@@ -55,7 +55,7 @@ func main() {
 	})
 	// write types
 	if err := writer.WriteToFile("types.go", func(w io.Writer) error {
-		if err := writer.Package(w, "neon"); err != nil {
+		if err := writer.Package(w, "arm"); err != nil {
 			return err
 		}
 		if err := writer.ImportC(w, func(w io.Writer) error {
@@ -84,7 +84,7 @@ func main() {
 		}
 	}
 	// write C
-	if err := writer.WriteToFile("functions.c", func(w io.Writer) error {
+	if err := writer.WriteToFile("neon/functions.c", func(w io.Writer) error {
 		if _, err := io.WriteString(w, "#include <arm_neon.h>\n\n"); err != nil {
 			return err
 		}
@@ -101,8 +101,13 @@ func main() {
 		log.Fatal(err)
 	}
 	// write functions
-	if err := writer.WriteToFile("functions.go", func(w io.Writer) error {
+	if err := writer.WriteToFile("neon/functions.go", func(w io.Writer) error {
 		if err := writer.Package(w, "neon"); err != nil {
+			return err
+		}
+		if err := writer.Import(w, []string{
+			"github.com/alivanz/go-simd/arm",
+		}); err != nil {
 			return err
 		}
 		if err := writer.ImportC(w, func(w io.Writer) error {
@@ -117,7 +122,7 @@ func main() {
 			if fn.Blacklisted() {
 				continue
 			}
-			writer.DeclareFuncBypass(w, fn, "")
+			writer.DeclareFuncBypass(w, fn, "arm")
 		}
 		return nil
 	}); err != nil {

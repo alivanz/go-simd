@@ -16,10 +16,11 @@ void vmulS8_full(int8_t* r, int8_t* v0, int8_t* v1, int n) {
 }
 */
 import "C"
+import "github.com/alivanz/go-simd/arm"
 
 //go:linkname vmulS8_bypass vmulS8_bypass
 //go:noescape
-func vmulS8_bypass(r *Int8X8, v0 *Int8X8, v1 *Int8X8)
+func vmulS8_bypass(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 //go:linkname vmulS8_full vmulS8_full
 //go:noescape
