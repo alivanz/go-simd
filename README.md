@@ -16,10 +16,12 @@ But I found a hack, instead of relying on CGO, we can utilize `linkname` directi
 goos: darwin
 goarch: arm64
 pkg: github.com/alivanz/go-simd/arm/neon
-BenchmarkMultRef-8          	  227906	      5289 ns/op	       0 B/op	       0 allocs/op
-BenchmarkMultSimd-8         	  608292	      1979 ns/op	       0 B/op	       0 allocs/op
-BenchmarkMultSimdBypass-8   	  588996	      1980 ns/op	       0 B/op	       0 allocs/op
-BenchmarkMultSimdCgo-8      	   12406	     96161 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMultRef-8                131395              9168 ns/op
+BenchmarkMultSimd-8               598742              1954 ns/op
+BenchmarkMultSimdBypass-8         605554              1959 ns/op
+BenchmarkMultSimdFull-8          1816879               661.3 ns/op
+BenchmarkMultSimdCgo-8             13020             92213 ns/op
+PASS
 ```
 
 ## Features
