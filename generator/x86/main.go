@@ -149,8 +149,13 @@ func main() {
 				return err
 			}
 			if err := writer.ImportC(w, func(w io.Writer) error {
-				fmt.Fprintf(w, "#cgo CFLAGS: -m%s\n", target)
-				fmt.Fprintf(w, "#include <immintrin.h>\n")
+				feats := strings.Split(target, "_")
+				if len(feats) > 0 {
+					fmt.Fprintf(w, "#cgo CFLAGS: %s\n", strings.Join(utils.Transform(feats, func(i int, feat string) string {
+						return "-m" + feat
+					}), " "))
+				}
+				fmt.Fprintf(w, "#include <immintrin.h>")
 				return err
 			}); err != nil {
 				return err
