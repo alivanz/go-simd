@@ -1,7 +1,6 @@
 package x86
 
 /*
-#cgo CFLAGS: -march=native
 #include <immintrin.h>
 */
 import "C"
