@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"sort"
 	"strings"
 
 	"github.com/alivanz/go-simd/generator/scanner"
@@ -40,6 +41,13 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	// filter functions
+	result.Functions = utils.Filter(result.Functions, func(fn types.Function) bool {
+		if strings.HasPrefix(fn.Name, "vbf") {
+			return false
+		}
+		return true
+	})
 	// filter types
 	mtype := make(map[string]bool)
 	for _, fn := range result.Functions {
@@ -52,6 +60,19 @@ func main() {
 	}
 	result.Types = utils.Filter(result.Types, func(t types.Type) bool {
 		return mtype[t.Name]
+	})
+	// sort functions
+	sort.Slice(result.Functions, func(i, j int) bool {
+		g0, i0 := sortGroup(result.Functions[i].Name)
+		g1, i1 := sortGroup(result.Functions[j].Name)
+		if g0 != g1 {
+			return g0 < g1
+		}
+		return i0 < i1
+	})
+	// sort types
+	sort.Slice(result.Types, func(i, j int) bool {
+		return result.Types[i].Name < result.Types[j].Name
 	})
 	// write types
 	if err := writer.WriteToFile("types.go", func(w io.Writer) error {

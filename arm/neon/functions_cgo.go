@@ -1,6 +1,7 @@
 package neon
 
 /*
+#cgo CFLAGS: -march=armv8.5-a+crypto+i8mm
 #include <arm_neon.h>
 */
 import "C"
