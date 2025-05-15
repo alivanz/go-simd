@@ -63,7 +63,12 @@ func main() {
 	})
 	// sort functions
 	sort.Slice(result.Functions, func(i, j int) bool {
-		return result.Functions[i].Name < result.Functions[j].Name
+		g0, i0 := sortGroup(result.Functions[i].Name)
+		g1, i1 := sortGroup(result.Functions[j].Name)
+		if g0 != g1 {
+			return g0 < g1
+		}
+		return i0 < i1
 	})
 	// sort types
 	sort.Slice(result.Types, func(i, j int) bool {

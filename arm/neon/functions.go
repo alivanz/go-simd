@@ -11,6 +11,12 @@ import "C"
 
 // Signed Absolute difference and Accumulate. This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the elements of the vector of the destination SIMD&FP register.
 //
+//go:linkname VabaS8 VabaS8
+//go:noescape
+func VabaS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8, v2 *arm.Int8X8)
+
+// Signed Absolute difference and Accumulate. This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the elements of the vector of the destination SIMD&FP register.
+//
 //go:linkname VabaS16 VabaS16
 //go:noescape
 func VabaS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4, v2 *arm.Int16X4)
@@ -21,11 +27,11 @@ func VabaS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4, v2 *arm.Int16X4)
 //go:noescape
 func VabaS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2, v2 *arm.Int32X2)
 
-// Signed Absolute difference and Accumulate. This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the elements of the vector of the destination SIMD&FP register.
+// Unsigned Absolute difference and Accumulate. This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the elements of the vector of the destination SIMD&FP register.
 //
-//go:linkname VabaS8 VabaS8
+//go:linkname VabaU8 VabaU8
 //go:noescape
-func VabaS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8, v2 *arm.Int8X8)
+func VabaU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8, v2 *arm.Uint8X8)
 
 // Unsigned Absolute difference and Accumulate. This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the elements of the vector of the destination SIMD&FP register.
 //
@@ -39,47 +45,11 @@ func VabaU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4, v2 *arm.Uint16
 //go:noescape
 func VabaU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2, v2 *arm.Uint32X2)
 
-// Unsigned Absolute difference and Accumulate. This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the elements of the vector of the destination SIMD&FP register.
-//
-//go:linkname VabaU8 VabaU8
-//go:noescape
-func VabaU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8, v2 *arm.Uint8X8)
-
 // Signed Absolute difference and Accumulate Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
-//go:linkname VabalHighS16 VabalHighS16
+//go:linkname VabalS8 VabalS8
 //go:noescape
-func VabalHighS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8, v2 *arm.Int16X8)
-
-// Signed Absolute difference and Accumulate Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
-//
-//go:linkname VabalHighS32 VabalHighS32
-//go:noescape
-func VabalHighS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4, v2 *arm.Int32X4)
-
-// Signed Absolute difference and Accumulate Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
-//
-//go:linkname VabalHighS8 VabalHighS8
-//go:noescape
-func VabalHighS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X16, v2 *arm.Int8X16)
-
-// Unsigned Absolute difference and Accumulate Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VabalHighU16 VabalHighU16
-//go:noescape
-func VabalHighU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
-
-// Unsigned Absolute difference and Accumulate Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VabalHighU32 VabalHighU32
-//go:noescape
-func VabalHighU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
-
-// Unsigned Absolute difference and Accumulate Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VabalHighU8 VabalHighU8
-//go:noescape
-func VabalHighU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
+func VabalS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X8, v2 *arm.Int8X8)
 
 // Signed Absolute difference and Accumulate Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
@@ -93,11 +63,11 @@ func VabalS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X4, v2 *arm.Int16X4)
 //go:noescape
 func VabalS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X2, v2 *arm.Int32X2)
 
-// Signed Absolute difference and Accumulate Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
+// Unsigned Absolute difference and Accumulate Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VabalS8 VabalS8
+//go:linkname VabalU8 VabalU8
 //go:noescape
-func VabalS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X8, v2 *arm.Int8X8)
+func VabalU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X8, v2 *arm.Uint8X8)
 
 // Unsigned Absolute difference and Accumulate Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
 //
@@ -111,11 +81,47 @@ func VabalU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X4, v2 *arm.Uint1
 //go:noescape
 func VabalU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X2, v2 *arm.Uint32X2)
 
+// Signed Absolute difference and Accumulate Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
+//
+//go:linkname VabalHighS8 VabalHighS8
+//go:noescape
+func VabalHighS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X16, v2 *arm.Int8X16)
+
+// Signed Absolute difference and Accumulate Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
+//
+//go:linkname VabalHighS16 VabalHighS16
+//go:noescape
+func VabalHighS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8, v2 *arm.Int16X8)
+
+// Signed Absolute difference and Accumulate Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
+//
+//go:linkname VabalHighS32 VabalHighS32
+//go:noescape
+func VabalHighS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4, v2 *arm.Int32X4)
+
 // Unsigned Absolute difference and Accumulate Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VabalU8 VabalU8
+//go:linkname VabalHighU8 VabalHighU8
 //go:noescape
-func VabalU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X8, v2 *arm.Uint8X8)
+func VabalHighU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
+
+// Unsigned Absolute difference and Accumulate Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
+//
+//go:linkname VabalHighU16 VabalHighU16
+//go:noescape
+func VabalHighU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
+
+// Unsigned Absolute difference and Accumulate Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
+//
+//go:linkname VabalHighU32 VabalHighU32
+//go:noescape
+func VabalHighU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
+
+// Signed Absolute difference and Accumulate. This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the elements of the vector of the destination SIMD&FP register.
+//
+//go:linkname VabaqS8 VabaqS8
+//go:noescape
+func VabaqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16, v2 *arm.Int8X16)
 
 // Signed Absolute difference and Accumulate. This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the elements of the vector of the destination SIMD&FP register.
 //
@@ -129,11 +135,11 @@ func VabaqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8, v2 *arm.Int16X8)
 //go:noescape
 func VabaqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4, v2 *arm.Int32X4)
 
-// Signed Absolute difference and Accumulate. This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the elements of the vector of the destination SIMD&FP register.
+// Unsigned Absolute difference and Accumulate. This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the elements of the vector of the destination SIMD&FP register.
 //
-//go:linkname VabaqS8 VabaqS8
+//go:linkname VabaqU8 VabaqU8
 //go:noescape
-func VabaqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16, v2 *arm.Int8X16)
+func VabaqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
 
 // Unsigned Absolute difference and Accumulate. This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the elements of the vector of the destination SIMD&FP register.
 //
@@ -147,23 +153,11 @@ func VabaqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8, v2 *arm.Uint1
 //go:noescape
 func VabaqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
 
-// Unsigned Absolute difference and Accumulate. This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, and accumulates the absolute values of the results into the elements of the vector of the destination SIMD&FP register.
+// Signed Absolute Difference. This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, places the the absolute values of the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VabaqU8 VabaqU8
+//go:linkname VabdS8 VabdS8
 //go:noescape
-func VabaqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
-
-// Floating-point Absolute Difference (vector). This instruction subtracts the floating-point values in the elements of the second source SIMD&FP register, from the corresponding floating-point values in the elements of the first source SIMD&FP register, places the absolute value of each result in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VabdF32 VabdF32
-//go:noescape
-func VabdF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
-
-// Floating-point Absolute Difference (vector). This instruction subtracts the floating-point values in the elements of the second source SIMD&FP register, from the corresponding floating-point values in the elements of the first source SIMD&FP register, places the absolute value of each result in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VabdF64 VabdF64
-//go:noescape
-func VabdF64(r *arm.Float64X1, v0 *arm.Float64X1, v1 *arm.Float64X1)
+func VabdS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Signed Absolute Difference. This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, places the the absolute values of the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -177,11 +171,11 @@ func VabdS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
 //go:noescape
 func VabdS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
-// Signed Absolute Difference. This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, places the the absolute values of the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Absolute Difference (vector). This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, places the the absolute values of the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VabdS8 VabdS8
+//go:linkname VabdU8 VabdU8
 //go:noescape
-func VabdS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VabdU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Unsigned Absolute Difference (vector). This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, places the the absolute values of the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -195,11 +189,17 @@ func VabdU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
 //go:noescape
 func VabdU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 
-// Unsigned Absolute Difference (vector). This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, places the the absolute values of the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point Absolute Difference (vector). This instruction subtracts the floating-point values in the elements of the second source SIMD&FP register, from the corresponding floating-point values in the elements of the first source SIMD&FP register, places the absolute value of each result in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VabdU8 VabdU8
+//go:linkname VabdF32 VabdF32
 //go:noescape
-func VabdU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VabdF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
+
+// Floating-point Absolute Difference (vector). This instruction subtracts the floating-point values in the elements of the second source SIMD&FP register, from the corresponding floating-point values in the elements of the first source SIMD&FP register, places the absolute value of each result in a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VabdF64 VabdF64
+//go:noescape
+func VabdF64(r *arm.Float64X1, v0 *arm.Float64X1, v1 *arm.Float64X1)
 
 // Floating-point Absolute Difference (vector). This instruction subtracts the floating-point values in the elements of the second source SIMD&FP register, from the corresponding floating-point values in the elements of the first source SIMD&FP register, places the absolute value of each result in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -209,39 +209,9 @@ func VabddF64(r *arm.Float64, v0 *arm.Float64, v1 *arm.Float64)
 
 // Signed Absolute Difference Long. This instruction subtracts the vector elements of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, places the absolute value of the results into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
-//go:linkname VabdlHighS16 VabdlHighS16
+//go:linkname VabdlS8 VabdlS8
 //go:noescape
-func VabdlHighS16(r *arm.Int32X4, v0 *arm.Int16X8, v1 *arm.Int16X8)
-
-// Signed Absolute Difference Long. This instruction subtracts the vector elements of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, places the absolute value of the results into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
-//
-//go:linkname VabdlHighS32 VabdlHighS32
-//go:noescape
-func VabdlHighS32(r *arm.Int64X2, v0 *arm.Int32X4, v1 *arm.Int32X4)
-
-// Signed Absolute Difference Long. This instruction subtracts the vector elements of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, places the absolute value of the results into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
-//
-//go:linkname VabdlHighS8 VabdlHighS8
-//go:noescape
-func VabdlHighS8(r *arm.Int16X8, v0 *arm.Int8X16, v1 *arm.Int8X16)
-
-// Unsigned Absolute Difference Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, places the absolute value of the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VabdlHighU16 VabdlHighU16
-//go:noescape
-func VabdlHighU16(r *arm.Uint32X4, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
-
-// Unsigned Absolute Difference Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, places the absolute value of the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VabdlHighU32 VabdlHighU32
-//go:noescape
-func VabdlHighU32(r *arm.Uint64X2, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
-
-// Unsigned Absolute Difference Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, places the absolute value of the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VabdlHighU8 VabdlHighU8
-//go:noescape
-func VabdlHighU8(r *arm.Uint16X8, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VabdlS8(r *arm.Int16X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Signed Absolute Difference Long. This instruction subtracts the vector elements of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, places the absolute value of the results into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
@@ -255,11 +225,11 @@ func VabdlS16(r *arm.Int32X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
 //go:noescape
 func VabdlS32(r *arm.Int64X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
-// Signed Absolute Difference Long. This instruction subtracts the vector elements of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, places the absolute value of the results into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
+// Unsigned Absolute Difference Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, places the absolute value of the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VabdlS8 VabdlS8
+//go:linkname VabdlU8 VabdlU8
 //go:noescape
-func VabdlS8(r *arm.Int16X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VabdlU8(r *arm.Uint16X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Unsigned Absolute Difference Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, places the absolute value of the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
 //
@@ -273,23 +243,47 @@ func VabdlU16(r *arm.Uint32X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
 //go:noescape
 func VabdlU32(r *arm.Uint64X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 
+// Signed Absolute Difference Long. This instruction subtracts the vector elements of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, places the absolute value of the results into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
+//
+//go:linkname VabdlHighS8 VabdlHighS8
+//go:noescape
+func VabdlHighS8(r *arm.Int16X8, v0 *arm.Int8X16, v1 *arm.Int8X16)
+
+// Signed Absolute Difference Long. This instruction subtracts the vector elements of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, places the absolute value of the results into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
+//
+//go:linkname VabdlHighS16 VabdlHighS16
+//go:noescape
+func VabdlHighS16(r *arm.Int32X4, v0 *arm.Int16X8, v1 *arm.Int16X8)
+
+// Signed Absolute Difference Long. This instruction subtracts the vector elements of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, places the absolute value of the results into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
+//
+//go:linkname VabdlHighS32 VabdlHighS32
+//go:noescape
+func VabdlHighS32(r *arm.Int64X2, v0 *arm.Int32X4, v1 *arm.Int32X4)
+
 // Unsigned Absolute Difference Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, places the absolute value of the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VabdlU8 VabdlU8
+//go:linkname VabdlHighU8 VabdlHighU8
 //go:noescape
-func VabdlU8(r *arm.Uint16X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VabdlHighU8(r *arm.Uint16X8, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
-// Floating-point Absolute Difference (vector). This instruction subtracts the floating-point values in the elements of the second source SIMD&FP register, from the corresponding floating-point values in the elements of the first source SIMD&FP register, places the absolute value of each result in a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Absolute Difference Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, places the absolute value of the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VabdqF32 VabdqF32
+//go:linkname VabdlHighU16 VabdlHighU16
 //go:noescape
-func VabdqF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
+func VabdlHighU16(r *arm.Uint32X4, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
 
-// Floating-point Absolute Difference (vector). This instruction subtracts the floating-point values in the elements of the second source SIMD&FP register, from the corresponding floating-point values in the elements of the first source SIMD&FP register, places the absolute value of each result in a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Absolute Difference Long. This instruction subtracts the vector elements in the lower or upper half of the second source SIMD&FP register from the corresponding vector elements of the first source SIMD&FP register, places the absolute value of the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VabdqF64 VabdqF64
+//go:linkname VabdlHighU32 VabdlHighU32
 //go:noescape
-func VabdqF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
+func VabdlHighU32(r *arm.Uint64X2, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
+
+// Signed Absolute Difference. This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, places the the absolute values of the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VabdqS8 VabdqS8
+//go:noescape
+func VabdqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Signed Absolute Difference. This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, places the the absolute values of the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -303,11 +297,11 @@ func VabdqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
 //go:noescape
 func VabdqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
-// Signed Absolute Difference. This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, places the the absolute values of the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Absolute Difference (vector). This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, places the the absolute values of the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VabdqS8 VabdqS8
+//go:linkname VabdqU8 VabdqU8
 //go:noescape
-func VabdqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VabdqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Unsigned Absolute Difference (vector). This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, places the the absolute values of the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -321,11 +315,17 @@ func VabdqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
 //go:noescape
 func VabdqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 
-// Unsigned Absolute Difference (vector). This instruction subtracts the elements of the vector of the second source SIMD&FP register from the corresponding elements of the first source SIMD&FP register, places the the absolute values of the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point Absolute Difference (vector). This instruction subtracts the floating-point values in the elements of the second source SIMD&FP register, from the corresponding floating-point values in the elements of the first source SIMD&FP register, places the absolute value of each result in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VabdqU8 VabdqU8
+//go:linkname VabdqF32 VabdqF32
 //go:noescape
-func VabdqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VabdqF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
+
+// Floating-point Absolute Difference (vector). This instruction subtracts the floating-point values in the elements of the second source SIMD&FP register, from the corresponding floating-point values in the elements of the first source SIMD&FP register, places the absolute value of each result in a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VabdqF64 VabdqF64
+//go:noescape
+func VabdqF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
 
 // Floating-point Absolute Difference (vector). This instruction subtracts the floating-point values in the elements of the second source SIMD&FP register, from the corresponding floating-point values in the elements of the first source SIMD&FP register, places the absolute value of each result in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -333,17 +333,11 @@ func VabdqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 //go:noescape
 func VabdsF32(r *arm.Float32, v0 *arm.Float32, v1 *arm.Float32)
 
-// Floating-point Absolute value (vector). This instruction calculates the absolute value of each vector element in the source SIMD&FP register, writes the result to a vector, and writes the vector to the destination SIMD&FP register.
+// Absolute value (vector). This instruction calculates the absolute value of each vector element in the source SIMD&FP register, puts the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VabsF32 VabsF32
+//go:linkname VabsS8 VabsS8
 //go:noescape
-func VabsF32(r *arm.Float32X2, v0 *arm.Float32X2)
-
-// Floating-point Absolute value (vector). This instruction calculates the absolute value of each vector element in the source SIMD&FP register, writes the result to a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VabsF64 VabsF64
-//go:noescape
-func VabsF64(r *arm.Float64X1, v0 *arm.Float64X1)
+func VabsS8(r *arm.Int8X8, v0 *arm.Int8X8)
 
 // Absolute value (vector). This instruction calculates the absolute value of each vector element in the source SIMD&FP register, puts the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -363,11 +357,17 @@ func VabsS32(r *arm.Int32X2, v0 *arm.Int32X2)
 //go:noescape
 func VabsS64(r *arm.Int64X1, v0 *arm.Int64X1)
 
-// Absolute value (vector). This instruction calculates the absolute value of each vector element in the source SIMD&FP register, puts the result into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point Absolute value (vector). This instruction calculates the absolute value of each vector element in the source SIMD&FP register, writes the result to a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VabsS8 VabsS8
+//go:linkname VabsF32 VabsF32
 //go:noescape
-func VabsS8(r *arm.Int8X8, v0 *arm.Int8X8)
+func VabsF32(r *arm.Float32X2, v0 *arm.Float32X2)
+
+// Floating-point Absolute value (vector). This instruction calculates the absolute value of each vector element in the source SIMD&FP register, writes the result to a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VabsF64 VabsF64
+//go:noescape
+func VabsF64(r *arm.Float64X1, v0 *arm.Float64X1)
 
 // Absolute value (vector). This instruction calculates the absolute value of each vector element in the source SIMD&FP register, puts the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -375,17 +375,11 @@ func VabsS8(r *arm.Int8X8, v0 *arm.Int8X8)
 //go:noescape
 func VabsdS64(r *arm.Int64, v0 *arm.Int64)
 
-// Floating-point Absolute value (vector). This instruction calculates the absolute value of each vector element in the source SIMD&FP register, writes the result to a vector, and writes the vector to the destination SIMD&FP register.
+// Absolute value (vector). This instruction calculates the absolute value of each vector element in the source SIMD&FP register, puts the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VabsqF32 VabsqF32
+//go:linkname VabsqS8 VabsqS8
 //go:noescape
-func VabsqF32(r *arm.Float32X4, v0 *arm.Float32X4)
-
-// Floating-point Absolute value (vector). This instruction calculates the absolute value of each vector element in the source SIMD&FP register, writes the result to a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VabsqF64 VabsqF64
-//go:noescape
-func VabsqF64(r *arm.Float64X2, v0 *arm.Float64X2)
+func VabsqS8(r *arm.Int8X16, v0 *arm.Int8X16)
 
 // Absolute value (vector). This instruction calculates the absolute value of each vector element in the source SIMD&FP register, puts the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -405,11 +399,65 @@ func VabsqS32(r *arm.Int32X4, v0 *arm.Int32X4)
 //go:noescape
 func VabsqS64(r *arm.Int64X2, v0 *arm.Int64X2)
 
-// Absolute value (vector). This instruction calculates the absolute value of each vector element in the source SIMD&FP register, puts the result into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point Absolute value (vector). This instruction calculates the absolute value of each vector element in the source SIMD&FP register, writes the result to a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VabsqS8 VabsqS8
+//go:linkname VabsqF32 VabsqF32
 //go:noescape
-func VabsqS8(r *arm.Int8X16, v0 *arm.Int8X16)
+func VabsqF32(r *arm.Float32X4, v0 *arm.Float32X4)
+
+// Floating-point Absolute value (vector). This instruction calculates the absolute value of each vector element in the source SIMD&FP register, writes the result to a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VabsqF64 VabsqF64
+//go:noescape
+func VabsqF64(r *arm.Float64X2, v0 *arm.Float64X2)
+
+// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VaddS8 VaddS8
+//go:noescape
+func VaddS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+
+// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VaddS16 VaddS16
+//go:noescape
+func VaddS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
+
+// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VaddS32 VaddS32
+//go:noescape
+func VaddS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+
+// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VaddS64 VaddS64
+//go:noescape
+func VaddS64(r *arm.Int64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
+
+// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VaddU8 VaddU8
+//go:noescape
+func VaddU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+
+// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VaddU16 VaddU16
+//go:noescape
+func VaddU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+
+// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VaddU32 VaddU32
+//go:noescape
+func VaddU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+
+// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VaddU64 VaddU64
+//go:noescape
+func VaddU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
 
 // Floating-point Add (vector). This instruction adds corresponding vector elements in the two source SIMD&FP registers, writes the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
 //
@@ -443,54 +491,6 @@ func VaddP8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8)
 
 // Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VaddS16 VaddS16
-//go:noescape
-func VaddS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
-
-// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VaddS32 VaddS32
-//go:noescape
-func VaddS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
-
-// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VaddS64 VaddS64
-//go:noescape
-func VaddS64(r *arm.Int64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
-
-// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VaddS8 VaddS8
-//go:noescape
-func VaddS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
-
-// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VaddU16 VaddU16
-//go:noescape
-func VaddU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
-
-// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VaddU32 VaddU32
-//go:noescape
-func VaddU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
-
-// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VaddU64 VaddU64
-//go:noescape
-func VaddU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
-
-// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VaddU8 VaddU8
-//go:noescape
-func VaddU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
-
-// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
 //go:linkname VadddS64 VadddS64
 //go:noescape
 func VadddS64(r *arm.Int64, v0 *arm.Int64, v1 *arm.Int64)
@@ -500,42 +500,6 @@ func VadddS64(r *arm.Int64, v0 *arm.Int64, v1 *arm.Int64)
 //go:linkname VadddU64 VadddU64
 //go:noescape
 func VadddU64(r *arm.Uint64, v0 *arm.Uint64, v1 *arm.Uint64)
-
-// Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
-//
-//go:linkname VaddhnHighS16 VaddhnHighS16
-//go:noescape
-func VaddhnHighS16(r *arm.Int8X16, v0 *arm.Int8X8, v1 *arm.Int16X8, v2 *arm.Int16X8)
-
-// Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
-//
-//go:linkname VaddhnHighS32 VaddhnHighS32
-//go:noescape
-func VaddhnHighS32(r *arm.Int16X8, v0 *arm.Int16X4, v1 *arm.Int32X4, v2 *arm.Int32X4)
-
-// Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
-//
-//go:linkname VaddhnHighS64 VaddhnHighS64
-//go:noescape
-func VaddhnHighS64(r *arm.Int32X4, v0 *arm.Int32X2, v1 *arm.Int64X2, v2 *arm.Int64X2)
-
-// Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
-//
-//go:linkname VaddhnHighU16 VaddhnHighU16
-//go:noescape
-func VaddhnHighU16(r *arm.Uint8X16, v0 *arm.Uint8X8, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
-
-// Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
-//
-//go:linkname VaddhnHighU32 VaddhnHighU32
-//go:noescape
-func VaddhnHighU32(r *arm.Uint16X8, v0 *arm.Uint16X4, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
-
-// Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
-//
-//go:linkname VaddhnHighU64 VaddhnHighU64
-//go:noescape
-func VaddhnHighU64(r *arm.Uint32X4, v0 *arm.Uint32X2, v1 *arm.Uint64X2, v2 *arm.Uint64X2)
 
 // Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
 //
@@ -573,41 +537,47 @@ func VaddhnU32(r *arm.Uint16X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 //go:noescape
 func VaddhnU64(r *arm.Uint32X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
-// Signed Add Long (vector). This instruction adds each vector element in the lower or upper half of the first source SIMD&FP register to the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are signed integer values.
+// Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
 //
-//go:linkname VaddlHighS16 VaddlHighS16
+//go:linkname VaddhnHighS16 VaddhnHighS16
 //go:noescape
-func VaddlHighS16(r *arm.Int32X4, v0 *arm.Int16X8, v1 *arm.Int16X8)
+func VaddhnHighS16(r *arm.Int8X16, v0 *arm.Int8X8, v1 *arm.Int16X8, v2 *arm.Int16X8)
+
+// Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
+//
+//go:linkname VaddhnHighS32 VaddhnHighS32
+//go:noescape
+func VaddhnHighS32(r *arm.Int16X8, v0 *arm.Int16X4, v1 *arm.Int32X4, v2 *arm.Int32X4)
+
+// Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
+//
+//go:linkname VaddhnHighS64 VaddhnHighS64
+//go:noescape
+func VaddhnHighS64(r *arm.Int32X4, v0 *arm.Int32X2, v1 *arm.Int64X2, v2 *arm.Int64X2)
+
+// Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
+//
+//go:linkname VaddhnHighU16 VaddhnHighU16
+//go:noescape
+func VaddhnHighU16(r *arm.Uint8X16, v0 *arm.Uint8X8, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
+
+// Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
+//
+//go:linkname VaddhnHighU32 VaddhnHighU32
+//go:noescape
+func VaddhnHighU32(r *arm.Uint16X8, v0 *arm.Uint16X4, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
+
+// Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
+//
+//go:linkname VaddhnHighU64 VaddhnHighU64
+//go:noescape
+func VaddhnHighU64(r *arm.Uint32X4, v0 *arm.Uint32X2, v1 *arm.Uint64X2, v2 *arm.Uint64X2)
 
 // Signed Add Long (vector). This instruction adds each vector element in the lower or upper half of the first source SIMD&FP register to the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are signed integer values.
 //
-//go:linkname VaddlHighS32 VaddlHighS32
+//go:linkname VaddlS8 VaddlS8
 //go:noescape
-func VaddlHighS32(r *arm.Int64X2, v0 *arm.Int32X4, v1 *arm.Int32X4)
-
-// Signed Add Long (vector). This instruction adds each vector element in the lower or upper half of the first source SIMD&FP register to the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are signed integer values.
-//
-//go:linkname VaddlHighS8 VaddlHighS8
-//go:noescape
-func VaddlHighS8(r *arm.Int16X8, v0 *arm.Int8X16, v1 *arm.Int8X16)
-
-// Unsigned Add Long (vector). This instruction adds each vector element in the lower or upper half of the first source SIMD&FP register to the corresponding vector element of the second source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VaddlHighU16 VaddlHighU16
-//go:noescape
-func VaddlHighU16(r *arm.Uint32X4, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
-
-// Unsigned Add Long (vector). This instruction adds each vector element in the lower or upper half of the first source SIMD&FP register to the corresponding vector element of the second source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VaddlHighU32 VaddlHighU32
-//go:noescape
-func VaddlHighU32(r *arm.Uint64X2, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
-
-// Unsigned Add Long (vector). This instruction adds each vector element in the lower or upper half of the first source SIMD&FP register to the corresponding vector element of the second source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VaddlHighU8 VaddlHighU8
-//go:noescape
-func VaddlHighU8(r *arm.Uint16X8, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VaddlS8(r *arm.Int16X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Signed Add Long (vector). This instruction adds each vector element in the lower or upper half of the first source SIMD&FP register to the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are signed integer values.
 //
@@ -621,11 +591,11 @@ func VaddlS16(r *arm.Int32X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
 //go:noescape
 func VaddlS32(r *arm.Int64X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
-// Signed Add Long (vector). This instruction adds each vector element in the lower or upper half of the first source SIMD&FP register to the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are signed integer values.
+// Unsigned Add Long (vector). This instruction adds each vector element in the lower or upper half of the first source SIMD&FP register to the corresponding vector element of the second source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VaddlS8 VaddlS8
+//go:linkname VaddlU8 VaddlU8
 //go:noescape
-func VaddlS8(r *arm.Int16X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VaddlU8(r *arm.Uint16X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Unsigned Add Long (vector). This instruction adds each vector element in the lower or upper half of the first source SIMD&FP register to the corresponding vector element of the second source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
 //
@@ -639,11 +609,47 @@ func VaddlU16(r *arm.Uint32X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
 //go:noescape
 func VaddlU32(r *arm.Uint64X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 
+// Signed Add Long (vector). This instruction adds each vector element in the lower or upper half of the first source SIMD&FP register to the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are signed integer values.
+//
+//go:linkname VaddlHighS8 VaddlHighS8
+//go:noescape
+func VaddlHighS8(r *arm.Int16X8, v0 *arm.Int8X16, v1 *arm.Int8X16)
+
+// Signed Add Long (vector). This instruction adds each vector element in the lower or upper half of the first source SIMD&FP register to the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are signed integer values.
+//
+//go:linkname VaddlHighS16 VaddlHighS16
+//go:noescape
+func VaddlHighS16(r *arm.Int32X4, v0 *arm.Int16X8, v1 *arm.Int16X8)
+
+// Signed Add Long (vector). This instruction adds each vector element in the lower or upper half of the first source SIMD&FP register to the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are signed integer values.
+//
+//go:linkname VaddlHighS32 VaddlHighS32
+//go:noescape
+func VaddlHighS32(r *arm.Int64X2, v0 *arm.Int32X4, v1 *arm.Int32X4)
+
 // Unsigned Add Long (vector). This instruction adds each vector element in the lower or upper half of the first source SIMD&FP register to the corresponding vector element of the second source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VaddlU8 VaddlU8
+//go:linkname VaddlHighU8 VaddlHighU8
 //go:noescape
-func VaddlU8(r *arm.Uint16X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VaddlHighU8(r *arm.Uint16X8, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+
+// Unsigned Add Long (vector). This instruction adds each vector element in the lower or upper half of the first source SIMD&FP register to the corresponding vector element of the second source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
+//
+//go:linkname VaddlHighU16 VaddlHighU16
+//go:noescape
+func VaddlHighU16(r *arm.Uint32X4, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
+
+// Unsigned Add Long (vector). This instruction adds each vector element in the lower or upper half of the first source SIMD&FP register to the corresponding vector element of the second source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
+//
+//go:linkname VaddlHighU32 VaddlHighU32
+//go:noescape
+func VaddlHighU32(r *arm.Uint64X2, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
+
+// Signed Add Long across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register. The destination scalar is twice as long as the source vector elements. All the values in this instruction are signed integer values.
+//
+//go:linkname VaddlvS8 VaddlvS8
+//go:noescape
+func VaddlvS8(r *arm.Int16, v0 *arm.Int8X8)
 
 // Signed Add Long across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register. The destination scalar is twice as long as the source vector elements. All the values in this instruction are signed integer values.
 //
@@ -657,11 +663,11 @@ func VaddlvS16(r *arm.Int32, v0 *arm.Int16X4)
 //go:noescape
 func VaddlvS32(r *arm.Int64, v0 *arm.Int32X2)
 
-// Signed Add Long across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register. The destination scalar is twice as long as the source vector elements. All the values in this instruction are signed integer values.
+// Unsigned sum Long across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register. The destination scalar is twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VaddlvS8 VaddlvS8
+//go:linkname VaddlvU8 VaddlvU8
 //go:noescape
-func VaddlvS8(r *arm.Int16, v0 *arm.Int8X8)
+func VaddlvU8(r *arm.Uint16, v0 *arm.Uint8X8)
 
 // Unsigned sum Long across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register. The destination scalar is twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
 //
@@ -675,11 +681,11 @@ func VaddlvU16(r *arm.Uint32, v0 *arm.Uint16X4)
 //go:noescape
 func VaddlvU32(r *arm.Uint64, v0 *arm.Uint32X2)
 
-// Unsigned sum Long across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register. The destination scalar is twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
+// Signed Add Long across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register. The destination scalar is twice as long as the source vector elements. All the values in this instruction are signed integer values.
 //
-//go:linkname VaddlvU8 VaddlvU8
+//go:linkname VaddlvqS8 VaddlvqS8
 //go:noescape
-func VaddlvU8(r *arm.Uint16, v0 *arm.Uint8X8)
+func VaddlvqS8(r *arm.Int16, v0 *arm.Int8X16)
 
 // Signed Add Long across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register. The destination scalar is twice as long as the source vector elements. All the values in this instruction are signed integer values.
 //
@@ -693,11 +699,11 @@ func VaddlvqS16(r *arm.Int32, v0 *arm.Int16X8)
 //go:noescape
 func VaddlvqS32(r *arm.Int64, v0 *arm.Int32X4)
 
-// Signed Add Long across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register. The destination scalar is twice as long as the source vector elements. All the values in this instruction are signed integer values.
+// Unsigned sum Long across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register. The destination scalar is twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VaddlvqS8 VaddlvqS8
+//go:linkname VaddlvqU8 VaddlvqU8
 //go:noescape
-func VaddlvqS8(r *arm.Int16, v0 *arm.Int8X16)
+func VaddlvqU8(r *arm.Uint16, v0 *arm.Uint8X16)
 
 // Unsigned sum Long across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register. The destination scalar is twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
 //
@@ -711,11 +717,53 @@ func VaddlvqU16(r *arm.Uint32, v0 *arm.Uint16X8)
 //go:noescape
 func VaddlvqU32(r *arm.Uint64, v0 *arm.Uint32X4)
 
-// Unsigned sum Long across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register. The destination scalar is twice as long as the source vector elements. All the values in this instruction are unsigned integer values.
+// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VaddlvqU8 VaddlvqU8
+//go:linkname VaddqS8 VaddqS8
 //go:noescape
-func VaddlvqU8(r *arm.Uint16, v0 *arm.Uint8X16)
+func VaddqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+
+// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VaddqS16 VaddqS16
+//go:noescape
+func VaddqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
+
+// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VaddqS32 VaddqS32
+//go:noescape
+func VaddqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
+
+// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VaddqS64 VaddqS64
+//go:noescape
+func VaddqS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
+
+// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VaddqU8 VaddqU8
+//go:noescape
+func VaddqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+
+// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VaddqU16 VaddqU16
+//go:noescape
+func VaddqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
+
+// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VaddqU32 VaddqU32
+//go:noescape
+func VaddqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
+
+// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VaddqU64 VaddqU64
+//go:noescape
+func VaddqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
 // Floating-point Add (vector). This instruction adds corresponding vector elements in the two source SIMD&FP registers, writes the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
 //
@@ -753,59 +801,11 @@ func VaddqP64(r *arm.Poly64X2, v0 *arm.Poly64X2, v1 *arm.Poly64X2)
 //go:noescape
 func VaddqP8(r *arm.Poly8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16)
 
-// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Add across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register.
 //
-//go:linkname VaddqS16 VaddqS16
+//go:linkname VaddvS8 VaddvS8
 //go:noescape
-func VaddqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
-
-// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VaddqS32 VaddqS32
-//go:noescape
-func VaddqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
-
-// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VaddqS64 VaddqS64
-//go:noescape
-func VaddqS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
-
-// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VaddqS8 VaddqS8
-//go:noescape
-func VaddqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
-
-// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VaddqU16 VaddqU16
-//go:noescape
-func VaddqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
-
-// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VaddqU32 VaddqU32
-//go:noescape
-func VaddqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
-
-// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VaddqU64 VaddqU64
-//go:noescape
-func VaddqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
-
-// Add (vector). This instruction adds corresponding elements in the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VaddqU8 VaddqU8
-//go:noescape
-func VaddqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
-
-// Floating-point add across vector
-//
-//go:linkname VaddvF32 VaddvF32
-//go:noescape
-func VaddvF32(r *arm.Float32, v0 *arm.Float32X2)
+func VaddvS8(r *arm.Int8, v0 *arm.Int8X8)
 
 // Add across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register.
 //
@@ -821,9 +821,9 @@ func VaddvS32(r *arm.Int32, v0 *arm.Int32X2)
 
 // Add across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register.
 //
-//go:linkname VaddvS8 VaddvS8
+//go:linkname VaddvU8 VaddvU8
 //go:noescape
-func VaddvS8(r *arm.Int8, v0 *arm.Int8X8)
+func VaddvU8(r *arm.Uint8, v0 *arm.Uint8X8)
 
 // Add across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register.
 //
@@ -837,23 +837,17 @@ func VaddvU16(r *arm.Uint16, v0 *arm.Uint16X4)
 //go:noescape
 func VaddvU32(r *arm.Uint32, v0 *arm.Uint32X2)
 
+// Floating-point add across vector
+//
+//go:linkname VaddvF32 VaddvF32
+//go:noescape
+func VaddvF32(r *arm.Float32, v0 *arm.Float32X2)
+
 // Add across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register.
 //
-//go:linkname VaddvU8 VaddvU8
+//go:linkname VaddvqS8 VaddvqS8
 //go:noescape
-func VaddvU8(r *arm.Uint8, v0 *arm.Uint8X8)
-
-// Floating-point add across vector
-//
-//go:linkname VaddvqF32 VaddvqF32
-//go:noescape
-func VaddvqF32(r *arm.Float32, v0 *arm.Float32X4)
-
-// Floating-point add across vector
-//
-//go:linkname VaddvqF64 VaddvqF64
-//go:noescape
-func VaddvqF64(r *arm.Float64, v0 *arm.Float64X2)
+func VaddvqS8(r *arm.Int8, v0 *arm.Int8X16)
 
 // Add across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register.
 //
@@ -875,9 +869,9 @@ func VaddvqS64(r *arm.Int64, v0 *arm.Int64X2)
 
 // Add across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register.
 //
-//go:linkname VaddvqS8 VaddvqS8
+//go:linkname VaddvqU8 VaddvqU8
 //go:noescape
-func VaddvqS8(r *arm.Int8, v0 *arm.Int8X16)
+func VaddvqU8(r *arm.Uint8, v0 *arm.Uint8X16)
 
 // Add across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register.
 //
@@ -897,47 +891,23 @@ func VaddvqU32(r *arm.Uint32, v0 *arm.Uint32X4)
 //go:noescape
 func VaddvqU64(r *arm.Uint64, v0 *arm.Uint64X2)
 
-// Add across Vector. This instruction adds every vector element in the source SIMD&FP register together, and writes the scalar result to the destination SIMD&FP register.
+// Floating-point add across vector
 //
-//go:linkname VaddvqU8 VaddvqU8
+//go:linkname VaddvqF32 VaddvqF32
 //go:noescape
-func VaddvqU8(r *arm.Uint8, v0 *arm.Uint8X16)
+func VaddvqF32(r *arm.Float32, v0 *arm.Float32X4)
+
+// Floating-point add across vector
+//
+//go:linkname VaddvqF64 VaddvqF64
+//go:noescape
+func VaddvqF64(r *arm.Float64, v0 *arm.Float64X2)
 
 // Signed Add Wide. This instruction adds vector elements of the first source SIMD&FP register to the corresponding vector elements in the lower or upper half of the second source SIMD&FP register, places the results in a vector, and writes the vector to the SIMD&FP destination register.
 //
-//go:linkname VaddwHighS16 VaddwHighS16
+//go:linkname VaddwS8 VaddwS8
 //go:noescape
-func VaddwHighS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8)
-
-// Signed Add Wide. This instruction adds vector elements of the first source SIMD&FP register to the corresponding vector elements in the lower or upper half of the second source SIMD&FP register, places the results in a vector, and writes the vector to the SIMD&FP destination register.
-//
-//go:linkname VaddwHighS32 VaddwHighS32
-//go:noescape
-func VaddwHighS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4)
-
-// Signed Add Wide. This instruction adds vector elements of the first source SIMD&FP register to the corresponding vector elements in the lower or upper half of the second source SIMD&FP register, places the results in a vector, and writes the vector to the SIMD&FP destination register.
-//
-//go:linkname VaddwHighS8 VaddwHighS8
-//go:noescape
-func VaddwHighS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X16)
-
-// Unsigned Add Wide. This instruction adds the vector elements of the first source SIMD&FP register to the corresponding vector elements in the lower or upper half of the second source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. The vector elements of the destination register and the first source register are twice as long as the vector elements of the second source register. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VaddwHighU16 VaddwHighU16
-//go:noescape
-func VaddwHighU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X8)
-
-// Unsigned Add Wide. This instruction adds the vector elements of the first source SIMD&FP register to the corresponding vector elements in the lower or upper half of the second source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. The vector elements of the destination register and the first source register are twice as long as the vector elements of the second source register. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VaddwHighU32 VaddwHighU32
-//go:noescape
-func VaddwHighU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X4)
-
-// Unsigned Add Wide. This instruction adds the vector elements of the first source SIMD&FP register to the corresponding vector elements in the lower or upper half of the second source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. The vector elements of the destination register and the first source register are twice as long as the vector elements of the second source register. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VaddwHighU8 VaddwHighU8
-//go:noescape
-func VaddwHighU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X16)
+func VaddwS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X8)
 
 // Signed Add Wide. This instruction adds vector elements of the first source SIMD&FP register to the corresponding vector elements in the lower or upper half of the second source SIMD&FP register, places the results in a vector, and writes the vector to the SIMD&FP destination register.
 //
@@ -951,11 +921,11 @@ func VaddwS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X4)
 //go:noescape
 func VaddwS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X2)
 
-// Signed Add Wide. This instruction adds vector elements of the first source SIMD&FP register to the corresponding vector elements in the lower or upper half of the second source SIMD&FP register, places the results in a vector, and writes the vector to the SIMD&FP destination register.
+// Unsigned Add Wide. This instruction adds the vector elements of the first source SIMD&FP register to the corresponding vector elements in the lower or upper half of the second source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. The vector elements of the destination register and the first source register are twice as long as the vector elements of the second source register. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VaddwS8 VaddwS8
+//go:linkname VaddwU8 VaddwU8
 //go:noescape
-func VaddwS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X8)
+func VaddwU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X8)
 
 // Unsigned Add Wide. This instruction adds the vector elements of the first source SIMD&FP register to the corresponding vector elements in the lower or upper half of the second source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. The vector elements of the destination register and the first source register are twice as long as the vector elements of the second source register. All the values in this instruction are unsigned integer values.
 //
@@ -969,11 +939,41 @@ func VaddwU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X4)
 //go:noescape
 func VaddwU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X2)
 
+// Signed Add Wide. This instruction adds vector elements of the first source SIMD&FP register to the corresponding vector elements in the lower or upper half of the second source SIMD&FP register, places the results in a vector, and writes the vector to the SIMD&FP destination register.
+//
+//go:linkname VaddwHighS8 VaddwHighS8
+//go:noescape
+func VaddwHighS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X16)
+
+// Signed Add Wide. This instruction adds vector elements of the first source SIMD&FP register to the corresponding vector elements in the lower or upper half of the second source SIMD&FP register, places the results in a vector, and writes the vector to the SIMD&FP destination register.
+//
+//go:linkname VaddwHighS16 VaddwHighS16
+//go:noescape
+func VaddwHighS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8)
+
+// Signed Add Wide. This instruction adds vector elements of the first source SIMD&FP register to the corresponding vector elements in the lower or upper half of the second source SIMD&FP register, places the results in a vector, and writes the vector to the SIMD&FP destination register.
+//
+//go:linkname VaddwHighS32 VaddwHighS32
+//go:noescape
+func VaddwHighS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4)
+
 // Unsigned Add Wide. This instruction adds the vector elements of the first source SIMD&FP register to the corresponding vector elements in the lower or upper half of the second source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. The vector elements of the destination register and the first source register are twice as long as the vector elements of the second source register. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VaddwU8 VaddwU8
+//go:linkname VaddwHighU8 VaddwHighU8
 //go:noescape
-func VaddwU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X8)
+func VaddwHighU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X16)
+
+// Unsigned Add Wide. This instruction adds the vector elements of the first source SIMD&FP register to the corresponding vector elements in the lower or upper half of the second source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. The vector elements of the destination register and the first source register are twice as long as the vector elements of the second source register. All the values in this instruction are unsigned integer values.
+//
+//go:linkname VaddwHighU16 VaddwHighU16
+//go:noescape
+func VaddwHighU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X8)
+
+// Unsigned Add Wide. This instruction adds the vector elements of the first source SIMD&FP register to the corresponding vector elements in the lower or upper half of the second source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. The vector elements of the destination register and the first source register are twice as long as the vector elements of the second source register. All the values in this instruction are unsigned integer values.
+//
+//go:linkname VaddwHighU32 VaddwHighU32
+//go:noescape
+func VaddwHighU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X4)
 
 // AES single round decryption.
 //
@@ -1001,6 +1001,12 @@ func VaesmcqU8(r *arm.Uint8X16, v0 *arm.Uint8X16)
 
 // Bitwise AND (vector). This instruction performs a bitwise AND between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
+//go:linkname VandS8 VandS8
+//go:noescape
+func VandS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+
+// Bitwise AND (vector). This instruction performs a bitwise AND between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
+//
 //go:linkname VandS16 VandS16
 //go:noescape
 func VandS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
@@ -1019,9 +1025,9 @@ func VandS64(r *arm.Int64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
 
 // Bitwise AND (vector). This instruction performs a bitwise AND between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VandS8 VandS8
+//go:linkname VandU8 VandU8
 //go:noescape
-func VandS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VandU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Bitwise AND (vector). This instruction performs a bitwise AND between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
@@ -1043,9 +1049,9 @@ func VandU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
 
 // Bitwise AND (vector). This instruction performs a bitwise AND between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VandU8 VandU8
+//go:linkname VandqS8 VandqS8
 //go:noescape
-func VandU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VandqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Bitwise AND (vector). This instruction performs a bitwise AND between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
@@ -1067,9 +1073,9 @@ func VandqS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
 // Bitwise AND (vector). This instruction performs a bitwise AND between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VandqS8 VandqS8
+//go:linkname VandqU8 VandqU8
 //go:noescape
-func VandqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VandqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Bitwise AND (vector). This instruction performs a bitwise AND between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
@@ -1089,11 +1095,11 @@ func VandqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 //go:noescape
 func VandqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
-// Bitwise AND (vector). This instruction performs a bitwise AND between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
+// Bit Clear and Exclusive OR performs a bitwise AND of the 128-bit vector in a source SIMD&FP register and the complement of the vector in another source SIMD&FP register, then performs a bitwise exclusive OR of the resulting vector and the vector in a third source SIMD&FP register, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VandqU8 VandqU8
+//go:linkname VbcaxqS8 VbcaxqS8
 //go:noescape
-func VandqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VbcaxqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16, v2 *arm.Int8X16)
 
 // Bit Clear and Exclusive OR performs a bitwise AND of the 128-bit vector in a source SIMD&FP register and the complement of the vector in another source SIMD&FP register, then performs a bitwise exclusive OR of the resulting vector and the vector in a third source SIMD&FP register, and writes the result to the destination SIMD&FP register.
 //
@@ -1115,9 +1121,9 @@ func VbcaxqS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2, v2 *arm.Int64X2
 
 // Bit Clear and Exclusive OR performs a bitwise AND of the 128-bit vector in a source SIMD&FP register and the complement of the vector in another source SIMD&FP register, then performs a bitwise exclusive OR of the resulting vector and the vector in a third source SIMD&FP register, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VbcaxqS8 VbcaxqS8
+//go:linkname VbcaxqU8 VbcaxqU8
 //go:noescape
-func VbcaxqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16, v2 *arm.Int8X16)
+func VbcaxqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
 
 // Bit Clear and Exclusive OR performs a bitwise AND of the 128-bit vector in a source SIMD&FP register and the complement of the vector in another source SIMD&FP register, then performs a bitwise exclusive OR of the resulting vector and the vector in a third source SIMD&FP register, and writes the result to the destination SIMD&FP register.
 //
@@ -1137,11 +1143,11 @@ func VbcaxqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4, v2 *arm.Uint
 //go:noescape
 func VbcaxqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2, v2 *arm.Uint64X2)
 
-// Bit Clear and Exclusive OR performs a bitwise AND of the 128-bit vector in a source SIMD&FP register and the complement of the vector in another source SIMD&FP register, then performs a bitwise exclusive OR of the resulting vector and the vector in a third source SIMD&FP register, and writes the result to the destination SIMD&FP register.
+// Bitwise bit Clear (vector, register). This instruction performs a bitwise AND between the first source SIMD&FP register and the complement of the second source SIMD&FP register, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VbcaxqU8 VbcaxqU8
+//go:linkname VbicS8 VbicS8
 //go:noescape
-func VbcaxqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
+func VbicS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Bitwise bit Clear (vector, register). This instruction performs a bitwise AND between the first source SIMD&FP register and the complement of the second source SIMD&FP register, and writes the result to the destination SIMD&FP register.
 //
@@ -1163,9 +1169,9 @@ func VbicS64(r *arm.Int64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
 
 // Bitwise bit Clear (vector, register). This instruction performs a bitwise AND between the first source SIMD&FP register and the complement of the second source SIMD&FP register, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VbicS8 VbicS8
+//go:linkname VbicU8 VbicU8
 //go:noescape
-func VbicS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VbicU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Bitwise bit Clear (vector, register). This instruction performs a bitwise AND between the first source SIMD&FP register and the complement of the second source SIMD&FP register, and writes the result to the destination SIMD&FP register.
 //
@@ -1187,9 +1193,9 @@ func VbicU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
 
 // Bitwise bit Clear (vector, register). This instruction performs a bitwise AND between the first source SIMD&FP register and the complement of the second source SIMD&FP register, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VbicU8 VbicU8
+//go:linkname VbicqS8 VbicqS8
 //go:noescape
-func VbicU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VbicqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Bitwise bit Clear (vector, register). This instruction performs a bitwise AND between the first source SIMD&FP register and the complement of the second source SIMD&FP register, and writes the result to the destination SIMD&FP register.
 //
@@ -1211,9 +1217,9 @@ func VbicqS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
 // Bitwise bit Clear (vector, register). This instruction performs a bitwise AND between the first source SIMD&FP register and the complement of the second source SIMD&FP register, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VbicqS8 VbicqS8
+//go:linkname VbicqU8 VbicqU8
 //go:noescape
-func VbicqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VbicqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Bitwise bit Clear (vector, register). This instruction performs a bitwise AND between the first source SIMD&FP register and the complement of the second source SIMD&FP register, and writes the result to the destination SIMD&FP register.
 //
@@ -1233,11 +1239,53 @@ func VbicqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 //go:noescape
 func VbicqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
-// Bitwise bit Clear (vector, register). This instruction performs a bitwise AND between the first source SIMD&FP register and the complement of the second source SIMD&FP register, and writes the result to the destination SIMD&FP register.
+// Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
 //
-//go:linkname VbicqU8 VbicqU8
+//go:linkname VbslS8 VbslS8
 //go:noescape
-func VbicqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VbslS8(r *arm.Int8X8, v0 *arm.Uint8X8, v1 *arm.Int8X8, v2 *arm.Int8X8)
+
+// Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
+//
+//go:linkname VbslS16 VbslS16
+//go:noescape
+func VbslS16(r *arm.Int16X4, v0 *arm.Uint16X4, v1 *arm.Int16X4, v2 *arm.Int16X4)
+
+// Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
+//
+//go:linkname VbslS32 VbslS32
+//go:noescape
+func VbslS32(r *arm.Int32X2, v0 *arm.Uint32X2, v1 *arm.Int32X2, v2 *arm.Int32X2)
+
+// Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
+//
+//go:linkname VbslS64 VbslS64
+//go:noescape
+func VbslS64(r *arm.Int64X1, v0 *arm.Uint64X1, v1 *arm.Int64X1, v2 *arm.Int64X1)
+
+// Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
+//
+//go:linkname VbslU8 VbslU8
+//go:noescape
+func VbslU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8, v2 *arm.Uint8X8)
+
+// Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
+//
+//go:linkname VbslU16 VbslU16
+//go:noescape
+func VbslU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4, v2 *arm.Uint16X4)
+
+// Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
+//
+//go:linkname VbslU32 VbslU32
+//go:noescape
+func VbslU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2, v2 *arm.Uint32X2)
+
+// Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
+//
+//go:linkname VbslU64 VbslU64
+//go:noescape
+func VbslU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1, v2 *arm.Uint64X1)
 
 // Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
 //
@@ -1271,51 +1319,51 @@ func VbslP8(r *arm.Poly8X8, v0 *arm.Uint8X8, v1 *arm.Poly8X8, v2 *arm.Poly8X8)
 
 // Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
 //
-//go:linkname VbslS16 VbslS16
+//go:linkname VbslqS8 VbslqS8
 //go:noescape
-func VbslS16(r *arm.Int16X4, v0 *arm.Uint16X4, v1 *arm.Int16X4, v2 *arm.Int16X4)
+func VbslqS8(r *arm.Int8X16, v0 *arm.Uint8X16, v1 *arm.Int8X16, v2 *arm.Int8X16)
 
 // Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
 //
-//go:linkname VbslS32 VbslS32
+//go:linkname VbslqS16 VbslqS16
 //go:noescape
-func VbslS32(r *arm.Int32X2, v0 *arm.Uint32X2, v1 *arm.Int32X2, v2 *arm.Int32X2)
+func VbslqS16(r *arm.Int16X8, v0 *arm.Uint16X8, v1 *arm.Int16X8, v2 *arm.Int16X8)
 
 // Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
 //
-//go:linkname VbslS64 VbslS64
+//go:linkname VbslqS32 VbslqS32
 //go:noescape
-func VbslS64(r *arm.Int64X1, v0 *arm.Uint64X1, v1 *arm.Int64X1, v2 *arm.Int64X1)
+func VbslqS32(r *arm.Int32X4, v0 *arm.Uint32X4, v1 *arm.Int32X4, v2 *arm.Int32X4)
 
 // Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
 //
-//go:linkname VbslS8 VbslS8
+//go:linkname VbslqS64 VbslqS64
 //go:noescape
-func VbslS8(r *arm.Int8X8, v0 *arm.Uint8X8, v1 *arm.Int8X8, v2 *arm.Int8X8)
+func VbslqS64(r *arm.Int64X2, v0 *arm.Uint64X2, v1 *arm.Int64X2, v2 *arm.Int64X2)
 
 // Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
 //
-//go:linkname VbslU16 VbslU16
+//go:linkname VbslqU8 VbslqU8
 //go:noescape
-func VbslU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4, v2 *arm.Uint16X4)
+func VbslqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
 
 // Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
 //
-//go:linkname VbslU32 VbslU32
+//go:linkname VbslqU16 VbslqU16
 //go:noescape
-func VbslU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2, v2 *arm.Uint32X2)
+func VbslqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
 
 // Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
 //
-//go:linkname VbslU64 VbslU64
+//go:linkname VbslqU32 VbslqU32
 //go:noescape
-func VbslU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1, v2 *arm.Uint64X1)
+func VbslqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
 
 // Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
 //
-//go:linkname VbslU8 VbslU8
+//go:linkname VbslqU64 VbslqU64
 //go:noescape
-func VbslU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8, v2 *arm.Uint8X8)
+func VbslqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2, v2 *arm.Uint64X2)
 
 // Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
 //
@@ -1346,54 +1394,6 @@ func VbslqP64(r *arm.Poly64X2, v0 *arm.Uint64X2, v1 *arm.Poly64X2, v2 *arm.Poly6
 //go:linkname VbslqP8 VbslqP8
 //go:noescape
 func VbslqP8(r *arm.Poly8X16, v0 *arm.Uint8X16, v1 *arm.Poly8X16, v2 *arm.Poly8X16)
-
-// Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
-//
-//go:linkname VbslqS16 VbslqS16
-//go:noescape
-func VbslqS16(r *arm.Int16X8, v0 *arm.Uint16X8, v1 *arm.Int16X8, v2 *arm.Int16X8)
-
-// Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
-//
-//go:linkname VbslqS32 VbslqS32
-//go:noescape
-func VbslqS32(r *arm.Int32X4, v0 *arm.Uint32X4, v1 *arm.Int32X4, v2 *arm.Int32X4)
-
-// Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
-//
-//go:linkname VbslqS64 VbslqS64
-//go:noescape
-func VbslqS64(r *arm.Int64X2, v0 *arm.Uint64X2, v1 *arm.Int64X2, v2 *arm.Int64X2)
-
-// Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
-//
-//go:linkname VbslqS8 VbslqS8
-//go:noescape
-func VbslqS8(r *arm.Int8X16, v0 *arm.Uint8X16, v1 *arm.Int8X16, v2 *arm.Int8X16)
-
-// Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
-//
-//go:linkname VbslqU16 VbslqU16
-//go:noescape
-func VbslqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
-
-// Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
-//
-//go:linkname VbslqU32 VbslqU32
-//go:noescape
-func VbslqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
-
-// Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
-//
-//go:linkname VbslqU64 VbslqU64
-//go:noescape
-func VbslqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2, v2 *arm.Uint64X2)
-
-// Bitwise Select. This instruction sets each bit in the destination SIMD&FP register to the corresponding bit from the first source SIMD&FP register when the original destination bit was 1, otherwise from the second source SIMD&FP register.
-//
-//go:linkname VbslqU8 VbslqU8
-//go:noescape
-func VbslqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
 
 // Floating-point Complex Add.
 //
@@ -1575,6 +1575,54 @@ func VcaltqF64(r *arm.Uint64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
 //go:noescape
 func VcaltsF32(r *arm.Uint32, v0 *arm.Float32, v1 *arm.Float32)
 
+// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqS8 VceqS8
+//go:noescape
+func VceqS8(r *arm.Uint8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+
+// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqS16 VceqS16
+//go:noescape
+func VceqS16(r *arm.Uint16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
+
+// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqS32 VceqS32
+//go:noescape
+func VceqS32(r *arm.Uint32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+
+// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqS64 VceqS64
+//go:noescape
+func VceqS64(r *arm.Uint64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
+
+// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqU8 VceqU8
+//go:noescape
+func VceqU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+
+// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqU16 VceqU16
+//go:noescape
+func VceqU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+
+// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqU32 VceqU32
+//go:noescape
+func VceqU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+
+// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqU64 VceqU64
+//go:noescape
+func VceqU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
+
 // Floating-point Compare Equal (vector). This instruction compares each floating-point value from the first source SIMD&FP register, with the corresponding floating-point value from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
 //go:linkname VceqF32 VceqF32
@@ -1601,60 +1649,6 @@ func VceqP8(r *arm.Uint8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8)
 
 // Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VceqS16 VceqS16
-//go:noescape
-func VceqS16(r *arm.Uint16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
-
-// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqS32 VceqS32
-//go:noescape
-func VceqS32(r *arm.Uint32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
-
-// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqS64 VceqS64
-//go:noescape
-func VceqS64(r *arm.Uint64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
-
-// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqS8 VceqS8
-//go:noescape
-func VceqS8(r *arm.Uint8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
-
-// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqU16 VceqU16
-//go:noescape
-func VceqU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
-
-// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqU32 VceqU32
-//go:noescape
-func VceqU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
-
-// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqU64 VceqU64
-//go:noescape
-func VceqU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
-
-// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqU8 VceqU8
-//go:noescape
-func VceqU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
-
-// Floating-point Compare Equal (vector). This instruction compares each floating-point value from the first source SIMD&FP register, with the corresponding floating-point value from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqdF64 VceqdF64
-//go:noescape
-func VceqdF64(r *arm.Uint64, v0 *arm.Float64, v1 *arm.Float64)
-
-// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
 //go:linkname VceqdS64 VceqdS64
 //go:noescape
 func VceqdS64(r *arm.Uint64, v0 *arm.Int64, v1 *arm.Int64)
@@ -1664,6 +1658,60 @@ func VceqdS64(r *arm.Uint64, v0 *arm.Int64, v1 *arm.Int64)
 //go:linkname VceqdU64 VceqdU64
 //go:noescape
 func VceqdU64(r *arm.Uint64, v0 *arm.Uint64, v1 *arm.Uint64)
+
+// Floating-point Compare Equal (vector). This instruction compares each floating-point value from the first source SIMD&FP register, with the corresponding floating-point value from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqdF64 VceqdF64
+//go:noescape
+func VceqdF64(r *arm.Uint64, v0 *arm.Float64, v1 *arm.Float64)
+
+// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqqS8 VceqqS8
+//go:noescape
+func VceqqS8(r *arm.Uint8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+
+// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqqS16 VceqqS16
+//go:noescape
+func VceqqS16(r *arm.Uint16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
+
+// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqqS32 VceqqS32
+//go:noescape
+func VceqqS32(r *arm.Uint32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
+
+// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqqS64 VceqqS64
+//go:noescape
+func VceqqS64(r *arm.Uint64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
+
+// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqqU8 VceqqU8
+//go:noescape
+func VceqqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+
+// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqqU16 VceqqU16
+//go:noescape
+func VceqqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
+
+// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqqU32 VceqqU32
+//go:noescape
+func VceqqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
+
+// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqqU64 VceqqU64
+//go:noescape
+func VceqqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
 // Floating-point Compare Equal (vector). This instruction compares each floating-point value from the first source SIMD&FP register, with the corresponding floating-point value from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -1689,59 +1737,59 @@ func VceqqP64(r *arm.Uint64X2, v0 *arm.Poly64X2, v1 *arm.Poly64X2)
 //go:noescape
 func VceqqP8(r *arm.Uint8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16)
 
-// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqqS16 VceqqS16
-//go:noescape
-func VceqqS16(r *arm.Uint16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
-
-// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqqS32 VceqqS32
-//go:noescape
-func VceqqS32(r *arm.Uint32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
-
-// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqqS64 VceqqS64
-//go:noescape
-func VceqqS64(r *arm.Uint64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
-
-// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqqS8 VceqqS8
-//go:noescape
-func VceqqS8(r *arm.Uint8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
-
-// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqqU16 VceqqU16
-//go:noescape
-func VceqqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
-
-// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqqU32 VceqqU32
-//go:noescape
-func VceqqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
-
-// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqqU64 VceqqU64
-//go:noescape
-func VceqqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
-
-// Compare bitwise Equal (vector). This instruction compares each vector element from the first source SIMD&FP register with the corresponding vector element from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqqU8 VceqqU8
-//go:noescape
-func VceqqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
-
 // Floating-point Compare Equal (vector). This instruction compares each floating-point value from the first source SIMD&FP register, with the corresponding floating-point value from the second source SIMD&FP register, and if the comparison is equal sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
 //go:linkname VceqsF32 VceqsF32
 //go:noescape
 func VceqsF32(r *arm.Uint32, v0 *arm.Float32, v1 *arm.Float32)
+
+// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqzS8 VceqzS8
+//go:noescape
+func VceqzS8(r *arm.Uint8X8, v0 *arm.Int8X8)
+
+// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqzS16 VceqzS16
+//go:noescape
+func VceqzS16(r *arm.Uint16X4, v0 *arm.Int16X4)
+
+// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqzS32 VceqzS32
+//go:noescape
+func VceqzS32(r *arm.Uint32X2, v0 *arm.Int32X2)
+
+// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqzS64 VceqzS64
+//go:noescape
+func VceqzS64(r *arm.Uint64X1, v0 *arm.Int64X1)
+
+// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqzU8 VceqzU8
+//go:noescape
+func VceqzU8(r *arm.Uint8X8, v0 *arm.Uint8X8)
+
+// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqzU16 VceqzU16
+//go:noescape
+func VceqzU16(r *arm.Uint16X4, v0 *arm.Uint16X4)
+
+// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqzU32 VceqzU32
+//go:noescape
+func VceqzU32(r *arm.Uint32X2, v0 *arm.Uint32X2)
+
+// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqzU64 VceqzU64
+//go:noescape
+func VceqzU64(r *arm.Uint64X1, v0 *arm.Uint64X1)
 
 // Floating-point Compare Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -1769,60 +1817,6 @@ func VceqzP8(r *arm.Uint8X8, v0 *arm.Poly8X8)
 
 // Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VceqzS16 VceqzS16
-//go:noescape
-func VceqzS16(r *arm.Uint16X4, v0 *arm.Int16X4)
-
-// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqzS32 VceqzS32
-//go:noescape
-func VceqzS32(r *arm.Uint32X2, v0 *arm.Int32X2)
-
-// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqzS64 VceqzS64
-//go:noescape
-func VceqzS64(r *arm.Uint64X1, v0 *arm.Int64X1)
-
-// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqzS8 VceqzS8
-//go:noescape
-func VceqzS8(r *arm.Uint8X8, v0 *arm.Int8X8)
-
-// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqzU16 VceqzU16
-//go:noescape
-func VceqzU16(r *arm.Uint16X4, v0 *arm.Uint16X4)
-
-// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqzU32 VceqzU32
-//go:noescape
-func VceqzU32(r *arm.Uint32X2, v0 *arm.Uint32X2)
-
-// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqzU64 VceqzU64
-//go:noescape
-func VceqzU64(r *arm.Uint64X1, v0 *arm.Uint64X1)
-
-// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqzU8 VceqzU8
-//go:noescape
-func VceqzU8(r *arm.Uint8X8, v0 *arm.Uint8X8)
-
-// Floating-point Compare Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqzdF64 VceqzdF64
-//go:noescape
-func VceqzdF64(r *arm.Uint64, v0 *arm.Float64)
-
-// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
 //go:linkname VceqzdS64 VceqzdS64
 //go:noescape
 func VceqzdS64(r *arm.Uint64, v0 *arm.Int64)
@@ -1832,6 +1826,60 @@ func VceqzdS64(r *arm.Uint64, v0 *arm.Int64)
 //go:linkname VceqzdU64 VceqzdU64
 //go:noescape
 func VceqzdU64(r *arm.Uint64, v0 *arm.Uint64)
+
+// Floating-point Compare Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqzdF64 VceqzdF64
+//go:noescape
+func VceqzdF64(r *arm.Uint64, v0 *arm.Float64)
+
+// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqzqS8 VceqzqS8
+//go:noescape
+func VceqzqS8(r *arm.Uint8X16, v0 *arm.Int8X16)
+
+// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqzqS16 VceqzqS16
+//go:noescape
+func VceqzqS16(r *arm.Uint16X8, v0 *arm.Int16X8)
+
+// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqzqS32 VceqzqS32
+//go:noescape
+func VceqzqS32(r *arm.Uint32X4, v0 *arm.Int32X4)
+
+// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqzqS64 VceqzqS64
+//go:noescape
+func VceqzqS64(r *arm.Uint64X2, v0 *arm.Int64X2)
+
+// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqzqU8 VceqzqU8
+//go:noescape
+func VceqzqU8(r *arm.Uint8X16, v0 *arm.Uint8X16)
+
+// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqzqU16 VceqzqU16
+//go:noescape
+func VceqzqU16(r *arm.Uint16X8, v0 *arm.Uint16X8)
+
+// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqzqU32 VceqzqU32
+//go:noescape
+func VceqzqU32(r *arm.Uint32X4, v0 *arm.Uint32X4)
+
+// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VceqzqU64 VceqzqU64
+//go:noescape
+func VceqzqU64(r *arm.Uint64X2, v0 *arm.Uint64X2)
 
 // Floating-point Compare Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -1857,71 +1905,17 @@ func VceqzqP64(r *arm.Uint64X2, v0 *arm.Poly64X2)
 //go:noescape
 func VceqzqP8(r *arm.Uint8X16, v0 *arm.Poly8X16)
 
-// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqzqS16 VceqzqS16
-//go:noescape
-func VceqzqS16(r *arm.Uint16X8, v0 *arm.Int16X8)
-
-// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqzqS32 VceqzqS32
-//go:noescape
-func VceqzqS32(r *arm.Uint32X4, v0 *arm.Int32X4)
-
-// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqzqS64 VceqzqS64
-//go:noescape
-func VceqzqS64(r *arm.Uint64X2, v0 *arm.Int64X2)
-
-// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqzqS8 VceqzqS8
-//go:noescape
-func VceqzqS8(r *arm.Uint8X16, v0 *arm.Int8X16)
-
-// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqzqU16 VceqzqU16
-//go:noescape
-func VceqzqU16(r *arm.Uint16X8, v0 *arm.Uint16X8)
-
-// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqzqU32 VceqzqU32
-//go:noescape
-func VceqzqU32(r *arm.Uint32X4, v0 *arm.Uint32X4)
-
-// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqzqU64 VceqzqU64
-//go:noescape
-func VceqzqU64(r *arm.Uint64X2, v0 *arm.Uint64X2)
-
-// Compare bitwise Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VceqzqU8 VceqzqU8
-//go:noescape
-func VceqzqU8(r *arm.Uint8X16, v0 *arm.Uint8X16)
-
 // Floating-point Compare Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
 //go:linkname VceqzsF32 VceqzsF32
 //go:noescape
 func VceqzsF32(r *arm.Uint32, v0 *arm.Float32)
 
-// Floating-point Compare Greater than or Equal (vector). This instruction reads each floating-point value in the first source SIMD&FP register and if the value is greater than or equal to the corresponding floating-point value in the second source SIMD&FP register sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Compare signed Greater than or Equal (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first signed integer value is greater than or equal to the second signed integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgeF32 VcgeF32
+//go:linkname VcgeS8 VcgeS8
 //go:noescape
-func VcgeF32(r *arm.Uint32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
-
-// Floating-point Compare Greater than or Equal (vector). This instruction reads each floating-point value in the first source SIMD&FP register and if the value is greater than or equal to the corresponding floating-point value in the second source SIMD&FP register sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VcgeF64 VcgeF64
-//go:noescape
-func VcgeF64(r *arm.Uint64X1, v0 *arm.Float64X1, v1 *arm.Float64X1)
+func VcgeS8(r *arm.Uint8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Compare signed Greater than or Equal (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first signed integer value is greater than or equal to the second signed integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -1941,11 +1935,11 @@ func VcgeS32(r *arm.Uint32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 //go:noescape
 func VcgeS64(r *arm.Uint64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
 
-// Compare signed Greater than or Equal (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first signed integer value is greater than or equal to the second signed integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Compare unsigned Higher or Same (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first unsigned integer value is greater than or equal to the second unsigned integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgeS8 VcgeS8
+//go:linkname VcgeU8 VcgeU8
 //go:noescape
-func VcgeS8(r *arm.Uint8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VcgeU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Compare unsigned Higher or Same (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first unsigned integer value is greater than or equal to the second unsigned integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -1965,17 +1959,17 @@ func VcgeU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 //go:noescape
 func VcgeU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
 
-// Compare unsigned Higher or Same (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first unsigned integer value is greater than or equal to the second unsigned integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Floating-point Compare Greater than or Equal (vector). This instruction reads each floating-point value in the first source SIMD&FP register and if the value is greater than or equal to the corresponding floating-point value in the second source SIMD&FP register sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgeU8 VcgeU8
+//go:linkname VcgeF32 VcgeF32
 //go:noescape
-func VcgeU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VcgeF32(r *arm.Uint32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
 
 // Floating-point Compare Greater than or Equal (vector). This instruction reads each floating-point value in the first source SIMD&FP register and if the value is greater than or equal to the corresponding floating-point value in the second source SIMD&FP register sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgedF64 VcgedF64
+//go:linkname VcgeF64 VcgeF64
 //go:noescape
-func VcgedF64(r *arm.Uint64, v0 *arm.Float64, v1 *arm.Float64)
+func VcgeF64(r *arm.Uint64X1, v0 *arm.Float64X1, v1 *arm.Float64X1)
 
 // Compare signed Greater than or Equal (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first signed integer value is greater than or equal to the second signed integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -1991,15 +1985,15 @@ func VcgedU64(r *arm.Uint64, v0 *arm.Uint64, v1 *arm.Uint64)
 
 // Floating-point Compare Greater than or Equal (vector). This instruction reads each floating-point value in the first source SIMD&FP register and if the value is greater than or equal to the corresponding floating-point value in the second source SIMD&FP register sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgeqF32 VcgeqF32
+//go:linkname VcgedF64 VcgedF64
 //go:noescape
-func VcgeqF32(r *arm.Uint32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
+func VcgedF64(r *arm.Uint64, v0 *arm.Float64, v1 *arm.Float64)
 
-// Floating-point Compare Greater than or Equal (vector). This instruction reads each floating-point value in the first source SIMD&FP register and if the value is greater than or equal to the corresponding floating-point value in the second source SIMD&FP register sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Compare signed Greater than or Equal (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first signed integer value is greater than or equal to the second signed integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgeqF64 VcgeqF64
+//go:linkname VcgeqS8 VcgeqS8
 //go:noescape
-func VcgeqF64(r *arm.Uint64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
+func VcgeqS8(r *arm.Uint8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Compare signed Greater than or Equal (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first signed integer value is greater than or equal to the second signed integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2019,11 +2013,11 @@ func VcgeqS32(r *arm.Uint32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 //go:noescape
 func VcgeqS64(r *arm.Uint64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
-// Compare signed Greater than or Equal (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first signed integer value is greater than or equal to the second signed integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Compare unsigned Higher or Same (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first unsigned integer value is greater than or equal to the second unsigned integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgeqS8 VcgeqS8
+//go:linkname VcgeqU8 VcgeqU8
 //go:noescape
-func VcgeqS8(r *arm.Uint8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VcgeqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Compare unsigned Higher or Same (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first unsigned integer value is greater than or equal to the second unsigned integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2043,11 +2037,17 @@ func VcgeqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 //go:noescape
 func VcgeqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
-// Compare unsigned Higher or Same (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first unsigned integer value is greater than or equal to the second unsigned integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Floating-point Compare Greater than or Equal (vector). This instruction reads each floating-point value in the first source SIMD&FP register and if the value is greater than or equal to the corresponding floating-point value in the second source SIMD&FP register sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgeqU8 VcgeqU8
+//go:linkname VcgeqF32 VcgeqF32
 //go:noescape
-func VcgeqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VcgeqF32(r *arm.Uint32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
+
+// Floating-point Compare Greater than or Equal (vector). This instruction reads each floating-point value in the first source SIMD&FP register and if the value is greater than or equal to the corresponding floating-point value in the second source SIMD&FP register sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VcgeqF64 VcgeqF64
+//go:noescape
+func VcgeqF64(r *arm.Uint64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
 
 // Floating-point Compare Greater than or Equal (vector). This instruction reads each floating-point value in the first source SIMD&FP register and if the value is greater than or equal to the corresponding floating-point value in the second source SIMD&FP register sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2055,17 +2055,11 @@ func VcgeqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 //go:noescape
 func VcgesF32(r *arm.Uint32, v0 *arm.Float32, v1 *arm.Float32)
 
-// Floating-point Compare Greater than or Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is greater than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Compare signed Greater than or Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is greater than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgezF32 VcgezF32
+//go:linkname VcgezS8 VcgezS8
 //go:noescape
-func VcgezF32(r *arm.Uint32X2, v0 *arm.Float32X2)
-
-// Floating-point Compare Greater than or Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is greater than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VcgezF64 VcgezF64
-//go:noescape
-func VcgezF64(r *arm.Uint64X1, v0 *arm.Float64X1)
+func VcgezS8(r *arm.Uint8X8, v0 *arm.Int8X8)
 
 // Compare signed Greater than or Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is greater than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2085,17 +2079,17 @@ func VcgezS32(r *arm.Uint32X2, v0 *arm.Int32X2)
 //go:noescape
 func VcgezS64(r *arm.Uint64X1, v0 *arm.Int64X1)
 
-// Compare signed Greater than or Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is greater than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Floating-point Compare Greater than or Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is greater than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgezS8 VcgezS8
+//go:linkname VcgezF32 VcgezF32
 //go:noescape
-func VcgezS8(r *arm.Uint8X8, v0 *arm.Int8X8)
+func VcgezF32(r *arm.Uint32X2, v0 *arm.Float32X2)
 
 // Floating-point Compare Greater than or Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is greater than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgezdF64 VcgezdF64
+//go:linkname VcgezF64 VcgezF64
 //go:noescape
-func VcgezdF64(r *arm.Uint64, v0 *arm.Float64)
+func VcgezF64(r *arm.Uint64X1, v0 *arm.Float64X1)
 
 // Compare signed Greater than or Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is greater than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2105,15 +2099,15 @@ func VcgezdS64(r *arm.Uint64, v0 *arm.Int64)
 
 // Floating-point Compare Greater than or Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is greater than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgezqF32 VcgezqF32
+//go:linkname VcgezdF64 VcgezdF64
 //go:noescape
-func VcgezqF32(r *arm.Uint32X4, v0 *arm.Float32X4)
+func VcgezdF64(r *arm.Uint64, v0 *arm.Float64)
 
-// Floating-point Compare Greater than or Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is greater than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Compare signed Greater than or Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is greater than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgezqF64 VcgezqF64
+//go:linkname VcgezqS8 VcgezqS8
 //go:noescape
-func VcgezqF64(r *arm.Uint64X2, v0 *arm.Float64X2)
+func VcgezqS8(r *arm.Uint8X16, v0 *arm.Int8X16)
 
 // Compare signed Greater than or Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is greater than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2133,11 +2127,17 @@ func VcgezqS32(r *arm.Uint32X4, v0 *arm.Int32X4)
 //go:noescape
 func VcgezqS64(r *arm.Uint64X2, v0 *arm.Int64X2)
 
-// Compare signed Greater than or Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is greater than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Floating-point Compare Greater than or Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is greater than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgezqS8 VcgezqS8
+//go:linkname VcgezqF32 VcgezqF32
 //go:noescape
-func VcgezqS8(r *arm.Uint8X16, v0 *arm.Int8X16)
+func VcgezqF32(r *arm.Uint32X4, v0 *arm.Float32X4)
+
+// Floating-point Compare Greater than or Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is greater than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VcgezqF64 VcgezqF64
+//go:noescape
+func VcgezqF64(r *arm.Uint64X2, v0 *arm.Float64X2)
 
 // Floating-point Compare Greater than or Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is greater than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2145,17 +2145,11 @@ func VcgezqS8(r *arm.Uint8X16, v0 *arm.Int8X16)
 //go:noescape
 func VcgezsF32(r *arm.Uint32, v0 *arm.Float32)
 
-// Floating-point Compare Greater than (vector). This instruction reads each floating-point value in the first source SIMD&FP register and if the value is greater than the corresponding floating-point value in the second source SIMD&FP register sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Compare signed Greater than (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first signed integer value is greater than the second signed integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgtF32 VcgtF32
+//go:linkname VcgtS8 VcgtS8
 //go:noescape
-func VcgtF32(r *arm.Uint32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
-
-// Floating-point Compare Greater than (vector). This instruction reads each floating-point value in the first source SIMD&FP register and if the value is greater than the corresponding floating-point value in the second source SIMD&FP register sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VcgtF64 VcgtF64
-//go:noescape
-func VcgtF64(r *arm.Uint64X1, v0 *arm.Float64X1, v1 *arm.Float64X1)
+func VcgtS8(r *arm.Uint8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Compare signed Greater than (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first signed integer value is greater than the second signed integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2175,11 +2169,11 @@ func VcgtS32(r *arm.Uint32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 //go:noescape
 func VcgtS64(r *arm.Uint64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
 
-// Compare signed Greater than (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first signed integer value is greater than the second signed integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Compare unsigned Higher (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first unsigned integer value is greater than the second unsigned integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgtS8 VcgtS8
+//go:linkname VcgtU8 VcgtU8
 //go:noescape
-func VcgtS8(r *arm.Uint8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VcgtU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Compare unsigned Higher (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first unsigned integer value is greater than the second unsigned integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2199,17 +2193,17 @@ func VcgtU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 //go:noescape
 func VcgtU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
 
-// Compare unsigned Higher (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first unsigned integer value is greater than the second unsigned integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Floating-point Compare Greater than (vector). This instruction reads each floating-point value in the first source SIMD&FP register and if the value is greater than the corresponding floating-point value in the second source SIMD&FP register sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgtU8 VcgtU8
+//go:linkname VcgtF32 VcgtF32
 //go:noescape
-func VcgtU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VcgtF32(r *arm.Uint32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
 
 // Floating-point Compare Greater than (vector). This instruction reads each floating-point value in the first source SIMD&FP register and if the value is greater than the corresponding floating-point value in the second source SIMD&FP register sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgtdF64 VcgtdF64
+//go:linkname VcgtF64 VcgtF64
 //go:noescape
-func VcgtdF64(r *arm.Uint64, v0 *arm.Float64, v1 *arm.Float64)
+func VcgtF64(r *arm.Uint64X1, v0 *arm.Float64X1, v1 *arm.Float64X1)
 
 // Compare signed Greater than (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first signed integer value is greater than the second signed integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2225,15 +2219,15 @@ func VcgtdU64(r *arm.Uint64, v0 *arm.Uint64, v1 *arm.Uint64)
 
 // Floating-point Compare Greater than (vector). This instruction reads each floating-point value in the first source SIMD&FP register and if the value is greater than the corresponding floating-point value in the second source SIMD&FP register sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgtqF32 VcgtqF32
+//go:linkname VcgtdF64 VcgtdF64
 //go:noescape
-func VcgtqF32(r *arm.Uint32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
+func VcgtdF64(r *arm.Uint64, v0 *arm.Float64, v1 *arm.Float64)
 
-// Floating-point Compare Greater than (vector). This instruction reads each floating-point value in the first source SIMD&FP register and if the value is greater than the corresponding floating-point value in the second source SIMD&FP register sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Compare signed Greater than (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first signed integer value is greater than the second signed integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgtqF64 VcgtqF64
+//go:linkname VcgtqS8 VcgtqS8
 //go:noescape
-func VcgtqF64(r *arm.Uint64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
+func VcgtqS8(r *arm.Uint8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Compare signed Greater than (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first signed integer value is greater than the second signed integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2253,11 +2247,11 @@ func VcgtqS32(r *arm.Uint32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 //go:noescape
 func VcgtqS64(r *arm.Uint64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
-// Compare signed Greater than (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first signed integer value is greater than the second signed integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Compare unsigned Higher (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first unsigned integer value is greater than the second unsigned integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgtqS8 VcgtqS8
+//go:linkname VcgtqU8 VcgtqU8
 //go:noescape
-func VcgtqS8(r *arm.Uint8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VcgtqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Compare unsigned Higher (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first unsigned integer value is greater than the second unsigned integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2277,11 +2271,17 @@ func VcgtqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 //go:noescape
 func VcgtqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
-// Compare unsigned Higher (vector). This instruction compares each vector element in the first source SIMD&FP register with the corresponding vector element in the second source SIMD&FP register and if the first unsigned integer value is greater than the second unsigned integer value sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Floating-point Compare Greater than (vector). This instruction reads each floating-point value in the first source SIMD&FP register and if the value is greater than the corresponding floating-point value in the second source SIMD&FP register sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgtqU8 VcgtqU8
+//go:linkname VcgtqF32 VcgtqF32
 //go:noescape
-func VcgtqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VcgtqF32(r *arm.Uint32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
+
+// Floating-point Compare Greater than (vector). This instruction reads each floating-point value in the first source SIMD&FP register and if the value is greater than the corresponding floating-point value in the second source SIMD&FP register sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VcgtqF64 VcgtqF64
+//go:noescape
+func VcgtqF64(r *arm.Uint64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
 
 // Floating-point Compare Greater than (vector). This instruction reads each floating-point value in the first source SIMD&FP register and if the value is greater than the corresponding floating-point value in the second source SIMD&FP register sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2289,17 +2289,11 @@ func VcgtqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 //go:noescape
 func VcgtsF32(r *arm.Uint32, v0 *arm.Float32, v1 *arm.Float32)
 
-// Floating-point Compare Greater than zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is greater than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Compare signed Greater than zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is greater than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgtzF32 VcgtzF32
+//go:linkname VcgtzS8 VcgtzS8
 //go:noescape
-func VcgtzF32(r *arm.Uint32X2, v0 *arm.Float32X2)
-
-// Floating-point Compare Greater than zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is greater than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VcgtzF64 VcgtzF64
-//go:noescape
-func VcgtzF64(r *arm.Uint64X1, v0 *arm.Float64X1)
+func VcgtzS8(r *arm.Uint8X8, v0 *arm.Int8X8)
 
 // Compare signed Greater than zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is greater than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2319,17 +2313,17 @@ func VcgtzS32(r *arm.Uint32X2, v0 *arm.Int32X2)
 //go:noescape
 func VcgtzS64(r *arm.Uint64X1, v0 *arm.Int64X1)
 
-// Compare signed Greater than zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is greater than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Floating-point Compare Greater than zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is greater than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgtzS8 VcgtzS8
+//go:linkname VcgtzF32 VcgtzF32
 //go:noescape
-func VcgtzS8(r *arm.Uint8X8, v0 *arm.Int8X8)
+func VcgtzF32(r *arm.Uint32X2, v0 *arm.Float32X2)
 
 // Floating-point Compare Greater than zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is greater than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgtzdF64 VcgtzdF64
+//go:linkname VcgtzF64 VcgtzF64
 //go:noescape
-func VcgtzdF64(r *arm.Uint64, v0 *arm.Float64)
+func VcgtzF64(r *arm.Uint64X1, v0 *arm.Float64X1)
 
 // Compare signed Greater than zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is greater than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2339,15 +2333,15 @@ func VcgtzdS64(r *arm.Uint64, v0 *arm.Int64)
 
 // Floating-point Compare Greater than zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is greater than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgtzqF32 VcgtzqF32
+//go:linkname VcgtzdF64 VcgtzdF64
 //go:noescape
-func VcgtzqF32(r *arm.Uint32X4, v0 *arm.Float32X4)
+func VcgtzdF64(r *arm.Uint64, v0 *arm.Float64)
 
-// Floating-point Compare Greater than zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is greater than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Compare signed Greater than zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is greater than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgtzqF64 VcgtzqF64
+//go:linkname VcgtzqS8 VcgtzqS8
 //go:noescape
-func VcgtzqF64(r *arm.Uint64X2, v0 *arm.Float64X2)
+func VcgtzqS8(r *arm.Uint8X16, v0 *arm.Int8X16)
 
 // Compare signed Greater than zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is greater than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2367,11 +2361,17 @@ func VcgtzqS32(r *arm.Uint32X4, v0 *arm.Int32X4)
 //go:noescape
 func VcgtzqS64(r *arm.Uint64X2, v0 *arm.Int64X2)
 
-// Compare signed Greater than zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is greater than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Floating-point Compare Greater than zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is greater than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcgtzqS8 VcgtzqS8
+//go:linkname VcgtzqF32 VcgtzqF32
 //go:noescape
-func VcgtzqS8(r *arm.Uint8X16, v0 *arm.Int8X16)
+func VcgtzqF32(r *arm.Uint32X4, v0 *arm.Float32X4)
+
+// Floating-point Compare Greater than zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is greater than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VcgtzqF64 VcgtzqF64
+//go:noescape
+func VcgtzqF64(r *arm.Uint64X2, v0 *arm.Float64X2)
 
 // Floating-point Compare Greater than zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is greater than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2379,17 +2379,11 @@ func VcgtzqS8(r *arm.Uint8X16, v0 *arm.Int8X16)
 //go:noescape
 func VcgtzsF32(r *arm.Uint32, v0 *arm.Float32)
 
-// Floating-point compare less than or equal
+// Compare signed less than or equal
 //
-//go:linkname VcleF32 VcleF32
+//go:linkname VcleS8 VcleS8
 //go:noescape
-func VcleF32(r *arm.Uint32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
-
-// Floating-point compare less than or equal
-//
-//go:linkname VcleF64 VcleF64
-//go:noescape
-func VcleF64(r *arm.Uint64X1, v0 *arm.Float64X1, v1 *arm.Float64X1)
+func VcleS8(r *arm.Uint8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Compare signed less than or equal
 //
@@ -2409,11 +2403,11 @@ func VcleS32(r *arm.Uint32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 //go:noescape
 func VcleS64(r *arm.Uint64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
 
-// Compare signed less than or equal
+// Compare unsigned less than or equal
 //
-//go:linkname VcleS8 VcleS8
+//go:linkname VcleU8 VcleU8
 //go:noescape
-func VcleS8(r *arm.Uint8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VcleU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Compare unsigned less than or equal
 //
@@ -2433,17 +2427,17 @@ func VcleU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 //go:noescape
 func VcleU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
 
-// Compare unsigned less than or equal
+// Floating-point compare less than or equal
 //
-//go:linkname VcleU8 VcleU8
+//go:linkname VcleF32 VcleF32
 //go:noescape
-func VcleU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VcleF32(r *arm.Uint32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
 
 // Floating-point compare less than or equal
 //
-//go:linkname VcledF64 VcledF64
+//go:linkname VcleF64 VcleF64
 //go:noescape
-func VcledF64(r *arm.Uint64, v0 *arm.Float64, v1 *arm.Float64)
+func VcleF64(r *arm.Uint64X1, v0 *arm.Float64X1, v1 *arm.Float64X1)
 
 // Compare signed less than or equal
 //
@@ -2459,15 +2453,15 @@ func VcledU64(r *arm.Uint64, v0 *arm.Uint64, v1 *arm.Uint64)
 
 // Floating-point compare less than or equal
 //
-//go:linkname VcleqF32 VcleqF32
+//go:linkname VcledF64 VcledF64
 //go:noescape
-func VcleqF32(r *arm.Uint32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
+func VcledF64(r *arm.Uint64, v0 *arm.Float64, v1 *arm.Float64)
 
-// Floating-point compare less than or equal
+// Compare signed less than or equal
 //
-//go:linkname VcleqF64 VcleqF64
+//go:linkname VcleqS8 VcleqS8
 //go:noescape
-func VcleqF64(r *arm.Uint64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
+func VcleqS8(r *arm.Uint8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Compare signed less than or equal
 //
@@ -2487,11 +2481,11 @@ func VcleqS32(r *arm.Uint32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 //go:noescape
 func VcleqS64(r *arm.Uint64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
-// Compare signed less than or equal
+// Compare unsigned less than or equal
 //
-//go:linkname VcleqS8 VcleqS8
+//go:linkname VcleqU8 VcleqU8
 //go:noescape
-func VcleqS8(r *arm.Uint8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VcleqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Compare unsigned less than or equal
 //
@@ -2511,11 +2505,17 @@ func VcleqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 //go:noescape
 func VcleqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
-// Compare unsigned less than or equal
+// Floating-point compare less than or equal
 //
-//go:linkname VcleqU8 VcleqU8
+//go:linkname VcleqF32 VcleqF32
 //go:noescape
-func VcleqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VcleqF32(r *arm.Uint32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
+
+// Floating-point compare less than or equal
+//
+//go:linkname VcleqF64 VcleqF64
+//go:noescape
+func VcleqF64(r *arm.Uint64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
 
 // Floating-point compare less than or equal
 //
@@ -2525,15 +2525,9 @@ func VclesF32(r *arm.Uint32, v0 *arm.Float32, v1 *arm.Float32)
 
 // Compare signed Less than or Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is less than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VclezF32 VclezF32
+//go:linkname VclezS8 VclezS8
 //go:noescape
-func VclezF32(r *arm.Uint32X2, v0 *arm.Float32X2)
-
-// Floating-point Compare Less than or Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is less than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VclezF64 VclezF64
-//go:noescape
-func VclezF64(r *arm.Uint64X1, v0 *arm.Float64X1)
+func VclezS8(r *arm.Uint8X8, v0 *arm.Int8X8)
 
 // Compare signed Less than or Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is less than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2555,15 +2549,15 @@ func VclezS64(r *arm.Uint64X1, v0 *arm.Int64X1)
 
 // Compare signed Less than or Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is less than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VclezS8 VclezS8
+//go:linkname VclezF32 VclezF32
 //go:noescape
-func VclezS8(r *arm.Uint8X8, v0 *arm.Int8X8)
+func VclezF32(r *arm.Uint32X2, v0 *arm.Float32X2)
 
 // Floating-point Compare Less than or Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is less than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VclezdF64 VclezdF64
+//go:linkname VclezF64 VclezF64
 //go:noescape
-func VclezdF64(r *arm.Uint64, v0 *arm.Float64)
+func VclezF64(r *arm.Uint64X1, v0 *arm.Float64X1)
 
 // Compare signed Less than or Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is less than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2573,15 +2567,15 @@ func VclezdS64(r *arm.Uint64, v0 *arm.Int64)
 
 // Floating-point Compare Less than or Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is less than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VclezqF32 VclezqF32
+//go:linkname VclezdF64 VclezdF64
 //go:noescape
-func VclezqF32(r *arm.Uint32X4, v0 *arm.Float32X4)
+func VclezdF64(r *arm.Uint64, v0 *arm.Float64)
 
-// Floating-point Compare Less than or Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is less than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Compare signed Less than or Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is less than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VclezqF64 VclezqF64
+//go:linkname VclezqS8 VclezqS8
 //go:noescape
-func VclezqF64(r *arm.Uint64X2, v0 *arm.Float64X2)
+func VclezqS8(r *arm.Uint8X16, v0 *arm.Int8X16)
 
 // Compare signed Less than or Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is less than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2601,17 +2595,29 @@ func VclezqS32(r *arm.Uint32X4, v0 *arm.Int32X4)
 //go:noescape
 func VclezqS64(r *arm.Uint64X2, v0 *arm.Int64X2)
 
-// Compare signed Less than or Equal to zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is less than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Floating-point Compare Less than or Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is less than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VclezqS8 VclezqS8
+//go:linkname VclezqF32 VclezqF32
 //go:noescape
-func VclezqS8(r *arm.Uint8X16, v0 *arm.Int8X16)
+func VclezqF32(r *arm.Uint32X4, v0 *arm.Float32X4)
+
+// Floating-point Compare Less than or Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is less than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VclezqF64 VclezqF64
+//go:noescape
+func VclezqF64(r *arm.Uint64X2, v0 *arm.Float64X2)
 
 // Floating-point Compare Less than or Equal to zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is less than or equal to zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
 //go:linkname VclezsF32 VclezsF32
 //go:noescape
 func VclezsF32(r *arm.Uint32, v0 *arm.Float32)
+
+// Count Leading Sign bits (vector). This instruction counts the number of consecutive bits following the most significant bit that are the same as the most significant bit in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The count does not include the most significant bit itself.
+//
+//go:linkname VclsS8 VclsS8
+//go:noescape
+func VclsS8(r *arm.Int8X8, v0 *arm.Int8X8)
 
 // Count Leading Sign bits (vector). This instruction counts the number of consecutive bits following the most significant bit that are the same as the most significant bit in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The count does not include the most significant bit itself.
 //
@@ -2627,9 +2633,9 @@ func VclsS32(r *arm.Int32X2, v0 *arm.Int32X2)
 
 // Count Leading Sign bits (vector). This instruction counts the number of consecutive bits following the most significant bit that are the same as the most significant bit in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The count does not include the most significant bit itself.
 //
-//go:linkname VclsS8 VclsS8
+//go:linkname VclsU8 VclsU8
 //go:noescape
-func VclsS8(r *arm.Int8X8, v0 *arm.Int8X8)
+func VclsU8(r *arm.Int8X8, v0 *arm.Uint8X8)
 
 // Count Leading Sign bits (vector). This instruction counts the number of consecutive bits following the most significant bit that are the same as the most significant bit in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The count does not include the most significant bit itself.
 //
@@ -2645,9 +2651,9 @@ func VclsU32(r *arm.Int32X2, v0 *arm.Uint32X2)
 
 // Count Leading Sign bits (vector). This instruction counts the number of consecutive bits following the most significant bit that are the same as the most significant bit in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The count does not include the most significant bit itself.
 //
-//go:linkname VclsU8 VclsU8
+//go:linkname VclsqS8 VclsqS8
 //go:noescape
-func VclsU8(r *arm.Int8X8, v0 *arm.Uint8X8)
+func VclsqS8(r *arm.Int8X16, v0 *arm.Int8X16)
 
 // Count Leading Sign bits (vector). This instruction counts the number of consecutive bits following the most significant bit that are the same as the most significant bit in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The count does not include the most significant bit itself.
 //
@@ -2663,9 +2669,9 @@ func VclsqS32(r *arm.Int32X4, v0 *arm.Int32X4)
 
 // Count Leading Sign bits (vector). This instruction counts the number of consecutive bits following the most significant bit that are the same as the most significant bit in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The count does not include the most significant bit itself.
 //
-//go:linkname VclsqS8 VclsqS8
+//go:linkname VclsqU8 VclsqU8
 //go:noescape
-func VclsqS8(r *arm.Int8X16, v0 *arm.Int8X16)
+func VclsqU8(r *arm.Int8X16, v0 *arm.Uint8X16)
 
 // Count Leading Sign bits (vector). This instruction counts the number of consecutive bits following the most significant bit that are the same as the most significant bit in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The count does not include the most significant bit itself.
 //
@@ -2679,23 +2685,11 @@ func VclsqU16(r *arm.Int16X8, v0 *arm.Uint16X8)
 //go:noescape
 func VclsqU32(r *arm.Int32X4, v0 *arm.Uint32X4)
 
-// Count Leading Sign bits (vector). This instruction counts the number of consecutive bits following the most significant bit that are the same as the most significant bit in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The count does not include the most significant bit itself.
+// Compare signed less than
 //
-//go:linkname VclsqU8 VclsqU8
+//go:linkname VcltS8 VcltS8
 //go:noescape
-func VclsqU8(r *arm.Int8X16, v0 *arm.Uint8X16)
-
-// Floating-point compare less than
-//
-//go:linkname VcltF32 VcltF32
-//go:noescape
-func VcltF32(r *arm.Uint32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
-
-// Floating-point compare less than
-//
-//go:linkname VcltF64 VcltF64
-//go:noescape
-func VcltF64(r *arm.Uint64X1, v0 *arm.Float64X1, v1 *arm.Float64X1)
+func VcltS8(r *arm.Uint8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Compare signed less than
 //
@@ -2715,11 +2709,11 @@ func VcltS32(r *arm.Uint32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 //go:noescape
 func VcltS64(r *arm.Uint64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
 
-// Compare signed less than
+// Compare unsigned less than
 //
-//go:linkname VcltS8 VcltS8
+//go:linkname VcltU8 VcltU8
 //go:noescape
-func VcltS8(r *arm.Uint8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VcltU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Compare unsigned less than
 //
@@ -2739,17 +2733,17 @@ func VcltU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 //go:noescape
 func VcltU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
 
-// Compare unsigned less than
+// Floating-point compare less than
 //
-//go:linkname VcltU8 VcltU8
+//go:linkname VcltF32 VcltF32
 //go:noescape
-func VcltU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VcltF32(r *arm.Uint32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
 
 // Floating-point compare less than
 //
-//go:linkname VcltdF64 VcltdF64
+//go:linkname VcltF64 VcltF64
 //go:noescape
-func VcltdF64(r *arm.Uint64, v0 *arm.Float64, v1 *arm.Float64)
+func VcltF64(r *arm.Uint64X1, v0 *arm.Float64X1, v1 *arm.Float64X1)
 
 // Compare signed less than
 //
@@ -2765,15 +2759,15 @@ func VcltdU64(r *arm.Uint64, v0 *arm.Uint64, v1 *arm.Uint64)
 
 // Floating-point compare less than
 //
-//go:linkname VcltqF32 VcltqF32
+//go:linkname VcltdF64 VcltdF64
 //go:noescape
-func VcltqF32(r *arm.Uint32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
+func VcltdF64(r *arm.Uint64, v0 *arm.Float64, v1 *arm.Float64)
 
-// Floating-point compare less than
+// Compare signed less than
 //
-//go:linkname VcltqF64 VcltqF64
+//go:linkname VcltqS8 VcltqS8
 //go:noescape
-func VcltqF64(r *arm.Uint64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
+func VcltqS8(r *arm.Uint8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Compare signed less than
 //
@@ -2793,11 +2787,11 @@ func VcltqS32(r *arm.Uint32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 //go:noescape
 func VcltqS64(r *arm.Uint64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
-// Compare signed less than
+// Compare unsigned less than
 //
-//go:linkname VcltqS8 VcltqS8
+//go:linkname VcltqU8 VcltqU8
 //go:noescape
-func VcltqS8(r *arm.Uint8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VcltqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Compare unsigned less than
 //
@@ -2817,11 +2811,17 @@ func VcltqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 //go:noescape
 func VcltqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
-// Compare unsigned less than
+// Floating-point compare less than
 //
-//go:linkname VcltqU8 VcltqU8
+//go:linkname VcltqF32 VcltqF32
 //go:noescape
-func VcltqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VcltqF32(r *arm.Uint32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
+
+// Floating-point compare less than
+//
+//go:linkname VcltqF64 VcltqF64
+//go:noescape
+func VcltqF64(r *arm.Uint64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
 
 // Floating-point compare less than
 //
@@ -2829,17 +2829,11 @@ func VcltqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 //go:noescape
 func VcltsF32(r *arm.Uint32, v0 *arm.Float32, v1 *arm.Float32)
 
-// Floating-point Compare Less than zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is less than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Compare signed Less than zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is less than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcltzF32 VcltzF32
+//go:linkname VcltzS8 VcltzS8
 //go:noescape
-func VcltzF32(r *arm.Uint32X2, v0 *arm.Float32X2)
-
-// Floating-point Compare Less than zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is less than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VcltzF64 VcltzF64
-//go:noescape
-func VcltzF64(r *arm.Uint64X1, v0 *arm.Float64X1)
+func VcltzS8(r *arm.Uint8X8, v0 *arm.Int8X8)
 
 // Compare signed Less than zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is less than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2859,17 +2853,17 @@ func VcltzS32(r *arm.Uint32X2, v0 *arm.Int32X2)
 //go:noescape
 func VcltzS64(r *arm.Uint64X1, v0 *arm.Int64X1)
 
-// Compare signed Less than zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is less than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Floating-point Compare Less than zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is less than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcltzS8 VcltzS8
+//go:linkname VcltzF32 VcltzF32
 //go:noescape
-func VcltzS8(r *arm.Uint8X8, v0 *arm.Int8X8)
+func VcltzF32(r *arm.Uint32X2, v0 *arm.Float32X2)
 
 // Floating-point Compare Less than zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is less than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcltzdF64 VcltzdF64
+//go:linkname VcltzF64 VcltzF64
 //go:noescape
-func VcltzdF64(r *arm.Uint64, v0 *arm.Float64)
+func VcltzF64(r *arm.Uint64X1, v0 *arm.Float64X1)
 
 // Compare signed Less than zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is less than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2879,15 +2873,15 @@ func VcltzdS64(r *arm.Uint64, v0 *arm.Int64)
 
 // Floating-point Compare Less than zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is less than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcltzqF32 VcltzqF32
+//go:linkname VcltzdF64 VcltzdF64
 //go:noescape
-func VcltzqF32(r *arm.Uint32X4, v0 *arm.Float32X4)
+func VcltzdF64(r *arm.Uint64, v0 *arm.Float64)
 
-// Floating-point Compare Less than zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is less than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Compare signed Less than zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is less than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcltzqF64 VcltzqF64
+//go:linkname VcltzqS8 VcltzqS8
 //go:noescape
-func VcltzqF64(r *arm.Uint64X2, v0 *arm.Float64X2)
+func VcltzqS8(r *arm.Uint8X16, v0 *arm.Int8X16)
 
 // Compare signed Less than zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is less than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -2907,17 +2901,29 @@ func VcltzqS32(r *arm.Uint32X4, v0 *arm.Int32X4)
 //go:noescape
 func VcltzqS64(r *arm.Uint64X2, v0 *arm.Int64X2)
 
-// Compare signed Less than zero (vector). This instruction reads each vector element in the source SIMD&FP register and if the signed integer value is less than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+// Floating-point Compare Less than zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is less than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VcltzqS8 VcltzqS8
+//go:linkname VcltzqF32 VcltzqF32
 //go:noescape
-func VcltzqS8(r *arm.Uint8X16, v0 *arm.Int8X16)
+func VcltzqF32(r *arm.Uint32X4, v0 *arm.Float32X4)
+
+// Floating-point Compare Less than zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is less than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VcltzqF64 VcltzqF64
+//go:noescape
+func VcltzqF64(r *arm.Uint64X2, v0 *arm.Float64X2)
 
 // Floating-point Compare Less than zero (vector). This instruction reads each floating-point value in the source SIMD&FP register and if the value is less than zero sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
 //go:linkname VcltzsF32 VcltzsF32
 //go:noescape
 func VcltzsF32(r *arm.Uint32, v0 *arm.Float32)
+
+// Count Leading Zero bits (vector). This instruction counts the number of consecutive zeros, starting from the most significant bit, in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VclzS8 VclzS8
+//go:noescape
+func VclzS8(r *arm.Int8X8, v0 *arm.Int8X8)
 
 // Count Leading Zero bits (vector). This instruction counts the number of consecutive zeros, starting from the most significant bit, in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -2933,9 +2939,9 @@ func VclzS32(r *arm.Int32X2, v0 *arm.Int32X2)
 
 // Count Leading Zero bits (vector). This instruction counts the number of consecutive zeros, starting from the most significant bit, in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VclzS8 VclzS8
+//go:linkname VclzU8 VclzU8
 //go:noescape
-func VclzS8(r *arm.Int8X8, v0 *arm.Int8X8)
+func VclzU8(r *arm.Uint8X8, v0 *arm.Uint8X8)
 
 // Count Leading Zero bits (vector). This instruction counts the number of consecutive zeros, starting from the most significant bit, in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -2951,9 +2957,9 @@ func VclzU32(r *arm.Uint32X2, v0 *arm.Uint32X2)
 
 // Count Leading Zero bits (vector). This instruction counts the number of consecutive zeros, starting from the most significant bit, in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VclzU8 VclzU8
+//go:linkname VclzqS8 VclzqS8
 //go:noescape
-func VclzU8(r *arm.Uint8X8, v0 *arm.Uint8X8)
+func VclzqS8(r *arm.Int8X16, v0 *arm.Int8X16)
 
 // Count Leading Zero bits (vector). This instruction counts the number of consecutive zeros, starting from the most significant bit, in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -2969,9 +2975,9 @@ func VclzqS32(r *arm.Int32X4, v0 *arm.Int32X4)
 
 // Count Leading Zero bits (vector). This instruction counts the number of consecutive zeros, starting from the most significant bit, in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VclzqS8 VclzqS8
+//go:linkname VclzqU8 VclzqU8
 //go:noescape
-func VclzqS8(r *arm.Int8X16, v0 *arm.Int8X16)
+func VclzqU8(r *arm.Uint8X16, v0 *arm.Uint8X16)
 
 // Count Leading Zero bits (vector). This instruction counts the number of consecutive zeros, starting from the most significant bit, in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -2984,18 +2990,6 @@ func VclzqU16(r *arm.Uint16X8, v0 *arm.Uint16X8)
 //go:linkname VclzqU32 VclzqU32
 //go:noescape
 func VclzqU32(r *arm.Uint32X4, v0 *arm.Uint32X4)
-
-// Count Leading Zero bits (vector). This instruction counts the number of consecutive zeros, starting from the most significant bit, in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VclzqU8 VclzqU8
-//go:noescape
-func VclzqU8(r *arm.Uint8X16, v0 *arm.Uint8X16)
-
-// Population Count per byte. This instruction counts the number of bits that have a value of one in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VcntP8 VcntP8
-//go:noescape
-func VcntP8(r *arm.Poly8X8, v0 *arm.Poly8X8)
 
 // Population Count per byte. This instruction counts the number of bits that have a value of one in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -3011,9 +3005,9 @@ func VcntU8(r *arm.Uint8X8, v0 *arm.Uint8X8)
 
 // Population Count per byte. This instruction counts the number of bits that have a value of one in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VcntqP8 VcntqP8
+//go:linkname VcntP8 VcntP8
 //go:noescape
-func VcntqP8(r *arm.Poly8X16, v0 *arm.Poly8X16)
+func VcntP8(r *arm.Poly8X8, v0 *arm.Poly8X8)
 
 // Population Count per byte. This instruction counts the number of bits that have a value of one in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -3026,6 +3020,60 @@ func VcntqS8(r *arm.Int8X16, v0 *arm.Int8X16)
 //go:linkname VcntqU8 VcntqU8
 //go:noescape
 func VcntqU8(r *arm.Uint8X16, v0 *arm.Uint8X16)
+
+// Population Count per byte. This instruction counts the number of bits that have a value of one in each vector element in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VcntqP8 VcntqP8
+//go:noescape
+func VcntqP8(r *arm.Poly8X16, v0 *arm.Poly8X16)
+
+// Join two smaller vectors into a single larger vector
+//
+//go:linkname VcombineS8 VcombineS8
+//go:noescape
+func VcombineS8(r *arm.Int8X16, v0 *arm.Int8X8, v1 *arm.Int8X8)
+
+// Join two smaller vectors into a single larger vector
+//
+//go:linkname VcombineS16 VcombineS16
+//go:noescape
+func VcombineS16(r *arm.Int16X8, v0 *arm.Int16X4, v1 *arm.Int16X4)
+
+// Join two smaller vectors into a single larger vector
+//
+//go:linkname VcombineS32 VcombineS32
+//go:noescape
+func VcombineS32(r *arm.Int32X4, v0 *arm.Int32X2, v1 *arm.Int32X2)
+
+// Join two smaller vectors into a single larger vector
+//
+//go:linkname VcombineS64 VcombineS64
+//go:noescape
+func VcombineS64(r *arm.Int64X2, v0 *arm.Int64X1, v1 *arm.Int64X1)
+
+// Join two smaller vectors into a single larger vector
+//
+//go:linkname VcombineU8 VcombineU8
+//go:noescape
+func VcombineU8(r *arm.Uint8X16, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+
+// Join two smaller vectors into a single larger vector
+//
+//go:linkname VcombineU16 VcombineU16
+//go:noescape
+func VcombineU16(r *arm.Uint16X8, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+
+// Join two smaller vectors into a single larger vector
+//
+//go:linkname VcombineU32 VcombineU32
+//go:noescape
+func VcombineU32(r *arm.Uint32X4, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+
+// Join two smaller vectors into a single larger vector
+//
+//go:linkname VcombineU64 VcombineU64
+//go:noescape
+func VcombineU64(r *arm.Uint64X2, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
 
 // Join two smaller vectors into a single larger vector
 //
@@ -3057,60 +3105,6 @@ func VcombineP64(r *arm.Poly64X2, v0 *arm.Poly64X1, v1 *arm.Poly64X1)
 //go:noescape
 func VcombineP8(r *arm.Poly8X16, v0 *arm.Poly8X8, v1 *arm.Poly8X8)
 
-// Join two smaller vectors into a single larger vector
-//
-//go:linkname VcombineS16 VcombineS16
-//go:noescape
-func VcombineS16(r *arm.Int16X8, v0 *arm.Int16X4, v1 *arm.Int16X4)
-
-// Join two smaller vectors into a single larger vector
-//
-//go:linkname VcombineS32 VcombineS32
-//go:noescape
-func VcombineS32(r *arm.Int32X4, v0 *arm.Int32X2, v1 *arm.Int32X2)
-
-// Join two smaller vectors into a single larger vector
-//
-//go:linkname VcombineS64 VcombineS64
-//go:noescape
-func VcombineS64(r *arm.Int64X2, v0 *arm.Int64X1, v1 *arm.Int64X1)
-
-// Join two smaller vectors into a single larger vector
-//
-//go:linkname VcombineS8 VcombineS8
-//go:noescape
-func VcombineS8(r *arm.Int8X16, v0 *arm.Int8X8, v1 *arm.Int8X8)
-
-// Join two smaller vectors into a single larger vector
-//
-//go:linkname VcombineU16 VcombineU16
-//go:noescape
-func VcombineU16(r *arm.Uint16X8, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
-
-// Join two smaller vectors into a single larger vector
-//
-//go:linkname VcombineU32 VcombineU32
-//go:noescape
-func VcombineU32(r *arm.Uint32X4, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
-
-// Join two smaller vectors into a single larger vector
-//
-//go:linkname VcombineU64 VcombineU64
-//go:noescape
-func VcombineU64(r *arm.Uint64X2, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
-
-// Join two smaller vectors into a single larger vector
-//
-//go:linkname VcombineU8 VcombineU8
-//go:noescape
-func VcombineU8(r *arm.Uint8X16, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
-
-// Floating-point Convert to lower precision Narrow (vector). This instruction reads each vector element in the SIMD&FP source register, converts each result to half the precision of the source element, writes the final result to a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements. The rounding mode is determined by the FPCR.
-//
-//go:linkname VcvtF32F64 VcvtF32F64
-//go:noescape
-func VcvtF32F64(r *arm.Float32X2, v0 *arm.Float64X2)
-
 // Signed fixed-point Convert to Floating-point (vector). This instruction converts each element in a vector from fixed-point to floating-point using the rounding mode that is specified by the FPCR, and writes the result to the SIMD&FP destination register.
 //
 //go:linkname VcvtF32S32 VcvtF32S32
@@ -3123,11 +3117,11 @@ func VcvtF32S32(r *arm.Float32X2, v0 *arm.Int32X2)
 //go:noescape
 func VcvtF32U32(r *arm.Float32X2, v0 *arm.Uint32X2)
 
-// Floating-point Convert to higher precision Long (vector). This instruction reads each element in a vector in the SIMD&FP source register, converts each value to double the precision of the source element using the rounding mode that is determined by the FPCR, and writes each result to the equivalent element of the vector in the SIMD&FP destination register.
+// Floating-point Convert to lower precision Narrow (vector). This instruction reads each vector element in the SIMD&FP source register, converts each result to half the precision of the source element, writes the final result to a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements. The rounding mode is determined by the FPCR.
 //
-//go:linkname VcvtF64F32 VcvtF64F32
+//go:linkname VcvtF32F64 VcvtF32F64
 //go:noescape
-func VcvtF64F32(r *arm.Float64X2, v0 *arm.Float32X2)
+func VcvtF32F64(r *arm.Float32X2, v0 *arm.Float64X2)
 
 // Signed fixed-point Convert to Floating-point (vector). This instruction converts each element in a vector from fixed-point to floating-point using the rounding mode that is specified by the FPCR, and writes the result to the SIMD&FP destination register.
 //
@@ -3140,6 +3134,12 @@ func VcvtF64S64(r *arm.Float64X1, v0 *arm.Int64X1)
 //go:linkname VcvtF64U64 VcvtF64U64
 //go:noescape
 func VcvtF64U64(r *arm.Float64X1, v0 *arm.Uint64X1)
+
+// Floating-point Convert to higher precision Long (vector). This instruction reads each element in a vector in the SIMD&FP source register, converts each value to double the precision of the source element using the rounding mode that is determined by the FPCR, and writes each result to the equivalent element of the vector in the SIMD&FP destination register.
+//
+//go:linkname VcvtF64F32 VcvtF64F32
+//go:noescape
+func VcvtF64F32(r *arm.Float64X2, v0 *arm.Float32X2)
 
 // Floating-point Convert to lower precision Narrow (vector). This instruction reads each vector element in the SIMD&FP source register, converts each result to half the precision of the source element, writes the final result to a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements. The rounding mode is determined by the FPCR.
 //
@@ -3629,6 +3629,54 @@ func VdotqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint8X16, v2 *arm.Uint8
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
+//go:linkname VdupNS8 VdupNS8
+//go:noescape
+func VdupNS8(r *arm.Int8X8, v0 *arm.Int8)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VdupNS16 VdupNS16
+//go:noescape
+func VdupNS16(r *arm.Int16X4, v0 *arm.Int16)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VdupNS32 VdupNS32
+//go:noescape
+func VdupNS32(r *arm.Int32X2, v0 *arm.Int32)
+
+// Insert vector element from another vector element. This instruction copies the vector element of the source SIMD&FP register to the specified vector element of the destination SIMD&FP register.
+//
+//go:linkname VdupNS64 VdupNS64
+//go:noescape
+func VdupNS64(r *arm.Int64X1, v0 *arm.Int64)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VdupNU8 VdupNU8
+//go:noescape
+func VdupNU8(r *arm.Uint8X8, v0 *arm.Uint8)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VdupNU16 VdupNU16
+//go:noescape
+func VdupNU16(r *arm.Uint16X4, v0 *arm.Uint16)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VdupNU32 VdupNU32
+//go:noescape
+func VdupNU32(r *arm.Uint32X2, v0 *arm.Uint32)
+
+// Insert vector element from another vector element. This instruction copies the vector element of the source SIMD&FP register to the specified vector element of the destination SIMD&FP register.
+//
+//go:linkname VdupNU64 VdupNU64
+//go:noescape
+func VdupNU64(r *arm.Uint64X1, v0 *arm.Uint64)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
 //go:linkname VdupNF32 VdupNF32
 //go:noescape
 func VdupNF32(r *arm.Float32X2, v0 *arm.Float32)
@@ -3659,51 +3707,51 @@ func VdupNP8(r *arm.Poly8X8, v0 *arm.Poly8)
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VdupNS16 VdupNS16
+//go:linkname VdupqNS8 VdupqNS8
 //go:noescape
-func VdupNS16(r *arm.Int16X4, v0 *arm.Int16)
+func VdupqNS8(r *arm.Int8X16, v0 *arm.Int8)
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VdupNS32 VdupNS32
+//go:linkname VdupqNS16 VdupqNS16
 //go:noescape
-func VdupNS32(r *arm.Int32X2, v0 *arm.Int32)
-
-// Insert vector element from another vector element. This instruction copies the vector element of the source SIMD&FP register to the specified vector element of the destination SIMD&FP register.
-//
-//go:linkname VdupNS64 VdupNS64
-//go:noescape
-func VdupNS64(r *arm.Int64X1, v0 *arm.Int64)
+func VdupqNS16(r *arm.Int16X8, v0 *arm.Int16)
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VdupNS8 VdupNS8
+//go:linkname VdupqNS32 VdupqNS32
 //go:noescape
-func VdupNS8(r *arm.Int8X8, v0 *arm.Int8)
+func VdupqNS32(r *arm.Int32X4, v0 *arm.Int32)
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VdupNU16 VdupNU16
+//go:linkname VdupqNS64 VdupqNS64
 //go:noescape
-func VdupNU16(r *arm.Uint16X4, v0 *arm.Uint16)
+func VdupqNS64(r *arm.Int64X2, v0 *arm.Int64)
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VdupNU32 VdupNU32
+//go:linkname VdupqNU8 VdupqNU8
 //go:noescape
-func VdupNU32(r *arm.Uint32X2, v0 *arm.Uint32)
-
-// Insert vector element from another vector element. This instruction copies the vector element of the source SIMD&FP register to the specified vector element of the destination SIMD&FP register.
-//
-//go:linkname VdupNU64 VdupNU64
-//go:noescape
-func VdupNU64(r *arm.Uint64X1, v0 *arm.Uint64)
+func VdupqNU8(r *arm.Uint8X16, v0 *arm.Uint8)
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VdupNU8 VdupNU8
+//go:linkname VdupqNU16 VdupqNU16
 //go:noescape
-func VdupNU8(r *arm.Uint8X8, v0 *arm.Uint8)
+func VdupqNU16(r *arm.Uint16X8, v0 *arm.Uint16)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VdupqNU32 VdupqNU32
+//go:noescape
+func VdupqNU32(r *arm.Uint32X4, v0 *arm.Uint32)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VdupqNU64 VdupqNU64
+//go:noescape
+func VdupqNU64(r *arm.Uint64X2, v0 *arm.Uint64)
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
@@ -3735,101 +3783,11 @@ func VdupqNP64(r *arm.Poly64X2, v0 *arm.Poly64)
 //go:noescape
 func VdupqNP8(r *arm.Poly8X16, v0 *arm.Poly8)
 
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+// Bitwise Exclusive OR (vector). This instruction performs a bitwise Exclusive OR operation between the two source SIMD&FP registers, and places the result in the destination SIMD&FP register.
 //
-//go:linkname VdupqNS16 VdupqNS16
+//go:linkname VeorS8 VeorS8
 //go:noescape
-func VdupqNS16(r *arm.Int16X8, v0 *arm.Int16)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VdupqNS32 VdupqNS32
-//go:noescape
-func VdupqNS32(r *arm.Int32X4, v0 *arm.Int32)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VdupqNS64 VdupqNS64
-//go:noescape
-func VdupqNS64(r *arm.Int64X2, v0 *arm.Int64)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VdupqNS8 VdupqNS8
-//go:noescape
-func VdupqNS8(r *arm.Int8X16, v0 *arm.Int8)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VdupqNU16 VdupqNU16
-//go:noescape
-func VdupqNU16(r *arm.Uint16X8, v0 *arm.Uint16)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VdupqNU32 VdupqNU32
-//go:noescape
-func VdupqNU32(r *arm.Uint32X4, v0 *arm.Uint32)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VdupqNU64 VdupqNU64
-//go:noescape
-func VdupqNU64(r *arm.Uint64X2, v0 *arm.Uint64)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VdupqNU8 VdupqNU8
-//go:noescape
-func VdupqNU8(r *arm.Uint8X16, v0 *arm.Uint8)
-
-// Three-way Exclusive OR performs a three-way exclusive OR of the values in the three source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname Veor3QS16 Veor3QS16
-//go:noescape
-func Veor3QS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8, v2 *arm.Int16X8)
-
-// Three-way Exclusive OR performs a three-way exclusive OR of the values in the three source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname Veor3QS32 Veor3QS32
-//go:noescape
-func Veor3QS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4, v2 *arm.Int32X4)
-
-// Three-way Exclusive OR performs a three-way exclusive OR of the values in the three source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname Veor3QS64 Veor3QS64
-//go:noescape
-func Veor3QS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2, v2 *arm.Int64X2)
-
-// Three-way Exclusive OR performs a three-way exclusive OR of the values in the three source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname Veor3QS8 Veor3QS8
-//go:noescape
-func Veor3QS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16, v2 *arm.Int8X16)
-
-// Three-way Exclusive OR performs a three-way exclusive OR of the values in the three source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname Veor3QU16 Veor3QU16
-//go:noescape
-func Veor3QU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
-
-// Three-way Exclusive OR performs a three-way exclusive OR of the values in the three source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname Veor3QU32 Veor3QU32
-//go:noescape
-func Veor3QU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
-
-// Three-way Exclusive OR performs a three-way exclusive OR of the values in the three source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname Veor3QU64 Veor3QU64
-//go:noescape
-func Veor3QU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2, v2 *arm.Uint64X2)
-
-// Three-way Exclusive OR performs a three-way exclusive OR of the values in the three source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname Veor3QU8 Veor3QU8
-//go:noescape
-func Veor3QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
+func VeorS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Bitwise Exclusive OR (vector). This instruction performs a bitwise Exclusive OR operation between the two source SIMD&FP registers, and places the result in the destination SIMD&FP register.
 //
@@ -3851,9 +3809,9 @@ func VeorS64(r *arm.Int64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
 
 // Bitwise Exclusive OR (vector). This instruction performs a bitwise Exclusive OR operation between the two source SIMD&FP registers, and places the result in the destination SIMD&FP register.
 //
-//go:linkname VeorS8 VeorS8
+//go:linkname VeorU8 VeorU8
 //go:noescape
-func VeorS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VeorU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Bitwise Exclusive OR (vector). This instruction performs a bitwise Exclusive OR operation between the two source SIMD&FP registers, and places the result in the destination SIMD&FP register.
 //
@@ -3873,11 +3831,59 @@ func VeorU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 //go:noescape
 func VeorU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
 
+// Three-way Exclusive OR performs a three-way exclusive OR of the values in the three source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname Veor3QS8 Veor3QS8
+//go:noescape
+func Veor3QS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16, v2 *arm.Int8X16)
+
+// Three-way Exclusive OR performs a three-way exclusive OR of the values in the three source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname Veor3QS16 Veor3QS16
+//go:noescape
+func Veor3QS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8, v2 *arm.Int16X8)
+
+// Three-way Exclusive OR performs a three-way exclusive OR of the values in the three source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname Veor3QS32 Veor3QS32
+//go:noescape
+func Veor3QS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4, v2 *arm.Int32X4)
+
+// Three-way Exclusive OR performs a three-way exclusive OR of the values in the three source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname Veor3QS64 Veor3QS64
+//go:noescape
+func Veor3QS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2, v2 *arm.Int64X2)
+
+// Three-way Exclusive OR performs a three-way exclusive OR of the values in the three source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname Veor3QU8 Veor3QU8
+//go:noescape
+func Veor3QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
+
+// Three-way Exclusive OR performs a three-way exclusive OR of the values in the three source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname Veor3QU16 Veor3QU16
+//go:noescape
+func Veor3QU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
+
+// Three-way Exclusive OR performs a three-way exclusive OR of the values in the three source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname Veor3QU32 Veor3QU32
+//go:noescape
+func Veor3QU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
+
+// Three-way Exclusive OR performs a three-way exclusive OR of the values in the three source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname Veor3QU64 Veor3QU64
+//go:noescape
+func Veor3QU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2, v2 *arm.Uint64X2)
+
 // Bitwise Exclusive OR (vector). This instruction performs a bitwise Exclusive OR operation between the two source SIMD&FP registers, and places the result in the destination SIMD&FP register.
 //
-//go:linkname VeorU8 VeorU8
+//go:linkname VeorqS8 VeorqS8
 //go:noescape
-func VeorU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VeorqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Bitwise Exclusive OR (vector). This instruction performs a bitwise Exclusive OR operation between the two source SIMD&FP registers, and places the result in the destination SIMD&FP register.
 //
@@ -3899,9 +3905,9 @@ func VeorqS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
 // Bitwise Exclusive OR (vector). This instruction performs a bitwise Exclusive OR operation between the two source SIMD&FP registers, and places the result in the destination SIMD&FP register.
 //
-//go:linkname VeorqS8 VeorqS8
+//go:linkname VeorqU8 VeorqU8
 //go:noescape
-func VeorqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VeorqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Bitwise Exclusive OR (vector). This instruction performs a bitwise Exclusive OR operation between the two source SIMD&FP registers, and places the result in the destination SIMD&FP register.
 //
@@ -3920,12 +3926,6 @@ func VeorqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 //go:linkname VeorqU64 VeorqU64
 //go:noescape
 func VeorqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
-
-// Bitwise Exclusive OR (vector). This instruction performs a bitwise Exclusive OR operation between the two source SIMD&FP registers, and places the result in the destination SIMD&FP register.
-//
-//go:linkname VeorqU8 VeorqU8
-//go:noescape
-func VeorqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Floating-point fused Multiply-Add to accumulator (vector). This instruction multiplies corresponding floating-point values in the vectors in the two source SIMD&FP registers, adds the product to the corresponding vector element of the destination SIMD&FP register, and writes the result to the destination SIMD&FP register.
 //
@@ -4025,6 +4025,54 @@ func VfmsqNF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64X2, v2 *arm.F
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
+//go:linkname VgetHighS8 VgetHighS8
+//go:noescape
+func VgetHighS8(r *arm.Int8X8, v0 *arm.Int8X16)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VgetHighS16 VgetHighS16
+//go:noescape
+func VgetHighS16(r *arm.Int16X4, v0 *arm.Int16X8)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VgetHighS32 VgetHighS32
+//go:noescape
+func VgetHighS32(r *arm.Int32X2, v0 *arm.Int32X4)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VgetHighS64 VgetHighS64
+//go:noescape
+func VgetHighS64(r *arm.Int64X1, v0 *arm.Int64X2)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VgetHighU8 VgetHighU8
+//go:noescape
+func VgetHighU8(r *arm.Uint8X8, v0 *arm.Uint8X16)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VgetHighU16 VgetHighU16
+//go:noescape
+func VgetHighU16(r *arm.Uint16X4, v0 *arm.Uint16X8)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VgetHighU32 VgetHighU32
+//go:noescape
+func VgetHighU32(r *arm.Uint32X2, v0 *arm.Uint32X4)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VgetHighU64 VgetHighU64
+//go:noescape
+func VgetHighU64(r *arm.Uint64X1, v0 *arm.Uint64X2)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
 //go:linkname VgetHighF32 VgetHighF32
 //go:noescape
 func VgetHighF32(r *arm.Float32X2, v0 *arm.Float32X4)
@@ -4055,51 +4103,51 @@ func VgetHighP8(r *arm.Poly8X8, v0 *arm.Poly8X16)
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VgetHighS16 VgetHighS16
+//go:linkname VgetLowS8 VgetLowS8
 //go:noescape
-func VgetHighS16(r *arm.Int16X4, v0 *arm.Int16X8)
+func VgetLowS8(r *arm.Int8X8, v0 *arm.Int8X16)
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VgetHighS32 VgetHighS32
+//go:linkname VgetLowS16 VgetLowS16
 //go:noescape
-func VgetHighS32(r *arm.Int32X2, v0 *arm.Int32X4)
+func VgetLowS16(r *arm.Int16X4, v0 *arm.Int16X8)
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VgetHighS64 VgetHighS64
+//go:linkname VgetLowS32 VgetLowS32
 //go:noescape
-func VgetHighS64(r *arm.Int64X1, v0 *arm.Int64X2)
+func VgetLowS32(r *arm.Int32X2, v0 *arm.Int32X4)
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VgetHighS8 VgetHighS8
+//go:linkname VgetLowS64 VgetLowS64
 //go:noescape
-func VgetHighS8(r *arm.Int8X8, v0 *arm.Int8X16)
+func VgetLowS64(r *arm.Int64X1, v0 *arm.Int64X2)
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VgetHighU16 VgetHighU16
+//go:linkname VgetLowU8 VgetLowU8
 //go:noescape
-func VgetHighU16(r *arm.Uint16X4, v0 *arm.Uint16X8)
+func VgetLowU8(r *arm.Uint8X8, v0 *arm.Uint8X16)
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VgetHighU32 VgetHighU32
+//go:linkname VgetLowU16 VgetLowU16
 //go:noescape
-func VgetHighU32(r *arm.Uint32X2, v0 *arm.Uint32X4)
+func VgetLowU16(r *arm.Uint16X4, v0 *arm.Uint16X8)
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VgetHighU64 VgetHighU64
+//go:linkname VgetLowU32 VgetLowU32
 //go:noescape
-func VgetHighU64(r *arm.Uint64X1, v0 *arm.Uint64X2)
+func VgetLowU32(r *arm.Uint32X2, v0 *arm.Uint32X4)
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VgetHighU8 VgetHighU8
+//go:linkname VgetLowU64 VgetLowU64
 //go:noescape
-func VgetHighU8(r *arm.Uint8X8, v0 *arm.Uint8X16)
+func VgetLowU64(r *arm.Uint64X1, v0 *arm.Uint64X2)
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
@@ -4131,53 +4179,11 @@ func VgetLowP64(r *arm.Poly64X1, v0 *arm.Poly64X2)
 //go:noescape
 func VgetLowP8(r *arm.Poly8X8, v0 *arm.Poly8X16)
 
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+// Signed Halving Add. This instruction adds corresponding signed integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VgetLowS16 VgetLowS16
+//go:linkname VhaddS8 VhaddS8
 //go:noescape
-func VgetLowS16(r *arm.Int16X4, v0 *arm.Int16X8)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VgetLowS32 VgetLowS32
-//go:noescape
-func VgetLowS32(r *arm.Int32X2, v0 *arm.Int32X4)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VgetLowS64 VgetLowS64
-//go:noescape
-func VgetLowS64(r *arm.Int64X1, v0 *arm.Int64X2)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VgetLowS8 VgetLowS8
-//go:noescape
-func VgetLowS8(r *arm.Int8X8, v0 *arm.Int8X16)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VgetLowU16 VgetLowU16
-//go:noescape
-func VgetLowU16(r *arm.Uint16X4, v0 *arm.Uint16X8)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VgetLowU32 VgetLowU32
-//go:noescape
-func VgetLowU32(r *arm.Uint32X2, v0 *arm.Uint32X4)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VgetLowU64 VgetLowU64
-//go:noescape
-func VgetLowU64(r *arm.Uint64X1, v0 *arm.Uint64X2)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VgetLowU8 VgetLowU8
-//go:noescape
-func VgetLowU8(r *arm.Uint8X8, v0 *arm.Uint8X16)
+func VhaddS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Signed Halving Add. This instruction adds corresponding signed integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -4191,11 +4197,11 @@ func VhaddS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
 //go:noescape
 func VhaddS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
-// Signed Halving Add. This instruction adds corresponding signed integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Halving Add. This instruction adds corresponding unsigned integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VhaddS8 VhaddS8
+//go:linkname VhaddU8 VhaddU8
 //go:noescape
-func VhaddS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VhaddU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Unsigned Halving Add. This instruction adds corresponding unsigned integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -4209,11 +4215,11 @@ func VhaddU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
 //go:noescape
 func VhaddU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 
-// Unsigned Halving Add. This instruction adds corresponding unsigned integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Signed Halving Add. This instruction adds corresponding signed integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VhaddU8 VhaddU8
+//go:linkname VhaddqS8 VhaddqS8
 //go:noescape
-func VhaddU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VhaddqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Signed Halving Add. This instruction adds corresponding signed integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -4227,11 +4233,11 @@ func VhaddqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
 //go:noescape
 func VhaddqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
-// Signed Halving Add. This instruction adds corresponding signed integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Halving Add. This instruction adds corresponding unsigned integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VhaddqS8 VhaddqS8
+//go:linkname VhaddqU8 VhaddqU8
 //go:noescape
-func VhaddqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VhaddqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Unsigned Halving Add. This instruction adds corresponding unsigned integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -4245,11 +4251,11 @@ func VhaddqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
 //go:noescape
 func VhaddqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 
-// Unsigned Halving Add. This instruction adds corresponding unsigned integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Signed Halving Subtract. This instruction subtracts the elements in the vector in the second source SIMD&FP register from the corresponding elements in the vector in the first source SIMD&FP register, shifts each result right one bit, places each result into elements of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VhaddqU8 VhaddqU8
+//go:linkname VhsubS8 VhsubS8
 //go:noescape
-func VhaddqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VhsubS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Signed Halving Subtract. This instruction subtracts the elements in the vector in the second source SIMD&FP register from the corresponding elements in the vector in the first source SIMD&FP register, shifts each result right one bit, places each result into elements of a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -4263,11 +4269,11 @@ func VhsubS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
 //go:noescape
 func VhsubS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
-// Signed Halving Subtract. This instruction subtracts the elements in the vector in the second source SIMD&FP register from the corresponding elements in the vector in the first source SIMD&FP register, shifts each result right one bit, places each result into elements of a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Halving Subtract. This instruction subtracts the vector elements in the second source SIMD&FP register from the corresponding vector elements in the first source SIMD&FP register, shifts each result right one bit, places each result into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VhsubS8 VhsubS8
+//go:linkname VhsubU8 VhsubU8
 //go:noescape
-func VhsubS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VhsubU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Unsigned Halving Subtract. This instruction subtracts the vector elements in the second source SIMD&FP register from the corresponding vector elements in the first source SIMD&FP register, shifts each result right one bit, places each result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -4281,11 +4287,11 @@ func VhsubU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
 //go:noescape
 func VhsubU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 
-// Unsigned Halving Subtract. This instruction subtracts the vector elements in the second source SIMD&FP register from the corresponding vector elements in the first source SIMD&FP register, shifts each result right one bit, places each result into a vector, and writes the vector to the destination SIMD&FP register.
+// Signed Halving Subtract. This instruction subtracts the elements in the vector in the second source SIMD&FP register from the corresponding elements in the vector in the first source SIMD&FP register, shifts each result right one bit, places each result into elements of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VhsubU8 VhsubU8
+//go:linkname VhsubqS8 VhsubqS8
 //go:noescape
-func VhsubU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VhsubqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Signed Halving Subtract. This instruction subtracts the elements in the vector in the second source SIMD&FP register from the corresponding elements in the vector in the first source SIMD&FP register, shifts each result right one bit, places each result into elements of a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -4299,11 +4305,11 @@ func VhsubqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
 //go:noescape
 func VhsubqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
-// Signed Halving Subtract. This instruction subtracts the elements in the vector in the second source SIMD&FP register from the corresponding elements in the vector in the first source SIMD&FP register, shifts each result right one bit, places each result into elements of a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Halving Subtract. This instruction subtracts the vector elements in the second source SIMD&FP register from the corresponding vector elements in the first source SIMD&FP register, shifts each result right one bit, places each result into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VhsubqS8 VhsubqS8
+//go:linkname VhsubqU8 VhsubqU8
 //go:noescape
-func VhsubqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VhsubqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Unsigned Halving Subtract. This instruction subtracts the vector elements in the second source SIMD&FP register from the corresponding vector elements in the first source SIMD&FP register, shifts each result right one bit, places each result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -4317,23 +4323,11 @@ func VhsubqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
 //go:noescape
 func VhsubqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 
-// Unsigned Halving Subtract. This instruction subtracts the vector elements in the second source SIMD&FP register from the corresponding vector elements in the first source SIMD&FP register, shifts each result right one bit, places each result into a vector, and writes the vector to the destination SIMD&FP register.
+// Signed Maximum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the larger of each pair of signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VhsubqU8 VhsubqU8
+//go:linkname VmaxS8 VmaxS8
 //go:noescape
-func VhsubqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
-
-// Floating-point Maximum (vector). This instruction compares corresponding vector elements in the two source SIMD&FP registers, places the larger of each of the two floating-point values into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VmaxF32 VmaxF32
-//go:noescape
-func VmaxF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
-
-// Floating-point Maximum (vector). This instruction compares corresponding vector elements in the two source SIMD&FP registers, places the larger of each of the two floating-point values into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VmaxF64 VmaxF64
-//go:noescape
-func VmaxF64(r *arm.Float64X1, v0 *arm.Float64X1, v1 *arm.Float64X1)
+func VmaxS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Signed Maximum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the larger of each pair of signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -4347,11 +4341,11 @@ func VmaxS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
 //go:noescape
 func VmaxS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
-// Signed Maximum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the larger of each pair of signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Maximum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the larger of each pair of unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmaxS8 VmaxS8
+//go:linkname VmaxU8 VmaxU8
 //go:noescape
-func VmaxS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VmaxU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Unsigned Maximum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the larger of each pair of unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -4365,11 +4359,17 @@ func VmaxU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
 //go:noescape
 func VmaxU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 
-// Unsigned Maximum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the larger of each pair of unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point Maximum (vector). This instruction compares corresponding vector elements in the two source SIMD&FP registers, places the larger of each of the two floating-point values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmaxU8 VmaxU8
+//go:linkname VmaxF32 VmaxF32
 //go:noescape
-func VmaxU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VmaxF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
+
+// Floating-point Maximum (vector). This instruction compares corresponding vector elements in the two source SIMD&FP registers, places the larger of each of the two floating-point values into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VmaxF64 VmaxF64
+//go:noescape
+func VmaxF64(r *arm.Float64X1, v0 *arm.Float64X1, v1 *arm.Float64X1)
 
 // Floating-point Maximum Number (vector). This instruction compares corresponding vector elements in the two source SIMD&FP registers, writes the larger of the two floating-point values into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -4413,17 +4413,11 @@ func VmaxnmvqF32(r *arm.Float32, v0 *arm.Float32X4)
 //go:noescape
 func VmaxnmvqF64(r *arm.Float64, v0 *arm.Float64X2)
 
-// Floating-point Maximum (vector). This instruction compares corresponding vector elements in the two source SIMD&FP registers, places the larger of each of the two floating-point values into a vector, and writes the vector to the destination SIMD&FP register.
+// Signed Maximum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the larger of each pair of signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmaxqF32 VmaxqF32
+//go:linkname VmaxqS8 VmaxqS8
 //go:noescape
-func VmaxqF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
-
-// Floating-point Maximum (vector). This instruction compares corresponding vector elements in the two source SIMD&FP registers, places the larger of each of the two floating-point values into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VmaxqF64 VmaxqF64
-//go:noescape
-func VmaxqF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
+func VmaxqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Signed Maximum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the larger of each pair of signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -4437,11 +4431,11 @@ func VmaxqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
 //go:noescape
 func VmaxqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
-// Signed Maximum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the larger of each pair of signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Maximum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the larger of each pair of unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmaxqS8 VmaxqS8
+//go:linkname VmaxqU8 VmaxqU8
 //go:noescape
-func VmaxqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VmaxqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Unsigned Maximum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the larger of each pair of unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -4455,17 +4449,23 @@ func VmaxqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
 //go:noescape
 func VmaxqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 
-// Unsigned Maximum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the larger of each pair of unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point Maximum (vector). This instruction compares corresponding vector elements in the two source SIMD&FP registers, places the larger of each of the two floating-point values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmaxqU8 VmaxqU8
+//go:linkname VmaxqF32 VmaxqF32
 //go:noescape
-func VmaxqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VmaxqF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
 
-// Floating-point Maximum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the larger of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
+// Floating-point Maximum (vector). This instruction compares corresponding vector elements in the two source SIMD&FP registers, places the larger of each of the two floating-point values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmaxvF32 VmaxvF32
+//go:linkname VmaxqF64 VmaxqF64
 //go:noescape
-func VmaxvF32(r *arm.Float32, v0 *arm.Float32X2)
+func VmaxqF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
+
+// Signed Maximum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the largest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are signed integer values.
+//
+//go:linkname VmaxvS8 VmaxvS8
+//go:noescape
+func VmaxvS8(r *arm.Int8, v0 *arm.Int8X8)
 
 // Signed Maximum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the largest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are signed integer values.
 //
@@ -4479,11 +4479,11 @@ func VmaxvS16(r *arm.Int16, v0 *arm.Int16X4)
 //go:noescape
 func VmaxvS32(r *arm.Int32, v0 *arm.Int32X2)
 
-// Signed Maximum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the largest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are signed integer values.
+// Unsigned Maximum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the largest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VmaxvS8 VmaxvS8
+//go:linkname VmaxvU8 VmaxvU8
 //go:noescape
-func VmaxvS8(r *arm.Int8, v0 *arm.Int8X8)
+func VmaxvU8(r *arm.Uint8, v0 *arm.Uint8X8)
 
 // Unsigned Maximum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the largest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
 //
@@ -4497,23 +4497,17 @@ func VmaxvU16(r *arm.Uint16, v0 *arm.Uint16X4)
 //go:noescape
 func VmaxvU32(r *arm.Uint32, v0 *arm.Uint32X2)
 
-// Unsigned Maximum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the largest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VmaxvU8 VmaxvU8
-//go:noescape
-func VmaxvU8(r *arm.Uint8, v0 *arm.Uint8X8)
-
-// Floating-point Maximum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the largest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are floating-point values.
-//
-//go:linkname VmaxvqF32 VmaxvqF32
-//go:noescape
-func VmaxvqF32(r *arm.Float32, v0 *arm.Float32X4)
-
 // Floating-point Maximum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the larger of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
 //
-//go:linkname VmaxvqF64 VmaxvqF64
+//go:linkname VmaxvF32 VmaxvF32
 //go:noescape
-func VmaxvqF64(r *arm.Float64, v0 *arm.Float64X2)
+func VmaxvF32(r *arm.Float32, v0 *arm.Float32X2)
+
+// Signed Maximum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the largest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are signed integer values.
+//
+//go:linkname VmaxvqS8 VmaxvqS8
+//go:noescape
+func VmaxvqS8(r *arm.Int8, v0 *arm.Int8X16)
 
 // Signed Maximum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the largest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are signed integer values.
 //
@@ -4527,11 +4521,11 @@ func VmaxvqS16(r *arm.Int16, v0 *arm.Int16X8)
 //go:noescape
 func VmaxvqS32(r *arm.Int32, v0 *arm.Int32X4)
 
-// Signed Maximum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the largest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are signed integer values.
+// Unsigned Maximum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the largest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VmaxvqS8 VmaxvqS8
+//go:linkname VmaxvqU8 VmaxvqU8
 //go:noescape
-func VmaxvqS8(r *arm.Int8, v0 *arm.Int8X16)
+func VmaxvqU8(r *arm.Uint8, v0 *arm.Uint8X16)
 
 // Unsigned Maximum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the largest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
 //
@@ -4545,23 +4539,23 @@ func VmaxvqU16(r *arm.Uint16, v0 *arm.Uint16X8)
 //go:noescape
 func VmaxvqU32(r *arm.Uint32, v0 *arm.Uint32X4)
 
-// Unsigned Maximum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the largest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
+// Floating-point Maximum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the largest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are floating-point values.
 //
-//go:linkname VmaxvqU8 VmaxvqU8
+//go:linkname VmaxvqF32 VmaxvqF32
 //go:noescape
-func VmaxvqU8(r *arm.Uint8, v0 *arm.Uint8X16)
+func VmaxvqF32(r *arm.Float32, v0 *arm.Float32X4)
 
-// Floating-point minimum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the smaller of each of the two floating-point values into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point Maximum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the larger of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
 //
-//go:linkname VminF32 VminF32
+//go:linkname VmaxvqF64 VmaxvqF64
 //go:noescape
-func VminF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
+func VmaxvqF64(r *arm.Float64, v0 *arm.Float64X2)
 
-// Floating-point minimum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the smaller of each of the two floating-point values into a vector, and writes the vector to the destination SIMD&FP register.
+// Signed Minimum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the smaller of each of the two signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VminF64 VminF64
+//go:linkname VminS8 VminS8
 //go:noescape
-func VminF64(r *arm.Float64X1, v0 *arm.Float64X1, v1 *arm.Float64X1)
+func VminS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Signed Minimum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the smaller of each of the two signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -4575,11 +4569,11 @@ func VminS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
 //go:noescape
 func VminS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
-// Signed Minimum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the smaller of each of the two signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Minimum (vector). This instruction compares corresponding vector elements in the two source SIMD&FP registers, places the smaller of each of the two unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VminS8 VminS8
+//go:linkname VminU8 VminU8
 //go:noescape
-func VminS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VminU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Unsigned Minimum (vector). This instruction compares corresponding vector elements in the two source SIMD&FP registers, places the smaller of each of the two unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -4593,11 +4587,17 @@ func VminU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
 //go:noescape
 func VminU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 
-// Unsigned Minimum (vector). This instruction compares corresponding vector elements in the two source SIMD&FP registers, places the smaller of each of the two unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point minimum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the smaller of each of the two floating-point values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VminU8 VminU8
+//go:linkname VminF32 VminF32
 //go:noescape
-func VminU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VminF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
+
+// Floating-point minimum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the smaller of each of the two floating-point values into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VminF64 VminF64
+//go:noescape
+func VminF64(r *arm.Float64X1, v0 *arm.Float64X1, v1 *arm.Float64X1)
 
 // Floating-point Minimum Number (vector). This instruction compares corresponding vector elements in the two source SIMD&FP registers, writes the smaller of the two floating-point values into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -4641,17 +4641,11 @@ func VminnmvqF32(r *arm.Float32, v0 *arm.Float32X4)
 //go:noescape
 func VminnmvqF64(r *arm.Float64, v0 *arm.Float64X2)
 
-// Floating-point minimum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the smaller of each of the two floating-point values into a vector, and writes the vector to the destination SIMD&FP register.
+// Signed Minimum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the smaller of each of the two signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VminqF32 VminqF32
+//go:linkname VminqS8 VminqS8
 //go:noescape
-func VminqF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
-
-// Floating-point minimum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the smaller of each of the two floating-point values into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VminqF64 VminqF64
-//go:noescape
-func VminqF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
+func VminqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Signed Minimum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the smaller of each of the two signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -4665,11 +4659,11 @@ func VminqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
 //go:noescape
 func VminqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
-// Signed Minimum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the smaller of each of the two signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Minimum (vector). This instruction compares corresponding vector elements in the two source SIMD&FP registers, places the smaller of each of the two unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VminqS8 VminqS8
+//go:linkname VminqU8 VminqU8
 //go:noescape
-func VminqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VminqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Unsigned Minimum (vector). This instruction compares corresponding vector elements in the two source SIMD&FP registers, places the smaller of each of the two unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -4683,17 +4677,23 @@ func VminqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
 //go:noescape
 func VminqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 
-// Unsigned Minimum (vector). This instruction compares corresponding vector elements in the two source SIMD&FP registers, places the smaller of each of the two unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point minimum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the smaller of each of the two floating-point values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VminqU8 VminqU8
+//go:linkname VminqF32 VminqF32
 //go:noescape
-func VminqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VminqF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
 
-// Floating-point Minimum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the smaller of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
+// Floating-point minimum (vector). This instruction compares corresponding elements in the vectors in the two source SIMD&FP registers, places the smaller of each of the two floating-point values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VminvF32 VminvF32
+//go:linkname VminqF64 VminqF64
 //go:noescape
-func VminvF32(r *arm.Float32, v0 *arm.Float32X2)
+func VminqF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
+
+// Signed Minimum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the smallest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are signed integer values.
+//
+//go:linkname VminvS8 VminvS8
+//go:noescape
+func VminvS8(r *arm.Int8, v0 *arm.Int8X8)
 
 // Signed Minimum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the smallest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are signed integer values.
 //
@@ -4707,11 +4707,11 @@ func VminvS16(r *arm.Int16, v0 *arm.Int16X4)
 //go:noescape
 func VminvS32(r *arm.Int32, v0 *arm.Int32X2)
 
-// Signed Minimum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the smallest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are signed integer values.
+// Unsigned Minimum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the smallest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VminvS8 VminvS8
+//go:linkname VminvU8 VminvU8
 //go:noescape
-func VminvS8(r *arm.Int8, v0 *arm.Int8X8)
+func VminvU8(r *arm.Uint8, v0 *arm.Uint8X8)
 
 // Unsigned Minimum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the smallest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
 //
@@ -4725,23 +4725,17 @@ func VminvU16(r *arm.Uint16, v0 *arm.Uint16X4)
 //go:noescape
 func VminvU32(r *arm.Uint32, v0 *arm.Uint32X2)
 
-// Unsigned Minimum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the smallest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VminvU8 VminvU8
-//go:noescape
-func VminvU8(r *arm.Uint8, v0 *arm.Uint8X8)
-
-// Floating-point Minimum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the smallest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are floating-point values.
-//
-//go:linkname VminvqF32 VminvqF32
-//go:noescape
-func VminvqF32(r *arm.Float32, v0 *arm.Float32X4)
-
 // Floating-point Minimum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the smaller of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
 //
-//go:linkname VminvqF64 VminvqF64
+//go:linkname VminvF32 VminvF32
 //go:noescape
-func VminvqF64(r *arm.Float64, v0 *arm.Float64X2)
+func VminvF32(r *arm.Float32, v0 *arm.Float32X2)
+
+// Signed Minimum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the smallest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are signed integer values.
+//
+//go:linkname VminvqS8 VminvqS8
+//go:noescape
+func VminvqS8(r *arm.Int8, v0 *arm.Int8X16)
 
 // Signed Minimum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the smallest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are signed integer values.
 //
@@ -4755,11 +4749,11 @@ func VminvqS16(r *arm.Int16, v0 *arm.Int16X8)
 //go:noescape
 func VminvqS32(r *arm.Int32, v0 *arm.Int32X4)
 
-// Signed Minimum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the smallest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are signed integer values.
+// Unsigned Minimum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the smallest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VminvqS8 VminvqS8
+//go:linkname VminvqU8 VminvqU8
 //go:noescape
-func VminvqS8(r *arm.Int8, v0 *arm.Int8X16)
+func VminvqU8(r *arm.Uint8, v0 *arm.Uint8X16)
 
 // Unsigned Minimum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the smallest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
 //
@@ -4773,11 +4767,53 @@ func VminvqU16(r *arm.Uint16, v0 *arm.Uint16X8)
 //go:noescape
 func VminvqU32(r *arm.Uint32, v0 *arm.Uint32X4)
 
-// Unsigned Minimum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the smallest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
+// Floating-point Minimum across Vector. This instruction compares all the vector elements in the source SIMD&FP register, and writes the smallest of the values as a scalar to the destination SIMD&FP register. All the values in this instruction are floating-point values.
 //
-//go:linkname VminvqU8 VminvqU8
+//go:linkname VminvqF32 VminvqF32
 //go:noescape
-func VminvqU8(r *arm.Uint8, v0 *arm.Uint8X16)
+func VminvqF32(r *arm.Float32, v0 *arm.Float32X4)
+
+// Floating-point Minimum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the smaller of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
+//
+//go:linkname VminvqF64 VminvqF64
+//go:noescape
+func VminvqF64(r *arm.Float64, v0 *arm.Float64X2)
+
+// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
+//
+//go:linkname VmlaS8 VmlaS8
+//go:noescape
+func VmlaS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8, v2 *arm.Int8X8)
+
+// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
+//
+//go:linkname VmlaS16 VmlaS16
+//go:noescape
+func VmlaS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4, v2 *arm.Int16X4)
+
+// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
+//
+//go:linkname VmlaS32 VmlaS32
+//go:noescape
+func VmlaS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2, v2 *arm.Int32X2)
+
+// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
+//
+//go:linkname VmlaU8 VmlaU8
+//go:noescape
+func VmlaU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8, v2 *arm.Uint8X8)
+
+// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
+//
+//go:linkname VmlaU16 VmlaU16
+//go:noescape
+func VmlaU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4, v2 *arm.Uint16X4)
+
+// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
+//
+//go:linkname VmlaU32 VmlaU32
+//go:noescape
+func VmlaU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2, v2 *arm.Uint32X2)
 
 // Floating-point multiply-add to accumulator
 //
@@ -4790,12 +4826,6 @@ func VmlaF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2, v2 *arm.Flo
 //go:linkname VmlaF64 VmlaF64
 //go:noescape
 func VmlaF64(r *arm.Float64X1, v0 *arm.Float64X1, v1 *arm.Float64X1, v2 *arm.Float64X1)
-
-// Vector multiply accumulate with scalar
-//
-//go:linkname VmlaNF32 VmlaNF32
-//go:noescape
-func VmlaNF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2, v2 *arm.Float32)
 
 // Vector multiply accumulate with scalar
 //
@@ -4821,41 +4851,83 @@ func VmlaNU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4, v2 *arm.Uint1
 //go:noescape
 func VmlaNU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2, v2 *arm.Uint32)
 
-// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
+// Vector multiply accumulate with scalar
 //
-//go:linkname VmlaS16 VmlaS16
+//go:linkname VmlaNF32 VmlaNF32
 //go:noescape
-func VmlaS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4, v2 *arm.Int16X4)
+func VmlaNF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2, v2 *arm.Float32)
 
-// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
+// Signed Multiply-Add Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
 //
-//go:linkname VmlaS32 VmlaS32
+//go:linkname VmlalS8 VmlalS8
 //go:noescape
-func VmlaS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2, v2 *arm.Int32X2)
+func VmlalS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X8, v2 *arm.Int8X8)
 
-// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
+// Signed Multiply-Add Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
 //
-//go:linkname VmlaS8 VmlaS8
+//go:linkname VmlalS16 VmlalS16
 //go:noescape
-func VmlaS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8, v2 *arm.Int8X8)
+func VmlalS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X4, v2 *arm.Int16X4)
 
-// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
+// Signed Multiply-Add Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
 //
-//go:linkname VmlaU16 VmlaU16
+//go:linkname VmlalS32 VmlalS32
 //go:noescape
-func VmlaU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4, v2 *arm.Uint16X4)
+func VmlalS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X2, v2 *arm.Int32X2)
 
-// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
+// Unsigned Multiply-Add Long (vector). This instruction multiplies the vector elements in the lower or upper half of the first source SIMD&FP register by the corresponding vector elements of the second source SIMD&FP register, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
 //
-//go:linkname VmlaU32 VmlaU32
+//go:linkname VmlalU8 VmlalU8
 //go:noescape
-func VmlaU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2, v2 *arm.Uint32X2)
+func VmlalU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X8, v2 *arm.Uint8X8)
 
-// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
+// Unsigned Multiply-Add Long (vector). This instruction multiplies the vector elements in the lower or upper half of the first source SIMD&FP register by the corresponding vector elements of the second source SIMD&FP register, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
 //
-//go:linkname VmlaU8 VmlaU8
+//go:linkname VmlalU16 VmlalU16
 //go:noescape
-func VmlaU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8, v2 *arm.Uint8X8)
+func VmlalU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X4, v2 *arm.Uint16X4)
+
+// Unsigned Multiply-Add Long (vector). This instruction multiplies the vector elements in the lower or upper half of the first source SIMD&FP register by the corresponding vector elements of the second source SIMD&FP register, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+//
+//go:linkname VmlalU32 VmlalU32
+//go:noescape
+func VmlalU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X2, v2 *arm.Uint32X2)
+
+// Signed Multiply-Add Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+//
+//go:linkname VmlalHighS8 VmlalHighS8
+//go:noescape
+func VmlalHighS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X16, v2 *arm.Int8X16)
+
+// Signed Multiply-Add Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+//
+//go:linkname VmlalHighS16 VmlalHighS16
+//go:noescape
+func VmlalHighS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8, v2 *arm.Int16X8)
+
+// Signed Multiply-Add Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+//
+//go:linkname VmlalHighS32 VmlalHighS32
+//go:noescape
+func VmlalHighS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4, v2 *arm.Int32X4)
+
+// Unsigned Multiply-Add Long (vector). This instruction multiplies the vector elements in the lower or upper half of the first source SIMD&FP register by the corresponding vector elements of the second source SIMD&FP register, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+//
+//go:linkname VmlalHighU8 VmlalHighU8
+//go:noescape
+func VmlalHighU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
+
+// Unsigned Multiply-Add Long (vector). This instruction multiplies the vector elements in the lower or upper half of the first source SIMD&FP register by the corresponding vector elements of the second source SIMD&FP register, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+//
+//go:linkname VmlalHighU16 VmlalHighU16
+//go:noescape
+func VmlalHighU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
+
+// Unsigned Multiply-Add Long (vector). This instruction multiplies the vector elements in the lower or upper half of the first source SIMD&FP register by the corresponding vector elements of the second source SIMD&FP register, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+//
+//go:linkname VmlalHighU32 VmlalHighU32
+//go:noescape
+func VmlalHighU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
 
 // Signed Multiply-Add Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
 //
@@ -4881,42 +4953,6 @@ func VmlalHighNU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X8, v2 *arm.
 //go:noescape
 func VmlalHighNU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X4, v2 *arm.Uint32)
 
-// Signed Multiply-Add Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
-//
-//go:linkname VmlalHighS16 VmlalHighS16
-//go:noescape
-func VmlalHighS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8, v2 *arm.Int16X8)
-
-// Signed Multiply-Add Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
-//
-//go:linkname VmlalHighS32 VmlalHighS32
-//go:noescape
-func VmlalHighS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4, v2 *arm.Int32X4)
-
-// Signed Multiply-Add Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
-//
-//go:linkname VmlalHighS8 VmlalHighS8
-//go:noescape
-func VmlalHighS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X16, v2 *arm.Int8X16)
-
-// Unsigned Multiply-Add Long (vector). This instruction multiplies the vector elements in the lower or upper half of the first source SIMD&FP register by the corresponding vector elements of the second source SIMD&FP register, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
-//
-//go:linkname VmlalHighU16 VmlalHighU16
-//go:noescape
-func VmlalHighU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
-
-// Unsigned Multiply-Add Long (vector). This instruction multiplies the vector elements in the lower or upper half of the first source SIMD&FP register by the corresponding vector elements of the second source SIMD&FP register, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
-//
-//go:linkname VmlalHighU32 VmlalHighU32
-//go:noescape
-func VmlalHighU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
-
-// Unsigned Multiply-Add Long (vector). This instruction multiplies the vector elements in the lower or upper half of the first source SIMD&FP register by the corresponding vector elements of the second source SIMD&FP register, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
-//
-//go:linkname VmlalHighU8 VmlalHighU8
-//go:noescape
-func VmlalHighU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
-
 // Vector widening multiply accumulate with scalar
 //
 //go:linkname VmlalNS16 VmlalNS16
@@ -4941,41 +4977,41 @@ func VmlalNU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X4, v2 *arm.Uint
 //go:noescape
 func VmlalNU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X2, v2 *arm.Uint32)
 
-// Signed Multiply-Add Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
 //
-//go:linkname VmlalS16 VmlalS16
+//go:linkname VmlaqS8 VmlaqS8
 //go:noescape
-func VmlalS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X4, v2 *arm.Int16X4)
+func VmlaqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16, v2 *arm.Int8X16)
 
-// Signed Multiply-Add Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
 //
-//go:linkname VmlalS32 VmlalS32
+//go:linkname VmlaqS16 VmlaqS16
 //go:noescape
-func VmlalS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X2, v2 *arm.Int32X2)
+func VmlaqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8, v2 *arm.Int16X8)
 
-// Signed Multiply-Add Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
 //
-//go:linkname VmlalS8 VmlalS8
+//go:linkname VmlaqS32 VmlaqS32
 //go:noescape
-func VmlalS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X8, v2 *arm.Int8X8)
+func VmlaqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4, v2 *arm.Int32X4)
 
-// Unsigned Multiply-Add Long (vector). This instruction multiplies the vector elements in the lower or upper half of the first source SIMD&FP register by the corresponding vector elements of the second source SIMD&FP register, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
 //
-//go:linkname VmlalU16 VmlalU16
+//go:linkname VmlaqU8 VmlaqU8
 //go:noescape
-func VmlalU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X4, v2 *arm.Uint16X4)
+func VmlaqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
 
-// Unsigned Multiply-Add Long (vector). This instruction multiplies the vector elements in the lower or upper half of the first source SIMD&FP register by the corresponding vector elements of the second source SIMD&FP register, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
 //
-//go:linkname VmlalU32 VmlalU32
+//go:linkname VmlaqU16 VmlaqU16
 //go:noescape
-func VmlalU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X2, v2 *arm.Uint32X2)
+func VmlaqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
 
-// Unsigned Multiply-Add Long (vector). This instruction multiplies the vector elements in the lower or upper half of the first source SIMD&FP register by the corresponding vector elements of the second source SIMD&FP register, and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
 //
-//go:linkname VmlalU8 VmlalU8
+//go:linkname VmlaqU32 VmlaqU32
 //go:noescape
-func VmlalU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X8, v2 *arm.Uint8X8)
+func VmlaqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
 
 // Floating-point multiply-add to accumulator
 //
@@ -4988,12 +5024,6 @@ func VmlaqF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4, v2 *arm.Fl
 //go:linkname VmlaqF64 VmlaqF64
 //go:noescape
 func VmlaqF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64X2, v2 *arm.Float64X2)
-
-// Vector multiply accumulate with scalar
-//
-//go:linkname VmlaqNF32 VmlaqNF32
-//go:noescape
-func VmlaqNF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4, v2 *arm.Float32)
 
 // Vector multiply accumulate with scalar
 //
@@ -5019,41 +5049,47 @@ func VmlaqNU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8, v2 *arm.Uint
 //go:noescape
 func VmlaqNU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4, v2 *arm.Uint32)
 
-// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
+// Vector multiply accumulate with scalar
 //
-//go:linkname VmlaqS16 VmlaqS16
+//go:linkname VmlaqNF32 VmlaqNF32
 //go:noescape
-func VmlaqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8, v2 *arm.Int16X8)
+func VmlaqNF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4, v2 *arm.Float32)
 
-// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
+// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
 //
-//go:linkname VmlaqS32 VmlaqS32
+//go:linkname VmlsS8 VmlsS8
 //go:noescape
-func VmlaqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4, v2 *arm.Int32X4)
+func VmlsS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8, v2 *arm.Int8X8)
 
-// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
+// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
 //
-//go:linkname VmlaqS8 VmlaqS8
+//go:linkname VmlsS16 VmlsS16
 //go:noescape
-func VmlaqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16, v2 *arm.Int8X16)
+func VmlsS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4, v2 *arm.Int16X4)
 
-// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
+// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
 //
-//go:linkname VmlaqU16 VmlaqU16
+//go:linkname VmlsS32 VmlsS32
 //go:noescape
-func VmlaqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
+func VmlsS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2, v2 *arm.Int32X2)
 
-// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
+// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
 //
-//go:linkname VmlaqU32 VmlaqU32
+//go:linkname VmlsU8 VmlsU8
 //go:noescape
-func VmlaqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
+func VmlsU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8, v2 *arm.Uint8X8)
 
-// Multiply-Add to accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and accumulates the results with the vector elements of the destination SIMD&FP register.
+// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
 //
-//go:linkname VmlaqU8 VmlaqU8
+//go:linkname VmlsU16 VmlsU16
 //go:noescape
-func VmlaqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
+func VmlsU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4, v2 *arm.Uint16X4)
+
+// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
+//
+//go:linkname VmlsU32 VmlsU32
+//go:noescape
+func VmlsU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2, v2 *arm.Uint32X2)
 
 // Multiply-subtract from accumulator
 //
@@ -5066,12 +5102,6 @@ func VmlsF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2, v2 *arm.Flo
 //go:linkname VmlsF64 VmlsF64
 //go:noescape
 func VmlsF64(r *arm.Float64X1, v0 *arm.Float64X1, v1 *arm.Float64X1, v2 *arm.Float64X1)
-
-// Vector multiply subtract with scalar
-//
-//go:linkname VmlsNF32 VmlsNF32
-//go:noescape
-func VmlsNF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2, v2 *arm.Float32)
 
 // Vector multiply subtract with scalar
 //
@@ -5097,41 +5127,83 @@ func VmlsNU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4, v2 *arm.Uint1
 //go:noescape
 func VmlsNU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2, v2 *arm.Uint32)
 
-// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
+// Vector multiply subtract with scalar
 //
-//go:linkname VmlsS16 VmlsS16
+//go:linkname VmlsNF32 VmlsNF32
 //go:noescape
-func VmlsS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4, v2 *arm.Int16X4)
+func VmlsNF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2, v2 *arm.Float32)
 
-// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
+// Signed Multiply-Subtract Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
 //
-//go:linkname VmlsS32 VmlsS32
+//go:linkname VmlslS8 VmlslS8
 //go:noescape
-func VmlsS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2, v2 *arm.Int32X2)
+func VmlslS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X8, v2 *arm.Int8X8)
 
-// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
+// Signed Multiply-Subtract Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
 //
-//go:linkname VmlsS8 VmlsS8
+//go:linkname VmlslS16 VmlslS16
 //go:noescape
-func VmlsS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8, v2 *arm.Int8X8)
+func VmlslS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X4, v2 *arm.Int16X4)
 
-// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
+// Signed Multiply-Subtract Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
 //
-//go:linkname VmlsU16 VmlsU16
+//go:linkname VmlslS32 VmlslS32
 //go:noescape
-func VmlsU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4, v2 *arm.Uint16X4)
+func VmlslS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X2, v2 *arm.Int32X2)
 
-// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
+// Unsigned Multiply-Subtract Long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VmlsU32 VmlsU32
+//go:linkname VmlslU8 VmlslU8
 //go:noescape
-func VmlsU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2, v2 *arm.Uint32X2)
+func VmlslU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X8, v2 *arm.Uint8X8)
 
-// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
+// Unsigned Multiply-Subtract Long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VmlsU8 VmlsU8
+//go:linkname VmlslU16 VmlslU16
 //go:noescape
-func VmlsU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8, v2 *arm.Uint8X8)
+func VmlslU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X4, v2 *arm.Uint16X4)
+
+// Unsigned Multiply-Subtract Long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
+//
+//go:linkname VmlslU32 VmlslU32
+//go:noescape
+func VmlslU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X2, v2 *arm.Uint32X2)
+
+// Signed Multiply-Subtract Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+//
+//go:linkname VmlslHighS8 VmlslHighS8
+//go:noescape
+func VmlslHighS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X16, v2 *arm.Int8X16)
+
+// Signed Multiply-Subtract Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+//
+//go:linkname VmlslHighS16 VmlslHighS16
+//go:noescape
+func VmlslHighS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8, v2 *arm.Int16X8)
+
+// Signed Multiply-Subtract Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+//
+//go:linkname VmlslHighS32 VmlslHighS32
+//go:noescape
+func VmlslHighS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4, v2 *arm.Int32X4)
+
+// Unsigned Multiply-Subtract Long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
+//
+//go:linkname VmlslHighU8 VmlslHighU8
+//go:noescape
+func VmlslHighU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
+
+// Unsigned Multiply-Subtract Long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
+//
+//go:linkname VmlslHighU16 VmlslHighU16
+//go:noescape
+func VmlslHighU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
+
+// Unsigned Multiply-Subtract Long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
+//
+//go:linkname VmlslHighU32 VmlslHighU32
+//go:noescape
+func VmlslHighU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
 
 // Signed Multiply-Subtract Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
 //
@@ -5157,42 +5229,6 @@ func VmlslHighNU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X8, v2 *arm.
 //go:noescape
 func VmlslHighNU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X4, v2 *arm.Uint32)
 
-// Signed Multiply-Subtract Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
-//
-//go:linkname VmlslHighS16 VmlslHighS16
-//go:noescape
-func VmlslHighS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8, v2 *arm.Int16X8)
-
-// Signed Multiply-Subtract Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
-//
-//go:linkname VmlslHighS32 VmlslHighS32
-//go:noescape
-func VmlslHighS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4, v2 *arm.Int32X4)
-
-// Signed Multiply-Subtract Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
-//
-//go:linkname VmlslHighS8 VmlslHighS8
-//go:noescape
-func VmlslHighS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X16, v2 *arm.Int8X16)
-
-// Unsigned Multiply-Subtract Long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VmlslHighU16 VmlslHighU16
-//go:noescape
-func VmlslHighU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
-
-// Unsigned Multiply-Subtract Long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VmlslHighU32 VmlslHighU32
-//go:noescape
-func VmlslHighU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
-
-// Unsigned Multiply-Subtract Long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VmlslHighU8 VmlslHighU8
-//go:noescape
-func VmlslHighU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
-
 // Vector widening multiply subtract with scalar
 //
 //go:linkname VmlslNS16 VmlslNS16
@@ -5217,41 +5253,41 @@ func VmlslNU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X4, v2 *arm.Uint
 //go:noescape
 func VmlslNU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X2, v2 *arm.Uint32)
 
-// Signed Multiply-Subtract Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
 //
-//go:linkname VmlslS16 VmlslS16
+//go:linkname VmlsqS8 VmlsqS8
 //go:noescape
-func VmlslS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X4, v2 *arm.Int16X4)
+func VmlsqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16, v2 *arm.Int8X16)
 
-// Signed Multiply-Subtract Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
 //
-//go:linkname VmlslS32 VmlslS32
+//go:linkname VmlsqS16 VmlsqS16
 //go:noescape
-func VmlslS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X2, v2 *arm.Int32X2)
+func VmlsqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8, v2 *arm.Int16X8)
 
-// Signed Multiply-Subtract Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
 //
-//go:linkname VmlslS8 VmlslS8
+//go:linkname VmlsqS32 VmlsqS32
 //go:noescape
-func VmlslS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X8, v2 *arm.Int8X8)
+func VmlsqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4, v2 *arm.Int32X4)
 
-// Unsigned Multiply-Subtract Long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
+// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
 //
-//go:linkname VmlslU16 VmlslU16
+//go:linkname VmlsqU8 VmlsqU8
 //go:noescape
-func VmlslU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X4, v2 *arm.Uint16X4)
+func VmlsqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
 
-// Unsigned Multiply-Subtract Long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
+// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
 //
-//go:linkname VmlslU32 VmlslU32
+//go:linkname VmlsqU16 VmlsqU16
 //go:noescape
-func VmlslU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X2, v2 *arm.Uint32X2)
+func VmlsqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
 
-// Unsigned Multiply-Subtract Long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
+// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
 //
-//go:linkname VmlslU8 VmlslU8
+//go:linkname VmlsqU32 VmlsqU32
 //go:noescape
-func VmlslU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X8, v2 *arm.Uint8X8)
+func VmlsqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
 
 // Multiply-subtract from accumulator
 //
@@ -5264,12 +5300,6 @@ func VmlsqF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4, v2 *arm.Fl
 //go:linkname VmlsqF64 VmlsqF64
 //go:noescape
 func VmlsqF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64X2, v2 *arm.Float64X2)
-
-// Vector multiply subtract with scalar
-//
-//go:linkname VmlsqNF32 VmlsqNF32
-//go:noescape
-func VmlsqNF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4, v2 *arm.Float32)
 
 // Vector multiply subtract with scalar
 //
@@ -5295,41 +5325,11 @@ func VmlsqNU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8, v2 *arm.Uint
 //go:noescape
 func VmlsqNU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4, v2 *arm.Uint32)
 
-// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
+// Vector multiply subtract with scalar
 //
-//go:linkname VmlsqS16 VmlsqS16
+//go:linkname VmlsqNF32 VmlsqNF32
 //go:noescape
-func VmlsqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8, v2 *arm.Int16X8)
-
-// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
-//
-//go:linkname VmlsqS32 VmlsqS32
-//go:noescape
-func VmlsqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4, v2 *arm.Int32X4)
-
-// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
-//
-//go:linkname VmlsqS8 VmlsqS8
-//go:noescape
-func VmlsqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16, v2 *arm.Int8X16)
-
-// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
-//
-//go:linkname VmlsqU16 VmlsqU16
-//go:noescape
-func VmlsqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
-
-// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
-//
-//go:linkname VmlsqU32 VmlsqU32
-//go:noescape
-func VmlsqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
-
-// Multiply-Subtract from accumulator (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, and subtracts the results from the vector elements of the destination SIMD&FP register.
-//
-//go:linkname VmlsqU8 VmlsqU8
-//go:noescape
-func VmlsqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
+func VmlsqNF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4, v2 *arm.Float32)
 
 // Signed 8-bit integer matrix multiply-accumulate. This instruction multiplies the 2x8 matrix of signed 8-bit integer values in the first source vector by the 8x2 matrix of signed 8-bit integer values in the second source vector. The resulting 2x2 32-bit integer matrix product is destructively added to the 32-bit integer matrix accumulator in the destination vector. This is equivalent to performing an 8-way dot product per destination element.
 //
@@ -5342,6 +5342,54 @@ func VmmlaqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int8X16, v2 *arm.Int8X16
 //go:linkname VmmlaqU32 VmmlaqU32
 //go:noescape
 func VmmlaqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint8X16, v2 *arm.Uint8X16)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VmovNS8 VmovNS8
+//go:noescape
+func VmovNS8(r *arm.Int8X8, v0 *arm.Int8)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VmovNS16 VmovNS16
+//go:noescape
+func VmovNS16(r *arm.Int16X4, v0 *arm.Int16)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VmovNS32 VmovNS32
+//go:noescape
+func VmovNS32(r *arm.Int32X2, v0 *arm.Int32)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VmovNS64 VmovNS64
+//go:noescape
+func VmovNS64(r *arm.Int64X1, v0 *arm.Int64)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VmovNU8 VmovNU8
+//go:noescape
+func VmovNU8(r *arm.Uint8X8, v0 *arm.Uint8)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VmovNU16 VmovNU16
+//go:noescape
+func VmovNU16(r *arm.Uint16X4, v0 *arm.Uint16)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VmovNU32 VmovNU32
+//go:noescape
+func VmovNU32(r *arm.Uint32X2, v0 *arm.Uint32)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VmovNU64 VmovNU64
+//go:noescape
+func VmovNU64(r *arm.Uint64X1, v0 *arm.Uint64)
 
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
@@ -5373,89 +5421,11 @@ func VmovNP64(r *arm.Poly64X1, v0 *arm.Poly64)
 //go:noescape
 func VmovNP8(r *arm.Poly8X8, v0 *arm.Poly8)
 
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VmovNS16 VmovNS16
-//go:noescape
-func VmovNS16(r *arm.Int16X4, v0 *arm.Int16)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VmovNS32 VmovNS32
-//go:noescape
-func VmovNS32(r *arm.Int32X2, v0 *arm.Int32)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VmovNS64 VmovNS64
-//go:noescape
-func VmovNS64(r *arm.Int64X1, v0 *arm.Int64)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VmovNS8 VmovNS8
-//go:noescape
-func VmovNS8(r *arm.Int8X8, v0 *arm.Int8)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VmovNU16 VmovNU16
-//go:noescape
-func VmovNU16(r *arm.Uint16X4, v0 *arm.Uint16)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VmovNU32 VmovNU32
-//go:noescape
-func VmovNU32(r *arm.Uint32X2, v0 *arm.Uint32)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VmovNU64 VmovNU64
-//go:noescape
-func VmovNU64(r *arm.Uint64X1, v0 *arm.Uint64)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VmovNU8 VmovNU8
-//go:noescape
-func VmovNU8(r *arm.Uint8X8, v0 *arm.Uint8)
-
 // Vector move
 //
-//go:linkname VmovlHighS16 VmovlHighS16
+//go:linkname VmovlS8 VmovlS8
 //go:noescape
-func VmovlHighS16(r *arm.Int32X4, v0 *arm.Int16X8)
-
-// Vector move
-//
-//go:linkname VmovlHighS32 VmovlHighS32
-//go:noescape
-func VmovlHighS32(r *arm.Int64X2, v0 *arm.Int32X4)
-
-// Vector move
-//
-//go:linkname VmovlHighS8 VmovlHighS8
-//go:noescape
-func VmovlHighS8(r *arm.Int16X8, v0 *arm.Int8X16)
-
-// Vector move
-//
-//go:linkname VmovlHighU16 VmovlHighU16
-//go:noescape
-func VmovlHighU16(r *arm.Uint32X4, v0 *arm.Uint16X8)
-
-// Vector move
-//
-//go:linkname VmovlHighU32 VmovlHighU32
-//go:noescape
-func VmovlHighU32(r *arm.Uint64X2, v0 *arm.Uint32X4)
-
-// Vector move
-//
-//go:linkname VmovlHighU8 VmovlHighU8
-//go:noescape
-func VmovlHighU8(r *arm.Uint16X8, v0 *arm.Uint8X16)
+func VmovlS8(r *arm.Int16X8, v0 *arm.Int8X8)
 
 // Vector move
 //
@@ -5471,9 +5441,9 @@ func VmovlS32(r *arm.Int64X2, v0 *arm.Int32X2)
 
 // Vector move
 //
-//go:linkname VmovlS8 VmovlS8
+//go:linkname VmovlU8 VmovlU8
 //go:noescape
-func VmovlS8(r *arm.Int16X8, v0 *arm.Int8X8)
+func VmovlU8(r *arm.Uint16X8, v0 *arm.Uint8X8)
 
 // Vector move
 //
@@ -5489,45 +5459,39 @@ func VmovlU32(r *arm.Uint64X2, v0 *arm.Uint32X2)
 
 // Vector move
 //
-//go:linkname VmovlU8 VmovlU8
+//go:linkname VmovlHighS8 VmovlHighS8
 //go:noescape
-func VmovlU8(r *arm.Uint16X8, v0 *arm.Uint8X8)
+func VmovlHighS8(r *arm.Int16X8, v0 *arm.Int8X16)
 
-// Extract Narrow. This instruction reads each vector element from the source SIMD&FP register, narrows each value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
+// Vector move
 //
-//go:linkname VmovnHighS16 VmovnHighS16
+//go:linkname VmovlHighS16 VmovlHighS16
 //go:noescape
-func VmovnHighS16(r *arm.Int8X16, v0 *arm.Int8X8, v1 *arm.Int16X8)
+func VmovlHighS16(r *arm.Int32X4, v0 *arm.Int16X8)
 
-// Extract Narrow. This instruction reads each vector element from the source SIMD&FP register, narrows each value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
+// Vector move
 //
-//go:linkname VmovnHighS32 VmovnHighS32
+//go:linkname VmovlHighS32 VmovlHighS32
 //go:noescape
-func VmovnHighS32(r *arm.Int16X8, v0 *arm.Int16X4, v1 *arm.Int32X4)
+func VmovlHighS32(r *arm.Int64X2, v0 *arm.Int32X4)
 
-// Extract Narrow. This instruction reads each vector element from the source SIMD&FP register, narrows each value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
+// Vector move
 //
-//go:linkname VmovnHighS64 VmovnHighS64
+//go:linkname VmovlHighU8 VmovlHighU8
 //go:noescape
-func VmovnHighS64(r *arm.Int32X4, v0 *arm.Int32X2, v1 *arm.Int64X2)
+func VmovlHighU8(r *arm.Uint16X8, v0 *arm.Uint8X16)
 
-// Extract Narrow. This instruction reads each vector element from the source SIMD&FP register, narrows each value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
+// Vector move
 //
-//go:linkname VmovnHighU16 VmovnHighU16
+//go:linkname VmovlHighU16 VmovlHighU16
 //go:noescape
-func VmovnHighU16(r *arm.Uint8X16, v0 *arm.Uint8X8, v1 *arm.Uint16X8)
+func VmovlHighU16(r *arm.Uint32X4, v0 *arm.Uint16X8)
 
-// Extract Narrow. This instruction reads each vector element from the source SIMD&FP register, narrows each value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
+// Vector move
 //
-//go:linkname VmovnHighU32 VmovnHighU32
+//go:linkname VmovlHighU32 VmovlHighU32
 //go:noescape
-func VmovnHighU32(r *arm.Uint16X8, v0 *arm.Uint16X4, v1 *arm.Uint32X4)
-
-// Extract Narrow. This instruction reads each vector element from the source SIMD&FP register, narrows each value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
-//
-//go:linkname VmovnHighU64 VmovnHighU64
-//go:noescape
-func VmovnHighU64(r *arm.Uint32X4, v0 *arm.Uint32X2, v1 *arm.Uint64X2)
+func VmovlHighU32(r *arm.Uint64X2, v0 *arm.Uint32X4)
 
 // Extract Narrow. This instruction reads each vector element from the source SIMD&FP register, narrows each value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
 //
@@ -5565,6 +5529,90 @@ func VmovnU32(r *arm.Uint16X4, v0 *arm.Uint32X4)
 //go:noescape
 func VmovnU64(r *arm.Uint32X2, v0 *arm.Uint64X2)
 
+// Extract Narrow. This instruction reads each vector element from the source SIMD&FP register, narrows each value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
+//
+//go:linkname VmovnHighS16 VmovnHighS16
+//go:noescape
+func VmovnHighS16(r *arm.Int8X16, v0 *arm.Int8X8, v1 *arm.Int16X8)
+
+// Extract Narrow. This instruction reads each vector element from the source SIMD&FP register, narrows each value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
+//
+//go:linkname VmovnHighS32 VmovnHighS32
+//go:noescape
+func VmovnHighS32(r *arm.Int16X8, v0 *arm.Int16X4, v1 *arm.Int32X4)
+
+// Extract Narrow. This instruction reads each vector element from the source SIMD&FP register, narrows each value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
+//
+//go:linkname VmovnHighS64 VmovnHighS64
+//go:noescape
+func VmovnHighS64(r *arm.Int32X4, v0 *arm.Int32X2, v1 *arm.Int64X2)
+
+// Extract Narrow. This instruction reads each vector element from the source SIMD&FP register, narrows each value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
+//
+//go:linkname VmovnHighU16 VmovnHighU16
+//go:noescape
+func VmovnHighU16(r *arm.Uint8X16, v0 *arm.Uint8X8, v1 *arm.Uint16X8)
+
+// Extract Narrow. This instruction reads each vector element from the source SIMD&FP register, narrows each value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
+//
+//go:linkname VmovnHighU32 VmovnHighU32
+//go:noescape
+func VmovnHighU32(r *arm.Uint16X8, v0 *arm.Uint16X4, v1 *arm.Uint32X4)
+
+// Extract Narrow. This instruction reads each vector element from the source SIMD&FP register, narrows each value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
+//
+//go:linkname VmovnHighU64 VmovnHighU64
+//go:noescape
+func VmovnHighU64(r *arm.Uint32X4, v0 *arm.Uint32X2, v1 *arm.Uint64X2)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VmovqNS8 VmovqNS8
+//go:noescape
+func VmovqNS8(r *arm.Int8X16, v0 *arm.Int8)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VmovqNS16 VmovqNS16
+//go:noescape
+func VmovqNS16(r *arm.Int16X8, v0 *arm.Int16)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VmovqNS32 VmovqNS32
+//go:noescape
+func VmovqNS32(r *arm.Int32X4, v0 *arm.Int32)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VmovqNS64 VmovqNS64
+//go:noescape
+func VmovqNS64(r *arm.Int64X2, v0 *arm.Int64)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VmovqNU8 VmovqNU8
+//go:noescape
+func VmovqNU8(r *arm.Uint8X16, v0 *arm.Uint8)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VmovqNU16 VmovqNU16
+//go:noescape
+func VmovqNU16(r *arm.Uint16X8, v0 *arm.Uint16)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VmovqNU32 VmovqNU32
+//go:noescape
+func VmovqNU32(r *arm.Uint32X4, v0 *arm.Uint32)
+
+// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VmovqNU64 VmovqNU64
+//go:noescape
+func VmovqNU64(r *arm.Uint64X2, v0 *arm.Uint64)
+
 // Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
 //
 //go:linkname VmovqNF32 VmovqNF32
@@ -5595,53 +5643,41 @@ func VmovqNP64(r *arm.Poly64X2, v0 *arm.Poly64)
 //go:noescape
 func VmovqNP8(r *arm.Poly8X16, v0 *arm.Poly8)
 
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmovqNS16 VmovqNS16
+//go:linkname VmulS8 VmulS8
 //go:noescape
-func VmovqNS16(r *arm.Int16X8, v0 *arm.Int16)
+func VmulS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmovqNS32 VmovqNS32
+//go:linkname VmulS16 VmulS16
 //go:noescape
-func VmovqNS32(r *arm.Int32X4, v0 *arm.Int32)
+func VmulS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
 
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmovqNS64 VmovqNS64
+//go:linkname VmulS32 VmulS32
 //go:noescape
-func VmovqNS64(r *arm.Int64X2, v0 *arm.Int64)
+func VmulS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmovqNS8 VmovqNS8
+//go:linkname VmulU8 VmulU8
 //go:noescape
-func VmovqNS8(r *arm.Int8X16, v0 *arm.Int8)
+func VmulU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmovqNU16 VmovqNU16
+//go:linkname VmulU16 VmulU16
 //go:noescape
-func VmovqNU16(r *arm.Uint16X8, v0 *arm.Uint16)
+func VmulU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
 
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
+// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmovqNU32 VmovqNU32
+//go:linkname VmulU32 VmulU32
 //go:noescape
-func VmovqNU32(r *arm.Uint32X4, v0 *arm.Uint32)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VmovqNU64 VmovqNU64
-//go:noescape
-func VmovqNU64(r *arm.Uint64X2, v0 *arm.Uint64)
-
-// Duplicate vector element to vector or scalar. This instruction duplicates the vector element at the specified element index in the source SIMD&FP register into a scalar or each element in a vector, and writes the result to the destination SIMD&FP register.
-//
-//go:linkname VmovqNU8 VmovqNU8
-//go:noescape
-func VmovqNU8(r *arm.Uint8X16, v0 *arm.Uint8)
+func VmulU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 
 // Floating-point Multiply (vector). This instruction multiplies corresponding floating-point values in the vectors in the two source SIMD&FP registers, places the result in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -5654,18 +5690,6 @@ func VmulF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
 //go:linkname VmulF64 VmulF64
 //go:noescape
 func VmulF64(r *arm.Float64X1, v0 *arm.Float64X1, v1 *arm.Float64X1)
-
-// Vector multiply by scalar
-//
-//go:linkname VmulNF32 VmulNF32
-//go:noescape
-func VmulNF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32)
-
-// Floating-point Multiply (vector). This instruction multiplies corresponding floating-point values in the vectors in the two source SIMD&FP registers, places the result in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VmulNF64 VmulNF64
-//go:noescape
-func VmulNF64(r *arm.Float64X1, v0 *arm.Float64X1, v1 *arm.Float64)
 
 // Vector multiply by scalar
 //
@@ -5691,47 +5715,95 @@ func VmulNU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16)
 //go:noescape
 func VmulNU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32)
 
+// Vector multiply by scalar
+//
+//go:linkname VmulNF32 VmulNF32
+//go:noescape
+func VmulNF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32)
+
+// Floating-point Multiply (vector). This instruction multiplies corresponding floating-point values in the vectors in the two source SIMD&FP registers, places the result in a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VmulNF64 VmulNF64
+//go:noescape
+func VmulNF64(r *arm.Float64X1, v0 *arm.Float64X1, v1 *arm.Float64)
+
 // Polynomial Multiply. This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
 //go:linkname VmulP8 VmulP8
 //go:noescape
 func VmulP8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8)
 
-// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+// Signed Multiply Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmulS16 VmulS16
+//go:linkname VmullS8 VmullS8
 //go:noescape
-func VmulS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
+func VmullS8(r *arm.Int16X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
-// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+// Signed Multiply Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmulS32 VmulS32
+//go:linkname VmullS16 VmullS16
 //go:noescape
-func VmulS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+func VmullS16(r *arm.Int32X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
 
-// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+// Signed Multiply Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmulS8 VmulS8
+//go:linkname VmullS32 VmullS32
 //go:noescape
-func VmulS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VmullS32(r *arm.Int64X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
-// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Multiply long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, places the result in a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VmulU16 VmulU16
+//go:linkname VmullU8 VmullU8
 //go:noescape
-func VmulU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+func VmullU8(r *arm.Uint16X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
-// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Multiply long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, places the result in a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VmulU32 VmulU32
+//go:linkname VmullU16 VmullU16
 //go:noescape
-func VmulU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+func VmullU16(r *arm.Uint32X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
 
-// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Multiply long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, places the result in a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VmulU8 VmulU8
+//go:linkname VmullU32 VmullU32
 //go:noescape
-func VmulU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VmullU32(r *arm.Uint64X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+
+// Signed Multiply Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VmullHighS8 VmullHighS8
+//go:noescape
+func VmullHighS8(r *arm.Int16X8, v0 *arm.Int8X16, v1 *arm.Int8X16)
+
+// Signed Multiply Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VmullHighS16 VmullHighS16
+//go:noescape
+func VmullHighS16(r *arm.Int32X4, v0 *arm.Int16X8, v1 *arm.Int16X8)
+
+// Signed Multiply Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VmullHighS32 VmullHighS32
+//go:noescape
+func VmullHighS32(r *arm.Int64X2, v0 *arm.Int32X4, v1 *arm.Int32X4)
+
+// Unsigned Multiply long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, places the result in a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
+//
+//go:linkname VmullHighU8 VmullHighU8
+//go:noescape
+func VmullHighU8(r *arm.Uint16X8, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+
+// Unsigned Multiply long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, places the result in a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
+//
+//go:linkname VmullHighU16 VmullHighU16
+//go:noescape
+func VmullHighU16(r *arm.Uint32X4, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
+
+// Unsigned Multiply long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, places the result in a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
+//
+//go:linkname VmullHighU32 VmullHighU32
+//go:noescape
+func VmullHighU32(r *arm.Uint64X2, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 
 // Signed Multiply Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -5769,42 +5841,6 @@ func VmullHighP64(r *arm.Poly128, v0 *arm.Poly64X2, v1 *arm.Poly64X2)
 //go:noescape
 func VmullHighP8(r *arm.Poly16X8, v0 *arm.Poly8X16, v1 *arm.Poly8X16)
 
-// Signed Multiply Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VmullHighS16 VmullHighS16
-//go:noescape
-func VmullHighS16(r *arm.Int32X4, v0 *arm.Int16X8, v1 *arm.Int16X8)
-
-// Signed Multiply Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VmullHighS32 VmullHighS32
-//go:noescape
-func VmullHighS32(r *arm.Int64X2, v0 *arm.Int32X4, v1 *arm.Int32X4)
-
-// Signed Multiply Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VmullHighS8 VmullHighS8
-//go:noescape
-func VmullHighS8(r *arm.Int16X8, v0 *arm.Int8X16, v1 *arm.Int8X16)
-
-// Unsigned Multiply long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, places the result in a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VmullHighU16 VmullHighU16
-//go:noescape
-func VmullHighU16(r *arm.Uint32X4, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
-
-// Unsigned Multiply long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, places the result in a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VmullHighU32 VmullHighU32
-//go:noescape
-func VmullHighU32(r *arm.Uint64X2, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
-
-// Unsigned Multiply long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, places the result in a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VmullHighU8 VmullHighU8
-//go:noescape
-func VmullHighU8(r *arm.Uint16X8, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
-
 // Vector long multiply with scalar
 //
 //go:linkname VmullNS16 VmullNS16
@@ -5841,41 +5877,41 @@ func VmullP64(r *arm.Poly128, v0 *arm.Poly64, v1 *arm.Poly64)
 //go:noescape
 func VmullP8(r *arm.Poly16X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8)
 
-// Signed Multiply Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmullS16 VmullS16
+//go:linkname VmulqS8 VmulqS8
 //go:noescape
-func VmullS16(r *arm.Int32X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
+func VmulqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
-// Signed Multiply Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmullS32 VmullS32
+//go:linkname VmulqS16 VmulqS16
 //go:noescape
-func VmullS32(r *arm.Int64X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+func VmulqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
 
-// Signed Multiply Long (vector). This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmullS8 VmullS8
+//go:linkname VmulqS32 VmulqS32
 //go:noescape
-func VmullS8(r *arm.Int16X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VmulqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
-// Unsigned Multiply long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, places the result in a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
+// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmullU16 VmullU16
+//go:linkname VmulqU8 VmulqU8
 //go:noescape
-func VmullU16(r *arm.Uint32X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+func VmulqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
-// Unsigned Multiply long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, places the result in a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
+// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmullU32 VmullU32
+//go:linkname VmulqU16 VmulqU16
 //go:noescape
-func VmullU32(r *arm.Uint64X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+func VmulqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
 
-// Unsigned Multiply long (vector). This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, places the result in a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied. All the values in this instruction are unsigned integer values.
+// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmullU8 VmullU8
+//go:linkname VmulqU32 VmulqU32
 //go:noescape
-func VmullU8(r *arm.Uint16X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VmulqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 
 // Floating-point Multiply (vector). This instruction multiplies corresponding floating-point values in the vectors in the two source SIMD&FP registers, places the result in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -5888,18 +5924,6 @@ func VmulqF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
 //go:linkname VmulqF64 VmulqF64
 //go:noescape
 func VmulqF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
-
-// Vector multiply by scalar
-//
-//go:linkname VmulqNF32 VmulqNF32
-//go:noescape
-func VmulqNF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32)
-
-// Floating-point Multiply (vector). This instruction multiplies corresponding floating-point values in the vectors in the two source SIMD&FP registers, places the result in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VmulqNF64 VmulqNF64
-//go:noescape
-func VmulqNF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64)
 
 // Vector multiply by scalar
 //
@@ -5925,47 +5949,23 @@ func VmulqNU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16)
 //go:noescape
 func VmulqNU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32)
 
+// Vector multiply by scalar
+//
+//go:linkname VmulqNF32 VmulqNF32
+//go:noescape
+func VmulqNF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32)
+
+// Floating-point Multiply (vector). This instruction multiplies corresponding floating-point values in the vectors in the two source SIMD&FP registers, places the result in a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VmulqNF64 VmulqNF64
+//go:noescape
+func VmulqNF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64)
+
 // Polynomial Multiply. This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
 //go:linkname VmulqP8 VmulqP8
 //go:noescape
 func VmulqP8(r *arm.Poly8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16)
-
-// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VmulqS16 VmulqS16
-//go:noescape
-func VmulqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
-
-// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VmulqS32 VmulqS32
-//go:noescape
-func VmulqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
-
-// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VmulqS8 VmulqS8
-//go:noescape
-func VmulqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
-
-// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VmulqU16 VmulqU16
-//go:noescape
-func VmulqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
-
-// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VmulqU32 VmulqU32
-//go:noescape
-func VmulqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
-
-// Multiply (vector). This instruction multiplies corresponding elements in the vectors of the two source SIMD&FP registers, places the results in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VmulqU8 VmulqU8
-//go:noescape
-func VmulqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Floating-point Multiply extended. This instruction multiplies corresponding floating-point values in the vectors of the two source SIMD&FP registers, places the resulting floating-point values in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6005,9 +6005,9 @@ func VmulxsF32(r *arm.Float32, v0 *arm.Float32, v1 *arm.Float32)
 
 // Bitwise NOT (vector). This instruction reads each vector element from the source SIMD&FP register, places the inverse of each value into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmvnP8 VmvnP8
+//go:linkname VmvnS8 VmvnS8
 //go:noescape
-func VmvnP8(r *arm.Poly8X8, v0 *arm.Poly8X8)
+func VmvnS8(r *arm.Int8X8, v0 *arm.Int8X8)
 
 // Bitwise NOT (vector). This instruction reads each vector element from the source SIMD&FP register, places the inverse of each value into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6023,9 +6023,9 @@ func VmvnS32(r *arm.Int32X2, v0 *arm.Int32X2)
 
 // Bitwise NOT (vector). This instruction reads each vector element from the source SIMD&FP register, places the inverse of each value into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmvnS8 VmvnS8
+//go:linkname VmvnU8 VmvnU8
 //go:noescape
-func VmvnS8(r *arm.Int8X8, v0 *arm.Int8X8)
+func VmvnU8(r *arm.Uint8X8, v0 *arm.Uint8X8)
 
 // Bitwise NOT (vector). This instruction reads each vector element from the source SIMD&FP register, places the inverse of each value into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6041,15 +6041,15 @@ func VmvnU32(r *arm.Uint32X2, v0 *arm.Uint32X2)
 
 // Bitwise NOT (vector). This instruction reads each vector element from the source SIMD&FP register, places the inverse of each value into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmvnU8 VmvnU8
+//go:linkname VmvnP8 VmvnP8
 //go:noescape
-func VmvnU8(r *arm.Uint8X8, v0 *arm.Uint8X8)
+func VmvnP8(r *arm.Poly8X8, v0 *arm.Poly8X8)
 
 // Bitwise NOT (vector). This instruction reads each vector element from the source SIMD&FP register, places the inverse of each value into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmvnqP8 VmvnqP8
+//go:linkname VmvnqS8 VmvnqS8
 //go:noescape
-func VmvnqP8(r *arm.Poly8X16, v0 *arm.Poly8X16)
+func VmvnqS8(r *arm.Int8X16, v0 *arm.Int8X16)
 
 // Bitwise NOT (vector). This instruction reads each vector element from the source SIMD&FP register, places the inverse of each value into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6065,9 +6065,9 @@ func VmvnqS32(r *arm.Int32X4, v0 *arm.Int32X4)
 
 // Bitwise NOT (vector). This instruction reads each vector element from the source SIMD&FP register, places the inverse of each value into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmvnqS8 VmvnqS8
+//go:linkname VmvnqU8 VmvnqU8
 //go:noescape
-func VmvnqS8(r *arm.Int8X16, v0 *arm.Int8X16)
+func VmvnqU8(r *arm.Uint8X16, v0 *arm.Uint8X16)
 
 // Bitwise NOT (vector). This instruction reads each vector element from the source SIMD&FP register, places the inverse of each value into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6083,21 +6083,15 @@ func VmvnqU32(r *arm.Uint32X4, v0 *arm.Uint32X4)
 
 // Bitwise NOT (vector). This instruction reads each vector element from the source SIMD&FP register, places the inverse of each value into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VmvnqU8 VmvnqU8
+//go:linkname VmvnqP8 VmvnqP8
 //go:noescape
-func VmvnqU8(r *arm.Uint8X16, v0 *arm.Uint8X16)
+func VmvnqP8(r *arm.Poly8X16, v0 *arm.Poly8X16)
 
-// Floating-point Negate (vector). This instruction negates the value of each vector element in the source SIMD&FP register, writes the result to a vector, and writes the vector to the destination SIMD&FP register.
+// Negate (vector). This instruction reads each vector element from the source SIMD&FP register, negates each value, puts the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VnegF32 VnegF32
+//go:linkname VnegS8 VnegS8
 //go:noescape
-func VnegF32(r *arm.Float32X2, v0 *arm.Float32X2)
-
-// Floating-point Negate (vector). This instruction negates the value of each vector element in the source SIMD&FP register, writes the result to a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VnegF64 VnegF64
-//go:noescape
-func VnegF64(r *arm.Float64X1, v0 *arm.Float64X1)
+func VnegS8(r *arm.Int8X8, v0 *arm.Int8X8)
 
 // Negate (vector). This instruction reads each vector element from the source SIMD&FP register, negates each value, puts the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6117,11 +6111,17 @@ func VnegS32(r *arm.Int32X2, v0 *arm.Int32X2)
 //go:noescape
 func VnegS64(r *arm.Int64X1, v0 *arm.Int64X1)
 
-// Negate (vector). This instruction reads each vector element from the source SIMD&FP register, negates each value, puts the result into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point Negate (vector). This instruction negates the value of each vector element in the source SIMD&FP register, writes the result to a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VnegS8 VnegS8
+//go:linkname VnegF32 VnegF32
 //go:noescape
-func VnegS8(r *arm.Int8X8, v0 *arm.Int8X8)
+func VnegF32(r *arm.Float32X2, v0 *arm.Float32X2)
+
+// Floating-point Negate (vector). This instruction negates the value of each vector element in the source SIMD&FP register, writes the result to a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VnegF64 VnegF64
+//go:noescape
+func VnegF64(r *arm.Float64X1, v0 *arm.Float64X1)
 
 // Negate (vector). This instruction reads each vector element from the source SIMD&FP register, negates each value, puts the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6129,17 +6129,11 @@ func VnegS8(r *arm.Int8X8, v0 *arm.Int8X8)
 //go:noescape
 func VnegdS64(r *arm.Int64, v0 *arm.Int64)
 
-// Floating-point Negate (vector). This instruction negates the value of each vector element in the source SIMD&FP register, writes the result to a vector, and writes the vector to the destination SIMD&FP register.
+// Negate (vector). This instruction reads each vector element from the source SIMD&FP register, negates each value, puts the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VnegqF32 VnegqF32
+//go:linkname VnegqS8 VnegqS8
 //go:noescape
-func VnegqF32(r *arm.Float32X4, v0 *arm.Float32X4)
-
-// Floating-point Negate (vector). This instruction negates the value of each vector element in the source SIMD&FP register, writes the result to a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VnegqF64 VnegqF64
-//go:noescape
-func VnegqF64(r *arm.Float64X2, v0 *arm.Float64X2)
+func VnegqS8(r *arm.Int8X16, v0 *arm.Int8X16)
 
 // Negate (vector). This instruction reads each vector element from the source SIMD&FP register, negates each value, puts the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6159,11 +6153,23 @@ func VnegqS32(r *arm.Int32X4, v0 *arm.Int32X4)
 //go:noescape
 func VnegqS64(r *arm.Int64X2, v0 *arm.Int64X2)
 
-// Negate (vector). This instruction reads each vector element from the source SIMD&FP register, negates each value, puts the result into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point Negate (vector). This instruction negates the value of each vector element in the source SIMD&FP register, writes the result to a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VnegqS8 VnegqS8
+//go:linkname VnegqF32 VnegqF32
 //go:noescape
-func VnegqS8(r *arm.Int8X16, v0 *arm.Int8X16)
+func VnegqF32(r *arm.Float32X4, v0 *arm.Float32X4)
+
+// Floating-point Negate (vector). This instruction negates the value of each vector element in the source SIMD&FP register, writes the result to a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VnegqF64 VnegqF64
+//go:noescape
+func VnegqF64(r *arm.Float64X2, v0 *arm.Float64X2)
+
+// Bitwise inclusive OR NOT (vector). This instruction performs a bitwise OR NOT between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
+//
+//go:linkname VornS8 VornS8
+//go:noescape
+func VornS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Bitwise inclusive OR NOT (vector). This instruction performs a bitwise OR NOT between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
@@ -6185,9 +6191,9 @@ func VornS64(r *arm.Int64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
 
 // Bitwise inclusive OR NOT (vector). This instruction performs a bitwise OR NOT between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VornS8 VornS8
+//go:linkname VornU8 VornU8
 //go:noescape
-func VornS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VornU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Bitwise inclusive OR NOT (vector). This instruction performs a bitwise OR NOT between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
@@ -6209,9 +6215,9 @@ func VornU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
 
 // Bitwise inclusive OR NOT (vector). This instruction performs a bitwise OR NOT between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VornU8 VornU8
+//go:linkname VornqS8 VornqS8
 //go:noescape
-func VornU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VornqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Bitwise inclusive OR NOT (vector). This instruction performs a bitwise OR NOT between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
@@ -6233,9 +6239,9 @@ func VornqS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
 // Bitwise inclusive OR NOT (vector). This instruction performs a bitwise OR NOT between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VornqS8 VornqS8
+//go:linkname VornqU8 VornqU8
 //go:noescape
-func VornqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VornqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Bitwise inclusive OR NOT (vector). This instruction performs a bitwise OR NOT between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
@@ -6255,11 +6261,11 @@ func VornqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 //go:noescape
 func VornqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
-// Bitwise inclusive OR NOT (vector). This instruction performs a bitwise OR NOT between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
+// Bitwise inclusive OR (vector, register). This instruction performs a bitwise OR between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VornqU8 VornqU8
+//go:linkname VorrS8 VorrS8
 //go:noescape
-func VornqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VorrS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Bitwise inclusive OR (vector, register). This instruction performs a bitwise OR between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
@@ -6281,9 +6287,9 @@ func VorrS64(r *arm.Int64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
 
 // Bitwise inclusive OR (vector, register). This instruction performs a bitwise OR between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VorrS8 VorrS8
+//go:linkname VorrU8 VorrU8
 //go:noescape
-func VorrS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VorrU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Bitwise inclusive OR (vector, register). This instruction performs a bitwise OR between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
@@ -6305,9 +6311,9 @@ func VorrU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
 
 // Bitwise inclusive OR (vector, register). This instruction performs a bitwise OR between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VorrU8 VorrU8
+//go:linkname VorrqS8 VorrqS8
 //go:noescape
-func VorrU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VorrqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Bitwise inclusive OR (vector, register). This instruction performs a bitwise OR between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
@@ -6329,9 +6335,9 @@ func VorrqS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
 // Bitwise inclusive OR (vector, register). This instruction performs a bitwise OR between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
-//go:linkname VorrqS8 VorrqS8
+//go:linkname VorrqU8 VorrqU8
 //go:noescape
-func VorrqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VorrqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Bitwise inclusive OR (vector, register). This instruction performs a bitwise OR between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
 //
@@ -6351,11 +6357,11 @@ func VorrqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 //go:noescape
 func VorrqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
-// Bitwise inclusive OR (vector, register). This instruction performs a bitwise OR between the two source SIMD&FP registers, and writes the result to the destination SIMD&FP register.
+// Signed Add and Accumulate Long Pairwise. This instruction adds pairs of adjacent signed integer values from the vector in the source SIMD&FP register and accumulates the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
-//go:linkname VorrqU8 VorrqU8
+//go:linkname VpadalS8 VpadalS8
 //go:noescape
-func VorrqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VpadalS8(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int8X8)
 
 // Signed Add and Accumulate Long Pairwise. This instruction adds pairs of adjacent signed integer values from the vector in the source SIMD&FP register and accumulates the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
@@ -6369,11 +6375,11 @@ func VpadalS16(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int16X4)
 //go:noescape
 func VpadalS32(r *arm.Int64X1, v0 *arm.Int64X1, v1 *arm.Int32X2)
 
-// Signed Add and Accumulate Long Pairwise. This instruction adds pairs of adjacent signed integer values from the vector in the source SIMD&FP register and accumulates the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
+// Unsigned Add and Accumulate Long Pairwise. This instruction adds pairs of adjacent unsigned integer values from the vector in the source SIMD&FP register and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
-//go:linkname VpadalS8 VpadalS8
+//go:linkname VpadalU8 VpadalU8
 //go:noescape
-func VpadalS8(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int8X8)
+func VpadalU8(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint8X8)
 
 // Unsigned Add and Accumulate Long Pairwise. This instruction adds pairs of adjacent unsigned integer values from the vector in the source SIMD&FP register and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
@@ -6387,11 +6393,11 @@ func VpadalU16(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint16X4)
 //go:noescape
 func VpadalU32(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint32X2)
 
-// Unsigned Add and Accumulate Long Pairwise. This instruction adds pairs of adjacent unsigned integer values from the vector in the source SIMD&FP register and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
+// Signed Add and Accumulate Long Pairwise. This instruction adds pairs of adjacent signed integer values from the vector in the source SIMD&FP register and accumulates the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
-//go:linkname VpadalU8 VpadalU8
+//go:linkname VpadalqS8 VpadalqS8
 //go:noescape
-func VpadalU8(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint8X8)
+func VpadalqS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X16)
 
 // Signed Add and Accumulate Long Pairwise. This instruction adds pairs of adjacent signed integer values from the vector in the source SIMD&FP register and accumulates the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
@@ -6405,11 +6411,11 @@ func VpadalqS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8)
 //go:noescape
 func VpadalqS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4)
 
-// Signed Add and Accumulate Long Pairwise. This instruction adds pairs of adjacent signed integer values from the vector in the source SIMD&FP register and accumulates the results into the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
+// Unsigned Add and Accumulate Long Pairwise. This instruction adds pairs of adjacent unsigned integer values from the vector in the source SIMD&FP register and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
-//go:linkname VpadalqS8 VpadalqS8
+//go:linkname VpadalqU8 VpadalqU8
 //go:noescape
-func VpadalqS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X16)
+func VpadalqU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X16)
 
 // Unsigned Add and Accumulate Long Pairwise. This instruction adds pairs of adjacent unsigned integer values from the vector in the source SIMD&FP register and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
@@ -6423,17 +6429,11 @@ func VpadalqU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X8)
 //go:noescape
 func VpadalqU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X4)
 
-// Unsigned Add and Accumulate Long Pairwise. This instruction adds pairs of adjacent unsigned integer values from the vector in the source SIMD&FP register and accumulates the results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
+// Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VpadalqU8 VpadalqU8
+//go:linkname VpaddS8 VpaddS8
 //go:noescape
-func VpadalqU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X16)
-
-// Floating-point Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
-//
-//go:linkname VpaddF32 VpaddF32
-//go:noescape
-func VpaddF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
+func VpaddS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6449,9 +6449,9 @@ func VpaddS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
 // Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VpaddS8 VpaddS8
+//go:linkname VpaddU8 VpaddU8
 //go:noescape
-func VpaddS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VpaddU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6465,17 +6465,11 @@ func VpaddU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
 //go:noescape
 func VpaddU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 
-// Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VpaddU8 VpaddU8
-//go:noescape
-func VpaddU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
-
 // Floating-point Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
 //
-//go:linkname VpadddF64 VpadddF64
+//go:linkname VpaddF32 VpaddF32
 //go:noescape
-func VpadddF64(r *arm.Float64, v0 *arm.Float64X2)
+func VpaddF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
 
 // Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6489,6 +6483,18 @@ func VpadddS64(r *arm.Int64, v0 *arm.Int64X2)
 //go:noescape
 func VpadddU64(r *arm.Uint64, v0 *arm.Uint64X2)
 
+// Floating-point Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
+//
+//go:linkname VpadddF64 VpadddF64
+//go:noescape
+func VpadddF64(r *arm.Float64, v0 *arm.Float64X2)
+
+// Signed Add Long Pairwise. This instruction adds pairs of adjacent signed integer values from the vector in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
+//
+//go:linkname VpaddlS8 VpaddlS8
+//go:noescape
+func VpaddlS8(r *arm.Int16X4, v0 *arm.Int8X8)
+
 // Signed Add Long Pairwise. This instruction adds pairs of adjacent signed integer values from the vector in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
 //go:linkname VpaddlS16 VpaddlS16
@@ -6501,11 +6507,11 @@ func VpaddlS16(r *arm.Int32X2, v0 *arm.Int16X4)
 //go:noescape
 func VpaddlS32(r *arm.Int64X1, v0 *arm.Int32X2)
 
-// Signed Add Long Pairwise. This instruction adds pairs of adjacent signed integer values from the vector in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
+// Unsigned Add Long Pairwise. This instruction adds pairs of adjacent unsigned integer values from the vector in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
-//go:linkname VpaddlS8 VpaddlS8
+//go:linkname VpaddlU8 VpaddlU8
 //go:noescape
-func VpaddlS8(r *arm.Int16X4, v0 *arm.Int8X8)
+func VpaddlU8(r *arm.Uint16X4, v0 *arm.Uint8X8)
 
 // Unsigned Add Long Pairwise. This instruction adds pairs of adjacent unsigned integer values from the vector in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
@@ -6519,11 +6525,11 @@ func VpaddlU16(r *arm.Uint32X2, v0 *arm.Uint16X4)
 //go:noescape
 func VpaddlU32(r *arm.Uint64X1, v0 *arm.Uint32X2)
 
-// Unsigned Add Long Pairwise. This instruction adds pairs of adjacent unsigned integer values from the vector in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
+// Signed Add Long Pairwise. This instruction adds pairs of adjacent signed integer values from the vector in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
-//go:linkname VpaddlU8 VpaddlU8
+//go:linkname VpaddlqS8 VpaddlqS8
 //go:noescape
-func VpaddlU8(r *arm.Uint16X4, v0 *arm.Uint8X8)
+func VpaddlqS8(r *arm.Int16X8, v0 *arm.Int8X16)
 
 // Signed Add Long Pairwise. This instruction adds pairs of adjacent signed integer values from the vector in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
@@ -6537,11 +6543,11 @@ func VpaddlqS16(r *arm.Int32X4, v0 *arm.Int16X8)
 //go:noescape
 func VpaddlqS32(r *arm.Int64X2, v0 *arm.Int32X4)
 
-// Signed Add Long Pairwise. This instruction adds pairs of adjacent signed integer values from the vector in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
+// Unsigned Add Long Pairwise. This instruction adds pairs of adjacent unsigned integer values from the vector in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
-//go:linkname VpaddlqS8 VpaddlqS8
+//go:linkname VpaddlqU8 VpaddlqU8
 //go:noescape
-func VpaddlqS8(r *arm.Int16X8, v0 *arm.Int8X16)
+func VpaddlqU8(r *arm.Uint16X8, v0 *arm.Uint8X16)
 
 // Unsigned Add Long Pairwise. This instruction adds pairs of adjacent unsigned integer values from the vector in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
 //
@@ -6555,23 +6561,11 @@ func VpaddlqU16(r *arm.Uint32X4, v0 *arm.Uint16X8)
 //go:noescape
 func VpaddlqU32(r *arm.Uint64X2, v0 *arm.Uint32X4)
 
-// Unsigned Add Long Pairwise. This instruction adds pairs of adjacent unsigned integer values from the vector in the source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. The destination vector elements are twice as long as the source vector elements.
+// Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VpaddlqU8 VpaddlqU8
+//go:linkname VpaddqS8 VpaddqS8
 //go:noescape
-func VpaddlqU8(r *arm.Uint16X8, v0 *arm.Uint8X16)
-
-// Floating-point Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
-//
-//go:linkname VpaddqF32 VpaddqF32
-//go:noescape
-func VpaddqF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
-
-// Floating-point Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
-//
-//go:linkname VpaddqF64 VpaddqF64
-//go:noescape
-func VpaddqF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
+func VpaddqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6593,9 +6587,9 @@ func VpaddqS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
 // Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VpaddqS8 VpaddqS8
+//go:linkname VpaddqU8 VpaddqU8
 //go:noescape
-func VpaddqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VpaddqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6615,11 +6609,17 @@ func VpaddqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 //go:noescape
 func VpaddqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
-// Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
 //
-//go:linkname VpaddqU8 VpaddqU8
+//go:linkname VpaddqF32 VpaddqF32
 //go:noescape
-func VpaddqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VpaddqF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
+
+// Floating-point Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
+//
+//go:linkname VpaddqF64 VpaddqF64
+//go:noescape
+func VpaddqF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
 
 // Floating-point Add Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, adds each pair of values together, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
 //
@@ -6627,11 +6627,11 @@ func VpaddqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 //go:noescape
 func VpaddsF32(r *arm.Float32, v0 *arm.Float32X2)
 
-// Floating-point Maximum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the larger of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
+// Signed Maximum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the largest of each pair of signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VpmaxF32 VpmaxF32
+//go:linkname VpmaxS8 VpmaxS8
 //go:noescape
-func VpmaxF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
+func VpmaxS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Signed Maximum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the largest of each pair of signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6645,11 +6645,11 @@ func VpmaxS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
 //go:noescape
 func VpmaxS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
-// Signed Maximum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the largest of each pair of signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Maximum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the largest of each pair of unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VpmaxS8 VpmaxS8
+//go:linkname VpmaxU8 VpmaxU8
 //go:noescape
-func VpmaxS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VpmaxU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Unsigned Maximum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the largest of each pair of unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6663,11 +6663,11 @@ func VpmaxU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
 //go:noescape
 func VpmaxU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 
-// Unsigned Maximum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the largest of each pair of unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point Maximum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the larger of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
 //
-//go:linkname VpmaxU8 VpmaxU8
+//go:linkname VpmaxF32 VpmaxF32
 //go:noescape
-func VpmaxU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VpmaxF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
 
 // Floating-point Maximum Number Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the largest of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
 //
@@ -6699,17 +6699,11 @@ func VpmaxnmqdF64(r *arm.Float64, v0 *arm.Float64X2)
 //go:noescape
 func VpmaxnmsF32(r *arm.Float32, v0 *arm.Float32X2)
 
-// Floating-point Maximum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the larger of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
+// Signed Maximum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the largest of each pair of signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VpmaxqF32 VpmaxqF32
+//go:linkname VpmaxqS8 VpmaxqS8
 //go:noescape
-func VpmaxqF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
-
-// Floating-point Maximum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the larger of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
-//
-//go:linkname VpmaxqF64 VpmaxqF64
-//go:noescape
-func VpmaxqF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
+func VpmaxqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Signed Maximum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the largest of each pair of signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6723,11 +6717,11 @@ func VpmaxqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
 //go:noescape
 func VpmaxqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
-// Signed Maximum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the largest of each pair of signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Maximum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the largest of each pair of unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VpmaxqS8 VpmaxqS8
+//go:linkname VpmaxqU8 VpmaxqU8
 //go:noescape
-func VpmaxqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VpmaxqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Unsigned Maximum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the largest of each pair of unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6741,11 +6735,17 @@ func VpmaxqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
 //go:noescape
 func VpmaxqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 
-// Unsigned Maximum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the largest of each pair of unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point Maximum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the larger of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
 //
-//go:linkname VpmaxqU8 VpmaxqU8
+//go:linkname VpmaxqF32 VpmaxqF32
 //go:noescape
-func VpmaxqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VpmaxqF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
+
+// Floating-point Maximum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the larger of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
+//
+//go:linkname VpmaxqF64 VpmaxqF64
+//go:noescape
+func VpmaxqF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
 
 // Floating-point Maximum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the larger of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
 //
@@ -6759,11 +6759,11 @@ func VpmaxqdF64(r *arm.Float64, v0 *arm.Float64X2)
 //go:noescape
 func VpmaxsF32(r *arm.Float32, v0 *arm.Float32X2)
 
-// Floating-point Minimum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the smaller of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
+// Signed Minimum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the smallest of each pair of signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VpminF32 VpminF32
+//go:linkname VpminS8 VpminS8
 //go:noescape
-func VpminF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
+func VpminS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Signed Minimum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the smallest of each pair of signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6777,11 +6777,11 @@ func VpminS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
 //go:noescape
 func VpminS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
-// Signed Minimum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the smallest of each pair of signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Minimum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the smallest of each pair of unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VpminS8 VpminS8
+//go:linkname VpminU8 VpminU8
 //go:noescape
-func VpminS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VpminU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Unsigned Minimum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the smallest of each pair of unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6795,11 +6795,11 @@ func VpminU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
 //go:noescape
 func VpminU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 
-// Unsigned Minimum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the smallest of each pair of unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point Minimum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the smaller of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
 //
-//go:linkname VpminU8 VpminU8
+//go:linkname VpminF32 VpminF32
 //go:noescape
-func VpminU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VpminF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
 
 // Floating-point Minimum Number Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the smallest of each pair of floating-point values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
 //
@@ -6831,17 +6831,11 @@ func VpminnmqdF64(r *arm.Float64, v0 *arm.Float64X2)
 //go:noescape
 func VpminnmsF32(r *arm.Float32, v0 *arm.Float32X2)
 
-// Floating-point Minimum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the smaller of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
+// Signed Minimum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the smallest of each pair of signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VpminqF32 VpminqF32
+//go:linkname VpminqS8 VpminqS8
 //go:noescape
-func VpminqF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
-
-// Floating-point Minimum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the smaller of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
-//
-//go:linkname VpminqF64 VpminqF64
-//go:noescape
-func VpminqF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
+func VpminqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Signed Minimum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the smallest of each pair of signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6855,11 +6849,11 @@ func VpminqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
 //go:noescape
 func VpminqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
-// Signed Minimum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the smallest of each pair of signed integer values into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Minimum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the smallest of each pair of unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VpminqS8 VpminqS8
+//go:linkname VpminqU8 VpminqU8
 //go:noescape
-func VpminqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VpminqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Unsigned Minimum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the smallest of each pair of unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6873,11 +6867,17 @@ func VpminqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
 //go:noescape
 func VpminqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 
-// Unsigned Minimum Pairwise. This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements in the two source SIMD&FP registers, writes the smallest of each pair of unsigned integer values into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point Minimum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the smaller of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
 //
-//go:linkname VpminqU8 VpminqU8
+//go:linkname VpminqF32 VpminqF32
 //go:noescape
-func VpminqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VpminqF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
+
+// Floating-point Minimum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the smaller of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
+//
+//go:linkname VpminqF64 VpminqF64
+//go:noescape
+func VpminqF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
 
 // Floating-point Minimum Pairwise (vector). This instruction creates a vector by concatenating the vector elements of the first source SIMD&FP register after the vector elements of the second source SIMD&FP register, reads each pair of adjacent vector elements from the concatenated vector, writes the smaller of each pair of values into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are floating-point values.
 //
@@ -6890,6 +6890,12 @@ func VpminqdF64(r *arm.Float64, v0 *arm.Float64X2)
 //go:linkname VpminsF32 VpminsF32
 //go:noescape
 func VpminsF32(r *arm.Float32, v0 *arm.Float32X2)
+
+// Signed saturating Absolute value. This instruction reads each vector element from the source SIMD&FP register, puts the absolute value of the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values.
+//
+//go:linkname VqabsS8 VqabsS8
+//go:noescape
+func VqabsS8(r *arm.Int8X8, v0 *arm.Int8X8)
 
 // Signed saturating Absolute value. This instruction reads each vector element from the source SIMD&FP register, puts the absolute value of the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values.
 //
@@ -6911,12 +6917,6 @@ func VqabsS64(r *arm.Int64X1, v0 *arm.Int64X1)
 
 // Signed saturating Absolute value. This instruction reads each vector element from the source SIMD&FP register, puts the absolute value of the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values.
 //
-//go:linkname VqabsS8 VqabsS8
-//go:noescape
-func VqabsS8(r *arm.Int8X8, v0 *arm.Int8X8)
-
-// Signed saturating Absolute value. This instruction reads each vector element from the source SIMD&FP register, puts the absolute value of the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values.
-//
 //go:linkname VqabsbS8 VqabsbS8
 //go:noescape
 func VqabsbS8(r *arm.Int8, v0 *arm.Int8)
@@ -6932,6 +6932,12 @@ func VqabsdS64(r *arm.Int64, v0 *arm.Int64)
 //go:linkname VqabshS16 VqabshS16
 //go:noescape
 func VqabshS16(r *arm.Int16, v0 *arm.Int16)
+
+// Signed saturating Absolute value. This instruction reads each vector element from the source SIMD&FP register, puts the absolute value of the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values.
+//
+//go:linkname VqabsqS8 VqabsqS8
+//go:noescape
+func VqabsqS8(r *arm.Int8X16, v0 *arm.Int8X16)
 
 // Signed saturating Absolute value. This instruction reads each vector element from the source SIMD&FP register, puts the absolute value of the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values.
 //
@@ -6953,15 +6959,15 @@ func VqabsqS64(r *arm.Int64X2, v0 *arm.Int64X2)
 
 // Signed saturating Absolute value. This instruction reads each vector element from the source SIMD&FP register, puts the absolute value of the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values.
 //
-//go:linkname VqabsqS8 VqabsqS8
-//go:noescape
-func VqabsqS8(r *arm.Int8X16, v0 *arm.Int8X16)
-
-// Signed saturating Absolute value. This instruction reads each vector element from the source SIMD&FP register, puts the absolute value of the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values.
-//
 //go:linkname VqabssS32 VqabssS32
 //go:noescape
 func VqabssS32(r *arm.Int32, v0 *arm.Int32)
+
+// Signed saturating Add. This instruction adds the values of corresponding elements of the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VqaddS8 VqaddS8
+//go:noescape
+func VqaddS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Signed saturating Add. This instruction adds the values of corresponding elements of the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -6981,11 +6987,11 @@ func VqaddS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 //go:noescape
 func VqaddS64(r *arm.Int64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
 
-// Signed saturating Add. This instruction adds the values of corresponding elements of the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned saturating Add. This instruction adds the values of corresponding elements of the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VqaddS8 VqaddS8
+//go:linkname VqaddU8 VqaddU8
 //go:noescape
-func VqaddS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VqaddU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Unsigned saturating Add. This instruction adds the values of corresponding elements of the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -7004,12 +7010,6 @@ func VqaddU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 //go:linkname VqaddU64 VqaddU64
 //go:noescape
 func VqaddU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
-
-// Unsigned saturating Add. This instruction adds the values of corresponding elements of the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VqaddU8 VqaddU8
-//go:noescape
-func VqaddU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Signed saturating Add. This instruction adds the values of corresponding elements of the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -7049,6 +7049,12 @@ func VqaddhU16(r *arm.Uint16, v0 *arm.Uint16, v1 *arm.Uint16)
 
 // Signed saturating Add. This instruction adds the values of corresponding elements of the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
+//go:linkname VqaddqS8 VqaddqS8
+//go:noescape
+func VqaddqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+
+// Signed saturating Add. This instruction adds the values of corresponding elements of the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
 //go:linkname VqaddqS16 VqaddqS16
 //go:noescape
 func VqaddqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
@@ -7065,11 +7071,11 @@ func VqaddqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 //go:noescape
 func VqaddqS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
-// Signed saturating Add. This instruction adds the values of corresponding elements of the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned saturating Add. This instruction adds the values of corresponding elements of the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VqaddqS8 VqaddqS8
+//go:linkname VqaddqU8 VqaddqU8
 //go:noescape
-func VqaddqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VqaddqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Unsigned saturating Add. This instruction adds the values of corresponding elements of the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -7089,12 +7095,6 @@ func VqaddqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 //go:noescape
 func VqaddqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
-// Unsigned saturating Add. This instruction adds the values of corresponding elements of the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VqaddqU8 VqaddqU8
-//go:noescape
-func VqaddqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
-
 // Signed saturating Add. This instruction adds the values of corresponding elements of the two source SIMD&FP registers, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
 //go:linkname VqaddsS32 VqaddsS32
@@ -7106,42 +7106,6 @@ func VqaddsS32(r *arm.Int32, v0 *arm.Int32, v1 *arm.Int32)
 //go:linkname VqaddsU32 VqaddsU32
 //go:noescape
 func VqaddsU32(r *arm.Uint32, v0 *arm.Uint32, v1 *arm.Uint32)
-
-// Signed saturating Doubling Multiply-Add Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and accumulates the final results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
-//
-//go:linkname VqdmlalHighNS16 VqdmlalHighNS16
-//go:noescape
-func VqdmlalHighNS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8, v2 *arm.Int16)
-
-// Signed saturating Doubling Multiply-Add Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and accumulates the final results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
-//
-//go:linkname VqdmlalHighNS32 VqdmlalHighNS32
-//go:noescape
-func VqdmlalHighNS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4, v2 *arm.Int32)
-
-// Signed saturating Doubling Multiply-Add Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and accumulates the final results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
-//
-//go:linkname VqdmlalHighS16 VqdmlalHighS16
-//go:noescape
-func VqdmlalHighS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8, v2 *arm.Int16X8)
-
-// Signed saturating Doubling Multiply-Add Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and accumulates the final results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
-//
-//go:linkname VqdmlalHighS32 VqdmlalHighS32
-//go:noescape
-func VqdmlalHighS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4, v2 *arm.Int32X4)
-
-// Vector widening saturating doubling multiply accumulate with scalar
-//
-//go:linkname VqdmlalNS16 VqdmlalNS16
-//go:noescape
-func VqdmlalNS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X4, v2 *arm.Int16)
-
-// Vector widening saturating doubling multiply accumulate with scalar
-//
-//go:linkname VqdmlalNS32 VqdmlalNS32
-//go:noescape
-func VqdmlalNS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X2, v2 *arm.Int32)
 
 // Signed saturating Doubling Multiply-Add Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and accumulates the final results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
 //
@@ -7157,6 +7121,42 @@ func VqdmlalS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X2, v2 *arm.Int32X
 
 // Signed saturating Doubling Multiply-Add Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and accumulates the final results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
 //
+//go:linkname VqdmlalHighS16 VqdmlalHighS16
+//go:noescape
+func VqdmlalHighS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8, v2 *arm.Int16X8)
+
+// Signed saturating Doubling Multiply-Add Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and accumulates the final results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+//
+//go:linkname VqdmlalHighS32 VqdmlalHighS32
+//go:noescape
+func VqdmlalHighS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4, v2 *arm.Int32X4)
+
+// Signed saturating Doubling Multiply-Add Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and accumulates the final results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+//
+//go:linkname VqdmlalHighNS16 VqdmlalHighNS16
+//go:noescape
+func VqdmlalHighNS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8, v2 *arm.Int16)
+
+// Signed saturating Doubling Multiply-Add Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and accumulates the final results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+//
+//go:linkname VqdmlalHighNS32 VqdmlalHighNS32
+//go:noescape
+func VqdmlalHighNS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4, v2 *arm.Int32)
+
+// Vector widening saturating doubling multiply accumulate with scalar
+//
+//go:linkname VqdmlalNS16 VqdmlalNS16
+//go:noescape
+func VqdmlalNS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X4, v2 *arm.Int16)
+
+// Vector widening saturating doubling multiply accumulate with scalar
+//
+//go:linkname VqdmlalNS32 VqdmlalNS32
+//go:noescape
+func VqdmlalNS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X2, v2 *arm.Int32)
+
+// Signed saturating Doubling Multiply-Add Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and accumulates the final results with the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+//
 //go:linkname VqdmlalhS16 VqdmlalhS16
 //go:noescape
 func VqdmlalhS16(r *arm.Int32, v0 *arm.Int32, v1 *arm.Int16, v2 *arm.Int16)
@@ -7166,42 +7166,6 @@ func VqdmlalhS16(r *arm.Int32, v0 *arm.Int32, v1 *arm.Int16, v2 *arm.Int16)
 //go:linkname VqdmlalsS32 VqdmlalsS32
 //go:noescape
 func VqdmlalsS32(r *arm.Int64, v0 *arm.Int64, v1 *arm.Int32, v2 *arm.Int32)
-
-// Signed saturating Doubling Multiply-Subtract Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and subtracts the final results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
-//
-//go:linkname VqdmlslHighNS16 VqdmlslHighNS16
-//go:noescape
-func VqdmlslHighNS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8, v2 *arm.Int16)
-
-// Signed saturating Doubling Multiply-Subtract Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and subtracts the final results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
-//
-//go:linkname VqdmlslHighNS32 VqdmlslHighNS32
-//go:noescape
-func VqdmlslHighNS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4, v2 *arm.Int32)
-
-// Signed saturating Doubling Multiply-Subtract Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and subtracts the final results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
-//
-//go:linkname VqdmlslHighS16 VqdmlslHighS16
-//go:noescape
-func VqdmlslHighS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8, v2 *arm.Int16X8)
-
-// Signed saturating Doubling Multiply-Subtract Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and subtracts the final results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
-//
-//go:linkname VqdmlslHighS32 VqdmlslHighS32
-//go:noescape
-func VqdmlslHighS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4, v2 *arm.Int32X4)
-
-// Vector widening saturating doubling multiply subtract with scalar
-//
-//go:linkname VqdmlslNS16 VqdmlslNS16
-//go:noescape
-func VqdmlslNS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X4, v2 *arm.Int16)
-
-// Vector widening saturating doubling multiply subtract with scalar
-//
-//go:linkname VqdmlslNS32 VqdmlslNS32
-//go:noescape
-func VqdmlslNS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X2, v2 *arm.Int32)
 
 // Signed saturating Doubling Multiply-Subtract Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and subtracts the final results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
 //
@@ -7217,6 +7181,42 @@ func VqdmlslS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X2, v2 *arm.Int32X
 
 // Signed saturating Doubling Multiply-Subtract Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and subtracts the final results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
 //
+//go:linkname VqdmlslHighS16 VqdmlslHighS16
+//go:noescape
+func VqdmlslHighS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8, v2 *arm.Int16X8)
+
+// Signed saturating Doubling Multiply-Subtract Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and subtracts the final results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+//
+//go:linkname VqdmlslHighS32 VqdmlslHighS32
+//go:noescape
+func VqdmlslHighS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4, v2 *arm.Int32X4)
+
+// Signed saturating Doubling Multiply-Subtract Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and subtracts the final results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+//
+//go:linkname VqdmlslHighNS16 VqdmlslHighNS16
+//go:noescape
+func VqdmlslHighNS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8, v2 *arm.Int16)
+
+// Signed saturating Doubling Multiply-Subtract Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and subtracts the final results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+//
+//go:linkname VqdmlslHighNS32 VqdmlslHighNS32
+//go:noescape
+func VqdmlslHighNS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4, v2 *arm.Int32)
+
+// Vector widening saturating doubling multiply subtract with scalar
+//
+//go:linkname VqdmlslNS16 VqdmlslNS16
+//go:noescape
+func VqdmlslNS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X4, v2 *arm.Int16)
+
+// Vector widening saturating doubling multiply subtract with scalar
+//
+//go:linkname VqdmlslNS32 VqdmlslNS32
+//go:noescape
+func VqdmlslNS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X2, v2 *arm.Int32)
+
+// Signed saturating Doubling Multiply-Subtract Long. This instruction multiplies corresponding signed integer values in the lower or upper half of the vectors of the two source SIMD&FP registers, doubles the results, and subtracts the final results from the vector elements of the destination SIMD&FP register. The destination vector elements are twice as long as the elements that are multiplied.
+//
 //go:linkname VqdmlslhS16 VqdmlslhS16
 //go:noescape
 func VqdmlslhS16(r *arm.Int32, v0 *arm.Int32, v1 *arm.Int16, v2 *arm.Int16)
@@ -7226,6 +7226,18 @@ func VqdmlslhS16(r *arm.Int32, v0 *arm.Int32, v1 *arm.Int16, v2 *arm.Int16)
 //go:linkname VqdmlslsS32 VqdmlslsS32
 //go:noescape
 func VqdmlslsS32(r *arm.Int64, v0 *arm.Int64, v1 *arm.Int32, v2 *arm.Int32)
+
+// Signed saturating Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VqdmulhS16 VqdmulhS16
+//go:noescape
+func VqdmulhS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
+
+// Signed saturating Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VqdmulhS32 VqdmulhS32
+//go:noescape
+func VqdmulhS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
 // Vector saturating doubling multiply high with scalar
 //
@@ -7241,21 +7253,21 @@ func VqdmulhNS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32)
 
 // Signed saturating Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VqdmulhS16 VqdmulhS16
-//go:noescape
-func VqdmulhS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
-
-// Signed saturating Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VqdmulhS32 VqdmulhS32
-//go:noescape
-func VqdmulhS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
-
-// Signed saturating Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
-//
 //go:linkname VqdmulhhS16 VqdmulhhS16
 //go:noescape
 func VqdmulhhS16(r *arm.Int16, v0 *arm.Int16, v1 *arm.Int16)
+
+// Signed saturating Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VqdmulhqS16 VqdmulhqS16
+//go:noescape
+func VqdmulhqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
+
+// Signed saturating Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VqdmulhqS32 VqdmulhqS32
+//go:noescape
+func VqdmulhqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
 // Vector saturating doubling multiply high with scalar
 //
@@ -7271,57 +7283,9 @@ func VqdmulhqNS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32)
 
 // Signed saturating Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VqdmulhqS16 VqdmulhqS16
-//go:noescape
-func VqdmulhqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
-
-// Signed saturating Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VqdmulhqS32 VqdmulhqS32
-//go:noescape
-func VqdmulhqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
-
-// Signed saturating Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
-//
 //go:linkname VqdmulhsS32 VqdmulhsS32
 //go:noescape
 func VqdmulhsS32(r *arm.Int32, v0 *arm.Int32, v1 *arm.Int32)
-
-// Signed saturating Doubling Multiply Long. This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, doubles the results, places the final results in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VqdmullHighNS16 VqdmullHighNS16
-//go:noescape
-func VqdmullHighNS16(r *arm.Int32X4, v0 *arm.Int16X8, v1 *arm.Int16)
-
-// Signed saturating Doubling Multiply Long. This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, doubles the results, places the final results in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VqdmullHighNS32 VqdmullHighNS32
-//go:noescape
-func VqdmullHighNS32(r *arm.Int64X2, v0 *arm.Int32X4, v1 *arm.Int32)
-
-// Signed saturating Doubling Multiply Long. This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, doubles the results, places the final results in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VqdmullHighS16 VqdmullHighS16
-//go:noescape
-func VqdmullHighS16(r *arm.Int32X4, v0 *arm.Int16X8, v1 *arm.Int16X8)
-
-// Signed saturating Doubling Multiply Long. This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, doubles the results, places the final results in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VqdmullHighS32 VqdmullHighS32
-//go:noescape
-func VqdmullHighS32(r *arm.Int64X2, v0 *arm.Int32X4, v1 *arm.Int32X4)
-
-// Vector saturating doubling long multiply with scalar
-//
-//go:linkname VqdmullNS16 VqdmullNS16
-//go:noescape
-func VqdmullNS16(r *arm.Int32X4, v0 *arm.Int16X4, v1 *arm.Int16)
-
-// Vector saturating doubling long multiply with scalar
-//
-//go:linkname VqdmullNS32 VqdmullNS32
-//go:noescape
-func VqdmullNS32(r *arm.Int64X2, v0 *arm.Int32X2, v1 *arm.Int32)
 
 // Signed saturating Doubling Multiply Long. This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, doubles the results, places the final results in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -7337,6 +7301,42 @@ func VqdmullS32(r *arm.Int64X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
 // Signed saturating Doubling Multiply Long. This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, doubles the results, places the final results in a vector, and writes the vector to the destination SIMD&FP register.
 //
+//go:linkname VqdmullHighS16 VqdmullHighS16
+//go:noescape
+func VqdmullHighS16(r *arm.Int32X4, v0 *arm.Int16X8, v1 *arm.Int16X8)
+
+// Signed saturating Doubling Multiply Long. This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, doubles the results, places the final results in a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VqdmullHighS32 VqdmullHighS32
+//go:noescape
+func VqdmullHighS32(r *arm.Int64X2, v0 *arm.Int32X4, v1 *arm.Int32X4)
+
+// Signed saturating Doubling Multiply Long. This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, doubles the results, places the final results in a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VqdmullHighNS16 VqdmullHighNS16
+//go:noescape
+func VqdmullHighNS16(r *arm.Int32X4, v0 *arm.Int16X8, v1 *arm.Int16)
+
+// Signed saturating Doubling Multiply Long. This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, doubles the results, places the final results in a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VqdmullHighNS32 VqdmullHighNS32
+//go:noescape
+func VqdmullHighNS32(r *arm.Int64X2, v0 *arm.Int32X4, v1 *arm.Int32)
+
+// Vector saturating doubling long multiply with scalar
+//
+//go:linkname VqdmullNS16 VqdmullNS16
+//go:noescape
+func VqdmullNS16(r *arm.Int32X4, v0 *arm.Int16X4, v1 *arm.Int16)
+
+// Vector saturating doubling long multiply with scalar
+//
+//go:linkname VqdmullNS32 VqdmullNS32
+//go:noescape
+func VqdmullNS32(r *arm.Int64X2, v0 *arm.Int32X2, v1 *arm.Int32)
+
+// Signed saturating Doubling Multiply Long. This instruction multiplies corresponding vector elements in the lower or upper half of the two source SIMD&FP registers, doubles the results, places the final results in a vector, and writes the vector to the destination SIMD&FP register.
+//
 //go:linkname VqdmullhS16 VqdmullhS16
 //go:noescape
 func VqdmullhS16(r *arm.Int32, v0 *arm.Int16, v1 *arm.Int16)
@@ -7346,42 +7346,6 @@ func VqdmullhS16(r *arm.Int32, v0 *arm.Int16, v1 *arm.Int16)
 //go:linkname VqdmullsS32 VqdmullsS32
 //go:noescape
 func VqdmullsS32(r *arm.Int64, v0 *arm.Int32, v1 *arm.Int32)
-
-// Signed saturating extract Narrow. This instruction reads each vector element from the source SIMD&FP register, saturates the value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements. All the values in this instruction are signed integer values.
-//
-//go:linkname VqmovnHighS16 VqmovnHighS16
-//go:noescape
-func VqmovnHighS16(r *arm.Int8X16, v0 *arm.Int8X8, v1 *arm.Int16X8)
-
-// Signed saturating extract Narrow. This instruction reads each vector element from the source SIMD&FP register, saturates the value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements. All the values in this instruction are signed integer values.
-//
-//go:linkname VqmovnHighS32 VqmovnHighS32
-//go:noescape
-func VqmovnHighS32(r *arm.Int16X8, v0 *arm.Int16X4, v1 *arm.Int32X4)
-
-// Signed saturating extract Narrow. This instruction reads each vector element from the source SIMD&FP register, saturates the value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements. All the values in this instruction are signed integer values.
-//
-//go:linkname VqmovnHighS64 VqmovnHighS64
-//go:noescape
-func VqmovnHighS64(r *arm.Int32X4, v0 *arm.Int32X2, v1 *arm.Int64X2)
-
-// Unsigned saturating extract Narrow. This instruction reads each vector element from the source SIMD&FP register, saturates each value to half the original width, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VqmovnHighU16 VqmovnHighU16
-//go:noescape
-func VqmovnHighU16(r *arm.Uint8X16, v0 *arm.Uint8X8, v1 *arm.Uint16X8)
-
-// Unsigned saturating extract Narrow. This instruction reads each vector element from the source SIMD&FP register, saturates each value to half the original width, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VqmovnHighU32 VqmovnHighU32
-//go:noescape
-func VqmovnHighU32(r *arm.Uint16X8, v0 *arm.Uint16X4, v1 *arm.Uint32X4)
-
-// Unsigned saturating extract Narrow. This instruction reads each vector element from the source SIMD&FP register, saturates each value to half the original width, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VqmovnHighU64 VqmovnHighU64
-//go:noescape
-func VqmovnHighU64(r *arm.Uint32X4, v0 *arm.Uint32X2, v1 *arm.Uint64X2)
 
 // Signed saturating extract Narrow. This instruction reads each vector element from the source SIMD&FP register, saturates the value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements. All the values in this instruction are signed integer values.
 //
@@ -7421,6 +7385,42 @@ func VqmovnU64(r *arm.Uint32X2, v0 *arm.Uint64X2)
 
 // Signed saturating extract Narrow. This instruction reads each vector element from the source SIMD&FP register, saturates the value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements. All the values in this instruction are signed integer values.
 //
+//go:linkname VqmovnHighS16 VqmovnHighS16
+//go:noescape
+func VqmovnHighS16(r *arm.Int8X16, v0 *arm.Int8X8, v1 *arm.Int16X8)
+
+// Signed saturating extract Narrow. This instruction reads each vector element from the source SIMD&FP register, saturates the value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements. All the values in this instruction are signed integer values.
+//
+//go:linkname VqmovnHighS32 VqmovnHighS32
+//go:noescape
+func VqmovnHighS32(r *arm.Int16X8, v0 *arm.Int16X4, v1 *arm.Int32X4)
+
+// Signed saturating extract Narrow. This instruction reads each vector element from the source SIMD&FP register, saturates the value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements. All the values in this instruction are signed integer values.
+//
+//go:linkname VqmovnHighS64 VqmovnHighS64
+//go:noescape
+func VqmovnHighS64(r *arm.Int32X4, v0 *arm.Int32X2, v1 *arm.Int64X2)
+
+// Unsigned saturating extract Narrow. This instruction reads each vector element from the source SIMD&FP register, saturates each value to half the original width, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
+//
+//go:linkname VqmovnHighU16 VqmovnHighU16
+//go:noescape
+func VqmovnHighU16(r *arm.Uint8X16, v0 *arm.Uint8X8, v1 *arm.Uint16X8)
+
+// Unsigned saturating extract Narrow. This instruction reads each vector element from the source SIMD&FP register, saturates each value to half the original width, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
+//
+//go:linkname VqmovnHighU32 VqmovnHighU32
+//go:noescape
+func VqmovnHighU32(r *arm.Uint16X8, v0 *arm.Uint16X4, v1 *arm.Uint32X4)
+
+// Unsigned saturating extract Narrow. This instruction reads each vector element from the source SIMD&FP register, saturates each value to half the original width, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
+//
+//go:linkname VqmovnHighU64 VqmovnHighU64
+//go:noescape
+func VqmovnHighU64(r *arm.Uint32X4, v0 *arm.Uint32X2, v1 *arm.Uint64X2)
+
+// Signed saturating extract Narrow. This instruction reads each vector element from the source SIMD&FP register, saturates the value to half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements. All the values in this instruction are signed integer values.
+//
 //go:linkname VqmovndS64 VqmovndS64
 //go:noescape
 func VqmovndS64(r *arm.Int32, v0 *arm.Int64)
@@ -7457,24 +7457,6 @@ func VqmovnsU32(r *arm.Uint16, v0 *arm.Uint32)
 
 // Signed saturating extract Unsigned Narrow. This instruction reads each signed integer value in the vector of the source SIMD&FP register, saturates the value to an unsigned integer value that is half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
 //
-//go:linkname VqmovunHighS16 VqmovunHighS16
-//go:noescape
-func VqmovunHighS16(r *arm.Uint8X16, v0 *arm.Uint8X8, v1 *arm.Int16X8)
-
-// Signed saturating extract Unsigned Narrow. This instruction reads each signed integer value in the vector of the source SIMD&FP register, saturates the value to an unsigned integer value that is half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
-//
-//go:linkname VqmovunHighS32 VqmovunHighS32
-//go:noescape
-func VqmovunHighS32(r *arm.Uint16X8, v0 *arm.Uint16X4, v1 *arm.Int32X4)
-
-// Signed saturating extract Unsigned Narrow. This instruction reads each signed integer value in the vector of the source SIMD&FP register, saturates the value to an unsigned integer value that is half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
-//
-//go:linkname VqmovunHighS64 VqmovunHighS64
-//go:noescape
-func VqmovunHighS64(r *arm.Uint32X4, v0 *arm.Uint32X2, v1 *arm.Int64X2)
-
-// Signed saturating extract Unsigned Narrow. This instruction reads each signed integer value in the vector of the source SIMD&FP register, saturates the value to an unsigned integer value that is half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
-//
 //go:linkname VqmovunS16 VqmovunS16
 //go:noescape
 func VqmovunS16(r *arm.Uint8X8, v0 *arm.Int16X8)
@@ -7490,6 +7472,24 @@ func VqmovunS32(r *arm.Uint16X4, v0 *arm.Int32X4)
 //go:linkname VqmovunS64 VqmovunS64
 //go:noescape
 func VqmovunS64(r *arm.Uint32X2, v0 *arm.Int64X2)
+
+// Signed saturating extract Unsigned Narrow. This instruction reads each signed integer value in the vector of the source SIMD&FP register, saturates the value to an unsigned integer value that is half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
+//
+//go:linkname VqmovunHighS16 VqmovunHighS16
+//go:noescape
+func VqmovunHighS16(r *arm.Uint8X16, v0 *arm.Uint8X8, v1 *arm.Int16X8)
+
+// Signed saturating extract Unsigned Narrow. This instruction reads each signed integer value in the vector of the source SIMD&FP register, saturates the value to an unsigned integer value that is half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
+//
+//go:linkname VqmovunHighS32 VqmovunHighS32
+//go:noescape
+func VqmovunHighS32(r *arm.Uint16X8, v0 *arm.Uint16X4, v1 *arm.Int32X4)
+
+// Signed saturating extract Unsigned Narrow. This instruction reads each signed integer value in the vector of the source SIMD&FP register, saturates the value to an unsigned integer value that is half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
+//
+//go:linkname VqmovunHighS64 VqmovunHighS64
+//go:noescape
+func VqmovunHighS64(r *arm.Uint32X4, v0 *arm.Uint32X2, v1 *arm.Int64X2)
 
 // Signed saturating extract Unsigned Narrow. This instruction reads each signed integer value in the vector of the source SIMD&FP register, saturates the value to an unsigned integer value that is half the original width, places the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. The destination vector elements are half as long as the source vector elements.
 //
@@ -7511,6 +7511,12 @@ func VqmovunsS32(r *arm.Uint16, v0 *arm.Int32)
 
 // Signed saturating Negate. This instruction reads each vector element from the source SIMD&FP register, negates each value, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values.
 //
+//go:linkname VqnegS8 VqnegS8
+//go:noescape
+func VqnegS8(r *arm.Int8X8, v0 *arm.Int8X8)
+
+// Signed saturating Negate. This instruction reads each vector element from the source SIMD&FP register, negates each value, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values.
+//
 //go:linkname VqnegS16 VqnegS16
 //go:noescape
 func VqnegS16(r *arm.Int16X4, v0 *arm.Int16X4)
@@ -7526,12 +7532,6 @@ func VqnegS32(r *arm.Int32X2, v0 *arm.Int32X2)
 //go:linkname VqnegS64 VqnegS64
 //go:noescape
 func VqnegS64(r *arm.Int64X1, v0 *arm.Int64X1)
-
-// Signed saturating Negate. This instruction reads each vector element from the source SIMD&FP register, negates each value, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values.
-//
-//go:linkname VqnegS8 VqnegS8
-//go:noescape
-func VqnegS8(r *arm.Int8X8, v0 *arm.Int8X8)
 
 // Signed saturating Negate. This instruction reads each vector element from the source SIMD&FP register, negates each value, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values.
 //
@@ -7553,6 +7553,12 @@ func VqneghS16(r *arm.Int16, v0 *arm.Int16)
 
 // Signed saturating Negate. This instruction reads each vector element from the source SIMD&FP register, negates each value, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values.
 //
+//go:linkname VqnegqS8 VqnegqS8
+//go:noescape
+func VqnegqS8(r *arm.Int8X16, v0 *arm.Int8X16)
+
+// Signed saturating Negate. This instruction reads each vector element from the source SIMD&FP register, negates each value, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values.
+//
 //go:linkname VqnegqS16 VqnegqS16
 //go:noescape
 func VqnegqS16(r *arm.Int16X8, v0 *arm.Int16X8)
@@ -7568,12 +7574,6 @@ func VqnegqS32(r *arm.Int32X4, v0 *arm.Int32X4)
 //go:linkname VqnegqS64 VqnegqS64
 //go:noescape
 func VqnegqS64(r *arm.Int64X2, v0 *arm.Int64X2)
-
-// Signed saturating Negate. This instruction reads each vector element from the source SIMD&FP register, negates each value, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values.
-//
-//go:linkname VqnegqS8 VqnegqS8
-//go:noescape
-func VqnegqS8(r *arm.Int8X16, v0 *arm.Int8X16)
 
 // Signed saturating Negate. This instruction reads each vector element from the source SIMD&FP register, negates each value, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values.
 //
@@ -7653,6 +7653,18 @@ func VqrdmlshqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4, v2 *arm.Int3
 //go:noescape
 func VqrdmlshsS32(r *arm.Int32, v0 *arm.Int32, v1 *arm.Int32, v2 *arm.Int32)
 
+// Signed saturating Rounding Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VqrdmulhS16 VqrdmulhS16
+//go:noescape
+func VqrdmulhS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
+
+// Signed saturating Rounding Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VqrdmulhS32 VqrdmulhS32
+//go:noescape
+func VqrdmulhS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+
 // Vector saturating rounding doubling multiply high with scalar
 //
 //go:linkname VqrdmulhNS16 VqrdmulhNS16
@@ -7667,21 +7679,21 @@ func VqrdmulhNS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32)
 
 // Signed saturating Rounding Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VqrdmulhS16 VqrdmulhS16
-//go:noescape
-func VqrdmulhS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
-
-// Signed saturating Rounding Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VqrdmulhS32 VqrdmulhS32
-//go:noescape
-func VqrdmulhS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
-
-// Signed saturating Rounding Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
-//
 //go:linkname VqrdmulhhS16 VqrdmulhhS16
 //go:noescape
 func VqrdmulhhS16(r *arm.Int16, v0 *arm.Int16, v1 *arm.Int16)
+
+// Signed saturating Rounding Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VqrdmulhqS16 VqrdmulhqS16
+//go:noescape
+func VqrdmulhqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
+
+// Signed saturating Rounding Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VqrdmulhqS32 VqrdmulhqS32
+//go:noescape
+func VqrdmulhqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
 // Vector saturating rounding doubling multiply high with scalar
 //
@@ -7697,21 +7709,15 @@ func VqrdmulhqNS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32)
 
 // Signed saturating Rounding Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VqrdmulhqS16 VqrdmulhqS16
-//go:noescape
-func VqrdmulhqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
-
-// Signed saturating Rounding Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VqrdmulhqS32 VqrdmulhqS32
-//go:noescape
-func VqrdmulhqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
-
-// Signed saturating Rounding Doubling Multiply returning High half. This instruction multiplies the values of corresponding elements of the two source SIMD&FP registers, doubles the results, places the most significant half of the final results into a vector, and writes the vector to the destination SIMD&FP register.
-//
 //go:linkname VqrdmulhsS32 VqrdmulhsS32
 //go:noescape
 func VqrdmulhsS32(r *arm.Int32, v0 *arm.Int32, v1 *arm.Int32)
+
+// Signed saturating Rounding Shift Left (register). This instruction takes each vector element in the first source SIMD&FP register, shifts it by a value from the least significant byte of the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VqrshlS8 VqrshlS8
+//go:noescape
+func VqrshlS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Signed saturating Rounding Shift Left (register). This instruction takes each vector element in the first source SIMD&FP register, shifts it by a value from the least significant byte of the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -7731,11 +7737,11 @@ func VqrshlS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 //go:noescape
 func VqrshlS64(r *arm.Int64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
 
-// Signed saturating Rounding Shift Left (register). This instruction takes each vector element in the first source SIMD&FP register, shifts it by a value from the least significant byte of the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned saturating Rounding Shift Left (register). This instruction takes each vector element of the first source SIMD&FP register, shifts the vector element by a value from the least significant byte of the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VqrshlS8 VqrshlS8
+//go:linkname VqrshlU8 VqrshlU8
 //go:noescape
-func VqrshlS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VqrshlU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Int8X8)
 
 // Unsigned saturating Rounding Shift Left (register). This instruction takes each vector element of the first source SIMD&FP register, shifts the vector element by a value from the least significant byte of the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -7754,12 +7760,6 @@ func VqrshlU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Int32X2)
 //go:linkname VqrshlU64 VqrshlU64
 //go:noescape
 func VqrshlU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Int64X1)
-
-// Unsigned saturating Rounding Shift Left (register). This instruction takes each vector element of the first source SIMD&FP register, shifts the vector element by a value from the least significant byte of the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VqrshlU8 VqrshlU8
-//go:noescape
-func VqrshlU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Int8X8)
 
 // Signed saturating Rounding Shift Left (register). This instruction takes each vector element in the first source SIMD&FP register, shifts it by a value from the least significant byte of the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -7799,6 +7799,12 @@ func VqrshlhU16(r *arm.Uint16, v0 *arm.Uint16, v1 *arm.Int16)
 
 // Signed saturating Rounding Shift Left (register). This instruction takes each vector element in the first source SIMD&FP register, shifts it by a value from the least significant byte of the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
+//go:linkname VqrshlqS8 VqrshlqS8
+//go:noescape
+func VqrshlqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+
+// Signed saturating Rounding Shift Left (register). This instruction takes each vector element in the first source SIMD&FP register, shifts it by a value from the least significant byte of the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
 //go:linkname VqrshlqS16 VqrshlqS16
 //go:noescape
 func VqrshlqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
@@ -7815,11 +7821,11 @@ func VqrshlqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 //go:noescape
 func VqrshlqS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
-// Signed saturating Rounding Shift Left (register). This instruction takes each vector element in the first source SIMD&FP register, shifts it by a value from the least significant byte of the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned saturating Rounding Shift Left (register). This instruction takes each vector element of the first source SIMD&FP register, shifts the vector element by a value from the least significant byte of the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VqrshlqS8 VqrshlqS8
+//go:linkname VqrshlqU8 VqrshlqU8
 //go:noescape
-func VqrshlqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VqrshlqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Int8X16)
 
 // Unsigned saturating Rounding Shift Left (register). This instruction takes each vector element of the first source SIMD&FP register, shifts the vector element by a value from the least significant byte of the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -7839,12 +7845,6 @@ func VqrshlqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Int32X4)
 //go:noescape
 func VqrshlqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Int64X2)
 
-// Unsigned saturating Rounding Shift Left (register). This instruction takes each vector element of the first source SIMD&FP register, shifts the vector element by a value from the least significant byte of the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VqrshlqU8 VqrshlqU8
-//go:noescape
-func VqrshlqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Int8X16)
-
 // Signed saturating Rounding Shift Left (register). This instruction takes each vector element in the first source SIMD&FP register, shifts it by a value from the least significant byte of the corresponding vector element of the second source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
 //go:linkname VqrshlsS32 VqrshlsS32
@@ -7856,6 +7856,12 @@ func VqrshlsS32(r *arm.Int32, v0 *arm.Int32, v1 *arm.Int32)
 //go:linkname VqrshlsU32 VqrshlsU32
 //go:noescape
 func VqrshlsU32(r *arm.Uint32, v0 *arm.Uint32, v1 *arm.Int32)
+
+// Signed saturating Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts each element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VqshlS8 VqshlS8
+//go:noescape
+func VqshlS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Signed saturating Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts each element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -7875,11 +7881,11 @@ func VqshlS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 //go:noescape
 func VqshlS64(r *arm.Int64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
 
-// Signed saturating Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts each element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned saturating Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts the element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VqshlS8 VqshlS8
+//go:linkname VqshlU8 VqshlU8
 //go:noescape
-func VqshlS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VqshlU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Int8X8)
 
 // Unsigned saturating Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts the element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -7898,12 +7904,6 @@ func VqshlU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Int32X2)
 //go:linkname VqshlU64 VqshlU64
 //go:noescape
 func VqshlU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Int64X1)
-
-// Unsigned saturating Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts the element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VqshlU8 VqshlU8
-//go:noescape
-func VqshlU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Int8X8)
 
 // Signed saturating Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts each element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -7943,6 +7943,12 @@ func VqshlhU16(r *arm.Uint16, v0 *arm.Uint16, v1 *arm.Int16)
 
 // Signed saturating Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts each element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
+//go:linkname VqshlqS8 VqshlqS8
+//go:noescape
+func VqshlqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+
+// Signed saturating Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts each element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+//
 //go:linkname VqshlqS16 VqshlqS16
 //go:noescape
 func VqshlqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
@@ -7959,11 +7965,11 @@ func VqshlqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 //go:noescape
 func VqshlqS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
-// Signed saturating Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts each element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned saturating Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts the element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VqshlqS8 VqshlqS8
+//go:linkname VqshlqU8 VqshlqU8
 //go:noescape
-func VqshlqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VqshlqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Int8X16)
 
 // Unsigned saturating Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts the element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -7983,12 +7989,6 @@ func VqshlqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Int32X4)
 //go:noescape
 func VqshlqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Int64X2)
 
-// Unsigned saturating Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts the element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VqshlqU8 VqshlqU8
-//go:noescape
-func VqshlqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Int8X16)
-
 // Signed saturating Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts each element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
 //go:linkname VqshlsS32 VqshlsS32
@@ -8000,6 +8000,12 @@ func VqshlsS32(r *arm.Int32, v0 *arm.Int32, v1 *arm.Int32)
 //go:linkname VqshlsU32 VqshlsU32
 //go:noescape
 func VqshlsU32(r *arm.Uint32, v0 *arm.Uint32, v1 *arm.Int32)
+
+// Signed saturating Subtract. This instruction subtracts the element values of the second source SIMD&FP register from the corresponding element values of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VqsubS8 VqsubS8
+//go:noescape
+func VqsubS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Signed saturating Subtract. This instruction subtracts the element values of the second source SIMD&FP register from the corresponding element values of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -8019,11 +8025,11 @@ func VqsubS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 //go:noescape
 func VqsubS64(r *arm.Int64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
 
-// Signed saturating Subtract. This instruction subtracts the element values of the second source SIMD&FP register from the corresponding element values of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned saturating Subtract. This instruction subtracts the element values of the second source SIMD&FP register from the corresponding element values of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VqsubS8 VqsubS8
+//go:linkname VqsubU8 VqsubU8
 //go:noescape
-func VqsubS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VqsubU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Unsigned saturating Subtract. This instruction subtracts the element values of the second source SIMD&FP register from the corresponding element values of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -8042,12 +8048,6 @@ func VqsubU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 //go:linkname VqsubU64 VqsubU64
 //go:noescape
 func VqsubU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
-
-// Unsigned saturating Subtract. This instruction subtracts the element values of the second source SIMD&FP register from the corresponding element values of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VqsubU8 VqsubU8
-//go:noescape
-func VqsubU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Signed saturating Subtract. This instruction subtracts the element values of the second source SIMD&FP register from the corresponding element values of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -8087,6 +8087,12 @@ func VqsubhU16(r *arm.Uint16, v0 *arm.Uint16, v1 *arm.Uint16)
 
 // Signed saturating Subtract. This instruction subtracts the element values of the second source SIMD&FP register from the corresponding element values of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
+//go:linkname VqsubqS8 VqsubqS8
+//go:noescape
+func VqsubqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+
+// Signed saturating Subtract. This instruction subtracts the element values of the second source SIMD&FP register from the corresponding element values of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
 //go:linkname VqsubqS16 VqsubqS16
 //go:noescape
 func VqsubqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
@@ -8103,11 +8109,11 @@ func VqsubqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 //go:noescape
 func VqsubqS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
-// Signed saturating Subtract. This instruction subtracts the element values of the second source SIMD&FP register from the corresponding element values of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned saturating Subtract. This instruction subtracts the element values of the second source SIMD&FP register from the corresponding element values of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VqsubqS8 VqsubqS8
+//go:linkname VqsubqU8 VqsubqU8
 //go:noescape
-func VqsubqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VqsubqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Unsigned saturating Subtract. This instruction subtracts the element values of the second source SIMD&FP register from the corresponding element values of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -8127,12 +8133,6 @@ func VqsubqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 //go:noescape
 func VqsubqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
-// Unsigned saturating Subtract. This instruction subtracts the element values of the second source SIMD&FP register from the corresponding element values of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VqsubqU8 VqsubqU8
-//go:noescape
-func VqsubqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
-
 // Signed saturating Subtract. This instruction subtracts the element values of the second source SIMD&FP register from the corresponding element values of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
 //go:linkname VqsubsS32 VqsubsS32
@@ -8144,12 +8144,6 @@ func VqsubsS32(r *arm.Int32, v0 *arm.Int32, v1 *arm.Int32)
 //go:linkname VqsubsU32 VqsubsU32
 //go:noescape
 func VqsubsU32(r *arm.Uint32, v0 *arm.Uint32, v1 *arm.Uint32)
-
-// Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
-//
-//go:linkname Vqtbl1P8 Vqtbl1P8
-//go:noescape
-func Vqtbl1P8(r *arm.Poly8X8, v0 *arm.Poly8X16, v1 *arm.Uint8X8)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -8165,9 +8159,9 @@ func Vqtbl1U8(r *arm.Uint8X8, v0 *arm.Uint8X16, v1 *arm.Uint8X8)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vqtbl1QP8 Vqtbl1QP8
+//go:linkname Vqtbl1P8 Vqtbl1P8
 //go:noescape
-func Vqtbl1QP8(r *arm.Poly8X16, v0 *arm.Poly8X16, v1 *arm.Uint8X16)
+func Vqtbl1P8(r *arm.Poly8X8, v0 *arm.Poly8X16, v1 *arm.Uint8X8)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -8183,9 +8177,9 @@ func Vqtbl1QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vqtbl2P8 Vqtbl2P8
+//go:linkname Vqtbl1QP8 Vqtbl1QP8
 //go:noescape
-func Vqtbl2P8(r *arm.Poly8X8, v0 *arm.Poly8X16X2, v1 *arm.Uint8X8)
+func Vqtbl1QP8(r *arm.Poly8X16, v0 *arm.Poly8X16, v1 *arm.Uint8X16)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -8201,9 +8195,9 @@ func Vqtbl2U8(r *arm.Uint8X8, v0 *arm.Uint8X16X2, v1 *arm.Uint8X8)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vqtbl2QP8 Vqtbl2QP8
+//go:linkname Vqtbl2P8 Vqtbl2P8
 //go:noescape
-func Vqtbl2QP8(r *arm.Poly8X16, v0 *arm.Poly8X16X2, v1 *arm.Uint8X16)
+func Vqtbl2P8(r *arm.Poly8X8, v0 *arm.Poly8X16X2, v1 *arm.Uint8X8)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -8219,9 +8213,9 @@ func Vqtbl2QU8(r *arm.Uint8X16, v0 *arm.Uint8X16X2, v1 *arm.Uint8X16)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vqtbl3P8 Vqtbl3P8
+//go:linkname Vqtbl2QP8 Vqtbl2QP8
 //go:noescape
-func Vqtbl3P8(r *arm.Poly8X8, v0 *arm.Poly8X16X3, v1 *arm.Uint8X8)
+func Vqtbl2QP8(r *arm.Poly8X16, v0 *arm.Poly8X16X2, v1 *arm.Uint8X16)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -8237,9 +8231,9 @@ func Vqtbl3U8(r *arm.Uint8X8, v0 *arm.Uint8X16X3, v1 *arm.Uint8X8)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vqtbl3QP8 Vqtbl3QP8
+//go:linkname Vqtbl3P8 Vqtbl3P8
 //go:noescape
-func Vqtbl3QP8(r *arm.Poly8X16, v0 *arm.Poly8X16X3, v1 *arm.Uint8X16)
+func Vqtbl3P8(r *arm.Poly8X8, v0 *arm.Poly8X16X3, v1 *arm.Uint8X8)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -8255,9 +8249,9 @@ func Vqtbl3QU8(r *arm.Uint8X16, v0 *arm.Uint8X16X3, v1 *arm.Uint8X16)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vqtbl4P8 Vqtbl4P8
+//go:linkname Vqtbl3QP8 Vqtbl3QP8
 //go:noescape
-func Vqtbl4P8(r *arm.Poly8X8, v0 *arm.Poly8X16X4, v1 *arm.Uint8X8)
+func Vqtbl3QP8(r *arm.Poly8X16, v0 *arm.Poly8X16X3, v1 *arm.Uint8X16)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -8273,9 +8267,9 @@ func Vqtbl4U8(r *arm.Uint8X8, v0 *arm.Uint8X16X4, v1 *arm.Uint8X8)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vqtbl4QP8 Vqtbl4QP8
+//go:linkname Vqtbl4P8 Vqtbl4P8
 //go:noescape
-func Vqtbl4QP8(r *arm.Poly8X16, v0 *arm.Poly8X16X4, v1 *arm.Uint8X16)
+func Vqtbl4P8(r *arm.Poly8X8, v0 *arm.Poly8X16X4, v1 *arm.Uint8X8)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -8289,11 +8283,11 @@ func Vqtbl4QS8(r *arm.Int8X16, v0 *arm.Int8X16X4, v1 *arm.Uint8X16)
 //go:noescape
 func Vqtbl4QU8(r *arm.Uint8X16, v0 *arm.Uint8X16X4, v1 *arm.Uint8X16)
 
-// Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
+// Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vqtbx1P8 Vqtbx1P8
+//go:linkname Vqtbl4QP8 Vqtbl4QP8
 //go:noescape
-func Vqtbx1P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X16, v2 *arm.Uint8X8)
+func Vqtbl4QP8(r *arm.Poly8X16, v0 *arm.Poly8X16X4, v1 *arm.Uint8X16)
 
 // Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -8309,9 +8303,9 @@ func Vqtbx1U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X16, v2 *arm.Uint8X8
 
 // Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vqtbx1QP8 Vqtbx1QP8
+//go:linkname Vqtbx1P8 Vqtbx1P8
 //go:noescape
-func Vqtbx1QP8(r *arm.Poly8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16, v2 *arm.Uint8X16)
+func Vqtbx1P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X16, v2 *arm.Uint8X8)
 
 // Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -8327,9 +8321,9 @@ func Vqtbx1QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16, v2 *arm.Uint
 
 // Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vqtbx2P8 Vqtbx2P8
+//go:linkname Vqtbx1QP8 Vqtbx1QP8
 //go:noescape
-func Vqtbx2P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X16X2, v2 *arm.Uint8X8)
+func Vqtbx1QP8(r *arm.Poly8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16, v2 *arm.Uint8X16)
 
 // Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -8345,9 +8339,9 @@ func Vqtbx2U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X16X2, v2 *arm.Uint8
 
 // Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vqtbx2QP8 Vqtbx2QP8
+//go:linkname Vqtbx2P8 Vqtbx2P8
 //go:noescape
-func Vqtbx2QP8(r *arm.Poly8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16X2, v2 *arm.Uint8X16)
+func Vqtbx2P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X16X2, v2 *arm.Uint8X8)
 
 // Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -8363,9 +8357,9 @@ func Vqtbx2QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16X2, v2 *arm.Ui
 
 // Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vqtbx3P8 Vqtbx3P8
+//go:linkname Vqtbx2QP8 Vqtbx2QP8
 //go:noescape
-func Vqtbx3P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X16X3, v2 *arm.Uint8X8)
+func Vqtbx2QP8(r *arm.Poly8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16X2, v2 *arm.Uint8X16)
 
 // Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -8381,9 +8375,9 @@ func Vqtbx3U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X16X3, v2 *arm.Uint8
 
 // Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vqtbx3QP8 Vqtbx3QP8
+//go:linkname Vqtbx3P8 Vqtbx3P8
 //go:noescape
-func Vqtbx3QP8(r *arm.Poly8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16X3, v2 *arm.Uint8X16)
+func Vqtbx3P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X16X3, v2 *arm.Uint8X8)
 
 // Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -8399,9 +8393,9 @@ func Vqtbx3QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16X3, v2 *arm.Ui
 
 // Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vqtbx4P8 Vqtbx4P8
+//go:linkname Vqtbx3QP8 Vqtbx3QP8
 //go:noescape
-func Vqtbx4P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X16X4, v2 *arm.Uint8X8)
+func Vqtbx3QP8(r *arm.Poly8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16X3, v2 *arm.Uint8X16)
 
 // Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -8417,9 +8411,9 @@ func Vqtbx4U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X16X4, v2 *arm.Uint8
 
 // Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vqtbx4QP8 Vqtbx4QP8
+//go:linkname Vqtbx4P8 Vqtbx4P8
 //go:noescape
-func Vqtbx4QP8(r *arm.Poly8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16X4, v2 *arm.Uint8X16)
+func Vqtbx4P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X16X4, v2 *arm.Uint8X8)
 
 // Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -8433,41 +8427,11 @@ func Vqtbx4QS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16X4, v2 *arm.Uint8
 //go:noescape
 func Vqtbx4QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16X4, v2 *arm.Uint8X16)
 
-// Rounding Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
+// Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname VraddhnHighS16 VraddhnHighS16
+//go:linkname Vqtbx4QP8 Vqtbx4QP8
 //go:noescape
-func VraddhnHighS16(r *arm.Int8X16, v0 *arm.Int8X8, v1 *arm.Int16X8, v2 *arm.Int16X8)
-
-// Rounding Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
-//
-//go:linkname VraddhnHighS32 VraddhnHighS32
-//go:noescape
-func VraddhnHighS32(r *arm.Int16X8, v0 *arm.Int16X4, v1 *arm.Int32X4, v2 *arm.Int32X4)
-
-// Rounding Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
-//
-//go:linkname VraddhnHighS64 VraddhnHighS64
-//go:noescape
-func VraddhnHighS64(r *arm.Int32X4, v0 *arm.Int32X2, v1 *arm.Int64X2, v2 *arm.Int64X2)
-
-// Rounding Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
-//
-//go:linkname VraddhnHighU16 VraddhnHighU16
-//go:noescape
-func VraddhnHighU16(r *arm.Uint8X16, v0 *arm.Uint8X8, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
-
-// Rounding Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
-//
-//go:linkname VraddhnHighU32 VraddhnHighU32
-//go:noescape
-func VraddhnHighU32(r *arm.Uint16X8, v0 *arm.Uint16X4, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
-
-// Rounding Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
-//
-//go:linkname VraddhnHighU64 VraddhnHighU64
-//go:noescape
-func VraddhnHighU64(r *arm.Uint32X4, v0 *arm.Uint32X2, v1 *arm.Uint64X2, v2 *arm.Uint64X2)
+func Vqtbx4QP8(r *arm.Poly8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16X4, v2 *arm.Uint8X16)
 
 // Rounding Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
 //
@@ -8505,17 +8469,47 @@ func VraddhnU32(r *arm.Uint16X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 //go:noescape
 func VraddhnU64(r *arm.Uint32X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
+// Rounding Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
+//
+//go:linkname VraddhnHighS16 VraddhnHighS16
+//go:noescape
+func VraddhnHighS16(r *arm.Int8X16, v0 *arm.Int8X8, v1 *arm.Int16X8, v2 *arm.Int16X8)
+
+// Rounding Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
+//
+//go:linkname VraddhnHighS32 VraddhnHighS32
+//go:noescape
+func VraddhnHighS32(r *arm.Int16X8, v0 *arm.Int16X4, v1 *arm.Int32X4, v2 *arm.Int32X4)
+
+// Rounding Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
+//
+//go:linkname VraddhnHighS64 VraddhnHighS64
+//go:noescape
+func VraddhnHighS64(r *arm.Int32X4, v0 *arm.Int32X2, v1 *arm.Int64X2, v2 *arm.Int64X2)
+
+// Rounding Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
+//
+//go:linkname VraddhnHighU16 VraddhnHighU16
+//go:noescape
+func VraddhnHighU16(r *arm.Uint8X16, v0 *arm.Uint8X8, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
+
+// Rounding Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
+//
+//go:linkname VraddhnHighU32 VraddhnHighU32
+//go:noescape
+func VraddhnHighU32(r *arm.Uint16X8, v0 *arm.Uint16X4, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
+
+// Rounding Add returning High Narrow. This instruction adds each vector element in the first source SIMD&FP register to the corresponding vector element in the second source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
+//
+//go:linkname VraddhnHighU64 VraddhnHighU64
+//go:noescape
+func VraddhnHighU64(r *arm.Uint32X4, v0 *arm.Uint32X2, v1 *arm.Uint64X2, v2 *arm.Uint64X2)
+
 // Rotate and Exclusive OR rotates each 64-bit element of the 128-bit vector in a source SIMD&FP register left by 1, performs a bitwise exclusive OR of the resulting 128-bit vector and the vector in another source SIMD&FP register, and writes the result to the destination SIMD&FP register.
 //
 //go:linkname Vrax1QU64 Vrax1QU64
 //go:noescape
 func Vrax1QU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
-
-// Reverse Bit order (vector). This instruction reads each vector element from the source SIMD&FP register, reverses the bits of the element, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VrbitP8 VrbitP8
-//go:noescape
-func VrbitP8(r *arm.Poly8X8, v0 *arm.Poly8X8)
 
 // Reverse Bit order (vector). This instruction reads each vector element from the source SIMD&FP register, reverses the bits of the element, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -8531,9 +8525,9 @@ func VrbitU8(r *arm.Uint8X8, v0 *arm.Uint8X8)
 
 // Reverse Bit order (vector). This instruction reads each vector element from the source SIMD&FP register, reverses the bits of the element, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VrbitqP8 VrbitqP8
+//go:linkname VrbitP8 VrbitP8
 //go:noescape
-func VrbitqP8(r *arm.Poly8X16, v0 *arm.Poly8X16)
+func VrbitP8(r *arm.Poly8X8, v0 *arm.Poly8X8)
 
 // Reverse Bit order (vector). This instruction reads each vector element from the source SIMD&FP register, reverses the bits of the element, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -8547,6 +8541,18 @@ func VrbitqS8(r *arm.Int8X16, v0 *arm.Int8X16)
 //go:noescape
 func VrbitqU8(r *arm.Uint8X16, v0 *arm.Uint8X16)
 
+// Reverse Bit order (vector). This instruction reads each vector element from the source SIMD&FP register, reverses the bits of the element, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VrbitqP8 VrbitqP8
+//go:noescape
+func VrbitqP8(r *arm.Poly8X16, v0 *arm.Poly8X16)
+
+// Unsigned Reciprocal Estimate. This instruction reads each vector element from the source SIMD&FP register, calculates an approximate inverse for the unsigned integer value, places the result into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VrecpeU32 VrecpeU32
+//go:noescape
+func VrecpeU32(r *arm.Uint32X2, v0 *arm.Uint32X2)
+
 // Floating-point Reciprocal Estimate. This instruction finds an approximate reciprocal estimate for each vector element in the source SIMD&FP register, places the result in a vector, and writes the vector to the destination SIMD&FP register.
 //
 //go:linkname VrecpeF32 VrecpeF32
@@ -8559,17 +8565,17 @@ func VrecpeF32(r *arm.Float32X2, v0 *arm.Float32X2)
 //go:noescape
 func VrecpeF64(r *arm.Float64X1, v0 *arm.Float64X1)
 
-// Unsigned Reciprocal Estimate. This instruction reads each vector element from the source SIMD&FP register, calculates an approximate inverse for the unsigned integer value, places the result into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VrecpeU32 VrecpeU32
-//go:noescape
-func VrecpeU32(r *arm.Uint32X2, v0 *arm.Uint32X2)
-
 // Floating-point Reciprocal Estimate. This instruction finds an approximate reciprocal estimate for each vector element in the source SIMD&FP register, places the result in a vector, and writes the vector to the destination SIMD&FP register.
 //
 //go:linkname VrecpedF64 VrecpedF64
 //go:noescape
 func VrecpedF64(r *arm.Float64, v0 *arm.Float64)
+
+// Unsigned Reciprocal Estimate. This instruction reads each vector element from the source SIMD&FP register, calculates an approximate inverse for the unsigned integer value, places the result into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VrecpeqU32 VrecpeqU32
+//go:noescape
+func VrecpeqU32(r *arm.Uint32X4, v0 *arm.Uint32X4)
 
 // Floating-point Reciprocal Estimate. This instruction finds an approximate reciprocal estimate for each vector element in the source SIMD&FP register, places the result in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -8582,12 +8588,6 @@ func VrecpeqF32(r *arm.Float32X4, v0 *arm.Float32X4)
 //go:linkname VrecpeqF64 VrecpeqF64
 //go:noescape
 func VrecpeqF64(r *arm.Float64X2, v0 *arm.Float64X2)
-
-// Unsigned Reciprocal Estimate. This instruction reads each vector element from the source SIMD&FP register, calculates an approximate inverse for the unsigned integer value, places the result into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VrecpeqU32 VrecpeqU32
-//go:noescape
-func VrecpeqU32(r *arm.Uint32X4, v0 *arm.Uint32X4)
 
 // Floating-point Reciprocal Estimate. This instruction finds an approximate reciprocal estimate for each vector element in the source SIMD&FP register, places the result in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -8645,6 +8645,54 @@ func VrecpxsF32(r *arm.Float32, v0 *arm.Float32)
 
 // Vector reinterpret cast operation
 //
+//go:linkname VreinterpretF32S8 VreinterpretF32S8
+//go:noescape
+func VreinterpretF32S8(r *arm.Float32X2, v0 *arm.Int8X8)
+
+// Vector reinterpret cast operation
+//
+//go:linkname VreinterpretF32S16 VreinterpretF32S16
+//go:noescape
+func VreinterpretF32S16(r *arm.Float32X2, v0 *arm.Int16X4)
+
+// Vector reinterpret cast operation
+//
+//go:linkname VreinterpretF32S32 VreinterpretF32S32
+//go:noescape
+func VreinterpretF32S32(r *arm.Float32X2, v0 *arm.Int32X2)
+
+// Vector reinterpret cast operation
+//
+//go:linkname VreinterpretF32S64 VreinterpretF32S64
+//go:noescape
+func VreinterpretF32S64(r *arm.Float32X2, v0 *arm.Int64X1)
+
+// Vector reinterpret cast operation
+//
+//go:linkname VreinterpretF32U8 VreinterpretF32U8
+//go:noescape
+func VreinterpretF32U8(r *arm.Float32X2, v0 *arm.Uint8X8)
+
+// Vector reinterpret cast operation
+//
+//go:linkname VreinterpretF32U16 VreinterpretF32U16
+//go:noescape
+func VreinterpretF32U16(r *arm.Float32X2, v0 *arm.Uint16X4)
+
+// Vector reinterpret cast operation
+//
+//go:linkname VreinterpretF32U32 VreinterpretF32U32
+//go:noescape
+func VreinterpretF32U32(r *arm.Float32X2, v0 *arm.Uint32X2)
+
+// Vector reinterpret cast operation
+//
+//go:linkname VreinterpretF32U64 VreinterpretF32U64
+//go:noescape
+func VreinterpretF32U64(r *arm.Float32X2, v0 *arm.Uint64X1)
+
+// Vector reinterpret cast operation
+//
 //go:linkname VreinterpretF32F64 VreinterpretF32F64
 //go:noescape
 func VreinterpretF32F64(r *arm.Float32X2, v0 *arm.Float64X1)
@@ -8669,51 +8717,51 @@ func VreinterpretF32P8(r *arm.Float32X2, v0 *arm.Poly8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretF32S16 VreinterpretF32S16
+//go:linkname VreinterpretF64S8 VreinterpretF64S8
 //go:noescape
-func VreinterpretF32S16(r *arm.Float32X2, v0 *arm.Int16X4)
+func VreinterpretF64S8(r *arm.Float64X1, v0 *arm.Int8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretF32S32 VreinterpretF32S32
+//go:linkname VreinterpretF64S16 VreinterpretF64S16
 //go:noescape
-func VreinterpretF32S32(r *arm.Float32X2, v0 *arm.Int32X2)
+func VreinterpretF64S16(r *arm.Float64X1, v0 *arm.Int16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretF32S64 VreinterpretF32S64
+//go:linkname VreinterpretF64S32 VreinterpretF64S32
 //go:noescape
-func VreinterpretF32S64(r *arm.Float32X2, v0 *arm.Int64X1)
+func VreinterpretF64S32(r *arm.Float64X1, v0 *arm.Int32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretF32S8 VreinterpretF32S8
+//go:linkname VreinterpretF64S64 VreinterpretF64S64
 //go:noescape
-func VreinterpretF32S8(r *arm.Float32X2, v0 *arm.Int8X8)
+func VreinterpretF64S64(r *arm.Float64X1, v0 *arm.Int64X1)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretF32U16 VreinterpretF32U16
+//go:linkname VreinterpretF64U8 VreinterpretF64U8
 //go:noescape
-func VreinterpretF32U16(r *arm.Float32X2, v0 *arm.Uint16X4)
+func VreinterpretF64U8(r *arm.Float64X1, v0 *arm.Uint8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretF32U32 VreinterpretF32U32
+//go:linkname VreinterpretF64U16 VreinterpretF64U16
 //go:noescape
-func VreinterpretF32U32(r *arm.Float32X2, v0 *arm.Uint32X2)
+func VreinterpretF64U16(r *arm.Float64X1, v0 *arm.Uint16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretF32U64 VreinterpretF32U64
+//go:linkname VreinterpretF64U32 VreinterpretF64U32
 //go:noescape
-func VreinterpretF32U64(r *arm.Float32X2, v0 *arm.Uint64X1)
+func VreinterpretF64U32(r *arm.Float64X1, v0 *arm.Uint32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretF32U8 VreinterpretF32U8
+//go:linkname VreinterpretF64U64 VreinterpretF64U64
 //go:noescape
-func VreinterpretF32U8(r *arm.Float32X2, v0 *arm.Uint8X8)
+func VreinterpretF64U64(r *arm.Float64X1, v0 *arm.Uint64X1)
 
 // Vector reinterpret cast operation
 //
@@ -8741,51 +8789,51 @@ func VreinterpretF64P8(r *arm.Float64X1, v0 *arm.Poly8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretF64S16 VreinterpretF64S16
+//go:linkname VreinterpretP16S8 VreinterpretP16S8
 //go:noescape
-func VreinterpretF64S16(r *arm.Float64X1, v0 *arm.Int16X4)
+func VreinterpretP16S8(r *arm.Poly16X4, v0 *arm.Int8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretF64S32 VreinterpretF64S32
+//go:linkname VreinterpretP16S16 VreinterpretP16S16
 //go:noescape
-func VreinterpretF64S32(r *arm.Float64X1, v0 *arm.Int32X2)
+func VreinterpretP16S16(r *arm.Poly16X4, v0 *arm.Int16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretF64S64 VreinterpretF64S64
+//go:linkname VreinterpretP16S32 VreinterpretP16S32
 //go:noescape
-func VreinterpretF64S64(r *arm.Float64X1, v0 *arm.Int64X1)
+func VreinterpretP16S32(r *arm.Poly16X4, v0 *arm.Int32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretF64S8 VreinterpretF64S8
+//go:linkname VreinterpretP16S64 VreinterpretP16S64
 //go:noescape
-func VreinterpretF64S8(r *arm.Float64X1, v0 *arm.Int8X8)
+func VreinterpretP16S64(r *arm.Poly16X4, v0 *arm.Int64X1)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretF64U16 VreinterpretF64U16
+//go:linkname VreinterpretP16U8 VreinterpretP16U8
 //go:noescape
-func VreinterpretF64U16(r *arm.Float64X1, v0 *arm.Uint16X4)
+func VreinterpretP16U8(r *arm.Poly16X4, v0 *arm.Uint8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretF64U32 VreinterpretF64U32
+//go:linkname VreinterpretP16U16 VreinterpretP16U16
 //go:noescape
-func VreinterpretF64U32(r *arm.Float64X1, v0 *arm.Uint32X2)
+func VreinterpretP16U16(r *arm.Poly16X4, v0 *arm.Uint16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretF64U64 VreinterpretF64U64
+//go:linkname VreinterpretP16U32 VreinterpretP16U32
 //go:noescape
-func VreinterpretF64U64(r *arm.Float64X1, v0 *arm.Uint64X1)
+func VreinterpretP16U32(r *arm.Poly16X4, v0 *arm.Uint32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretF64U8 VreinterpretF64U8
+//go:linkname VreinterpretP16U64 VreinterpretP16U64
 //go:noescape
-func VreinterpretF64U8(r *arm.Float64X1, v0 *arm.Uint8X8)
+func VreinterpretP16U64(r *arm.Poly16X4, v0 *arm.Uint64X1)
 
 // Vector reinterpret cast operation
 //
@@ -8813,51 +8861,51 @@ func VreinterpretP16P8(r *arm.Poly16X4, v0 *arm.Poly8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP16S16 VreinterpretP16S16
+//go:linkname VreinterpretP64S8 VreinterpretP64S8
 //go:noescape
-func VreinterpretP16S16(r *arm.Poly16X4, v0 *arm.Int16X4)
+func VreinterpretP64S8(r *arm.Poly64X1, v0 *arm.Int8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP16S32 VreinterpretP16S32
+//go:linkname VreinterpretP64S16 VreinterpretP64S16
 //go:noescape
-func VreinterpretP16S32(r *arm.Poly16X4, v0 *arm.Int32X2)
+func VreinterpretP64S16(r *arm.Poly64X1, v0 *arm.Int16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP16S64 VreinterpretP16S64
+//go:linkname VreinterpretP64S32 VreinterpretP64S32
 //go:noescape
-func VreinterpretP16S64(r *arm.Poly16X4, v0 *arm.Int64X1)
+func VreinterpretP64S32(r *arm.Poly64X1, v0 *arm.Int32X2)
+
+// vreinterpret_p64_s64
+//
+//go:linkname VreinterpretP64S64 VreinterpretP64S64
+//go:noescape
+func VreinterpretP64S64(r *arm.Poly64X1, v0 *arm.Int64X1)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP16S8 VreinterpretP16S8
+//go:linkname VreinterpretP64U8 VreinterpretP64U8
 //go:noescape
-func VreinterpretP16S8(r *arm.Poly16X4, v0 *arm.Int8X8)
+func VreinterpretP64U8(r *arm.Poly64X1, v0 *arm.Uint8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP16U16 VreinterpretP16U16
+//go:linkname VreinterpretP64U16 VreinterpretP64U16
 //go:noescape
-func VreinterpretP16U16(r *arm.Poly16X4, v0 *arm.Uint16X4)
+func VreinterpretP64U16(r *arm.Poly64X1, v0 *arm.Uint16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP16U32 VreinterpretP16U32
+//go:linkname VreinterpretP64U32 VreinterpretP64U32
 //go:noescape
-func VreinterpretP16U32(r *arm.Poly16X4, v0 *arm.Uint32X2)
+func VreinterpretP64U32(r *arm.Poly64X1, v0 *arm.Uint32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP16U64 VreinterpretP16U64
+//go:linkname VreinterpretP64U64 VreinterpretP64U64
 //go:noescape
-func VreinterpretP16U64(r *arm.Poly16X4, v0 *arm.Uint64X1)
-
-// Vector reinterpret cast operation
-//
-//go:linkname VreinterpretP16U8 VreinterpretP16U8
-//go:noescape
-func VreinterpretP16U8(r *arm.Poly16X4, v0 *arm.Uint8X8)
+func VreinterpretP64U64(r *arm.Poly64X1, v0 *arm.Uint64X1)
 
 // Vector reinterpret cast operation
 //
@@ -8885,51 +8933,51 @@ func VreinterpretP64P8(r *arm.Poly64X1, v0 *arm.Poly8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP64S16 VreinterpretP64S16
+//go:linkname VreinterpretP8S8 VreinterpretP8S8
 //go:noescape
-func VreinterpretP64S16(r *arm.Poly64X1, v0 *arm.Int16X4)
+func VreinterpretP8S8(r *arm.Poly8X8, v0 *arm.Int8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP64S32 VreinterpretP64S32
+//go:linkname VreinterpretP8S16 VreinterpretP8S16
 //go:noescape
-func VreinterpretP64S32(r *arm.Poly64X1, v0 *arm.Int32X2)
-
-// vreinterpret_p64_s64
-//
-//go:linkname VreinterpretP64S64 VreinterpretP64S64
-//go:noescape
-func VreinterpretP64S64(r *arm.Poly64X1, v0 *arm.Int64X1)
+func VreinterpretP8S16(r *arm.Poly8X8, v0 *arm.Int16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP64S8 VreinterpretP64S8
+//go:linkname VreinterpretP8S32 VreinterpretP8S32
 //go:noescape
-func VreinterpretP64S8(r *arm.Poly64X1, v0 *arm.Int8X8)
+func VreinterpretP8S32(r *arm.Poly8X8, v0 *arm.Int32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP64U16 VreinterpretP64U16
+//go:linkname VreinterpretP8S64 VreinterpretP8S64
 //go:noescape
-func VreinterpretP64U16(r *arm.Poly64X1, v0 *arm.Uint16X4)
+func VreinterpretP8S64(r *arm.Poly8X8, v0 *arm.Int64X1)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP64U32 VreinterpretP64U32
+//go:linkname VreinterpretP8U8 VreinterpretP8U8
 //go:noescape
-func VreinterpretP64U32(r *arm.Poly64X1, v0 *arm.Uint32X2)
+func VreinterpretP8U8(r *arm.Poly8X8, v0 *arm.Uint8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP64U64 VreinterpretP64U64
+//go:linkname VreinterpretP8U16 VreinterpretP8U16
 //go:noescape
-func VreinterpretP64U64(r *arm.Poly64X1, v0 *arm.Uint64X1)
+func VreinterpretP8U16(r *arm.Poly8X8, v0 *arm.Uint16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP64U8 VreinterpretP64U8
+//go:linkname VreinterpretP8U32 VreinterpretP8U32
 //go:noescape
-func VreinterpretP64U8(r *arm.Poly64X1, v0 *arm.Uint8X8)
+func VreinterpretP8U32(r *arm.Poly8X8, v0 *arm.Uint32X2)
+
+// Vector reinterpret cast operation
+//
+//go:linkname VreinterpretP8U64 VreinterpretP8U64
+//go:noescape
+func VreinterpretP8U64(r *arm.Poly8X8, v0 *arm.Uint64X1)
 
 // Vector reinterpret cast operation
 //
@@ -8957,51 +9005,45 @@ func VreinterpretP8P64(r *arm.Poly8X8, v0 *arm.Poly64X1)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP8S16 VreinterpretP8S16
+//go:linkname VreinterpretS16S8 VreinterpretS16S8
 //go:noescape
-func VreinterpretP8S16(r *arm.Poly8X8, v0 *arm.Int16X4)
+func VreinterpretS16S8(r *arm.Int16X4, v0 *arm.Int8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP8S32 VreinterpretP8S32
+//go:linkname VreinterpretS16S32 VreinterpretS16S32
 //go:noescape
-func VreinterpretP8S32(r *arm.Poly8X8, v0 *arm.Int32X2)
+func VreinterpretS16S32(r *arm.Int16X4, v0 *arm.Int32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP8S64 VreinterpretP8S64
+//go:linkname VreinterpretS16S64 VreinterpretS16S64
 //go:noescape
-func VreinterpretP8S64(r *arm.Poly8X8, v0 *arm.Int64X1)
+func VreinterpretS16S64(r *arm.Int16X4, v0 *arm.Int64X1)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP8S8 VreinterpretP8S8
+//go:linkname VreinterpretS16U8 VreinterpretS16U8
 //go:noescape
-func VreinterpretP8S8(r *arm.Poly8X8, v0 *arm.Int8X8)
+func VreinterpretS16U8(r *arm.Int16X4, v0 *arm.Uint8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP8U16 VreinterpretP8U16
+//go:linkname VreinterpretS16U16 VreinterpretS16U16
 //go:noescape
-func VreinterpretP8U16(r *arm.Poly8X8, v0 *arm.Uint16X4)
+func VreinterpretS16U16(r *arm.Int16X4, v0 *arm.Uint16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP8U32 VreinterpretP8U32
+//go:linkname VreinterpretS16U32 VreinterpretS16U32
 //go:noescape
-func VreinterpretP8U32(r *arm.Poly8X8, v0 *arm.Uint32X2)
+func VreinterpretS16U32(r *arm.Int16X4, v0 *arm.Uint32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretP8U64 VreinterpretP8U64
+//go:linkname VreinterpretS16U64 VreinterpretS16U64
 //go:noescape
-func VreinterpretP8U64(r *arm.Poly8X8, v0 *arm.Uint64X1)
-
-// Vector reinterpret cast operation
-//
-//go:linkname VreinterpretP8U8 VreinterpretP8U8
-//go:noescape
-func VreinterpretP8U8(r *arm.Poly8X8, v0 *arm.Uint8X8)
+func VreinterpretS16U64(r *arm.Int16X4, v0 *arm.Uint64X1)
 
 // Vector reinterpret cast operation
 //
@@ -9035,45 +9077,45 @@ func VreinterpretS16P8(r *arm.Int16X4, v0 *arm.Poly8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS16S32 VreinterpretS16S32
+//go:linkname VreinterpretS32S8 VreinterpretS32S8
 //go:noescape
-func VreinterpretS16S32(r *arm.Int16X4, v0 *arm.Int32X2)
+func VreinterpretS32S8(r *arm.Int32X2, v0 *arm.Int8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS16S64 VreinterpretS16S64
+//go:linkname VreinterpretS32S16 VreinterpretS32S16
 //go:noescape
-func VreinterpretS16S64(r *arm.Int16X4, v0 *arm.Int64X1)
+func VreinterpretS32S16(r *arm.Int32X2, v0 *arm.Int16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS16S8 VreinterpretS16S8
+//go:linkname VreinterpretS32S64 VreinterpretS32S64
 //go:noescape
-func VreinterpretS16S8(r *arm.Int16X4, v0 *arm.Int8X8)
+func VreinterpretS32S64(r *arm.Int32X2, v0 *arm.Int64X1)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS16U16 VreinterpretS16U16
+//go:linkname VreinterpretS32U8 VreinterpretS32U8
 //go:noescape
-func VreinterpretS16U16(r *arm.Int16X4, v0 *arm.Uint16X4)
+func VreinterpretS32U8(r *arm.Int32X2, v0 *arm.Uint8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS16U32 VreinterpretS16U32
+//go:linkname VreinterpretS32U16 VreinterpretS32U16
 //go:noescape
-func VreinterpretS16U32(r *arm.Int16X4, v0 *arm.Uint32X2)
+func VreinterpretS32U16(r *arm.Int32X2, v0 *arm.Uint16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS16U64 VreinterpretS16U64
+//go:linkname VreinterpretS32U32 VreinterpretS32U32
 //go:noescape
-func VreinterpretS16U64(r *arm.Int16X4, v0 *arm.Uint64X1)
+func VreinterpretS32U32(r *arm.Int32X2, v0 *arm.Uint32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS16U8 VreinterpretS16U8
+//go:linkname VreinterpretS32U64 VreinterpretS32U64
 //go:noescape
-func VreinterpretS16U8(r *arm.Int16X4, v0 *arm.Uint8X8)
+func VreinterpretS32U64(r *arm.Int32X2, v0 *arm.Uint64X1)
 
 // Vector reinterpret cast operation
 //
@@ -9107,45 +9149,45 @@ func VreinterpretS32P8(r *arm.Int32X2, v0 *arm.Poly8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS32S16 VreinterpretS32S16
+//go:linkname VreinterpretS64S8 VreinterpretS64S8
 //go:noescape
-func VreinterpretS32S16(r *arm.Int32X2, v0 *arm.Int16X4)
+func VreinterpretS64S8(r *arm.Int64X1, v0 *arm.Int8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS32S64 VreinterpretS32S64
+//go:linkname VreinterpretS64S16 VreinterpretS64S16
 //go:noescape
-func VreinterpretS32S64(r *arm.Int32X2, v0 *arm.Int64X1)
+func VreinterpretS64S16(r *arm.Int64X1, v0 *arm.Int16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS32S8 VreinterpretS32S8
+//go:linkname VreinterpretS64S32 VreinterpretS64S32
 //go:noescape
-func VreinterpretS32S8(r *arm.Int32X2, v0 *arm.Int8X8)
+func VreinterpretS64S32(r *arm.Int64X1, v0 *arm.Int32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS32U16 VreinterpretS32U16
+//go:linkname VreinterpretS64U8 VreinterpretS64U8
 //go:noescape
-func VreinterpretS32U16(r *arm.Int32X2, v0 *arm.Uint16X4)
+func VreinterpretS64U8(r *arm.Int64X1, v0 *arm.Uint8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS32U32 VreinterpretS32U32
+//go:linkname VreinterpretS64U16 VreinterpretS64U16
 //go:noescape
-func VreinterpretS32U32(r *arm.Int32X2, v0 *arm.Uint32X2)
+func VreinterpretS64U16(r *arm.Int64X1, v0 *arm.Uint16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS32U64 VreinterpretS32U64
+//go:linkname VreinterpretS64U32 VreinterpretS64U32
 //go:noescape
-func VreinterpretS32U64(r *arm.Int32X2, v0 *arm.Uint64X1)
+func VreinterpretS64U32(r *arm.Int64X1, v0 *arm.Uint32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS32U8 VreinterpretS32U8
+//go:linkname VreinterpretS64U64 VreinterpretS64U64
 //go:noescape
-func VreinterpretS32U8(r *arm.Int32X2, v0 *arm.Uint8X8)
+func VreinterpretS64U64(r *arm.Int64X1, v0 *arm.Uint64X1)
 
 // Vector reinterpret cast operation
 //
@@ -9179,45 +9221,45 @@ func VreinterpretS64P8(r *arm.Int64X1, v0 *arm.Poly8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS64S16 VreinterpretS64S16
+//go:linkname VreinterpretS8S16 VreinterpretS8S16
 //go:noescape
-func VreinterpretS64S16(r *arm.Int64X1, v0 *arm.Int16X4)
+func VreinterpretS8S16(r *arm.Int8X8, v0 *arm.Int16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS64S32 VreinterpretS64S32
+//go:linkname VreinterpretS8S32 VreinterpretS8S32
 //go:noescape
-func VreinterpretS64S32(r *arm.Int64X1, v0 *arm.Int32X2)
+func VreinterpretS8S32(r *arm.Int8X8, v0 *arm.Int32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS64S8 VreinterpretS64S8
+//go:linkname VreinterpretS8S64 VreinterpretS8S64
 //go:noescape
-func VreinterpretS64S8(r *arm.Int64X1, v0 *arm.Int8X8)
+func VreinterpretS8S64(r *arm.Int8X8, v0 *arm.Int64X1)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS64U16 VreinterpretS64U16
+//go:linkname VreinterpretS8U8 VreinterpretS8U8
 //go:noescape
-func VreinterpretS64U16(r *arm.Int64X1, v0 *arm.Uint16X4)
+func VreinterpretS8U8(r *arm.Int8X8, v0 *arm.Uint8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS64U32 VreinterpretS64U32
+//go:linkname VreinterpretS8U16 VreinterpretS8U16
 //go:noescape
-func VreinterpretS64U32(r *arm.Int64X1, v0 *arm.Uint32X2)
+func VreinterpretS8U16(r *arm.Int8X8, v0 *arm.Uint16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS64U64 VreinterpretS64U64
+//go:linkname VreinterpretS8U32 VreinterpretS8U32
 //go:noescape
-func VreinterpretS64U64(r *arm.Int64X1, v0 *arm.Uint64X1)
+func VreinterpretS8U32(r *arm.Int8X8, v0 *arm.Uint32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS64U8 VreinterpretS64U8
+//go:linkname VreinterpretS8U64 VreinterpretS8U64
 //go:noescape
-func VreinterpretS64U8(r *arm.Int64X1, v0 *arm.Uint8X8)
+func VreinterpretS8U64(r *arm.Int8X8, v0 *arm.Uint64X1)
 
 // Vector reinterpret cast operation
 //
@@ -9251,45 +9293,45 @@ func VreinterpretS8P8(r *arm.Int8X8, v0 *arm.Poly8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS8S16 VreinterpretS8S16
+//go:linkname VreinterpretU16S8 VreinterpretU16S8
 //go:noescape
-func VreinterpretS8S16(r *arm.Int8X8, v0 *arm.Int16X4)
+func VreinterpretU16S8(r *arm.Uint16X4, v0 *arm.Int8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS8S32 VreinterpretS8S32
+//go:linkname VreinterpretU16S16 VreinterpretU16S16
 //go:noescape
-func VreinterpretS8S32(r *arm.Int8X8, v0 *arm.Int32X2)
+func VreinterpretU16S16(r *arm.Uint16X4, v0 *arm.Int16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS8S64 VreinterpretS8S64
+//go:linkname VreinterpretU16S32 VreinterpretU16S32
 //go:noescape
-func VreinterpretS8S64(r *arm.Int8X8, v0 *arm.Int64X1)
+func VreinterpretU16S32(r *arm.Uint16X4, v0 *arm.Int32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS8U16 VreinterpretS8U16
+//go:linkname VreinterpretU16S64 VreinterpretU16S64
 //go:noescape
-func VreinterpretS8U16(r *arm.Int8X8, v0 *arm.Uint16X4)
+func VreinterpretU16S64(r *arm.Uint16X4, v0 *arm.Int64X1)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS8U32 VreinterpretS8U32
+//go:linkname VreinterpretU16U8 VreinterpretU16U8
 //go:noescape
-func VreinterpretS8U32(r *arm.Int8X8, v0 *arm.Uint32X2)
+func VreinterpretU16U8(r *arm.Uint16X4, v0 *arm.Uint8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS8U64 VreinterpretS8U64
+//go:linkname VreinterpretU16U32 VreinterpretU16U32
 //go:noescape
-func VreinterpretS8U64(r *arm.Int8X8, v0 *arm.Uint64X1)
+func VreinterpretU16U32(r *arm.Uint16X4, v0 *arm.Uint32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretS8U8 VreinterpretS8U8
+//go:linkname VreinterpretU16U64 VreinterpretU16U64
 //go:noescape
-func VreinterpretS8U8(r *arm.Int8X8, v0 *arm.Uint8X8)
+func VreinterpretU16U64(r *arm.Uint16X4, v0 *arm.Uint64X1)
 
 // Vector reinterpret cast operation
 //
@@ -9323,45 +9365,45 @@ func VreinterpretU16P8(r *arm.Uint16X4, v0 *arm.Poly8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU16S16 VreinterpretU16S16
+//go:linkname VreinterpretU32S8 VreinterpretU32S8
 //go:noescape
-func VreinterpretU16S16(r *arm.Uint16X4, v0 *arm.Int16X4)
+func VreinterpretU32S8(r *arm.Uint32X2, v0 *arm.Int8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU16S32 VreinterpretU16S32
+//go:linkname VreinterpretU32S16 VreinterpretU32S16
 //go:noescape
-func VreinterpretU16S32(r *arm.Uint16X4, v0 *arm.Int32X2)
+func VreinterpretU32S16(r *arm.Uint32X2, v0 *arm.Int16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU16S64 VreinterpretU16S64
+//go:linkname VreinterpretU32S32 VreinterpretU32S32
 //go:noescape
-func VreinterpretU16S64(r *arm.Uint16X4, v0 *arm.Int64X1)
+func VreinterpretU32S32(r *arm.Uint32X2, v0 *arm.Int32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU16S8 VreinterpretU16S8
+//go:linkname VreinterpretU32S64 VreinterpretU32S64
 //go:noescape
-func VreinterpretU16S8(r *arm.Uint16X4, v0 *arm.Int8X8)
+func VreinterpretU32S64(r *arm.Uint32X2, v0 *arm.Int64X1)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU16U32 VreinterpretU16U32
+//go:linkname VreinterpretU32U8 VreinterpretU32U8
 //go:noescape
-func VreinterpretU16U32(r *arm.Uint16X4, v0 *arm.Uint32X2)
+func VreinterpretU32U8(r *arm.Uint32X2, v0 *arm.Uint8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU16U64 VreinterpretU16U64
+//go:linkname VreinterpretU32U16 VreinterpretU32U16
 //go:noescape
-func VreinterpretU16U64(r *arm.Uint16X4, v0 *arm.Uint64X1)
+func VreinterpretU32U16(r *arm.Uint32X2, v0 *arm.Uint16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU16U8 VreinterpretU16U8
+//go:linkname VreinterpretU32U64 VreinterpretU32U64
 //go:noescape
-func VreinterpretU16U8(r *arm.Uint16X4, v0 *arm.Uint8X8)
+func VreinterpretU32U64(r *arm.Uint32X2, v0 *arm.Uint64X1)
 
 // Vector reinterpret cast operation
 //
@@ -9395,45 +9437,45 @@ func VreinterpretU32P8(r *arm.Uint32X2, v0 *arm.Poly8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU32S16 VreinterpretU32S16
+//go:linkname VreinterpretU64S8 VreinterpretU64S8
 //go:noescape
-func VreinterpretU32S16(r *arm.Uint32X2, v0 *arm.Int16X4)
+func VreinterpretU64S8(r *arm.Uint64X1, v0 *arm.Int8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU32S32 VreinterpretU32S32
+//go:linkname VreinterpretU64S16 VreinterpretU64S16
 //go:noescape
-func VreinterpretU32S32(r *arm.Uint32X2, v0 *arm.Int32X2)
+func VreinterpretU64S16(r *arm.Uint64X1, v0 *arm.Int16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU32S64 VreinterpretU32S64
+//go:linkname VreinterpretU64S32 VreinterpretU64S32
 //go:noescape
-func VreinterpretU32S64(r *arm.Uint32X2, v0 *arm.Int64X1)
+func VreinterpretU64S32(r *arm.Uint64X1, v0 *arm.Int32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU32S8 VreinterpretU32S8
+//go:linkname VreinterpretU64S64 VreinterpretU64S64
 //go:noescape
-func VreinterpretU32S8(r *arm.Uint32X2, v0 *arm.Int8X8)
+func VreinterpretU64S64(r *arm.Uint64X1, v0 *arm.Int64X1)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU32U16 VreinterpretU32U16
+//go:linkname VreinterpretU64U8 VreinterpretU64U8
 //go:noescape
-func VreinterpretU32U16(r *arm.Uint32X2, v0 *arm.Uint16X4)
+func VreinterpretU64U8(r *arm.Uint64X1, v0 *arm.Uint8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU32U64 VreinterpretU32U64
+//go:linkname VreinterpretU64U16 VreinterpretU64U16
 //go:noescape
-func VreinterpretU32U64(r *arm.Uint32X2, v0 *arm.Uint64X1)
+func VreinterpretU64U16(r *arm.Uint64X1, v0 *arm.Uint16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU32U8 VreinterpretU32U8
+//go:linkname VreinterpretU64U32 VreinterpretU64U32
 //go:noescape
-func VreinterpretU32U8(r *arm.Uint32X2, v0 *arm.Uint8X8)
+func VreinterpretU64U32(r *arm.Uint64X1, v0 *arm.Uint32X2)
 
 // Vector reinterpret cast operation
 //
@@ -9467,45 +9509,45 @@ func VreinterpretU64P8(r *arm.Uint64X1, v0 *arm.Poly8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU64S16 VreinterpretU64S16
+//go:linkname VreinterpretU8S8 VreinterpretU8S8
 //go:noescape
-func VreinterpretU64S16(r *arm.Uint64X1, v0 *arm.Int16X4)
+func VreinterpretU8S8(r *arm.Uint8X8, v0 *arm.Int8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU64S32 VreinterpretU64S32
+//go:linkname VreinterpretU8S16 VreinterpretU8S16
 //go:noescape
-func VreinterpretU64S32(r *arm.Uint64X1, v0 *arm.Int32X2)
+func VreinterpretU8S16(r *arm.Uint8X8, v0 *arm.Int16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU64S64 VreinterpretU64S64
+//go:linkname VreinterpretU8S32 VreinterpretU8S32
 //go:noescape
-func VreinterpretU64S64(r *arm.Uint64X1, v0 *arm.Int64X1)
+func VreinterpretU8S32(r *arm.Uint8X8, v0 *arm.Int32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU64S8 VreinterpretU64S8
+//go:linkname VreinterpretU8S64 VreinterpretU8S64
 //go:noescape
-func VreinterpretU64S8(r *arm.Uint64X1, v0 *arm.Int8X8)
+func VreinterpretU8S64(r *arm.Uint8X8, v0 *arm.Int64X1)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU64U16 VreinterpretU64U16
+//go:linkname VreinterpretU8U16 VreinterpretU8U16
 //go:noescape
-func VreinterpretU64U16(r *arm.Uint64X1, v0 *arm.Uint16X4)
+func VreinterpretU8U16(r *arm.Uint8X8, v0 *arm.Uint16X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU64U32 VreinterpretU64U32
+//go:linkname VreinterpretU8U32 VreinterpretU8U32
 //go:noescape
-func VreinterpretU64U32(r *arm.Uint64X1, v0 *arm.Uint32X2)
+func VreinterpretU8U32(r *arm.Uint8X8, v0 *arm.Uint32X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU64U8 VreinterpretU64U8
+//go:linkname VreinterpretU8U64 VreinterpretU8U64
 //go:noescape
-func VreinterpretU64U8(r *arm.Uint64X1, v0 *arm.Uint8X8)
+func VreinterpretU8U64(r *arm.Uint8X8, v0 *arm.Uint64X1)
 
 // Vector reinterpret cast operation
 //
@@ -9539,45 +9581,51 @@ func VreinterpretU8P8(r *arm.Uint8X8, v0 *arm.Poly8X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU8S16 VreinterpretU8S16
+//go:linkname VreinterpretqF32S8 VreinterpretqF32S8
 //go:noescape
-func VreinterpretU8S16(r *arm.Uint8X8, v0 *arm.Int16X4)
+func VreinterpretqF32S8(r *arm.Float32X4, v0 *arm.Int8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU8S32 VreinterpretU8S32
+//go:linkname VreinterpretqF32S16 VreinterpretqF32S16
 //go:noescape
-func VreinterpretU8S32(r *arm.Uint8X8, v0 *arm.Int32X2)
+func VreinterpretqF32S16(r *arm.Float32X4, v0 *arm.Int16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU8S64 VreinterpretU8S64
+//go:linkname VreinterpretqF32S32 VreinterpretqF32S32
 //go:noescape
-func VreinterpretU8S64(r *arm.Uint8X8, v0 *arm.Int64X1)
+func VreinterpretqF32S32(r *arm.Float32X4, v0 *arm.Int32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU8S8 VreinterpretU8S8
+//go:linkname VreinterpretqF32S64 VreinterpretqF32S64
 //go:noescape
-func VreinterpretU8S8(r *arm.Uint8X8, v0 *arm.Int8X8)
+func VreinterpretqF32S64(r *arm.Float32X4, v0 *arm.Int64X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU8U16 VreinterpretU8U16
+//go:linkname VreinterpretqF32U8 VreinterpretqF32U8
 //go:noescape
-func VreinterpretU8U16(r *arm.Uint8X8, v0 *arm.Uint16X4)
+func VreinterpretqF32U8(r *arm.Float32X4, v0 *arm.Uint8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU8U32 VreinterpretU8U32
+//go:linkname VreinterpretqF32U16 VreinterpretqF32U16
 //go:noescape
-func VreinterpretU8U32(r *arm.Uint8X8, v0 *arm.Uint32X2)
+func VreinterpretqF32U16(r *arm.Float32X4, v0 *arm.Uint16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretU8U64 VreinterpretU8U64
+//go:linkname VreinterpretqF32U32 VreinterpretqF32U32
 //go:noescape
-func VreinterpretU8U64(r *arm.Uint8X8, v0 *arm.Uint64X1)
+func VreinterpretqF32U32(r *arm.Float32X4, v0 *arm.Uint32X4)
+
+// Vector reinterpret cast operation
+//
+//go:linkname VreinterpretqF32U64 VreinterpretqF32U64
+//go:noescape
+func VreinterpretqF32U64(r *arm.Float32X4, v0 *arm.Uint64X2)
 
 // Vector reinterpret cast operation
 //
@@ -9611,51 +9659,51 @@ func VreinterpretqF32P8(r *arm.Float32X4, v0 *arm.Poly8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqF32S16 VreinterpretqF32S16
+//go:linkname VreinterpretqF64S8 VreinterpretqF64S8
 //go:noescape
-func VreinterpretqF32S16(r *arm.Float32X4, v0 *arm.Int16X8)
+func VreinterpretqF64S8(r *arm.Float64X2, v0 *arm.Int8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqF32S32 VreinterpretqF32S32
+//go:linkname VreinterpretqF64S16 VreinterpretqF64S16
 //go:noescape
-func VreinterpretqF32S32(r *arm.Float32X4, v0 *arm.Int32X4)
+func VreinterpretqF64S16(r *arm.Float64X2, v0 *arm.Int16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqF32S64 VreinterpretqF32S64
+//go:linkname VreinterpretqF64S32 VreinterpretqF64S32
 //go:noescape
-func VreinterpretqF32S64(r *arm.Float32X4, v0 *arm.Int64X2)
+func VreinterpretqF64S32(r *arm.Float64X2, v0 *arm.Int32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqF32S8 VreinterpretqF32S8
+//go:linkname VreinterpretqF64S64 VreinterpretqF64S64
 //go:noescape
-func VreinterpretqF32S8(r *arm.Float32X4, v0 *arm.Int8X16)
+func VreinterpretqF64S64(r *arm.Float64X2, v0 *arm.Int64X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqF32U16 VreinterpretqF32U16
+//go:linkname VreinterpretqF64U8 VreinterpretqF64U8
 //go:noescape
-func VreinterpretqF32U16(r *arm.Float32X4, v0 *arm.Uint16X8)
+func VreinterpretqF64U8(r *arm.Float64X2, v0 *arm.Uint8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqF32U32 VreinterpretqF32U32
+//go:linkname VreinterpretqF64U16 VreinterpretqF64U16
 //go:noescape
-func VreinterpretqF32U32(r *arm.Float32X4, v0 *arm.Uint32X4)
+func VreinterpretqF64U16(r *arm.Float64X2, v0 *arm.Uint16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqF32U64 VreinterpretqF32U64
+//go:linkname VreinterpretqF64U32 VreinterpretqF64U32
 //go:noescape
-func VreinterpretqF32U64(r *arm.Float32X4, v0 *arm.Uint64X2)
+func VreinterpretqF64U32(r *arm.Float64X2, v0 *arm.Uint32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqF32U8 VreinterpretqF32U8
+//go:linkname VreinterpretqF64U64 VreinterpretqF64U64
 //go:noescape
-func VreinterpretqF32U8(r *arm.Float32X4, v0 *arm.Uint8X16)
+func VreinterpretqF64U64(r *arm.Float64X2, v0 *arm.Uint64X2)
 
 // Vector reinterpret cast operation
 //
@@ -9689,51 +9737,51 @@ func VreinterpretqF64P8(r *arm.Float64X2, v0 *arm.Poly8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqF64S16 VreinterpretqF64S16
+//go:linkname VreinterpretqP128S8 VreinterpretqP128S8
 //go:noescape
-func VreinterpretqF64S16(r *arm.Float64X2, v0 *arm.Int16X8)
+func VreinterpretqP128S8(r *arm.Poly128, v0 *arm.Int8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqF64S32 VreinterpretqF64S32
+//go:linkname VreinterpretqP128S16 VreinterpretqP128S16
 //go:noescape
-func VreinterpretqF64S32(r *arm.Float64X2, v0 *arm.Int32X4)
+func VreinterpretqP128S16(r *arm.Poly128, v0 *arm.Int16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqF64S64 VreinterpretqF64S64
+//go:linkname VreinterpretqP128S32 VreinterpretqP128S32
 //go:noescape
-func VreinterpretqF64S64(r *arm.Float64X2, v0 *arm.Int64X2)
+func VreinterpretqP128S32(r *arm.Poly128, v0 *arm.Int32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqF64S8 VreinterpretqF64S8
+//go:linkname VreinterpretqP128S64 VreinterpretqP128S64
 //go:noescape
-func VreinterpretqF64S8(r *arm.Float64X2, v0 *arm.Int8X16)
+func VreinterpretqP128S64(r *arm.Poly128, v0 *arm.Int64X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqF64U16 VreinterpretqF64U16
+//go:linkname VreinterpretqP128U8 VreinterpretqP128U8
 //go:noescape
-func VreinterpretqF64U16(r *arm.Float64X2, v0 *arm.Uint16X8)
+func VreinterpretqP128U8(r *arm.Poly128, v0 *arm.Uint8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqF64U32 VreinterpretqF64U32
+//go:linkname VreinterpretqP128U16 VreinterpretqP128U16
 //go:noescape
-func VreinterpretqF64U32(r *arm.Float64X2, v0 *arm.Uint32X4)
+func VreinterpretqP128U16(r *arm.Poly128, v0 *arm.Uint16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqF64U64 VreinterpretqF64U64
+//go:linkname VreinterpretqP128U32 VreinterpretqP128U32
 //go:noescape
-func VreinterpretqF64U64(r *arm.Float64X2, v0 *arm.Uint64X2)
+func VreinterpretqP128U32(r *arm.Poly128, v0 *arm.Uint32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqF64U8 VreinterpretqF64U8
+//go:linkname VreinterpretqP128U64 VreinterpretqP128U64
 //go:noescape
-func VreinterpretqF64U8(r *arm.Float64X2, v0 *arm.Uint8X16)
+func VreinterpretqP128U64(r *arm.Poly128, v0 *arm.Uint64X2)
 
 // Vector reinterpret cast operation
 //
@@ -9767,51 +9815,51 @@ func VreinterpretqP128P8(r *arm.Poly128, v0 *arm.Poly8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP128S16 VreinterpretqP128S16
+//go:linkname VreinterpretqP16S8 VreinterpretqP16S8
 //go:noescape
-func VreinterpretqP128S16(r *arm.Poly128, v0 *arm.Int16X8)
+func VreinterpretqP16S8(r *arm.Poly16X8, v0 *arm.Int8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP128S32 VreinterpretqP128S32
+//go:linkname VreinterpretqP16S16 VreinterpretqP16S16
 //go:noescape
-func VreinterpretqP128S32(r *arm.Poly128, v0 *arm.Int32X4)
+func VreinterpretqP16S16(r *arm.Poly16X8, v0 *arm.Int16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP128S64 VreinterpretqP128S64
+//go:linkname VreinterpretqP16S32 VreinterpretqP16S32
 //go:noescape
-func VreinterpretqP128S64(r *arm.Poly128, v0 *arm.Int64X2)
+func VreinterpretqP16S32(r *arm.Poly16X8, v0 *arm.Int32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP128S8 VreinterpretqP128S8
+//go:linkname VreinterpretqP16S64 VreinterpretqP16S64
 //go:noescape
-func VreinterpretqP128S8(r *arm.Poly128, v0 *arm.Int8X16)
+func VreinterpretqP16S64(r *arm.Poly16X8, v0 *arm.Int64X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP128U16 VreinterpretqP128U16
+//go:linkname VreinterpretqP16U8 VreinterpretqP16U8
 //go:noescape
-func VreinterpretqP128U16(r *arm.Poly128, v0 *arm.Uint16X8)
+func VreinterpretqP16U8(r *arm.Poly16X8, v0 *arm.Uint8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP128U32 VreinterpretqP128U32
+//go:linkname VreinterpretqP16U16 VreinterpretqP16U16
 //go:noescape
-func VreinterpretqP128U32(r *arm.Poly128, v0 *arm.Uint32X4)
+func VreinterpretqP16U16(r *arm.Poly16X8, v0 *arm.Uint16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP128U64 VreinterpretqP128U64
+//go:linkname VreinterpretqP16U32 VreinterpretqP16U32
 //go:noescape
-func VreinterpretqP128U64(r *arm.Poly128, v0 *arm.Uint64X2)
+func VreinterpretqP16U32(r *arm.Poly16X8, v0 *arm.Uint32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP128U8 VreinterpretqP128U8
+//go:linkname VreinterpretqP16U64 VreinterpretqP16U64
 //go:noescape
-func VreinterpretqP128U8(r *arm.Poly128, v0 *arm.Uint8X16)
+func VreinterpretqP16U64(r *arm.Poly16X8, v0 *arm.Uint64X2)
 
 // Vector reinterpret cast operation
 //
@@ -9845,51 +9893,51 @@ func VreinterpretqP16P8(r *arm.Poly16X8, v0 *arm.Poly8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP16S16 VreinterpretqP16S16
+//go:linkname VreinterpretqP64S8 VreinterpretqP64S8
 //go:noescape
-func VreinterpretqP16S16(r *arm.Poly16X8, v0 *arm.Int16X8)
+func VreinterpretqP64S8(r *arm.Poly64X2, v0 *arm.Int8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP16S32 VreinterpretqP16S32
+//go:linkname VreinterpretqP64S16 VreinterpretqP64S16
 //go:noescape
-func VreinterpretqP16S32(r *arm.Poly16X8, v0 *arm.Int32X4)
+func VreinterpretqP64S16(r *arm.Poly64X2, v0 *arm.Int16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP16S64 VreinterpretqP16S64
+//go:linkname VreinterpretqP64S32 VreinterpretqP64S32
 //go:noescape
-func VreinterpretqP16S64(r *arm.Poly16X8, v0 *arm.Int64X2)
+func VreinterpretqP64S32(r *arm.Poly64X2, v0 *arm.Int32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP16S8 VreinterpretqP16S8
+//go:linkname VreinterpretqP64S64 VreinterpretqP64S64
 //go:noescape
-func VreinterpretqP16S8(r *arm.Poly16X8, v0 *arm.Int8X16)
+func VreinterpretqP64S64(r *arm.Poly64X2, v0 *arm.Int64X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP16U16 VreinterpretqP16U16
+//go:linkname VreinterpretqP64U8 VreinterpretqP64U8
 //go:noescape
-func VreinterpretqP16U16(r *arm.Poly16X8, v0 *arm.Uint16X8)
+func VreinterpretqP64U8(r *arm.Poly64X2, v0 *arm.Uint8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP16U32 VreinterpretqP16U32
+//go:linkname VreinterpretqP64U16 VreinterpretqP64U16
 //go:noescape
-func VreinterpretqP16U32(r *arm.Poly16X8, v0 *arm.Uint32X4)
+func VreinterpretqP64U16(r *arm.Poly64X2, v0 *arm.Uint16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP16U64 VreinterpretqP16U64
+//go:linkname VreinterpretqP64U32 VreinterpretqP64U32
 //go:noescape
-func VreinterpretqP16U64(r *arm.Poly16X8, v0 *arm.Uint64X2)
+func VreinterpretqP64U32(r *arm.Poly64X2, v0 *arm.Uint32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP16U8 VreinterpretqP16U8
+//go:linkname VreinterpretqP64U64 VreinterpretqP64U64
 //go:noescape
-func VreinterpretqP16U8(r *arm.Poly16X8, v0 *arm.Uint8X16)
+func VreinterpretqP64U64(r *arm.Poly64X2, v0 *arm.Uint64X2)
 
 // Vector reinterpret cast operation
 //
@@ -9923,51 +9971,51 @@ func VreinterpretqP64P8(r *arm.Poly64X2, v0 *arm.Poly8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP64S16 VreinterpretqP64S16
+//go:linkname VreinterpretqP8S8 VreinterpretqP8S8
 //go:noescape
-func VreinterpretqP64S16(r *arm.Poly64X2, v0 *arm.Int16X8)
+func VreinterpretqP8S8(r *arm.Poly8X16, v0 *arm.Int8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP64S32 VreinterpretqP64S32
+//go:linkname VreinterpretqP8S16 VreinterpretqP8S16
 //go:noescape
-func VreinterpretqP64S32(r *arm.Poly64X2, v0 *arm.Int32X4)
+func VreinterpretqP8S16(r *arm.Poly8X16, v0 *arm.Int16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP64S64 VreinterpretqP64S64
+//go:linkname VreinterpretqP8S32 VreinterpretqP8S32
 //go:noescape
-func VreinterpretqP64S64(r *arm.Poly64X2, v0 *arm.Int64X2)
+func VreinterpretqP8S32(r *arm.Poly8X16, v0 *arm.Int32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP64S8 VreinterpretqP64S8
+//go:linkname VreinterpretqP8S64 VreinterpretqP8S64
 //go:noescape
-func VreinterpretqP64S8(r *arm.Poly64X2, v0 *arm.Int8X16)
+func VreinterpretqP8S64(r *arm.Poly8X16, v0 *arm.Int64X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP64U16 VreinterpretqP64U16
+//go:linkname VreinterpretqP8U8 VreinterpretqP8U8
 //go:noescape
-func VreinterpretqP64U16(r *arm.Poly64X2, v0 *arm.Uint16X8)
+func VreinterpretqP8U8(r *arm.Poly8X16, v0 *arm.Uint8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP64U32 VreinterpretqP64U32
+//go:linkname VreinterpretqP8U16 VreinterpretqP8U16
 //go:noescape
-func VreinterpretqP64U32(r *arm.Poly64X2, v0 *arm.Uint32X4)
+func VreinterpretqP8U16(r *arm.Poly8X16, v0 *arm.Uint16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP64U64 VreinterpretqP64U64
+//go:linkname VreinterpretqP8U32 VreinterpretqP8U32
 //go:noescape
-func VreinterpretqP64U64(r *arm.Poly64X2, v0 *arm.Uint64X2)
+func VreinterpretqP8U32(r *arm.Poly8X16, v0 *arm.Uint32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP64U8 VreinterpretqP64U8
+//go:linkname VreinterpretqP8U64 VreinterpretqP8U64
 //go:noescape
-func VreinterpretqP64U8(r *arm.Poly64X2, v0 *arm.Uint8X16)
+func VreinterpretqP8U64(r *arm.Poly8X16, v0 *arm.Uint64X2)
 
 // Vector reinterpret cast operation
 //
@@ -10001,51 +10049,45 @@ func VreinterpretqP8P64(r *arm.Poly8X16, v0 *arm.Poly64X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP8S16 VreinterpretqP8S16
+//go:linkname VreinterpretqS16S8 VreinterpretqS16S8
 //go:noescape
-func VreinterpretqP8S16(r *arm.Poly8X16, v0 *arm.Int16X8)
+func VreinterpretqS16S8(r *arm.Int16X8, v0 *arm.Int8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP8S32 VreinterpretqP8S32
+//go:linkname VreinterpretqS16S32 VreinterpretqS16S32
 //go:noescape
-func VreinterpretqP8S32(r *arm.Poly8X16, v0 *arm.Int32X4)
+func VreinterpretqS16S32(r *arm.Int16X8, v0 *arm.Int32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP8S64 VreinterpretqP8S64
+//go:linkname VreinterpretqS16S64 VreinterpretqS16S64
 //go:noescape
-func VreinterpretqP8S64(r *arm.Poly8X16, v0 *arm.Int64X2)
+func VreinterpretqS16S64(r *arm.Int16X8, v0 *arm.Int64X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP8S8 VreinterpretqP8S8
+//go:linkname VreinterpretqS16U8 VreinterpretqS16U8
 //go:noescape
-func VreinterpretqP8S8(r *arm.Poly8X16, v0 *arm.Int8X16)
+func VreinterpretqS16U8(r *arm.Int16X8, v0 *arm.Uint8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP8U16 VreinterpretqP8U16
+//go:linkname VreinterpretqS16U16 VreinterpretqS16U16
 //go:noescape
-func VreinterpretqP8U16(r *arm.Poly8X16, v0 *arm.Uint16X8)
+func VreinterpretqS16U16(r *arm.Int16X8, v0 *arm.Uint16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP8U32 VreinterpretqP8U32
+//go:linkname VreinterpretqS16U32 VreinterpretqS16U32
 //go:noescape
-func VreinterpretqP8U32(r *arm.Poly8X16, v0 *arm.Uint32X4)
+func VreinterpretqS16U32(r *arm.Int16X8, v0 *arm.Uint32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqP8U64 VreinterpretqP8U64
+//go:linkname VreinterpretqS16U64 VreinterpretqS16U64
 //go:noescape
-func VreinterpretqP8U64(r *arm.Poly8X16, v0 *arm.Uint64X2)
-
-// Vector reinterpret cast operation
-//
-//go:linkname VreinterpretqP8U8 VreinterpretqP8U8
-//go:noescape
-func VreinterpretqP8U8(r *arm.Poly8X16, v0 *arm.Uint8X16)
+func VreinterpretqS16U64(r *arm.Int16X8, v0 *arm.Uint64X2)
 
 // Vector reinterpret cast operation
 //
@@ -10085,45 +10127,45 @@ func VreinterpretqS16P8(r *arm.Int16X8, v0 *arm.Poly8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS16S32 VreinterpretqS16S32
+//go:linkname VreinterpretqS32S8 VreinterpretqS32S8
 //go:noescape
-func VreinterpretqS16S32(r *arm.Int16X8, v0 *arm.Int32X4)
+func VreinterpretqS32S8(r *arm.Int32X4, v0 *arm.Int8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS16S64 VreinterpretqS16S64
+//go:linkname VreinterpretqS32S16 VreinterpretqS32S16
 //go:noescape
-func VreinterpretqS16S64(r *arm.Int16X8, v0 *arm.Int64X2)
+func VreinterpretqS32S16(r *arm.Int32X4, v0 *arm.Int16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS16S8 VreinterpretqS16S8
+//go:linkname VreinterpretqS32S64 VreinterpretqS32S64
 //go:noescape
-func VreinterpretqS16S8(r *arm.Int16X8, v0 *arm.Int8X16)
+func VreinterpretqS32S64(r *arm.Int32X4, v0 *arm.Int64X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS16U16 VreinterpretqS16U16
+//go:linkname VreinterpretqS32U8 VreinterpretqS32U8
 //go:noescape
-func VreinterpretqS16U16(r *arm.Int16X8, v0 *arm.Uint16X8)
+func VreinterpretqS32U8(r *arm.Int32X4, v0 *arm.Uint8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS16U32 VreinterpretqS16U32
+//go:linkname VreinterpretqS32U16 VreinterpretqS32U16
 //go:noescape
-func VreinterpretqS16U32(r *arm.Int16X8, v0 *arm.Uint32X4)
+func VreinterpretqS32U16(r *arm.Int32X4, v0 *arm.Uint16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS16U64 VreinterpretqS16U64
+//go:linkname VreinterpretqS32U32 VreinterpretqS32U32
 //go:noescape
-func VreinterpretqS16U64(r *arm.Int16X8, v0 *arm.Uint64X2)
+func VreinterpretqS32U32(r *arm.Int32X4, v0 *arm.Uint32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS16U8 VreinterpretqS16U8
+//go:linkname VreinterpretqS32U64 VreinterpretqS32U64
 //go:noescape
-func VreinterpretqS16U8(r *arm.Int16X8, v0 *arm.Uint8X16)
+func VreinterpretqS32U64(r *arm.Int32X4, v0 *arm.Uint64X2)
 
 // Vector reinterpret cast operation
 //
@@ -10163,45 +10205,45 @@ func VreinterpretqS32P8(r *arm.Int32X4, v0 *arm.Poly8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS32S16 VreinterpretqS32S16
+//go:linkname VreinterpretqS64S8 VreinterpretqS64S8
 //go:noescape
-func VreinterpretqS32S16(r *arm.Int32X4, v0 *arm.Int16X8)
+func VreinterpretqS64S8(r *arm.Int64X2, v0 *arm.Int8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS32S64 VreinterpretqS32S64
+//go:linkname VreinterpretqS64S16 VreinterpretqS64S16
 //go:noescape
-func VreinterpretqS32S64(r *arm.Int32X4, v0 *arm.Int64X2)
+func VreinterpretqS64S16(r *arm.Int64X2, v0 *arm.Int16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS32S8 VreinterpretqS32S8
+//go:linkname VreinterpretqS64S32 VreinterpretqS64S32
 //go:noescape
-func VreinterpretqS32S8(r *arm.Int32X4, v0 *arm.Int8X16)
+func VreinterpretqS64S32(r *arm.Int64X2, v0 *arm.Int32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS32U16 VreinterpretqS32U16
+//go:linkname VreinterpretqS64U8 VreinterpretqS64U8
 //go:noescape
-func VreinterpretqS32U16(r *arm.Int32X4, v0 *arm.Uint16X8)
+func VreinterpretqS64U8(r *arm.Int64X2, v0 *arm.Uint8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS32U32 VreinterpretqS32U32
+//go:linkname VreinterpretqS64U16 VreinterpretqS64U16
 //go:noescape
-func VreinterpretqS32U32(r *arm.Int32X4, v0 *arm.Uint32X4)
+func VreinterpretqS64U16(r *arm.Int64X2, v0 *arm.Uint16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS32U64 VreinterpretqS32U64
+//go:linkname VreinterpretqS64U32 VreinterpretqS64U32
 //go:noescape
-func VreinterpretqS32U64(r *arm.Int32X4, v0 *arm.Uint64X2)
+func VreinterpretqS64U32(r *arm.Int64X2, v0 *arm.Uint32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS32U8 VreinterpretqS32U8
+//go:linkname VreinterpretqS64U64 VreinterpretqS64U64
 //go:noescape
-func VreinterpretqS32U8(r *arm.Int32X4, v0 *arm.Uint8X16)
+func VreinterpretqS64U64(r *arm.Int64X2, v0 *arm.Uint64X2)
 
 // Vector reinterpret cast operation
 //
@@ -10241,45 +10283,45 @@ func VreinterpretqS64P8(r *arm.Int64X2, v0 *arm.Poly8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS64S16 VreinterpretqS64S16
+//go:linkname VreinterpretqS8S16 VreinterpretqS8S16
 //go:noescape
-func VreinterpretqS64S16(r *arm.Int64X2, v0 *arm.Int16X8)
+func VreinterpretqS8S16(r *arm.Int8X16, v0 *arm.Int16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS64S32 VreinterpretqS64S32
+//go:linkname VreinterpretqS8S32 VreinterpretqS8S32
 //go:noescape
-func VreinterpretqS64S32(r *arm.Int64X2, v0 *arm.Int32X4)
+func VreinterpretqS8S32(r *arm.Int8X16, v0 *arm.Int32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS64S8 VreinterpretqS64S8
+//go:linkname VreinterpretqS8S64 VreinterpretqS8S64
 //go:noescape
-func VreinterpretqS64S8(r *arm.Int64X2, v0 *arm.Int8X16)
+func VreinterpretqS8S64(r *arm.Int8X16, v0 *arm.Int64X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS64U16 VreinterpretqS64U16
+//go:linkname VreinterpretqS8U8 VreinterpretqS8U8
 //go:noescape
-func VreinterpretqS64U16(r *arm.Int64X2, v0 *arm.Uint16X8)
+func VreinterpretqS8U8(r *arm.Int8X16, v0 *arm.Uint8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS64U32 VreinterpretqS64U32
+//go:linkname VreinterpretqS8U16 VreinterpretqS8U16
 //go:noescape
-func VreinterpretqS64U32(r *arm.Int64X2, v0 *arm.Uint32X4)
+func VreinterpretqS8U16(r *arm.Int8X16, v0 *arm.Uint16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS64U64 VreinterpretqS64U64
+//go:linkname VreinterpretqS8U32 VreinterpretqS8U32
 //go:noescape
-func VreinterpretqS64U64(r *arm.Int64X2, v0 *arm.Uint64X2)
+func VreinterpretqS8U32(r *arm.Int8X16, v0 *arm.Uint32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS64U8 VreinterpretqS64U8
+//go:linkname VreinterpretqS8U64 VreinterpretqS8U64
 //go:noescape
-func VreinterpretqS64U8(r *arm.Int64X2, v0 *arm.Uint8X16)
+func VreinterpretqS8U64(r *arm.Int8X16, v0 *arm.Uint64X2)
 
 // Vector reinterpret cast operation
 //
@@ -10319,45 +10361,45 @@ func VreinterpretqS8P8(r *arm.Int8X16, v0 *arm.Poly8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS8S16 VreinterpretqS8S16
+//go:linkname VreinterpretqU16S8 VreinterpretqU16S8
 //go:noescape
-func VreinterpretqS8S16(r *arm.Int8X16, v0 *arm.Int16X8)
+func VreinterpretqU16S8(r *arm.Uint16X8, v0 *arm.Int8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS8S32 VreinterpretqS8S32
+//go:linkname VreinterpretqU16S16 VreinterpretqU16S16
 //go:noescape
-func VreinterpretqS8S32(r *arm.Int8X16, v0 *arm.Int32X4)
+func VreinterpretqU16S16(r *arm.Uint16X8, v0 *arm.Int16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS8S64 VreinterpretqS8S64
+//go:linkname VreinterpretqU16S32 VreinterpretqU16S32
 //go:noescape
-func VreinterpretqS8S64(r *arm.Int8X16, v0 *arm.Int64X2)
+func VreinterpretqU16S32(r *arm.Uint16X8, v0 *arm.Int32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS8U16 VreinterpretqS8U16
+//go:linkname VreinterpretqU16S64 VreinterpretqU16S64
 //go:noescape
-func VreinterpretqS8U16(r *arm.Int8X16, v0 *arm.Uint16X8)
+func VreinterpretqU16S64(r *arm.Uint16X8, v0 *arm.Int64X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS8U32 VreinterpretqS8U32
+//go:linkname VreinterpretqU16U8 VreinterpretqU16U8
 //go:noescape
-func VreinterpretqS8U32(r *arm.Int8X16, v0 *arm.Uint32X4)
+func VreinterpretqU16U8(r *arm.Uint16X8, v0 *arm.Uint8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS8U64 VreinterpretqS8U64
+//go:linkname VreinterpretqU16U32 VreinterpretqU16U32
 //go:noescape
-func VreinterpretqS8U64(r *arm.Int8X16, v0 *arm.Uint64X2)
+func VreinterpretqU16U32(r *arm.Uint16X8, v0 *arm.Uint32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqS8U8 VreinterpretqS8U8
+//go:linkname VreinterpretqU16U64 VreinterpretqU16U64
 //go:noescape
-func VreinterpretqS8U8(r *arm.Int8X16, v0 *arm.Uint8X16)
+func VreinterpretqU16U64(r *arm.Uint16X8, v0 *arm.Uint64X2)
 
 // Vector reinterpret cast operation
 //
@@ -10397,45 +10439,45 @@ func VreinterpretqU16P8(r *arm.Uint16X8, v0 *arm.Poly8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU16S16 VreinterpretqU16S16
+//go:linkname VreinterpretqU32S8 VreinterpretqU32S8
 //go:noescape
-func VreinterpretqU16S16(r *arm.Uint16X8, v0 *arm.Int16X8)
+func VreinterpretqU32S8(r *arm.Uint32X4, v0 *arm.Int8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU16S32 VreinterpretqU16S32
+//go:linkname VreinterpretqU32S16 VreinterpretqU32S16
 //go:noescape
-func VreinterpretqU16S32(r *arm.Uint16X8, v0 *arm.Int32X4)
+func VreinterpretqU32S16(r *arm.Uint32X4, v0 *arm.Int16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU16S64 VreinterpretqU16S64
+//go:linkname VreinterpretqU32S32 VreinterpretqU32S32
 //go:noescape
-func VreinterpretqU16S64(r *arm.Uint16X8, v0 *arm.Int64X2)
+func VreinterpretqU32S32(r *arm.Uint32X4, v0 *arm.Int32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU16S8 VreinterpretqU16S8
+//go:linkname VreinterpretqU32S64 VreinterpretqU32S64
 //go:noescape
-func VreinterpretqU16S8(r *arm.Uint16X8, v0 *arm.Int8X16)
+func VreinterpretqU32S64(r *arm.Uint32X4, v0 *arm.Int64X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU16U32 VreinterpretqU16U32
+//go:linkname VreinterpretqU32U8 VreinterpretqU32U8
 //go:noescape
-func VreinterpretqU16U32(r *arm.Uint16X8, v0 *arm.Uint32X4)
+func VreinterpretqU32U8(r *arm.Uint32X4, v0 *arm.Uint8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU16U64 VreinterpretqU16U64
+//go:linkname VreinterpretqU32U16 VreinterpretqU32U16
 //go:noescape
-func VreinterpretqU16U64(r *arm.Uint16X8, v0 *arm.Uint64X2)
+func VreinterpretqU32U16(r *arm.Uint32X4, v0 *arm.Uint16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU16U8 VreinterpretqU16U8
+//go:linkname VreinterpretqU32U64 VreinterpretqU32U64
 //go:noescape
-func VreinterpretqU16U8(r *arm.Uint16X8, v0 *arm.Uint8X16)
+func VreinterpretqU32U64(r *arm.Uint32X4, v0 *arm.Uint64X2)
 
 // Vector reinterpret cast operation
 //
@@ -10475,45 +10517,45 @@ func VreinterpretqU32P8(r *arm.Uint32X4, v0 *arm.Poly8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU32S16 VreinterpretqU32S16
+//go:linkname VreinterpretqU64S8 VreinterpretqU64S8
 //go:noescape
-func VreinterpretqU32S16(r *arm.Uint32X4, v0 *arm.Int16X8)
+func VreinterpretqU64S8(r *arm.Uint64X2, v0 *arm.Int8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU32S32 VreinterpretqU32S32
+//go:linkname VreinterpretqU64S16 VreinterpretqU64S16
 //go:noescape
-func VreinterpretqU32S32(r *arm.Uint32X4, v0 *arm.Int32X4)
+func VreinterpretqU64S16(r *arm.Uint64X2, v0 *arm.Int16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU32S64 VreinterpretqU32S64
+//go:linkname VreinterpretqU64S32 VreinterpretqU64S32
 //go:noescape
-func VreinterpretqU32S64(r *arm.Uint32X4, v0 *arm.Int64X2)
+func VreinterpretqU64S32(r *arm.Uint64X2, v0 *arm.Int32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU32S8 VreinterpretqU32S8
+//go:linkname VreinterpretqU64S64 VreinterpretqU64S64
 //go:noescape
-func VreinterpretqU32S8(r *arm.Uint32X4, v0 *arm.Int8X16)
+func VreinterpretqU64S64(r *arm.Uint64X2, v0 *arm.Int64X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU32U16 VreinterpretqU32U16
+//go:linkname VreinterpretqU64U8 VreinterpretqU64U8
 //go:noescape
-func VreinterpretqU32U16(r *arm.Uint32X4, v0 *arm.Uint16X8)
+func VreinterpretqU64U8(r *arm.Uint64X2, v0 *arm.Uint8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU32U64 VreinterpretqU32U64
+//go:linkname VreinterpretqU64U16 VreinterpretqU64U16
 //go:noescape
-func VreinterpretqU32U64(r *arm.Uint32X4, v0 *arm.Uint64X2)
+func VreinterpretqU64U16(r *arm.Uint64X2, v0 *arm.Uint16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU32U8 VreinterpretqU32U8
+//go:linkname VreinterpretqU64U32 VreinterpretqU64U32
 //go:noescape
-func VreinterpretqU32U8(r *arm.Uint32X4, v0 *arm.Uint8X16)
+func VreinterpretqU64U32(r *arm.Uint64X2, v0 *arm.Uint32X4)
 
 // Vector reinterpret cast operation
 //
@@ -10553,45 +10595,45 @@ func VreinterpretqU64P8(r *arm.Uint64X2, v0 *arm.Poly8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU64S16 VreinterpretqU64S16
+//go:linkname VreinterpretqU8S8 VreinterpretqU8S8
 //go:noescape
-func VreinterpretqU64S16(r *arm.Uint64X2, v0 *arm.Int16X8)
+func VreinterpretqU8S8(r *arm.Uint8X16, v0 *arm.Int8X16)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU64S32 VreinterpretqU64S32
+//go:linkname VreinterpretqU8S16 VreinterpretqU8S16
 //go:noescape
-func VreinterpretqU64S32(r *arm.Uint64X2, v0 *arm.Int32X4)
+func VreinterpretqU8S16(r *arm.Uint8X16, v0 *arm.Int16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU64S64 VreinterpretqU64S64
+//go:linkname VreinterpretqU8S32 VreinterpretqU8S32
 //go:noescape
-func VreinterpretqU64S64(r *arm.Uint64X2, v0 *arm.Int64X2)
+func VreinterpretqU8S32(r *arm.Uint8X16, v0 *arm.Int32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU64S8 VreinterpretqU64S8
+//go:linkname VreinterpretqU8S64 VreinterpretqU8S64
 //go:noescape
-func VreinterpretqU64S8(r *arm.Uint64X2, v0 *arm.Int8X16)
+func VreinterpretqU8S64(r *arm.Uint8X16, v0 *arm.Int64X2)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU64U16 VreinterpretqU64U16
+//go:linkname VreinterpretqU8U16 VreinterpretqU8U16
 //go:noescape
-func VreinterpretqU64U16(r *arm.Uint64X2, v0 *arm.Uint16X8)
+func VreinterpretqU8U16(r *arm.Uint8X16, v0 *arm.Uint16X8)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU64U32 VreinterpretqU64U32
+//go:linkname VreinterpretqU8U32 VreinterpretqU8U32
 //go:noescape
-func VreinterpretqU64U32(r *arm.Uint64X2, v0 *arm.Uint32X4)
+func VreinterpretqU8U32(r *arm.Uint8X16, v0 *arm.Uint32X4)
 
 // Vector reinterpret cast operation
 //
-//go:linkname VreinterpretqU64U8 VreinterpretqU64U8
+//go:linkname VreinterpretqU8U64 VreinterpretqU8U64
 //go:noescape
-func VreinterpretqU64U8(r *arm.Uint64X2, v0 *arm.Uint8X16)
+func VreinterpretqU8U64(r *arm.Uint8X16, v0 *arm.Uint64X2)
 
 // Vector reinterpret cast operation
 //
@@ -10629,54 +10671,6 @@ func VreinterpretqU8P64(r *arm.Uint8X16, v0 *arm.Poly64X2)
 //go:noescape
 func VreinterpretqU8P8(r *arm.Uint8X16, v0 *arm.Poly8X16)
 
-// Vector reinterpret cast operation
-//
-//go:linkname VreinterpretqU8S16 VreinterpretqU8S16
-//go:noescape
-func VreinterpretqU8S16(r *arm.Uint8X16, v0 *arm.Int16X8)
-
-// Vector reinterpret cast operation
-//
-//go:linkname VreinterpretqU8S32 VreinterpretqU8S32
-//go:noescape
-func VreinterpretqU8S32(r *arm.Uint8X16, v0 *arm.Int32X4)
-
-// Vector reinterpret cast operation
-//
-//go:linkname VreinterpretqU8S64 VreinterpretqU8S64
-//go:noescape
-func VreinterpretqU8S64(r *arm.Uint8X16, v0 *arm.Int64X2)
-
-// Vector reinterpret cast operation
-//
-//go:linkname VreinterpretqU8S8 VreinterpretqU8S8
-//go:noescape
-func VreinterpretqU8S8(r *arm.Uint8X16, v0 *arm.Int8X16)
-
-// Vector reinterpret cast operation
-//
-//go:linkname VreinterpretqU8U16 VreinterpretqU8U16
-//go:noescape
-func VreinterpretqU8U16(r *arm.Uint8X16, v0 *arm.Uint16X8)
-
-// Vector reinterpret cast operation
-//
-//go:linkname VreinterpretqU8U32 VreinterpretqU8U32
-//go:noescape
-func VreinterpretqU8U32(r *arm.Uint8X16, v0 *arm.Uint32X4)
-
-// Vector reinterpret cast operation
-//
-//go:linkname VreinterpretqU8U64 VreinterpretqU8U64
-//go:noescape
-func VreinterpretqU8U64(r *arm.Uint8X16, v0 *arm.Uint64X2)
-
-// Reverse elements in 16-bit halfwords (vector). This instruction reverses the order of 8-bit elements in each halfword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname Vrev16P8 Vrev16P8
-//go:noescape
-func Vrev16P8(r *arm.Poly8X8, v0 *arm.Poly8X8)
-
 // Reverse elements in 16-bit halfwords (vector). This instruction reverses the order of 8-bit elements in each halfword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
 //go:linkname Vrev16S8 Vrev16S8
@@ -10691,9 +10685,9 @@ func Vrev16U8(r *arm.Uint8X8, v0 *arm.Uint8X8)
 
 // Reverse elements in 16-bit halfwords (vector). This instruction reverses the order of 8-bit elements in each halfword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vrev16QP8 Vrev16QP8
+//go:linkname Vrev16P8 Vrev16P8
 //go:noescape
-func Vrev16QP8(r *arm.Poly8X16, v0 *arm.Poly8X16)
+func Vrev16P8(r *arm.Poly8X8, v0 *arm.Poly8X8)
 
 // Reverse elements in 16-bit halfwords (vector). This instruction reverses the order of 8-bit elements in each halfword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -10706,6 +10700,36 @@ func Vrev16QS8(r *arm.Int8X16, v0 *arm.Int8X16)
 //go:linkname Vrev16QU8 Vrev16QU8
 //go:noescape
 func Vrev16QU8(r *arm.Uint8X16, v0 *arm.Uint8X16)
+
+// Reverse elements in 16-bit halfwords (vector). This instruction reverses the order of 8-bit elements in each halfword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname Vrev16QP8 Vrev16QP8
+//go:noescape
+func Vrev16QP8(r *arm.Poly8X16, v0 *arm.Poly8X16)
+
+// Reverse elements in 32-bit words (vector). This instruction reverses the order of 8-bit or 16-bit elements in each word of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname Vrev32S8 Vrev32S8
+//go:noescape
+func Vrev32S8(r *arm.Int8X8, v0 *arm.Int8X8)
+
+// Reverse elements in 32-bit words (vector). This instruction reverses the order of 8-bit or 16-bit elements in each word of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname Vrev32S16 Vrev32S16
+//go:noescape
+func Vrev32S16(r *arm.Int16X4, v0 *arm.Int16X4)
+
+// Reverse elements in 32-bit words (vector). This instruction reverses the order of 8-bit or 16-bit elements in each word of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname Vrev32U8 Vrev32U8
+//go:noescape
+func Vrev32U8(r *arm.Uint8X8, v0 *arm.Uint8X8)
+
+// Reverse elements in 32-bit words (vector). This instruction reverses the order of 8-bit or 16-bit elements in each word of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname Vrev32U16 Vrev32U16
+//go:noescape
+func Vrev32U16(r *arm.Uint16X4, v0 *arm.Uint16X4)
 
 // Reverse elements in 32-bit words (vector). This instruction reverses the order of 8-bit or 16-bit elements in each word of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -10721,27 +10745,27 @@ func Vrev32P8(r *arm.Poly8X8, v0 *arm.Poly8X8)
 
 // Reverse elements in 32-bit words (vector). This instruction reverses the order of 8-bit or 16-bit elements in each word of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vrev32S16 Vrev32S16
+//go:linkname Vrev32QS8 Vrev32QS8
 //go:noescape
-func Vrev32S16(r *arm.Int16X4, v0 *arm.Int16X4)
+func Vrev32QS8(r *arm.Int8X16, v0 *arm.Int8X16)
 
 // Reverse elements in 32-bit words (vector). This instruction reverses the order of 8-bit or 16-bit elements in each word of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vrev32S8 Vrev32S8
+//go:linkname Vrev32QS16 Vrev32QS16
 //go:noescape
-func Vrev32S8(r *arm.Int8X8, v0 *arm.Int8X8)
+func Vrev32QS16(r *arm.Int16X8, v0 *arm.Int16X8)
 
 // Reverse elements in 32-bit words (vector). This instruction reverses the order of 8-bit or 16-bit elements in each word of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vrev32U16 Vrev32U16
+//go:linkname Vrev32QU8 Vrev32QU8
 //go:noescape
-func Vrev32U16(r *arm.Uint16X4, v0 *arm.Uint16X4)
+func Vrev32QU8(r *arm.Uint8X16, v0 *arm.Uint8X16)
 
 // Reverse elements in 32-bit words (vector). This instruction reverses the order of 8-bit or 16-bit elements in each word of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vrev32U8 Vrev32U8
+//go:linkname Vrev32QU16 Vrev32QU16
 //go:noescape
-func Vrev32U8(r *arm.Uint8X8, v0 *arm.Uint8X8)
+func Vrev32QU16(r *arm.Uint16X8, v0 *arm.Uint16X8)
 
 // Reverse elements in 32-bit words (vector). This instruction reverses the order of 8-bit or 16-bit elements in each word of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -10755,29 +10779,41 @@ func Vrev32QP16(r *arm.Poly16X8, v0 *arm.Poly16X8)
 //go:noescape
 func Vrev32QP8(r *arm.Poly8X16, v0 *arm.Poly8X16)
 
-// Reverse elements in 32-bit words (vector). This instruction reverses the order of 8-bit or 16-bit elements in each word of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vrev32QS16 Vrev32QS16
+//go:linkname Vrev64S8 Vrev64S8
 //go:noescape
-func Vrev32QS16(r *arm.Int16X8, v0 *arm.Int16X8)
+func Vrev64S8(r *arm.Int8X8, v0 *arm.Int8X8)
 
-// Reverse elements in 32-bit words (vector). This instruction reverses the order of 8-bit or 16-bit elements in each word of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vrev32QS8 Vrev32QS8
+//go:linkname Vrev64S16 Vrev64S16
 //go:noescape
-func Vrev32QS8(r *arm.Int8X16, v0 *arm.Int8X16)
+func Vrev64S16(r *arm.Int16X4, v0 *arm.Int16X4)
 
-// Reverse elements in 32-bit words (vector). This instruction reverses the order of 8-bit or 16-bit elements in each word of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vrev32QU16 Vrev32QU16
+//go:linkname Vrev64S32 Vrev64S32
 //go:noescape
-func Vrev32QU16(r *arm.Uint16X8, v0 *arm.Uint16X8)
+func Vrev64S32(r *arm.Int32X2, v0 *arm.Int32X2)
 
-// Reverse elements in 32-bit words (vector). This instruction reverses the order of 8-bit or 16-bit elements in each word of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vrev32QU8 Vrev32QU8
+//go:linkname Vrev64U8 Vrev64U8
 //go:noescape
-func Vrev32QU8(r *arm.Uint8X16, v0 *arm.Uint8X16)
+func Vrev64U8(r *arm.Uint8X8, v0 *arm.Uint8X8)
+
+// Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname Vrev64U16 Vrev64U16
+//go:noescape
+func Vrev64U16(r *arm.Uint16X4, v0 *arm.Uint16X4)
+
+// Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname Vrev64U32 Vrev64U32
+//go:noescape
+func Vrev64U32(r *arm.Uint32X2, v0 *arm.Uint32X2)
 
 // Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -10799,39 +10835,39 @@ func Vrev64P8(r *arm.Poly8X8, v0 *arm.Poly8X8)
 
 // Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vrev64S16 Vrev64S16
+//go:linkname Vrev64QS8 Vrev64QS8
 //go:noescape
-func Vrev64S16(r *arm.Int16X4, v0 *arm.Int16X4)
+func Vrev64QS8(r *arm.Int8X16, v0 *arm.Int8X16)
 
 // Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vrev64S32 Vrev64S32
+//go:linkname Vrev64QS16 Vrev64QS16
 //go:noescape
-func Vrev64S32(r *arm.Int32X2, v0 *arm.Int32X2)
+func Vrev64QS16(r *arm.Int16X8, v0 *arm.Int16X8)
 
 // Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vrev64S8 Vrev64S8
+//go:linkname Vrev64QS32 Vrev64QS32
 //go:noescape
-func Vrev64S8(r *arm.Int8X8, v0 *arm.Int8X8)
+func Vrev64QS32(r *arm.Int32X4, v0 *arm.Int32X4)
 
 // Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vrev64U16 Vrev64U16
+//go:linkname Vrev64QU8 Vrev64QU8
 //go:noescape
-func Vrev64U16(r *arm.Uint16X4, v0 *arm.Uint16X4)
+func Vrev64QU8(r *arm.Uint8X16, v0 *arm.Uint8X16)
 
 // Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vrev64U32 Vrev64U32
+//go:linkname Vrev64QU16 Vrev64QU16
 //go:noescape
-func Vrev64U32(r *arm.Uint32X2, v0 *arm.Uint32X2)
+func Vrev64QU16(r *arm.Uint16X8, v0 *arm.Uint16X8)
 
 // Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vrev64U8 Vrev64U8
+//go:linkname Vrev64QU32 Vrev64QU32
 //go:noescape
-func Vrev64U8(r *arm.Uint8X8, v0 *arm.Uint8X8)
+func Vrev64QU32(r *arm.Uint32X4, v0 *arm.Uint32X4)
 
 // Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -10851,41 +10887,11 @@ func Vrev64QP16(r *arm.Poly16X8, v0 *arm.Poly16X8)
 //go:noescape
 func Vrev64QP8(r *arm.Poly8X16, v0 *arm.Poly8X16)
 
-// Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Signed Rounding Halving Add. This instruction adds corresponding signed integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vrev64QS16 Vrev64QS16
+//go:linkname VrhaddS8 VrhaddS8
 //go:noescape
-func Vrev64QS16(r *arm.Int16X8, v0 *arm.Int16X8)
-
-// Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname Vrev64QS32 Vrev64QS32
-//go:noescape
-func Vrev64QS32(r *arm.Int32X4, v0 *arm.Int32X4)
-
-// Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname Vrev64QS8 Vrev64QS8
-//go:noescape
-func Vrev64QS8(r *arm.Int8X16, v0 *arm.Int8X16)
-
-// Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname Vrev64QU16 Vrev64QU16
-//go:noescape
-func Vrev64QU16(r *arm.Uint16X8, v0 *arm.Uint16X8)
-
-// Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname Vrev64QU32 Vrev64QU32
-//go:noescape
-func Vrev64QU32(r *arm.Uint32X4, v0 *arm.Uint32X4)
-
-// Reverse elements in 64-bit doublewords (vector). This instruction reverses the order of 8-bit, 16-bit, or 32-bit elements in each doubleword of the vector in the source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname Vrev64QU8 Vrev64QU8
-//go:noescape
-func Vrev64QU8(r *arm.Uint8X16, v0 *arm.Uint8X16)
+func VrhaddS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Signed Rounding Halving Add. This instruction adds corresponding signed integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -10899,11 +10905,11 @@ func VrhaddS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
 //go:noescape
 func VrhaddS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
-// Signed Rounding Halving Add. This instruction adds corresponding signed integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Rounding Halving Add. This instruction adds corresponding unsigned integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VrhaddS8 VrhaddS8
+//go:linkname VrhaddU8 VrhaddU8
 //go:noescape
-func VrhaddS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VrhaddU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Unsigned Rounding Halving Add. This instruction adds corresponding unsigned integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -10917,11 +10923,11 @@ func VrhaddU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
 //go:noescape
 func VrhaddU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 
-// Unsigned Rounding Halving Add. This instruction adds corresponding unsigned integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Signed Rounding Halving Add. This instruction adds corresponding signed integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VrhaddU8 VrhaddU8
+//go:linkname VrhaddqS8 VrhaddqS8
 //go:noescape
-func VrhaddU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VrhaddqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Signed Rounding Halving Add. This instruction adds corresponding signed integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -10935,11 +10941,11 @@ func VrhaddqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
 //go:noescape
 func VrhaddqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
-// Signed Rounding Halving Add. This instruction adds corresponding signed integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Rounding Halving Add. This instruction adds corresponding unsigned integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VrhaddqS8 VrhaddqS8
+//go:linkname VrhaddqU8 VrhaddqU8
 //go:noescape
-func VrhaddqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VrhaddqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Unsigned Rounding Halving Add. This instruction adds corresponding unsigned integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -10953,11 +10959,17 @@ func VrhaddqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
 //go:noescape
 func VrhaddqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 
-// Unsigned Rounding Halving Add. This instruction adds corresponding unsigned integer values from the two source SIMD&FP registers, shifts each result right one bit, places the results into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point Round to Integral, toward Zero (vector). This instruction rounds a vector of floating-point values in the SIMD&FP source register to integral floating-point values of the same size using the Round towards Zero rounding mode, and writes the result to the SIMD&FP destination register.
 //
-//go:linkname VrhaddqU8 VrhaddqU8
+//go:linkname VrndF32 VrndF32
 //go:noescape
-func VrhaddqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VrndF32(r *arm.Float32X2, v0 *arm.Float32X2)
+
+// Floating-point Round to Integral, toward Zero (vector). This instruction rounds a vector of floating-point values in the SIMD&FP source register to integral floating-point values of the same size using the Round towards Zero rounding mode, and writes the result to the SIMD&FP destination register.
+//
+//go:linkname VrndF64 VrndF64
+//go:noescape
+func VrndF64(r *arm.Float64X1, v0 *arm.Float64X1)
 
 // Floating-point Round to 32-bit Integer, using current rounding mode (vector). This instruction rounds a vector of floating-point values in the SIMD&FP source register to integral floating-point values that fit into a 32-bit integer size using the rounding mode that is determined by the FPCR, and writes the result to the SIMD&FP destination register.
 //
@@ -11054,18 +11066,6 @@ func Vrnd64ZqF32(r *arm.Float32X4, v0 *arm.Float32X4)
 //go:linkname Vrnd64ZqF64 Vrnd64ZqF64
 //go:noescape
 func Vrnd64ZqF64(r *arm.Float64X2, v0 *arm.Float64X2)
-
-// Floating-point Round to Integral, toward Zero (vector). This instruction rounds a vector of floating-point values in the SIMD&FP source register to integral floating-point values of the same size using the Round towards Zero rounding mode, and writes the result to the SIMD&FP destination register.
-//
-//go:linkname VrndF32 VrndF32
-//go:noescape
-func VrndF32(r *arm.Float32X2, v0 *arm.Float32X2)
-
-// Floating-point Round to Integral, toward Zero (vector). This instruction rounds a vector of floating-point values in the SIMD&FP source register to integral floating-point values of the same size using the Round towards Zero rounding mode, and writes the result to the SIMD&FP destination register.
-//
-//go:linkname VrndF64 VrndF64
-//go:noescape
-func VrndF64(r *arm.Float64X1, v0 *arm.Float64X1)
 
 // Floating-point Round to Integral, to nearest with ties to Away (vector). This instruction rounds a vector of floating-point values in the SIMD&FP source register to integral floating-point values of the same size using the Round to Nearest with Ties to Away rounding mode, and writes the result to the SIMD&FP destination register.
 //
@@ -11231,6 +11231,12 @@ func VrndxqF64(r *arm.Float64X2, v0 *arm.Float64X2)
 
 // Signed Rounding Shift Left (register). This instruction takes each signed integer value in the vector of the first source SIMD&FP register, shifts it by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
+//go:linkname VrshlS8 VrshlS8
+//go:noescape
+func VrshlS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+
+// Signed Rounding Shift Left (register). This instruction takes each signed integer value in the vector of the first source SIMD&FP register, shifts it by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+//
 //go:linkname VrshlS16 VrshlS16
 //go:noescape
 func VrshlS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
@@ -11247,11 +11253,11 @@ func VrshlS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 //go:noescape
 func VrshlS64(r *arm.Int64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
 
-// Signed Rounding Shift Left (register). This instruction takes each signed integer value in the vector of the first source SIMD&FP register, shifts it by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Rounding Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts the vector element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VrshlS8 VrshlS8
+//go:linkname VrshlU8 VrshlU8
 //go:noescape
-func VrshlS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VrshlU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Int8X8)
 
 // Unsigned Rounding Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts the vector element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -11271,12 +11277,6 @@ func VrshlU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Int32X2)
 //go:noescape
 func VrshlU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Int64X1)
 
-// Unsigned Rounding Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts the vector element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VrshlU8 VrshlU8
-//go:noescape
-func VrshlU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Int8X8)
-
 // Signed Rounding Shift Left (register). This instruction takes each signed integer value in the vector of the first source SIMD&FP register, shifts it by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
 //go:linkname VrshldS64 VrshldS64
@@ -11288,6 +11288,12 @@ func VrshldS64(r *arm.Int64, v0 *arm.Int64, v1 *arm.Int64)
 //go:linkname VrshldU64 VrshldU64
 //go:noescape
 func VrshldU64(r *arm.Uint64, v0 *arm.Uint64, v1 *arm.Int64)
+
+// Signed Rounding Shift Left (register). This instruction takes each signed integer value in the vector of the first source SIMD&FP register, shifts it by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VrshlqS8 VrshlqS8
+//go:noescape
+func VrshlqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Signed Rounding Shift Left (register). This instruction takes each signed integer value in the vector of the first source SIMD&FP register, shifts it by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -11307,11 +11313,11 @@ func VrshlqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 //go:noescape
 func VrshlqS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
-// Signed Rounding Shift Left (register). This instruction takes each signed integer value in the vector of the first source SIMD&FP register, shifts it by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Rounding Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts the vector element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VrshlqS8 VrshlqS8
+//go:linkname VrshlqU8 VrshlqU8
 //go:noescape
-func VrshlqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VrshlqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Int8X16)
 
 // Unsigned Rounding Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts the vector element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -11331,11 +11337,11 @@ func VrshlqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Int32X4)
 //go:noescape
 func VrshlqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Int64X2)
 
-// Unsigned Rounding Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts the vector element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Reciprocal Square Root Estimate. This instruction reads each vector element from the source SIMD&FP register, calculates an approximate inverse square root for each value, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
 //
-//go:linkname VrshlqU8 VrshlqU8
+//go:linkname VrsqrteU32 VrsqrteU32
 //go:noescape
-func VrshlqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Int8X16)
+func VrsqrteU32(r *arm.Uint32X2, v0 *arm.Uint32X2)
 
 // Floating-point Reciprocal Square Root Estimate. This instruction calculates an approximate square root for each vector element in the source SIMD&FP register, places the result in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -11349,17 +11355,17 @@ func VrsqrteF32(r *arm.Float32X2, v0 *arm.Float32X2)
 //go:noescape
 func VrsqrteF64(r *arm.Float64X1, v0 *arm.Float64X1)
 
-// Unsigned Reciprocal Square Root Estimate. This instruction reads each vector element from the source SIMD&FP register, calculates an approximate inverse square root for each value, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VrsqrteU32 VrsqrteU32
-//go:noescape
-func VrsqrteU32(r *arm.Uint32X2, v0 *arm.Uint32X2)
-
 // Floating-point Reciprocal Square Root Estimate. This instruction calculates an approximate square root for each vector element in the source SIMD&FP register, places the result in a vector, and writes the vector to the destination SIMD&FP register.
 //
 //go:linkname VrsqrtedF64 VrsqrtedF64
 //go:noescape
 func VrsqrtedF64(r *arm.Float64, v0 *arm.Float64)
+
+// Unsigned Reciprocal Square Root Estimate. This instruction reads each vector element from the source SIMD&FP register, calculates an approximate inverse square root for each value, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
+//
+//go:linkname VrsqrteqU32 VrsqrteqU32
+//go:noescape
+func VrsqrteqU32(r *arm.Uint32X4, v0 *arm.Uint32X4)
 
 // Floating-point Reciprocal Square Root Estimate. This instruction calculates an approximate square root for each vector element in the source SIMD&FP register, places the result in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -11372,12 +11378,6 @@ func VrsqrteqF32(r *arm.Float32X4, v0 *arm.Float32X4)
 //go:linkname VrsqrteqF64 VrsqrteqF64
 //go:noescape
 func VrsqrteqF64(r *arm.Float64X2, v0 *arm.Float64X2)
-
-// Unsigned Reciprocal Square Root Estimate. This instruction reads each vector element from the source SIMD&FP register, calculates an approximate inverse square root for each value, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are unsigned integer values.
-//
-//go:linkname VrsqrteqU32 VrsqrteqU32
-//go:noescape
-func VrsqrteqU32(r *arm.Uint32X4, v0 *arm.Uint32X4)
 
 // Floating-point Reciprocal Square Root Estimate. This instruction calculates an approximate square root for each vector element in the source SIMD&FP register, places the result in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -11423,42 +11423,6 @@ func VrsqrtssF32(r *arm.Float32, v0 *arm.Float32, v1 *arm.Float32)
 
 // Rounding Subtract returning High Narrow. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
 //
-//go:linkname VrsubhnHighS16 VrsubhnHighS16
-//go:noescape
-func VrsubhnHighS16(r *arm.Int8X16, v0 *arm.Int8X8, v1 *arm.Int16X8, v2 *arm.Int16X8)
-
-// Rounding Subtract returning High Narrow. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
-//
-//go:linkname VrsubhnHighS32 VrsubhnHighS32
-//go:noescape
-func VrsubhnHighS32(r *arm.Int16X8, v0 *arm.Int16X4, v1 *arm.Int32X4, v2 *arm.Int32X4)
-
-// Rounding Subtract returning High Narrow. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
-//
-//go:linkname VrsubhnHighS64 VrsubhnHighS64
-//go:noescape
-func VrsubhnHighS64(r *arm.Int32X4, v0 *arm.Int32X2, v1 *arm.Int64X2, v2 *arm.Int64X2)
-
-// Rounding Subtract returning High Narrow. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
-//
-//go:linkname VrsubhnHighU16 VrsubhnHighU16
-//go:noescape
-func VrsubhnHighU16(r *arm.Uint8X16, v0 *arm.Uint8X8, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
-
-// Rounding Subtract returning High Narrow. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
-//
-//go:linkname VrsubhnHighU32 VrsubhnHighU32
-//go:noescape
-func VrsubhnHighU32(r *arm.Uint16X8, v0 *arm.Uint16X4, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
-
-// Rounding Subtract returning High Narrow. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
-//
-//go:linkname VrsubhnHighU64 VrsubhnHighU64
-//go:noescape
-func VrsubhnHighU64(r *arm.Uint32X4, v0 *arm.Uint32X2, v1 *arm.Uint64X2, v2 *arm.Uint64X2)
-
-// Rounding Subtract returning High Narrow. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
-//
 //go:linkname VrsubhnS16 VrsubhnS16
 //go:noescape
 func VrsubhnS16(r *arm.Int8X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
@@ -11492,6 +11456,42 @@ func VrsubhnU32(r *arm.Uint16X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 //go:linkname VrsubhnU64 VrsubhnU64
 //go:noescape
 func VrsubhnU64(r *arm.Uint32X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
+
+// Rounding Subtract returning High Narrow. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
+//
+//go:linkname VrsubhnHighS16 VrsubhnHighS16
+//go:noescape
+func VrsubhnHighS16(r *arm.Int8X16, v0 *arm.Int8X8, v1 *arm.Int16X8, v2 *arm.Int16X8)
+
+// Rounding Subtract returning High Narrow. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
+//
+//go:linkname VrsubhnHighS32 VrsubhnHighS32
+//go:noescape
+func VrsubhnHighS32(r *arm.Int16X8, v0 *arm.Int16X4, v1 *arm.Int32X4, v2 *arm.Int32X4)
+
+// Rounding Subtract returning High Narrow. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
+//
+//go:linkname VrsubhnHighS64 VrsubhnHighS64
+//go:noescape
+func VrsubhnHighS64(r *arm.Int32X4, v0 *arm.Int32X2, v1 *arm.Int64X2, v2 *arm.Int64X2)
+
+// Rounding Subtract returning High Narrow. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
+//
+//go:linkname VrsubhnHighU16 VrsubhnHighU16
+//go:noescape
+func VrsubhnHighU16(r *arm.Uint8X16, v0 *arm.Uint8X8, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
+
+// Rounding Subtract returning High Narrow. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
+//
+//go:linkname VrsubhnHighU32 VrsubhnHighU32
+//go:noescape
+func VrsubhnHighU32(r *arm.Uint16X8, v0 *arm.Uint16X4, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
+
+// Rounding Subtract returning High Narrow. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register.
+//
+//go:linkname VrsubhnHighU64 VrsubhnHighU64
+//go:noescape
+func VrsubhnHighU64(r *arm.Uint32X4, v0 *arm.Uint32X2, v1 *arm.Uint64X2, v2 *arm.Uint64X2)
 
 // SHA1 hash update (choose).
 //
@@ -11579,6 +11579,12 @@ func Vsha512Su1QU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2, v2 *arm
 
 // Signed Shift Left (register). This instruction takes each signed integer value in the vector of the first source SIMD&FP register, shifts each value by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
+//go:linkname VshlS8 VshlS8
+//go:noescape
+func VshlS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+
+// Signed Shift Left (register). This instruction takes each signed integer value in the vector of the first source SIMD&FP register, shifts each value by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+//
 //go:linkname VshlS16 VshlS16
 //go:noescape
 func VshlS16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
@@ -11595,11 +11601,11 @@ func VshlS32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 //go:noescape
 func VshlS64(r *arm.Int64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
 
-// Signed Shift Left (register). This instruction takes each signed integer value in the vector of the first source SIMD&FP register, shifts each value by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts each element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VshlS8 VshlS8
+//go:linkname VshlU8 VshlU8
 //go:noescape
-func VshlS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VshlU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Int8X8)
 
 // Unsigned Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts each element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -11619,12 +11625,6 @@ func VshlU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Int32X2)
 //go:noescape
 func VshlU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Int64X1)
 
-// Unsigned Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts each element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VshlU8 VshlU8
-//go:noescape
-func VshlU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Int8X8)
-
 // Signed Shift Left (register). This instruction takes each signed integer value in the vector of the first source SIMD&FP register, shifts each value by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
 //go:linkname VshldS64 VshldS64
@@ -11636,6 +11636,12 @@ func VshldS64(r *arm.Int64, v0 *arm.Int64, v1 *arm.Int64)
 //go:linkname VshldU64 VshldU64
 //go:noescape
 func VshldU64(r *arm.Uint64, v0 *arm.Uint64, v1 *arm.Int64)
+
+// Signed Shift Left (register). This instruction takes each signed integer value in the vector of the first source SIMD&FP register, shifts each value by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VshlqS8 VshlqS8
+//go:noescape
+func VshlqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Signed Shift Left (register). This instruction takes each signed integer value in the vector of the first source SIMD&FP register, shifts each value by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -11655,11 +11661,11 @@ func VshlqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 //go:noescape
 func VshlqS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
-// Signed Shift Left (register). This instruction takes each signed integer value in the vector of the first source SIMD&FP register, shifts each value by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts each element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VshlqS8 VshlqS8
+//go:linkname VshlqU8 VshlqU8
 //go:noescape
-func VshlqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VshlqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Int8X16)
 
 // Unsigned Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts each element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -11678,12 +11684,6 @@ func VshlqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Int32X4)
 //go:linkname VshlqU64 VshlqU64
 //go:noescape
 func VshlqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Int64X2)
-
-// Unsigned Shift Left (register). This instruction takes each element in the vector of the first source SIMD&FP register, shifts each element by a value from the least significant byte of the corresponding element of the second source SIMD&FP register, places the results in a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VshlqU8 VshlqU8
-//go:noescape
-func VshlqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Int8X16)
 
 // SM3PARTW1 takes three 128-bit vectors from the three source SIMD&FP registers and returns a 128-bit result in the destination SIMD&FP register. The result is obtained by a three-way exclusive OR of the elements within the input vectors with some fixed rotations, see the Operation pseudocode for more information.
 //
@@ -11717,6 +11717,12 @@ func Vsm4EqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 
 // Unsigned saturating Accumulate of Signed value. This instruction adds the signed integer values of the vector elements in the source SIMD&FP register to corresponding unsigned integer values of the vector elements in the destination SIMD&FP register, and accumulates the resulting unsigned integer values with the vector elements of the destination SIMD&FP register.
 //
+//go:linkname VsqaddU8 VsqaddU8
+//go:noescape
+func VsqaddU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Int8X8)
+
+// Unsigned saturating Accumulate of Signed value. This instruction adds the signed integer values of the vector elements in the source SIMD&FP register to corresponding unsigned integer values of the vector elements in the destination SIMD&FP register, and accumulates the resulting unsigned integer values with the vector elements of the destination SIMD&FP register.
+//
 //go:linkname VsqaddU16 VsqaddU16
 //go:noescape
 func VsqaddU16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Int16X4)
@@ -11732,12 +11738,6 @@ func VsqaddU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Int32X2)
 //go:linkname VsqaddU64 VsqaddU64
 //go:noescape
 func VsqaddU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Int64X1)
-
-// Unsigned saturating Accumulate of Signed value. This instruction adds the signed integer values of the vector elements in the source SIMD&FP register to corresponding unsigned integer values of the vector elements in the destination SIMD&FP register, and accumulates the resulting unsigned integer values with the vector elements of the destination SIMD&FP register.
-//
-//go:linkname VsqaddU8 VsqaddU8
-//go:noescape
-func VsqaddU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Int8X8)
 
 // Unsigned saturating Accumulate of Signed value. This instruction adds the signed integer values of the vector elements in the source SIMD&FP register to corresponding unsigned integer values of the vector elements in the destination SIMD&FP register, and accumulates the resulting unsigned integer values with the vector elements of the destination SIMD&FP register.
 //
@@ -11759,6 +11759,12 @@ func VsqaddhU16(r *arm.Uint16, v0 *arm.Uint16, v1 *arm.Int16)
 
 // Unsigned saturating Accumulate of Signed value. This instruction adds the signed integer values of the vector elements in the source SIMD&FP register to corresponding unsigned integer values of the vector elements in the destination SIMD&FP register, and accumulates the resulting unsigned integer values with the vector elements of the destination SIMD&FP register.
 //
+//go:linkname VsqaddqU8 VsqaddqU8
+//go:noescape
+func VsqaddqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Int8X16)
+
+// Unsigned saturating Accumulate of Signed value. This instruction adds the signed integer values of the vector elements in the source SIMD&FP register to corresponding unsigned integer values of the vector elements in the destination SIMD&FP register, and accumulates the resulting unsigned integer values with the vector elements of the destination SIMD&FP register.
+//
 //go:linkname VsqaddqU16 VsqaddqU16
 //go:noescape
 func VsqaddqU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Int16X8)
@@ -11774,12 +11780,6 @@ func VsqaddqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Int32X4)
 //go:linkname VsqaddqU64 VsqaddqU64
 //go:noescape
 func VsqaddqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Int64X2)
-
-// Unsigned saturating Accumulate of Signed value. This instruction adds the signed integer values of the vector elements in the source SIMD&FP register to corresponding unsigned integer values of the vector elements in the destination SIMD&FP register, and accumulates the resulting unsigned integer values with the vector elements of the destination SIMD&FP register.
-//
-//go:linkname VsqaddqU8 VsqaddqU8
-//go:noescape
-func VsqaddqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Int8X16)
 
 // Unsigned saturating Accumulate of Signed value. This instruction adds the signed integer values of the vector elements in the source SIMD&FP register to corresponding unsigned integer values of the vector elements in the destination SIMD&FP register, and accumulates the resulting unsigned integer values with the vector elements of the destination SIMD&FP register.
 //
@@ -11811,17 +11811,11 @@ func VsqrtqF32(r *arm.Float32X4, v0 *arm.Float32X4)
 //go:noescape
 func VsqrtqF64(r *arm.Float64X2, v0 *arm.Float64X2)
 
-// Floating-point Subtract (vector). This instruction subtracts the elements in the vector in the second source SIMD&FP register, from the corresponding elements in the vector in the first source SIMD&FP register, places each result into elements of a vector, and writes the vector to the destination SIMD&FP register.
+// Subtract (vector). This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VsubF32 VsubF32
+//go:linkname VsubS8 VsubS8
 //go:noescape
-func VsubF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
-
-// Floating-point Subtract (vector). This instruction subtracts the elements in the vector in the second source SIMD&FP register, from the corresponding elements in the vector in the first source SIMD&FP register, places each result into elements of a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VsubF64 VsubF64
-//go:noescape
-func VsubF64(r *arm.Float64X1, v0 *arm.Float64X1, v1 *arm.Float64X1)
+func VsubS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Subtract (vector). This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -11843,9 +11837,9 @@ func VsubS64(r *arm.Int64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
 
 // Subtract (vector). This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VsubS8 VsubS8
+//go:linkname VsubU8 VsubU8
 //go:noescape
-func VsubS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VsubU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Subtract (vector). This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -11865,11 +11859,17 @@ func VsubU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 //go:noescape
 func VsubU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
 
-// Subtract (vector). This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point Subtract (vector). This instruction subtracts the elements in the vector in the second source SIMD&FP register, from the corresponding elements in the vector in the first source SIMD&FP register, places each result into elements of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VsubU8 VsubU8
+//go:linkname VsubF32 VsubF32
 //go:noescape
-func VsubU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VsubF32(r *arm.Float32X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
+
+// Floating-point Subtract (vector). This instruction subtracts the elements in the vector in the second source SIMD&FP register, from the corresponding elements in the vector in the first source SIMD&FP register, places each result into elements of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VsubF64 VsubF64
+//go:noescape
+func VsubF64(r *arm.Float64X1, v0 *arm.Float64X1, v1 *arm.Float64X1)
 
 // Subtract (vector). This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -11882,42 +11882,6 @@ func VsubdS64(r *arm.Int64, v0 *arm.Int64, v1 *arm.Int64)
 //go:linkname VsubdU64 VsubdU64
 //go:noescape
 func VsubdU64(r *arm.Uint64, v0 *arm.Uint64, v1 *arm.Uint64)
-
-// Subtract returning High Narrow. This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. All the values in this instruction are signed integer values.
-//
-//go:linkname VsubhnHighS16 VsubhnHighS16
-//go:noescape
-func VsubhnHighS16(r *arm.Int8X16, v0 *arm.Int8X8, v1 *arm.Int16X8, v2 *arm.Int16X8)
-
-// Subtract returning High Narrow. This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. All the values in this instruction are signed integer values.
-//
-//go:linkname VsubhnHighS32 VsubhnHighS32
-//go:noescape
-func VsubhnHighS32(r *arm.Int16X8, v0 *arm.Int16X4, v1 *arm.Int32X4, v2 *arm.Int32X4)
-
-// Subtract returning High Narrow. This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. All the values in this instruction are signed integer values.
-//
-//go:linkname VsubhnHighS64 VsubhnHighS64
-//go:noescape
-func VsubhnHighS64(r *arm.Int32X4, v0 *arm.Int32X2, v1 *arm.Int64X2, v2 *arm.Int64X2)
-
-// Subtract returning High Narrow. This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. All the values in this instruction are signed integer values.
-//
-//go:linkname VsubhnHighU16 VsubhnHighU16
-//go:noescape
-func VsubhnHighU16(r *arm.Uint8X16, v0 *arm.Uint8X8, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
-
-// Subtract returning High Narrow. This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. All the values in this instruction are signed integer values.
-//
-//go:linkname VsubhnHighU32 VsubhnHighU32
-//go:noescape
-func VsubhnHighU32(r *arm.Uint16X8, v0 *arm.Uint16X4, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
-
-// Subtract returning High Narrow. This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. All the values in this instruction are signed integer values.
-//
-//go:linkname VsubhnHighU64 VsubhnHighU64
-//go:noescape
-func VsubhnHighU64(r *arm.Uint32X4, v0 *arm.Uint32X2, v1 *arm.Uint64X2, v2 *arm.Uint64X2)
 
 // Subtract returning High Narrow. This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. All the values in this instruction are signed integer values.
 //
@@ -11955,41 +11919,47 @@ func VsubhnU32(r *arm.Uint16X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 //go:noescape
 func VsubhnU64(r *arm.Uint32X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
-// Signed Subtract Long. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values. The destination vector elements are twice as long as the source vector elements.
+// Subtract returning High Narrow. This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. All the values in this instruction are signed integer values.
 //
-//go:linkname VsublHighS16 VsublHighS16
+//go:linkname VsubhnHighS16 VsubhnHighS16
 //go:noescape
-func VsublHighS16(r *arm.Int32X4, v0 *arm.Int16X8, v1 *arm.Int16X8)
+func VsubhnHighS16(r *arm.Int8X16, v0 *arm.Int8X8, v1 *arm.Int16X8, v2 *arm.Int16X8)
+
+// Subtract returning High Narrow. This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. All the values in this instruction are signed integer values.
+//
+//go:linkname VsubhnHighS32 VsubhnHighS32
+//go:noescape
+func VsubhnHighS32(r *arm.Int16X8, v0 *arm.Int16X4, v1 *arm.Int32X4, v2 *arm.Int32X4)
+
+// Subtract returning High Narrow. This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. All the values in this instruction are signed integer values.
+//
+//go:linkname VsubhnHighS64 VsubhnHighS64
+//go:noescape
+func VsubhnHighS64(r *arm.Int32X4, v0 *arm.Int32X2, v1 *arm.Int64X2, v2 *arm.Int64X2)
+
+// Subtract returning High Narrow. This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. All the values in this instruction are signed integer values.
+//
+//go:linkname VsubhnHighU16 VsubhnHighU16
+//go:noescape
+func VsubhnHighU16(r *arm.Uint8X16, v0 *arm.Uint8X8, v1 *arm.Uint16X8, v2 *arm.Uint16X8)
+
+// Subtract returning High Narrow. This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. All the values in this instruction are signed integer values.
+//
+//go:linkname VsubhnHighU32 VsubhnHighU32
+//go:noescape
+func VsubhnHighU32(r *arm.Uint16X8, v0 *arm.Uint16X4, v1 *arm.Uint32X4, v2 *arm.Uint32X4)
+
+// Subtract returning High Narrow. This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the most significant half of the result into a vector, and writes the vector to the lower or upper half of the destination SIMD&FP register. All the values in this instruction are signed integer values.
+//
+//go:linkname VsubhnHighU64 VsubhnHighU64
+//go:noescape
+func VsubhnHighU64(r *arm.Uint32X4, v0 *arm.Uint32X2, v1 *arm.Uint64X2, v2 *arm.Uint64X2)
 
 // Signed Subtract Long. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values. The destination vector elements are twice as long as the source vector elements.
 //
-//go:linkname VsublHighS32 VsublHighS32
+//go:linkname VsublS8 VsublS8
 //go:noescape
-func VsublHighS32(r *arm.Int64X2, v0 *arm.Int32X4, v1 *arm.Int32X4)
-
-// Signed Subtract Long. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values. The destination vector elements are twice as long as the source vector elements.
-//
-//go:linkname VsublHighS8 VsublHighS8
-//go:noescape
-func VsublHighS8(r *arm.Int16X8, v0 *arm.Int8X16, v1 *arm.Int8X16)
-
-// Unsigned Subtract Long. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are unsigned integer values. The destination vector elements are twice as long as the source vector elements.
-//
-//go:linkname VsublHighU16 VsublHighU16
-//go:noescape
-func VsublHighU16(r *arm.Uint32X4, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
-
-// Unsigned Subtract Long. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are unsigned integer values. The destination vector elements are twice as long as the source vector elements.
-//
-//go:linkname VsublHighU32 VsublHighU32
-//go:noescape
-func VsublHighU32(r *arm.Uint64X2, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
-
-// Unsigned Subtract Long. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are unsigned integer values. The destination vector elements are twice as long as the source vector elements.
-//
-//go:linkname VsublHighU8 VsublHighU8
-//go:noescape
-func VsublHighU8(r *arm.Uint16X8, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VsublS8(r *arm.Int16X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Signed Subtract Long. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values. The destination vector elements are twice as long as the source vector elements.
 //
@@ -12003,11 +11973,11 @@ func VsublS16(r *arm.Int32X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
 //go:noescape
 func VsublS32(r *arm.Int64X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
-// Signed Subtract Long. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values. The destination vector elements are twice as long as the source vector elements.
+// Unsigned Subtract Long. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are unsigned integer values. The destination vector elements are twice as long as the source vector elements.
 //
-//go:linkname VsublS8 VsublS8
+//go:linkname VsublU8 VsublU8
 //go:noescape
-func VsublS8(r *arm.Int16X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VsublU8(r *arm.Uint16X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Unsigned Subtract Long. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are unsigned integer values. The destination vector elements are twice as long as the source vector elements.
 //
@@ -12021,23 +11991,47 @@ func VsublU16(r *arm.Uint32X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
 //go:noescape
 func VsublU32(r *arm.Uint64X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 
+// Signed Subtract Long. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values. The destination vector elements are twice as long as the source vector elements.
+//
+//go:linkname VsublHighS8 VsublHighS8
+//go:noescape
+func VsublHighS8(r *arm.Int16X8, v0 *arm.Int8X16, v1 *arm.Int8X16)
+
+// Signed Subtract Long. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values. The destination vector elements are twice as long as the source vector elements.
+//
+//go:linkname VsublHighS16 VsublHighS16
+//go:noescape
+func VsublHighS16(r *arm.Int32X4, v0 *arm.Int16X8, v1 *arm.Int16X8)
+
+// Signed Subtract Long. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the results into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are signed integer values. The destination vector elements are twice as long as the source vector elements.
+//
+//go:linkname VsublHighS32 VsublHighS32
+//go:noescape
+func VsublHighS32(r *arm.Int64X2, v0 *arm.Int32X4, v1 *arm.Int32X4)
+
 // Unsigned Subtract Long. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are unsigned integer values. The destination vector elements are twice as long as the source vector elements.
 //
-//go:linkname VsublU8 VsublU8
+//go:linkname VsublHighU8 VsublHighU8
 //go:noescape
-func VsublU8(r *arm.Uint16X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VsublHighU8(r *arm.Uint16X8, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
-// Floating-point Subtract (vector). This instruction subtracts the elements in the vector in the second source SIMD&FP register, from the corresponding elements in the vector in the first source SIMD&FP register, places each result into elements of a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Subtract Long. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are unsigned integer values. The destination vector elements are twice as long as the source vector elements.
 //
-//go:linkname VsubqF32 VsubqF32
+//go:linkname VsublHighU16 VsublHighU16
 //go:noescape
-func VsubqF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
+func VsublHighU16(r *arm.Uint32X4, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
 
-// Floating-point Subtract (vector). This instruction subtracts the elements in the vector in the second source SIMD&FP register, from the corresponding elements in the vector in the first source SIMD&FP register, places each result into elements of a vector, and writes the vector to the destination SIMD&FP register.
+// Unsigned Subtract Long. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element of the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register. All the values in this instruction are unsigned integer values. The destination vector elements are twice as long as the source vector elements.
 //
-//go:linkname VsubqF64 VsubqF64
+//go:linkname VsublHighU32 VsublHighU32
 //go:noescape
-func VsubqF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
+func VsublHighU32(r *arm.Uint64X2, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
+
+// Subtract (vector). This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VsubqS8 VsubqS8
+//go:noescape
+func VsubqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Subtract (vector). This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -12059,9 +12053,9 @@ func VsubqS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
 // Subtract (vector). This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VsubqS8 VsubqS8
+//go:linkname VsubqU8 VsubqU8
 //go:noescape
-func VsubqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VsubqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Subtract (vector). This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -12081,47 +12075,23 @@ func VsubqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 //go:noescape
 func VsubqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
-// Subtract (vector). This instruction subtracts each vector element in the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result into a vector, and writes the vector to the destination SIMD&FP register.
+// Floating-point Subtract (vector). This instruction subtracts the elements in the vector in the second source SIMD&FP register, from the corresponding elements in the vector in the first source SIMD&FP register, places each result into elements of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VsubqU8 VsubqU8
+//go:linkname VsubqF32 VsubqF32
 //go:noescape
-func VsubqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VsubqF32(r *arm.Float32X4, v0 *arm.Float32X4, v1 *arm.Float32X4)
+
+// Floating-point Subtract (vector). This instruction subtracts the elements in the vector in the second source SIMD&FP register, from the corresponding elements in the vector in the first source SIMD&FP register, places each result into elements of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VsubqF64 VsubqF64
+//go:noescape
+func VsubqF64(r *arm.Float64X2, v0 *arm.Float64X2, v1 *arm.Float64X2)
 
 // Signed Subtract Wide. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. All the values in this instruction are signed integer values.
 //
-//go:linkname VsubwHighS16 VsubwHighS16
+//go:linkname VsubwS8 VsubwS8
 //go:noescape
-func VsubwHighS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8)
-
-// Signed Subtract Wide. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. All the values in this instruction are signed integer values.
-//
-//go:linkname VsubwHighS32 VsubwHighS32
-//go:noescape
-func VsubwHighS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4)
-
-// Signed Subtract Wide. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. All the values in this instruction are signed integer values.
-//
-//go:linkname VsubwHighS8 VsubwHighS8
-//go:noescape
-func VsubwHighS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X16)
-
-// Unsigned Subtract Wide. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element in the lower or upper half of the first source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. All the values in this instruction are signed integer values.
-//
-//go:linkname VsubwHighU16 VsubwHighU16
-//go:noescape
-func VsubwHighU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X8)
-
-// Unsigned Subtract Wide. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element in the lower or upper half of the first source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. All the values in this instruction are signed integer values.
-//
-//go:linkname VsubwHighU32 VsubwHighU32
-//go:noescape
-func VsubwHighU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X4)
-
-// Unsigned Subtract Wide. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element in the lower or upper half of the first source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. All the values in this instruction are signed integer values.
-//
-//go:linkname VsubwHighU8 VsubwHighU8
-//go:noescape
-func VsubwHighU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X16)
+func VsubwS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X8)
 
 // Signed Subtract Wide. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. All the values in this instruction are signed integer values.
 //
@@ -12135,11 +12105,11 @@ func VsubwS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X4)
 //go:noescape
 func VsubwS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X2)
 
-// Signed Subtract Wide. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. All the values in this instruction are signed integer values.
+// Unsigned Subtract Wide. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element in the lower or upper half of the first source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. All the values in this instruction are signed integer values.
 //
-//go:linkname VsubwS8 VsubwS8
+//go:linkname VsubwU8 VsubwU8
 //go:noescape
-func VsubwS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X8)
+func VsubwU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X8)
 
 // Unsigned Subtract Wide. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element in the lower or upper half of the first source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. All the values in this instruction are signed integer values.
 //
@@ -12153,17 +12123,41 @@ func VsubwU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X4)
 //go:noescape
 func VsubwU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X2)
 
+// Signed Subtract Wide. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. All the values in this instruction are signed integer values.
+//
+//go:linkname VsubwHighS8 VsubwHighS8
+//go:noescape
+func VsubwHighS8(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int8X16)
+
+// Signed Subtract Wide. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. All the values in this instruction are signed integer values.
+//
+//go:linkname VsubwHighS16 VsubwHighS16
+//go:noescape
+func VsubwHighS16(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int16X8)
+
+// Signed Subtract Wide. This instruction subtracts each vector element in the lower or upper half of the second source SIMD&FP register from the corresponding vector element in the first source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. All the values in this instruction are signed integer values.
+//
+//go:linkname VsubwHighS32 VsubwHighS32
+//go:noescape
+func VsubwHighS32(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int32X4)
+
 // Unsigned Subtract Wide. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element in the lower or upper half of the first source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. All the values in this instruction are signed integer values.
 //
-//go:linkname VsubwU8 VsubwU8
+//go:linkname VsubwHighU8 VsubwHighU8
 //go:noescape
-func VsubwU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X8)
+func VsubwHighU8(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint8X16)
 
-// Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
+// Unsigned Subtract Wide. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element in the lower or upper half of the first source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. All the values in this instruction are signed integer values.
 //
-//go:linkname Vtbl1P8 Vtbl1P8
+//go:linkname VsubwHighU16 VsubwHighU16
 //go:noescape
-func Vtbl1P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Uint8X8)
+func VsubwHighU16(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint16X8)
+
+// Unsigned Subtract Wide. This instruction subtracts each vector element of the second source SIMD&FP register from the corresponding vector element in the lower or upper half of the first source SIMD&FP register, places the result in a vector, and writes the vector to the SIMD&FP destination register. All the values in this instruction are signed integer values.
+//
+//go:linkname VsubwHighU32 VsubwHighU32
+//go:noescape
+func VsubwHighU32(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint32X4)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -12179,9 +12173,9 @@ func Vtbl1U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vtbl2P8 Vtbl2P8
+//go:linkname Vtbl1P8 Vtbl1P8
 //go:noescape
-func Vtbl2P8(r *arm.Poly8X8, v0 *arm.Poly8X8X2, v1 *arm.Uint8X8)
+func Vtbl1P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Uint8X8)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -12197,9 +12191,9 @@ func Vtbl2U8(r *arm.Uint8X8, v0 *arm.Uint8X8X2, v1 *arm.Uint8X8)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vtbl3P8 Vtbl3P8
+//go:linkname Vtbl2P8 Vtbl2P8
 //go:noescape
-func Vtbl3P8(r *arm.Poly8X8, v0 *arm.Poly8X8X3, v1 *arm.Uint8X8)
+func Vtbl2P8(r *arm.Poly8X8, v0 *arm.Poly8X8X2, v1 *arm.Uint8X8)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -12215,9 +12209,9 @@ func Vtbl3U8(r *arm.Uint8X8, v0 *arm.Uint8X8X3, v1 *arm.Uint8X8)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vtbl4P8 Vtbl4P8
+//go:linkname Vtbl3P8 Vtbl3P8
 //go:noescape
-func Vtbl4P8(r *arm.Poly8X8, v0 *arm.Poly8X8X4, v1 *arm.Uint8X8)
+func Vtbl3P8(r *arm.Poly8X8, v0 *arm.Poly8X8X3, v1 *arm.Uint8X8)
 
 // Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -12231,11 +12225,11 @@ func Vtbl4S8(r *arm.Int8X8, v0 *arm.Int8X8X4, v1 *arm.Int8X8)
 //go:noescape
 func Vtbl4U8(r *arm.Uint8X8, v0 *arm.Uint8X8X4, v1 *arm.Uint8X8)
 
-// Table vector lookup extension
+// Table vector Lookup. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the result for that lookup is 0. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vtbx1P8 Vtbx1P8
+//go:linkname Vtbl4P8 Vtbl4P8
 //go:noescape
-func Vtbx1P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8, v2 *arm.Uint8X8)
+func Vtbl4P8(r *arm.Poly8X8, v0 *arm.Poly8X8X4, v1 *arm.Uint8X8)
 
 // Table vector lookup extension
 //
@@ -12249,11 +12243,11 @@ func Vtbx1S8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8, v2 *arm.Int8X8)
 //go:noescape
 func Vtbx1U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8, v2 *arm.Uint8X8)
 
-// Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
+// Table vector lookup extension
 //
-//go:linkname Vtbx2P8 Vtbx2P8
+//go:linkname Vtbx1P8 Vtbx1P8
 //go:noescape
-func Vtbx2P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8X2, v2 *arm.Uint8X8)
+func Vtbx1P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8, v2 *arm.Uint8X8)
 
 // Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -12267,11 +12261,11 @@ func Vtbx2S8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8X2, v2 *arm.Int8X8)
 //go:noescape
 func Vtbx2U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8X2, v2 *arm.Uint8X8)
 
-// Table vector lookup extension
+// Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
-//go:linkname Vtbx3P8 Vtbx3P8
+//go:linkname Vtbx2P8 Vtbx2P8
 //go:noescape
-func Vtbx3P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8X3, v2 *arm.Uint8X8)
+func Vtbx2P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8X2, v2 *arm.Uint8X8)
 
 // Table vector lookup extension
 //
@@ -12285,11 +12279,11 @@ func Vtbx3S8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8X3, v2 *arm.Int8X8)
 //go:noescape
 func Vtbx3U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8X3, v2 *arm.Uint8X8)
 
-// Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
+// Table vector lookup extension
 //
-//go:linkname Vtbx4P8 Vtbx4P8
+//go:linkname Vtbx3P8 Vtbx3P8
 //go:noescape
-func Vtbx4P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8X4, v2 *arm.Uint8X8)
+func Vtbx3P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8X3, v2 *arm.Uint8X8)
 
 // Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
 //
@@ -12302,6 +12296,90 @@ func Vtbx4S8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8X4, v2 *arm.Int8X8)
 //go:linkname Vtbx4U8 Vtbx4U8
 //go:noescape
 func Vtbx4U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8X4, v2 *arm.Uint8X8)
+
+// Table vector lookup extension. This instruction reads each value from the vector elements in the index source SIMD&FP register, uses each result as an index to perform a lookup in a table of bytes that is described by one to four source table SIMD&FP registers, places the lookup result in a vector, and writes the vector to the destination SIMD&FP register. If an index is out of range for the table, the existing value in the vector element of the destination register is left unchanged. If more than one source register is used to describe the table, the first source register describes the lowest bytes of the table.
+//
+//go:linkname Vtbx4P8 Vtbx4P8
+//go:noescape
+func Vtbx4P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8X4, v2 *arm.Uint8X8)
+
+// Transpose elements
+//
+//go:linkname VtrnS8 VtrnS8
+//go:noescape
+func VtrnS8(r *arm.Int8X8X2, v0 *arm.Int8X8, v1 *arm.Int8X8)
+
+// Transpose elements
+//
+//go:linkname VtrnS16 VtrnS16
+//go:noescape
+func VtrnS16(r *arm.Int16X4X2, v0 *arm.Int16X4, v1 *arm.Int16X4)
+
+// Transpose elements
+//
+//go:linkname VtrnS32 VtrnS32
+//go:noescape
+func VtrnS32(r *arm.Int32X2X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+
+// Transpose elements
+//
+//go:linkname VtrnU8 VtrnU8
+//go:noescape
+func VtrnU8(r *arm.Uint8X8X2, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+
+// Transpose elements
+//
+//go:linkname VtrnU16 VtrnU16
+//go:noescape
+func VtrnU16(r *arm.Uint16X4X2, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+
+// Transpose elements
+//
+//go:linkname VtrnU32 VtrnU32
+//go:noescape
+func VtrnU32(r *arm.Uint32X2X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+
+// Transpose elements
+//
+//go:linkname VtrnF32 VtrnF32
+//go:noescape
+func VtrnF32(r *arm.Float32X2X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
+
+// Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
+//
+//go:linkname Vtrn1S8 Vtrn1S8
+//go:noescape
+func Vtrn1S8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+
+// Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
+//
+//go:linkname Vtrn1S16 Vtrn1S16
+//go:noescape
+func Vtrn1S16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
+
+// Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
+//
+//go:linkname Vtrn1S32 Vtrn1S32
+//go:noescape
+func Vtrn1S32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+
+// Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
+//
+//go:linkname Vtrn1U8 Vtrn1U8
+//go:noescape
+func Vtrn1U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+
+// Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
+//
+//go:linkname Vtrn1U16 Vtrn1U16
+//go:noescape
+func Vtrn1U16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+
+// Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
+//
+//go:linkname Vtrn1U32 Vtrn1U32
+//go:noescape
+func Vtrn1U32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 
 // Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
@@ -12323,39 +12401,51 @@ func Vtrn1P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8)
 
 // Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
-//go:linkname Vtrn1S16 Vtrn1S16
+//go:linkname Vtrn1QS8 Vtrn1QS8
 //go:noescape
-func Vtrn1S16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
+func Vtrn1QS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
-//go:linkname Vtrn1S32 Vtrn1S32
+//go:linkname Vtrn1QS16 Vtrn1QS16
 //go:noescape
-func Vtrn1S32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+func Vtrn1QS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
 
 // Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
-//go:linkname Vtrn1S8 Vtrn1S8
+//go:linkname Vtrn1QS32 Vtrn1QS32
 //go:noescape
-func Vtrn1S8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func Vtrn1QS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
 // Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
-//go:linkname Vtrn1U16 Vtrn1U16
+//go:linkname Vtrn1QS64 Vtrn1QS64
 //go:noescape
-func Vtrn1U16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+func Vtrn1QS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
 // Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
-//go:linkname Vtrn1U32 Vtrn1U32
+//go:linkname Vtrn1QU8 Vtrn1QU8
 //go:noescape
-func Vtrn1U32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+func Vtrn1QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
-//go:linkname Vtrn1U8 Vtrn1U8
+//go:linkname Vtrn1QU16 Vtrn1QU16
 //go:noescape
-func Vtrn1U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func Vtrn1QU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
+
+// Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
+//
+//go:linkname Vtrn1QU32 Vtrn1QU32
+//go:noescape
+func Vtrn1QU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
+
+// Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
+//
+//go:linkname Vtrn1QU64 Vtrn1QU64
+//go:noescape
+func Vtrn1QU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
 // Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
@@ -12387,53 +12477,41 @@ func Vtrn1QP64(r *arm.Poly64X2, v0 *arm.Poly64X2, v1 *arm.Poly64X2)
 //go:noescape
 func Vtrn1QP8(r *arm.Poly8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16)
 
-// Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
+// Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
-//go:linkname Vtrn1QS16 Vtrn1QS16
+//go:linkname Vtrn2S8 Vtrn2S8
 //go:noescape
-func Vtrn1QS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
+func Vtrn2S8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
-// Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
+// Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
-//go:linkname Vtrn1QS32 Vtrn1QS32
+//go:linkname Vtrn2S16 Vtrn2S16
 //go:noescape
-func Vtrn1QS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
+func Vtrn2S16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
 
-// Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
+// Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
-//go:linkname Vtrn1QS64 Vtrn1QS64
+//go:linkname Vtrn2S32 Vtrn2S32
 //go:noescape
-func Vtrn1QS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
+func Vtrn2S32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
-// Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
+// Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
-//go:linkname Vtrn1QS8 Vtrn1QS8
+//go:linkname Vtrn2U8 Vtrn2U8
 //go:noescape
-func Vtrn1QS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func Vtrn2U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
-// Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
+// Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
-//go:linkname Vtrn1QU16 Vtrn1QU16
+//go:linkname Vtrn2U16 Vtrn2U16
 //go:noescape
-func Vtrn1QU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
+func Vtrn2U16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
 
-// Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
+// Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
-//go:linkname Vtrn1QU32 Vtrn1QU32
+//go:linkname Vtrn2U32 Vtrn2U32
 //go:noescape
-func Vtrn1QU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
-
-// Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
-//
-//go:linkname Vtrn1QU64 Vtrn1QU64
-//go:noescape
-func Vtrn1QU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
-
-// Transpose vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
-//
-//go:linkname Vtrn1QU8 Vtrn1QU8
-//go:noescape
-func Vtrn1QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func Vtrn2U32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 
 // Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
@@ -12455,39 +12533,51 @@ func Vtrn2P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8)
 
 // Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
-//go:linkname Vtrn2S16 Vtrn2S16
+//go:linkname Vtrn2QS8 Vtrn2QS8
 //go:noescape
-func Vtrn2S16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
+func Vtrn2QS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
-//go:linkname Vtrn2S32 Vtrn2S32
+//go:linkname Vtrn2QS16 Vtrn2QS16
 //go:noescape
-func Vtrn2S32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+func Vtrn2QS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
 
 // Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
-//go:linkname Vtrn2S8 Vtrn2S8
+//go:linkname Vtrn2QS32 Vtrn2QS32
 //go:noescape
-func Vtrn2S8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func Vtrn2QS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
 // Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
-//go:linkname Vtrn2U16 Vtrn2U16
+//go:linkname Vtrn2QS64 Vtrn2QS64
 //go:noescape
-func Vtrn2U16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+func Vtrn2QS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
 // Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
-//go:linkname Vtrn2U32 Vtrn2U32
+//go:linkname Vtrn2QU8 Vtrn2QU8
 //go:noescape
-func Vtrn2U32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+func Vtrn2QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
-//go:linkname Vtrn2U8 Vtrn2U8
+//go:linkname Vtrn2QU16 Vtrn2QU16
 //go:noescape
-func Vtrn2U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func Vtrn2QU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
+
+// Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
+//
+//go:linkname Vtrn2QU32 Vtrn2QU32
+//go:noescape
+func Vtrn2QU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
+
+// Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
+//
+//go:linkname Vtrn2QU64 Vtrn2QU64
+//go:noescape
+func Vtrn2QU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
 // Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
 //
@@ -12519,60 +12609,6 @@ func Vtrn2QP64(r *arm.Poly64X2, v0 *arm.Poly64X2, v1 *arm.Poly64X2)
 //go:noescape
 func Vtrn2QP8(r *arm.Poly8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16)
 
-// Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
-//
-//go:linkname Vtrn2QS16 Vtrn2QS16
-//go:noescape
-func Vtrn2QS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
-
-// Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
-//
-//go:linkname Vtrn2QS32 Vtrn2QS32
-//go:noescape
-func Vtrn2QS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
-
-// Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
-//
-//go:linkname Vtrn2QS64 Vtrn2QS64
-//go:noescape
-func Vtrn2QS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
-
-// Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
-//
-//go:linkname Vtrn2QS8 Vtrn2QS8
-//go:noescape
-func Vtrn2QS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
-
-// Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
-//
-//go:linkname Vtrn2QU16 Vtrn2QU16
-//go:noescape
-func Vtrn2QU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
-
-// Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
-//
-//go:linkname Vtrn2QU32 Vtrn2QU32
-//go:noescape
-func Vtrn2QU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
-
-// Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
-//
-//go:linkname Vtrn2QU64 Vtrn2QU64
-//go:noescape
-func Vtrn2QU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
-
-// Transpose vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places each result into consecutive elements of a vector, and writes the vector to the destination SIMD&FP register. Vector elements from the first source register are placed into even-numbered elements of the destination vector, starting at zero, while vector elements from the second source register are placed into odd-numbered elements of the destination vector.
-//
-//go:linkname Vtrn2QU8 Vtrn2QU8
-//go:noescape
-func Vtrn2QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
-
-// Transpose elements
-//
-//go:linkname VtrnF32 VtrnF32
-//go:noescape
-func VtrnF32(r *arm.Float32X2X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
-
 // Transpose elements
 //
 //go:linkname VtrnP16 VtrnP16
@@ -12587,39 +12623,39 @@ func VtrnP8(r *arm.Poly8X8X2, v0 *arm.Poly8X8, v1 *arm.Poly8X8)
 
 // Transpose elements
 //
-//go:linkname VtrnS16 VtrnS16
+//go:linkname VtrnqS8 VtrnqS8
 //go:noescape
-func VtrnS16(r *arm.Int16X4X2, v0 *arm.Int16X4, v1 *arm.Int16X4)
+func VtrnqS8(r *arm.Int8X16X2, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Transpose elements
 //
-//go:linkname VtrnS32 VtrnS32
+//go:linkname VtrnqS16 VtrnqS16
 //go:noescape
-func VtrnS32(r *arm.Int32X2X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+func VtrnqS16(r *arm.Int16X8X2, v0 *arm.Int16X8, v1 *arm.Int16X8)
 
 // Transpose elements
 //
-//go:linkname VtrnS8 VtrnS8
+//go:linkname VtrnqS32 VtrnqS32
 //go:noescape
-func VtrnS8(r *arm.Int8X8X2, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VtrnqS32(r *arm.Int32X4X2, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
 // Transpose elements
 //
-//go:linkname VtrnU16 VtrnU16
+//go:linkname VtrnqU8 VtrnqU8
 //go:noescape
-func VtrnU16(r *arm.Uint16X4X2, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+func VtrnqU8(r *arm.Uint8X16X2, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Transpose elements
 //
-//go:linkname VtrnU32 VtrnU32
+//go:linkname VtrnqU16 VtrnqU16
 //go:noescape
-func VtrnU32(r *arm.Uint32X2X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+func VtrnqU16(r *arm.Uint16X8X2, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
 
 // Transpose elements
 //
-//go:linkname VtrnU8 VtrnU8
+//go:linkname VtrnqU32 VtrnqU32
 //go:noescape
-func VtrnU8(r *arm.Uint8X8X2, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VtrnqU32(r *arm.Uint32X4X2, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 
 // Transpose elements
 //
@@ -12639,59 +12675,11 @@ func VtrnqP16(r *arm.Poly16X8X2, v0 *arm.Poly16X8, v1 *arm.Poly16X8)
 //go:noescape
 func VtrnqP8(r *arm.Poly8X16X2, v0 *arm.Poly8X16, v1 *arm.Poly8X16)
 
-// Transpose elements
-//
-//go:linkname VtrnqS16 VtrnqS16
-//go:noescape
-func VtrnqS16(r *arm.Int16X8X2, v0 *arm.Int16X8, v1 *arm.Int16X8)
-
-// Transpose elements
-//
-//go:linkname VtrnqS32 VtrnqS32
-//go:noescape
-func VtrnqS32(r *arm.Int32X4X2, v0 *arm.Int32X4, v1 *arm.Int32X4)
-
-// Transpose elements
-//
-//go:linkname VtrnqS8 VtrnqS8
-//go:noescape
-func VtrnqS8(r *arm.Int8X16X2, v0 *arm.Int8X16, v1 *arm.Int8X16)
-
-// Transpose elements
-//
-//go:linkname VtrnqU16 VtrnqU16
-//go:noescape
-func VtrnqU16(r *arm.Uint16X8X2, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
-
-// Transpose elements
-//
-//go:linkname VtrnqU32 VtrnqU32
-//go:noescape
-func VtrnqU32(r *arm.Uint32X4X2, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
-
-// Transpose elements
-//
-//go:linkname VtrnqU8 VtrnqU8
-//go:noescape
-func VtrnqU8(r *arm.Uint8X16X2, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
-
-// vtst_p16
-//
-//go:linkname VtstP16 VtstP16
-//go:noescape
-func VtstP16(r *arm.Uint16X4, v0 *arm.Poly16X4, v1 *arm.Poly16X4)
-
 // Compare bitwise Test bits nonzero (vector). This instruction reads each vector element in the first source SIMD&FP register, performs an AND with the corresponding vector element in the second source SIMD&FP register, and if the result is not zero, sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VtstP64 VtstP64
+//go:linkname VtstS8 VtstS8
 //go:noescape
-func VtstP64(r *arm.Uint64X1, v0 *arm.Poly64X1, v1 *arm.Poly64X1)
-
-// Compare bitwise Test bits nonzero (vector). This instruction reads each vector element in the first source SIMD&FP register, performs an AND with the corresponding vector element in the second source SIMD&FP register, and if the result is not zero, sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VtstP8 VtstP8
-//go:noescape
-func VtstP8(r *arm.Uint8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8)
+func VtstS8(r *arm.Uint8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
 // Compare bitwise Test bits nonzero (vector). This instruction reads each vector element in the first source SIMD&FP register, performs an AND with the corresponding vector element in the second source SIMD&FP register, and if the result is not zero, sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -12713,9 +12701,9 @@ func VtstS64(r *arm.Uint64X1, v0 *arm.Int64X1, v1 *arm.Int64X1)
 
 // Compare bitwise Test bits nonzero (vector). This instruction reads each vector element in the first source SIMD&FP register, performs an AND with the corresponding vector element in the second source SIMD&FP register, and if the result is not zero, sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VtstS8 VtstS8
+//go:linkname VtstU8 VtstU8
 //go:noescape
-func VtstS8(r *arm.Uint8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VtstU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
 // Compare bitwise Test bits nonzero (vector). This instruction reads each vector element in the first source SIMD&FP register, performs an AND with the corresponding vector element in the second source SIMD&FP register, and if the result is not zero, sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -12735,11 +12723,23 @@ func VtstU32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 //go:noescape
 func VtstU64(r *arm.Uint64X1, v0 *arm.Uint64X1, v1 *arm.Uint64X1)
 
+// vtst_p16
+//
+//go:linkname VtstP16 VtstP16
+//go:noescape
+func VtstP16(r *arm.Uint16X4, v0 *arm.Poly16X4, v1 *arm.Poly16X4)
+
 // Compare bitwise Test bits nonzero (vector). This instruction reads each vector element in the first source SIMD&FP register, performs an AND with the corresponding vector element in the second source SIMD&FP register, and if the result is not zero, sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VtstU8 VtstU8
+//go:linkname VtstP64 VtstP64
 //go:noescape
-func VtstU8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VtstP64(r *arm.Uint64X1, v0 *arm.Poly64X1, v1 *arm.Poly64X1)
+
+// Compare bitwise Test bits nonzero (vector). This instruction reads each vector element in the first source SIMD&FP register, performs an AND with the corresponding vector element in the second source SIMD&FP register, and if the result is not zero, sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VtstP8 VtstP8
+//go:noescape
+func VtstP8(r *arm.Uint8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8)
 
 // Compare bitwise Test bits nonzero (vector). This instruction reads each vector element in the first source SIMD&FP register, performs an AND with the corresponding vector element in the second source SIMD&FP register, and if the result is not zero, sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -12753,23 +12753,11 @@ func VtstdS64(r *arm.Uint64, v0 *arm.Int64, v1 *arm.Int64)
 //go:noescape
 func VtstdU64(r *arm.Uint64, v0 *arm.Uint64, v1 *arm.Uint64)
 
-// vtstq_p16
-//
-//go:linkname VtstqP16 VtstqP16
-//go:noescape
-func VtstqP16(r *arm.Uint16X8, v0 *arm.Poly16X8, v1 *arm.Poly16X8)
-
 // Compare bitwise Test bits nonzero (vector). This instruction reads each vector element in the first source SIMD&FP register, performs an AND with the corresponding vector element in the second source SIMD&FP register, and if the result is not zero, sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VtstqP64 VtstqP64
+//go:linkname VtstqS8 VtstqS8
 //go:noescape
-func VtstqP64(r *arm.Uint64X2, v0 *arm.Poly64X2, v1 *arm.Poly64X2)
-
-// Compare bitwise Test bits nonzero (vector). This instruction reads each vector element in the first source SIMD&FP register, performs an AND with the corresponding vector element in the second source SIMD&FP register, and if the result is not zero, sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
-//
-//go:linkname VtstqP8 VtstqP8
-//go:noescape
-func VtstqP8(r *arm.Uint8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16)
+func VtstqS8(r *arm.Uint8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Compare bitwise Test bits nonzero (vector). This instruction reads each vector element in the first source SIMD&FP register, performs an AND with the corresponding vector element in the second source SIMD&FP register, and if the result is not zero, sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -12791,9 +12779,9 @@ func VtstqS64(r *arm.Uint64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
 // Compare bitwise Test bits nonzero (vector). This instruction reads each vector element in the first source SIMD&FP register, performs an AND with the corresponding vector element in the second source SIMD&FP register, and if the result is not zero, sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VtstqS8 VtstqS8
+//go:linkname VtstqU8 VtstqU8
 //go:noescape
-func VtstqS8(r *arm.Uint8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VtstqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Compare bitwise Test bits nonzero (vector). This instruction reads each vector element in the first source SIMD&FP register, performs an AND with the corresponding vector element in the second source SIMD&FP register, and if the result is not zero, sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
@@ -12813,11 +12801,29 @@ func VtstqU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 //go:noescape
 func VtstqU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
+// vtstq_p16
+//
+//go:linkname VtstqP16 VtstqP16
+//go:noescape
+func VtstqP16(r *arm.Uint16X8, v0 *arm.Poly16X8, v1 *arm.Poly16X8)
+
 // Compare bitwise Test bits nonzero (vector). This instruction reads each vector element in the first source SIMD&FP register, performs an AND with the corresponding vector element in the second source SIMD&FP register, and if the result is not zero, sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
 //
-//go:linkname VtstqU8 VtstqU8
+//go:linkname VtstqP64 VtstqP64
 //go:noescape
-func VtstqU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VtstqP64(r *arm.Uint64X2, v0 *arm.Poly64X2, v1 *arm.Poly64X2)
+
+// Compare bitwise Test bits nonzero (vector). This instruction reads each vector element in the first source SIMD&FP register, performs an AND with the corresponding vector element in the second source SIMD&FP register, and if the result is not zero, sets every bit of the corresponding vector element in the destination SIMD&FP register to one, otherwise sets every bit of the corresponding vector element in the destination SIMD&FP register to zero.
+//
+//go:linkname VtstqP8 VtstqP8
+//go:noescape
+func VtstqP8(r *arm.Uint8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16)
+
+// Signed saturating Accumulate of Unsigned value. This instruction adds the unsigned integer values of the vector elements in the source SIMD&FP register to corresponding signed integer values of the vector elements in the destination SIMD&FP register, and writes the resulting signed integer values to the destination SIMD&FP register.
+//
+//go:linkname VuqaddS8 VuqaddS8
+//go:noescape
+func VuqaddS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Uint8X8)
 
 // Signed saturating Accumulate of Unsigned value. This instruction adds the unsigned integer values of the vector elements in the source SIMD&FP register to corresponding signed integer values of the vector elements in the destination SIMD&FP register, and writes the resulting signed integer values to the destination SIMD&FP register.
 //
@@ -12839,12 +12845,6 @@ func VuqaddS64(r *arm.Int64X1, v0 *arm.Int64X1, v1 *arm.Uint64X1)
 
 // Signed saturating Accumulate of Unsigned value. This instruction adds the unsigned integer values of the vector elements in the source SIMD&FP register to corresponding signed integer values of the vector elements in the destination SIMD&FP register, and writes the resulting signed integer values to the destination SIMD&FP register.
 //
-//go:linkname VuqaddS8 VuqaddS8
-//go:noescape
-func VuqaddS8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Uint8X8)
-
-// Signed saturating Accumulate of Unsigned value. This instruction adds the unsigned integer values of the vector elements in the source SIMD&FP register to corresponding signed integer values of the vector elements in the destination SIMD&FP register, and writes the resulting signed integer values to the destination SIMD&FP register.
-//
 //go:linkname VuqaddbS8 VuqaddbS8
 //go:noescape
 func VuqaddbS8(r *arm.Int8, v0 *arm.Int8, v1 *arm.Uint8)
@@ -12863,6 +12863,12 @@ func VuqaddhS16(r *arm.Int16, v0 *arm.Int16, v1 *arm.Uint16)
 
 // Signed saturating Accumulate of Unsigned value. This instruction adds the unsigned integer values of the vector elements in the source SIMD&FP register to corresponding signed integer values of the vector elements in the destination SIMD&FP register, and writes the resulting signed integer values to the destination SIMD&FP register.
 //
+//go:linkname VuqaddqS8 VuqaddqS8
+//go:noescape
+func VuqaddqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Uint8X16)
+
+// Signed saturating Accumulate of Unsigned value. This instruction adds the unsigned integer values of the vector elements in the source SIMD&FP register to corresponding signed integer values of the vector elements in the destination SIMD&FP register, and writes the resulting signed integer values to the destination SIMD&FP register.
+//
 //go:linkname VuqaddqS16 VuqaddqS16
 //go:noescape
 func VuqaddqS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Uint16X8)
@@ -12878,12 +12884,6 @@ func VuqaddqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Uint32X4)
 //go:linkname VuqaddqS64 VuqaddqS64
 //go:noescape
 func VuqaddqS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Uint64X2)
-
-// Signed saturating Accumulate of Unsigned value. This instruction adds the unsigned integer values of the vector elements in the source SIMD&FP register to corresponding signed integer values of the vector elements in the destination SIMD&FP register, and writes the resulting signed integer values to the destination SIMD&FP register.
-//
-//go:linkname VuqaddqS8 VuqaddqS8
-//go:noescape
-func VuqaddqS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Uint8X16)
 
 // Signed saturating Accumulate of Unsigned value. This instruction adds the unsigned integer values of the vector elements in the source SIMD&FP register to corresponding signed integer values of the vector elements in the destination SIMD&FP register, and writes the resulting signed integer values to the destination SIMD&FP register.
 //
@@ -12909,6 +12909,84 @@ func VusdotqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Uint8X16, v2 *arm.Int8X
 //go:noescape
 func VusmmlaqS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Uint8X16, v2 *arm.Int8X16)
 
+// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VuzpS8 VuzpS8
+//go:noescape
+func VuzpS8(r *arm.Int8X8X2, v0 *arm.Int8X8, v1 *arm.Int8X8)
+
+// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VuzpS16 VuzpS16
+//go:noescape
+func VuzpS16(r *arm.Int16X4X2, v0 *arm.Int16X4, v1 *arm.Int16X4)
+
+// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VuzpS32 VuzpS32
+//go:noescape
+func VuzpS32(r *arm.Int32X2X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+
+// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VuzpU8 VuzpU8
+//go:noescape
+func VuzpU8(r *arm.Uint8X8X2, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+
+// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VuzpU16 VuzpU16
+//go:noescape
+func VuzpU16(r *arm.Uint16X4X2, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+
+// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VuzpU32 VuzpU32
+//go:noescape
+func VuzpU32(r *arm.Uint32X2X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+
+// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname VuzpF32 VuzpF32
+//go:noescape
+func VuzpF32(r *arm.Float32X2X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
+
+// Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname Vuzp1S8 Vuzp1S8
+//go:noescape
+func Vuzp1S8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+
+// Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname Vuzp1S16 Vuzp1S16
+//go:noescape
+func Vuzp1S16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
+
+// Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname Vuzp1S32 Vuzp1S32
+//go:noescape
+func Vuzp1S32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+
+// Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname Vuzp1U8 Vuzp1U8
+//go:noescape
+func Vuzp1U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+
+// Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname Vuzp1U16 Vuzp1U16
+//go:noescape
+func Vuzp1U16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+
+// Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname Vuzp1U32 Vuzp1U32
+//go:noescape
+func Vuzp1U32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+
 // Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
 //go:linkname Vuzp1F32 Vuzp1F32
@@ -12929,39 +13007,51 @@ func Vuzp1P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8)
 
 // Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp1S16 Vuzp1S16
+//go:linkname Vuzp1QS8 Vuzp1QS8
 //go:noescape
-func Vuzp1S16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
+func Vuzp1QS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp1S32 Vuzp1S32
+//go:linkname Vuzp1QS16 Vuzp1QS16
 //go:noescape
-func Vuzp1S32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+func Vuzp1QS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
 
 // Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp1S8 Vuzp1S8
+//go:linkname Vuzp1QS32 Vuzp1QS32
 //go:noescape
-func Vuzp1S8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func Vuzp1QS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
 // Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp1U16 Vuzp1U16
+//go:linkname Vuzp1QS64 Vuzp1QS64
 //go:noescape
-func Vuzp1U16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+func Vuzp1QS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
 // Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp1U32 Vuzp1U32
+//go:linkname Vuzp1QU8 Vuzp1QU8
 //go:noescape
-func Vuzp1U32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+func Vuzp1QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp1U8 Vuzp1U8
+//go:linkname Vuzp1QU16 Vuzp1QU16
 //go:noescape
-func Vuzp1U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func Vuzp1QU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
+
+// Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname Vuzp1QU32 Vuzp1QU32
+//go:noescape
+func Vuzp1QU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
+
+// Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname Vuzp1QU64 Vuzp1QU64
+//go:noescape
+func Vuzp1QU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
 // Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -12993,53 +13083,41 @@ func Vuzp1QP64(r *arm.Poly64X2, v0 *arm.Poly64X2, v1 *arm.Poly64X2)
 //go:noescape
 func Vuzp1QP8(r *arm.Poly8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16)
 
-// Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp1QS16 Vuzp1QS16
+//go:linkname Vuzp2S8 Vuzp2S8
 //go:noescape
-func Vuzp1QS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
+func Vuzp2S8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
-// Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp1QS32 Vuzp1QS32
+//go:linkname Vuzp2S16 Vuzp2S16
 //go:noescape
-func Vuzp1QS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
+func Vuzp2S16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
 
-// Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp1QS64 Vuzp1QS64
+//go:linkname Vuzp2S32 Vuzp2S32
 //go:noescape
-func Vuzp1QS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
+func Vuzp2S32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
-// Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp1QS8 Vuzp1QS8
+//go:linkname Vuzp2U8 Vuzp2U8
 //go:noescape
-func Vuzp1QS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func Vuzp2U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
-// Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp1QU16 Vuzp1QU16
+//go:linkname Vuzp2U16 Vuzp2U16
 //go:noescape
-func Vuzp1QU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
+func Vuzp2U16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
 
-// Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp1QU32 Vuzp1QU32
+//go:linkname Vuzp2U32 Vuzp2U32
 //go:noescape
-func Vuzp1QU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
-
-// Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname Vuzp1QU64 Vuzp1QU64
-//go:noescape
-func Vuzp1QU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
-
-// Unzip vectors (primary). This instruction reads corresponding even-numbered vector elements from the two source SIMD&FP registers, starting at zero, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname Vuzp1QU8 Vuzp1QU8
-//go:noescape
-func Vuzp1QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func Vuzp2U32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 
 // Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -13061,39 +13139,51 @@ func Vuzp2P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8)
 
 // Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp2S16 Vuzp2S16
+//go:linkname Vuzp2QS8 Vuzp2QS8
 //go:noescape
-func Vuzp2S16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
+func Vuzp2QS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp2S32 Vuzp2S32
+//go:linkname Vuzp2QS16 Vuzp2QS16
 //go:noescape
-func Vuzp2S32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+func Vuzp2QS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
 
 // Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp2S8 Vuzp2S8
+//go:linkname Vuzp2QS32 Vuzp2QS32
 //go:noescape
-func Vuzp2S8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func Vuzp2QS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
 // Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp2U16 Vuzp2U16
+//go:linkname Vuzp2QS64 Vuzp2QS64
 //go:noescape
-func Vuzp2U16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+func Vuzp2QS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
 // Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp2U32 Vuzp2U32
+//go:linkname Vuzp2QU8 Vuzp2QU8
 //go:noescape
-func Vuzp2U32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+func Vuzp2QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp2U8 Vuzp2U8
+//go:linkname Vuzp2QU16 Vuzp2QU16
 //go:noescape
-func Vuzp2U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func Vuzp2QU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
+
+// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname Vuzp2QU32 Vuzp2QU32
+//go:noescape
+func Vuzp2QU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
+
+// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+//
+//go:linkname Vuzp2QU64 Vuzp2QU64
+//go:noescape
+func Vuzp2QU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
 // Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -13127,60 +13217,6 @@ func Vuzp2QP8(r *arm.Poly8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16)
 
 // Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname Vuzp2QS16 Vuzp2QS16
-//go:noescape
-func Vuzp2QS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
-
-// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname Vuzp2QS32 Vuzp2QS32
-//go:noescape
-func Vuzp2QS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
-
-// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname Vuzp2QS64 Vuzp2QS64
-//go:noescape
-func Vuzp2QS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
-
-// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname Vuzp2QS8 Vuzp2QS8
-//go:noescape
-func Vuzp2QS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
-
-// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname Vuzp2QU16 Vuzp2QU16
-//go:noescape
-func Vuzp2QU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
-
-// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname Vuzp2QU32 Vuzp2QU32
-//go:noescape
-func Vuzp2QU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
-
-// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname Vuzp2QU64 Vuzp2QU64
-//go:noescape
-func Vuzp2QU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
-
-// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname Vuzp2QU8 Vuzp2QU8
-//go:noescape
-func Vuzp2QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
-
-// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
-//
-//go:linkname VuzpF32 VuzpF32
-//go:noescape
-func VuzpF32(r *arm.Float32X2X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
-
-// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
-//
 //go:linkname VuzpP16 VuzpP16
 //go:noescape
 func VuzpP16(r *arm.Poly16X4X2, v0 *arm.Poly16X4, v1 *arm.Poly16X4)
@@ -13193,39 +13229,39 @@ func VuzpP8(r *arm.Poly8X8X2, v0 *arm.Poly8X8, v1 *arm.Poly8X8)
 
 // Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VuzpS16 VuzpS16
+//go:linkname VuzpqS8 VuzpqS8
 //go:noescape
-func VuzpS16(r *arm.Int16X4X2, v0 *arm.Int16X4, v1 *arm.Int16X4)
+func VuzpqS8(r *arm.Int8X16X2, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VuzpS32 VuzpS32
+//go:linkname VuzpqS16 VuzpqS16
 //go:noescape
-func VuzpS32(r *arm.Int32X2X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+func VuzpqS16(r *arm.Int16X8X2, v0 *arm.Int16X8, v1 *arm.Int16X8)
 
 // Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VuzpS8 VuzpS8
+//go:linkname VuzpqS32 VuzpqS32
 //go:noescape
-func VuzpS8(r *arm.Int8X8X2, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VuzpqS32(r *arm.Int32X4X2, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
 // Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VuzpU16 VuzpU16
+//go:linkname VuzpqU8 VuzpqU8
 //go:noescape
-func VuzpU16(r *arm.Uint16X4X2, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+func VuzpqU8(r *arm.Uint8X16X2, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VuzpU32 VuzpU32
+//go:linkname VuzpqU16 VuzpqU16
 //go:noescape
-func VuzpU32(r *arm.Uint32X2X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+func VuzpqU16(r *arm.Uint16X8X2, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
 
 // Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
-//go:linkname VuzpU8 VuzpU8
+//go:linkname VuzpqU32 VuzpqU32
 //go:noescape
-func VuzpU8(r *arm.Uint8X8X2, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VuzpqU32(r *arm.Uint32X4X2, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 
 // Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
 //
@@ -13245,41 +13281,83 @@ func VuzpqP16(r *arm.Poly16X8X2, v0 *arm.Poly16X8, v1 *arm.Poly16X8)
 //go:noescape
 func VuzpqP8(r *arm.Poly8X16X2, v0 *arm.Poly8X16, v1 *arm.Poly8X16)
 
-// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+// Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
 //
-//go:linkname VuzpqS16 VuzpqS16
+//go:linkname VzipS8 VzipS8
 //go:noescape
-func VuzpqS16(r *arm.Int16X8X2, v0 *arm.Int16X8, v1 *arm.Int16X8)
+func VzipS8(r *arm.Int8X8X2, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
-// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+// Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
 //
-//go:linkname VuzpqS32 VuzpqS32
+//go:linkname VzipS16 VzipS16
 //go:noescape
-func VuzpqS32(r *arm.Int32X4X2, v0 *arm.Int32X4, v1 *arm.Int32X4)
+func VzipS16(r *arm.Int16X4X2, v0 *arm.Int16X4, v1 *arm.Int16X4)
 
-// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+// Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
 //
-//go:linkname VuzpqS8 VuzpqS8
+//go:linkname VzipS32 VzipS32
 //go:noescape
-func VuzpqS8(r *arm.Int8X16X2, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func VzipS32(r *arm.Int32X2X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
-// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+// Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
 //
-//go:linkname VuzpqU16 VuzpqU16
+//go:linkname VzipU8 VzipU8
 //go:noescape
-func VuzpqU16(r *arm.Uint16X8X2, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
+func VzipU8(r *arm.Uint8X8X2, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
-// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+// Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
 //
-//go:linkname VuzpqU32 VuzpqU32
+//go:linkname VzipU16 VzipU16
 //go:noescape
-func VuzpqU32(r *arm.Uint32X4X2, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
+func VzipU16(r *arm.Uint16X4X2, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
 
-// Unzip vectors (secondary). This instruction reads corresponding odd-numbered vector elements from the two source SIMD&FP registers, places the result from the first source register into consecutive elements in the lower half of a vector, and the result from the second source register into consecutive elements in the upper half of a vector, and writes the vector to the destination SIMD&FP register.
+// Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
 //
-//go:linkname VuzpqU8 VuzpqU8
+//go:linkname VzipU32 VzipU32
 //go:noescape
-func VuzpqU8(r *arm.Uint8X16X2, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func VzipU32(r *arm.Uint32X2X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+
+// Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
+//
+//go:linkname VzipF32 VzipF32
+//go:noescape
+func VzipF32(r *arm.Float32X2X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
+
+// Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
+//
+//go:linkname Vzip1S8 Vzip1S8
+//go:noescape
+func Vzip1S8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+
+// Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
+//
+//go:linkname Vzip1S16 Vzip1S16
+//go:noescape
+func Vzip1S16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
+
+// Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
+//
+//go:linkname Vzip1S32 Vzip1S32
+//go:noescape
+func Vzip1S32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+
+// Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
+//
+//go:linkname Vzip1U8 Vzip1U8
+//go:noescape
+func Vzip1U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+
+// Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
+//
+//go:linkname Vzip1U16 Vzip1U16
+//go:noescape
+func Vzip1U16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+
+// Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
+//
+//go:linkname Vzip1U32 Vzip1U32
+//go:noescape
+func Vzip1U32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 
 // Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
@@ -13301,39 +13379,51 @@ func Vzip1P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8)
 
 // Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
-//go:linkname Vzip1S16 Vzip1S16
+//go:linkname Vzip1QS8 Vzip1QS8
 //go:noescape
-func Vzip1S16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
+func Vzip1QS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
-//go:linkname Vzip1S32 Vzip1S32
+//go:linkname Vzip1QS16 Vzip1QS16
 //go:noescape
-func Vzip1S32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+func Vzip1QS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
 
 // Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
-//go:linkname Vzip1S8 Vzip1S8
+//go:linkname Vzip1QS32 Vzip1QS32
 //go:noescape
-func Vzip1S8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func Vzip1QS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
 // Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
-//go:linkname Vzip1U16 Vzip1U16
+//go:linkname Vzip1QS64 Vzip1QS64
 //go:noescape
-func Vzip1U16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+func Vzip1QS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
 // Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
-//go:linkname Vzip1U32 Vzip1U32
+//go:linkname Vzip1QU8 Vzip1QU8
 //go:noescape
-func Vzip1U32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+func Vzip1QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
-//go:linkname Vzip1U8 Vzip1U8
+//go:linkname Vzip1QU16 Vzip1QU16
 //go:noescape
-func Vzip1U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func Vzip1QU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
+
+// Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
+//
+//go:linkname Vzip1QU32 Vzip1QU32
+//go:noescape
+func Vzip1QU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
+
+// Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
+//
+//go:linkname Vzip1QU64 Vzip1QU64
+//go:noescape
+func Vzip1QU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
 // Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
@@ -13365,53 +13455,41 @@ func Vzip1QP64(r *arm.Poly64X2, v0 *arm.Poly64X2, v1 *arm.Poly64X2)
 //go:noescape
 func Vzip1QP8(r *arm.Poly8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16)
 
-// Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
+// Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
-//go:linkname Vzip1QS16 Vzip1QS16
+//go:linkname Vzip2S8 Vzip2S8
 //go:noescape
-func Vzip1QS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
+func Vzip2S8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
 
-// Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
+// Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
-//go:linkname Vzip1QS32 Vzip1QS32
+//go:linkname Vzip2S16 Vzip2S16
 //go:noescape
-func Vzip1QS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
+func Vzip2S16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
 
-// Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
+// Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
-//go:linkname Vzip1QS64 Vzip1QS64
+//go:linkname Vzip2S32 Vzip2S32
 //go:noescape
-func Vzip1QS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
+func Vzip2S32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
 
-// Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
+// Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
-//go:linkname Vzip1QS8 Vzip1QS8
+//go:linkname Vzip2U8 Vzip2U8
 //go:noescape
-func Vzip1QS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
+func Vzip2U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
 
-// Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
+// Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
-//go:linkname Vzip1QU16 Vzip1QU16
+//go:linkname Vzip2U16 Vzip2U16
 //go:noescape
-func Vzip1QU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
+func Vzip2U16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
 
-// Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
+// Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
-//go:linkname Vzip1QU32 Vzip1QU32
+//go:linkname Vzip2U32 Vzip2U32
 //go:noescape
-func Vzip1QU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
-
-// Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
-//
-//go:linkname Vzip1QU64 Vzip1QU64
-//go:noescape
-func Vzip1QU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
-
-// Zip vectors (primary). This instruction reads adjacent vector elements from the lower half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
-//
-//go:linkname Vzip1QU8 Vzip1QU8
-//go:noescape
-func Vzip1QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
+func Vzip2U32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
 
 // Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
@@ -13433,39 +13511,51 @@ func Vzip2P8(r *arm.Poly8X8, v0 *arm.Poly8X8, v1 *arm.Poly8X8)
 
 // Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
-//go:linkname Vzip2S16 Vzip2S16
+//go:linkname Vzip2QS8 Vzip2QS8
 //go:noescape
-func Vzip2S16(r *arm.Int16X4, v0 *arm.Int16X4, v1 *arm.Int16X4)
+func Vzip2QS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
-//go:linkname Vzip2S32 Vzip2S32
+//go:linkname Vzip2QS16 Vzip2QS16
 //go:noescape
-func Vzip2S32(r *arm.Int32X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+func Vzip2QS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
 
 // Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
-//go:linkname Vzip2S8 Vzip2S8
+//go:linkname Vzip2QS32 Vzip2QS32
 //go:noescape
-func Vzip2S8(r *arm.Int8X8, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func Vzip2QS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
 // Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
-//go:linkname Vzip2U16 Vzip2U16
+//go:linkname Vzip2QS64 Vzip2QS64
 //go:noescape
-func Vzip2U16(r *arm.Uint16X4, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+func Vzip2QS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
 
 // Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
-//go:linkname Vzip2U32 Vzip2U32
+//go:linkname Vzip2QU8 Vzip2QU8
 //go:noescape
-func Vzip2U32(r *arm.Uint32X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+func Vzip2QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
-//go:linkname Vzip2U8 Vzip2U8
+//go:linkname Vzip2QU16 Vzip2QU16
 //go:noescape
-func Vzip2U8(r *arm.Uint8X8, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func Vzip2QU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
+
+// Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
+//
+//go:linkname Vzip2QU32 Vzip2QU32
+//go:noescape
+func Vzip2QU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
+
+// Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
+//
+//go:linkname Vzip2QU64 Vzip2QU64
+//go:noescape
+func Vzip2QU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
 
 // Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
 //
@@ -13497,60 +13587,6 @@ func Vzip2QP64(r *arm.Poly64X2, v0 *arm.Poly64X2, v1 *arm.Poly64X2)
 //go:noescape
 func Vzip2QP8(r *arm.Poly8X16, v0 *arm.Poly8X16, v1 *arm.Poly8X16)
 
-// Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
-//
-//go:linkname Vzip2QS16 Vzip2QS16
-//go:noescape
-func Vzip2QS16(r *arm.Int16X8, v0 *arm.Int16X8, v1 *arm.Int16X8)
-
-// Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
-//
-//go:linkname Vzip2QS32 Vzip2QS32
-//go:noescape
-func Vzip2QS32(r *arm.Int32X4, v0 *arm.Int32X4, v1 *arm.Int32X4)
-
-// Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
-//
-//go:linkname Vzip2QS64 Vzip2QS64
-//go:noescape
-func Vzip2QS64(r *arm.Int64X2, v0 *arm.Int64X2, v1 *arm.Int64X2)
-
-// Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
-//
-//go:linkname Vzip2QS8 Vzip2QS8
-//go:noescape
-func Vzip2QS8(r *arm.Int8X16, v0 *arm.Int8X16, v1 *arm.Int8X16)
-
-// Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
-//
-//go:linkname Vzip2QU16 Vzip2QU16
-//go:noescape
-func Vzip2QU16(r *arm.Uint16X8, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
-
-// Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
-//
-//go:linkname Vzip2QU32 Vzip2QU32
-//go:noescape
-func Vzip2QU32(r *arm.Uint32X4, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
-
-// Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
-//
-//go:linkname Vzip2QU64 Vzip2QU64
-//go:noescape
-func Vzip2QU64(r *arm.Uint64X2, v0 *arm.Uint64X2, v1 *arm.Uint64X2)
-
-// Zip vectors (secondary). This instruction reads adjacent vector elements from the upper half of two source SIMD&FP registers as pairs, interleaves the pairs and places them into a vector, and writes the vector to the destination SIMD&FP register. The first pair from the first source register is placed into the two lowest vector elements, with subsequent pairs taken alternately from each source register.
-//
-//go:linkname Vzip2QU8 Vzip2QU8
-//go:noescape
-func Vzip2QU8(r *arm.Uint8X16, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
-
-// Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
-//
-//go:linkname VzipF32 VzipF32
-//go:noescape
-func VzipF32(r *arm.Float32X2X2, v0 *arm.Float32X2, v1 *arm.Float32X2)
-
 // Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
 //
 //go:linkname VzipP16 VzipP16
@@ -13565,39 +13601,39 @@ func VzipP8(r *arm.Poly8X8X2, v0 *arm.Poly8X8, v1 *arm.Poly8X8)
 
 // Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
 //
-//go:linkname VzipS16 VzipS16
+//go:linkname VzipqS8 VzipqS8
 //go:noescape
-func VzipS16(r *arm.Int16X4X2, v0 *arm.Int16X4, v1 *arm.Int16X4)
+func VzipqS8(r *arm.Int8X16X2, v0 *arm.Int8X16, v1 *arm.Int8X16)
 
 // Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
 //
-//go:linkname VzipS32 VzipS32
+//go:linkname VzipqS16 VzipqS16
 //go:noescape
-func VzipS32(r *arm.Int32X2X2, v0 *arm.Int32X2, v1 *arm.Int32X2)
+func VzipqS16(r *arm.Int16X8X2, v0 *arm.Int16X8, v1 *arm.Int16X8)
 
 // Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
 //
-//go:linkname VzipS8 VzipS8
+//go:linkname VzipqS32 VzipqS32
 //go:noescape
-func VzipS8(r *arm.Int8X8X2, v0 *arm.Int8X8, v1 *arm.Int8X8)
+func VzipqS32(r *arm.Int32X4X2, v0 *arm.Int32X4, v1 *arm.Int32X4)
 
 // Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
 //
-//go:linkname VzipU16 VzipU16
+//go:linkname VzipqU8 VzipqU8
 //go:noescape
-func VzipU16(r *arm.Uint16X4X2, v0 *arm.Uint16X4, v1 *arm.Uint16X4)
+func VzipqU8(r *arm.Uint8X16X2, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
 
 // Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
 //
-//go:linkname VzipU32 VzipU32
+//go:linkname VzipqU16 VzipqU16
 //go:noescape
-func VzipU32(r *arm.Uint32X2X2, v0 *arm.Uint32X2, v1 *arm.Uint32X2)
+func VzipqU16(r *arm.Uint16X8X2, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
 
 // Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
 //
-//go:linkname VzipU8 VzipU8
+//go:linkname VzipqU32 VzipqU32
 //go:noescape
-func VzipU8(r *arm.Uint8X8X2, v0 *arm.Uint8X8, v1 *arm.Uint8X8)
+func VzipqU32(r *arm.Uint32X4X2, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
 
 // Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
 //
@@ -13616,39 +13652,3 @@ func VzipqP16(r *arm.Poly16X8X2, v0 *arm.Poly16X8, v1 *arm.Poly16X8)
 //go:linkname VzipqP8 VzipqP8
 //go:noescape
 func VzipqP8(r *arm.Poly8X16X2, v0 *arm.Poly8X16, v1 *arm.Poly8X16)
-
-// Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
-//
-//go:linkname VzipqS16 VzipqS16
-//go:noescape
-func VzipqS16(r *arm.Int16X8X2, v0 *arm.Int16X8, v1 *arm.Int16X8)
-
-// Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
-//
-//go:linkname VzipqS32 VzipqS32
-//go:noescape
-func VzipqS32(r *arm.Int32X4X2, v0 *arm.Int32X4, v1 *arm.Int32X4)
-
-// Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
-//
-//go:linkname VzipqS8 VzipqS8
-//go:noescape
-func VzipqS8(r *arm.Int8X16X2, v0 *arm.Int8X16, v1 *arm.Int8X16)
-
-// Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
-//
-//go:linkname VzipqU16 VzipqU16
-//go:noescape
-func VzipqU16(r *arm.Uint16X8X2, v0 *arm.Uint16X8, v1 *arm.Uint16X8)
-
-// Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
-//
-//go:linkname VzipqU32 VzipqU32
-//go:noescape
-func VzipqU32(r *arm.Uint32X4X2, v0 *arm.Uint32X4, v1 *arm.Uint32X4)
-
-// Interleave two vectors. This intrinsic reads corresponding elements from the two source vectors as pairs, interleaves the pairs, and returns the resulting interleaved vector.
-//
-//go:linkname VzipqU8 VzipqU8
-//go:noescape
-func VzipqU8(r *arm.Uint8X16X2, v0 *arm.Uint8X16, v1 *arm.Uint8X16)
