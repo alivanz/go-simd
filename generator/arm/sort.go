@@ -17,16 +17,18 @@ var (
 	}
 )
 
-func sortGroup(name string) (string, int) {
+func sortGroup(name string) (string, int, string) {
 	var (
-		group = name
-		index = -1
+		group  = name
+		index  = -1
+		suffix = ""
 	)
-	for i, suffix := range suffixOrder {
-		if strings.HasSuffix(name, suffix) {
-			group = strings.TrimSuffix(name, suffix)
+	for i, s := range suffixOrder {
+		if strings.HasSuffix(name, s) {
+			group = strings.TrimSuffix(name, s)
 			index = i
+			suffix = s
 		}
 	}
-	return group, index
+	return group, index, suffix
 }
