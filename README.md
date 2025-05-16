@@ -24,6 +24,26 @@ BenchmarkMultSimdCgo-8             13020             92213 ns/op
 PASS
 ```
 
+```
+goos: darwin
+goarch: arm64
+pkg: github.com/alivanz/go-simd/arm/neon
+cpu: Apple M2
+BenchmarkVmulqF32N-8                8848            124616 ns/op        33657.86 MB/s       1422 B/op          0 allocs/op
+BenchmarkVmulqF32C-8                2256            528683 ns/op        7933.49 MB/s        5577 B/op          0 allocs/op
+BenchmarkVmulqF32Ref-8              3630            327995 ns/op        12787.69 MB/s       3466 B/op          0 allocs/op
+PASS
+ok      github.com/alivanz/go-simd/arm/neon     5.793s
+```
+
+The floating-point multiplication benchmarks demonstrate significant performance differences between implementations:
+
+- `VmulqF32N` (Native): Achieves the highest throughput at 33.6 GB/s with minimal memory allocation (1422 B/op). This implementation leverages direct SIMD instructions for optimal performance.
+- `VmulqF32C` (C): Shows the lowest performance at 7.9 GB/s with higher memory allocation (5577 B/op), likely due to the overhead of CGO calls and memory management.
+- `VmulqF32Ref` (Reference): Performs at 12.8 GB/s with moderate memory usage (3466 B/op), serving as a baseline for comparison.
+
+These results highlight the importance of using native SIMD implementations over CGO-based solutions for performance-critical applications. The native implementation is approximately 2.6x faster than the reference implementation, while the C implementation is about 1.6x slower than the reference.
+
 ## Features
 
 - SIMD operations for ARM NEON architecture.
