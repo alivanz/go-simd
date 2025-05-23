@@ -90,8 +90,8 @@ func main() {
 		a[i] = arm.Int8(i)
 		b[i] = arm.Int8(i * i)
 	}
-	log.Printf("a = %+v", b)
-	log.Printf("b = %+v", a)
+	log.Printf("a = %+v", a)
+	log.Printf("b = %+v", b)
 	neon.VaddlS8(&add, &a, &b)
 	neon.VmullS8(&mul, &a, &b)
 	log.Printf("add = %+v", add)
